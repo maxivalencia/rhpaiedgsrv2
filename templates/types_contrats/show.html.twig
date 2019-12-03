@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypesContrats{% endblock %}
+
+{% block body %}
+    <h1>TypesContrats</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ types_contrat.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ types_contrat.type }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('types_contrats_index') }}">back to list</a>
+
+    <a href="{{ path('types_contrats_edit', {'id': types_contrat.id}) }}">edit</a>
+
+    {{ include('types_contrats/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NominationsPersonnels{% endblock %}
+
+{% block body %}
+    <h1>NominationsPersonnels</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ nominations_personnel.id }}</td>
+            </tr>
+            <tr>
+                <th>Date_nomination</th>
+                <td>{{ nominations_personnel.dateNomination ? nominations_personnel.dateNomination|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Rang</th>
+                <td>{{ nominations_personnel.rang }}</td>
+            </tr>
+            <tr>
+                <th>Echelon</th>
+                <td>{{ nominations_personnel.echelon }}</td>
+            </tr>
+            <tr>
+                <th>Class</th>
+                <td>{{ nominations_personnel.class }}</td>
+            </tr>
+            <tr>
+                <th>Indice</th>
+                <td>{{ nominations_personnel.indice }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('nominations_personnels_index') }}">back to list</a>
+
+    <a href="{{ path('nominations_personnels_edit', {'id': nominations_personnel.id}) }}">edit</a>
+
+    {{ include('nominations_personnels/_delete_form.html.twig') }}
+{% endblock %}

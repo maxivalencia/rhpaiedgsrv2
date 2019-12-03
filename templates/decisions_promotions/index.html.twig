@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DecisionsPromotions index{% endblock %}
+
+{% block body %}
+    <h1>DecisionsPromotions index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Reference_decision</th>
+                <th>Date_decision</th>
+                <th>Genre_decision</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for decisions_promotion in decisions_promotions %}
+            <tr>
+                <td>{{ decisions_promotion.id }}</td>
+                <td>{{ decisions_promotion.referenceDecision }}</td>
+                <td>{{ decisions_promotion.dateDecision ? decisions_promotion.dateDecision|date('Y-m-d') : '' }}</td>
+                <td>{{ decisions_promotion.genreDecision }}</td>
+                <td>
+                    <a href="{{ path('decisions_promotions_show', {'id': decisions_promotion.id}) }}">show</a>
+                    <a href="{{ path('decisions_promotions_edit', {'id': decisions_promotion.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('decisions_promotions_new') }}">Create new</a>
+{% endblock %}

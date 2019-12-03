@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NiveauDiplome{% endblock %}
+
+{% block body %}
+    <h1>NiveauDiplome</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ niveau_diplome.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ niveau_diplome.libelle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('niveau_diplome_index') }}">back to list</a>
+
+    <a href="{{ path('niveau_diplome_edit', {'id': niveau_diplome.id}) }}">edit</a>
+
+    {{ include('niveau_diplome/_delete_form.html.twig') }}
+{% endblock %}

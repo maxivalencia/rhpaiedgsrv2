@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Personnels index{% endblock %}
+
+{% block body %}
+    <h1>Personnels index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenoms</th>
+                <th>Date_naissance</th>
+                <th>Lieu_naissance</th>
+                <th>Nom_pere</th>
+                <th>Nom_mere</th>
+                <th>Num_cin</th>
+                <th>Date_cin</th>
+                <th>Lieu_cin</th>
+                <th>Sexe</th>
+                <th>Est_marie</th>
+                <th>Adresse</th>
+                <th>Telephone</th>
+                <th>Telephone_ice</th>
+                <th>Date_embauche</th>
+                <th>Matricule</th>
+                <th>Numero_cnaps</th>
+                <th>Est_militaire</th>
+                <th>Actif</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for personnel in personnels %}
+            <tr>
+                <td>{{ personnel.id }}</td>
+                <td>{{ personnel.nom }}</td>
+                <td>{{ personnel.prenoms }}</td>
+                <td>{{ personnel.dateNaissance ? personnel.dateNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ personnel.lieuNaissance }}</td>
+                <td>{{ personnel.nomPere }}</td>
+                <td>{{ personnel.nomMere }}</td>
+                <td>{{ personnel.numCin }}</td>
+                <td>{{ personnel.dateCin ? personnel.dateCin|date('Y-m-d') : '' }}</td>
+                <td>{{ personnel.lieuCin }}</td>
+                <td>{{ personnel.sexe ? 'Yes' : 'No' }}</td>
+                <td>{{ personnel.estMarie ? 'Yes' : 'No' }}</td>
+                <td>{{ personnel.adresse }}</td>
+                <td>{{ personnel.telephone }}</td>
+                <td>{{ personnel.telephoneIce }}</td>
+                <td>{{ personnel.dateEmbauche ? personnel.dateEmbauche|date('Y-m-d') : '' }}</td>
+                <td>{{ personnel.matricule }}</td>
+                <td>{{ personnel.numeroCnaps }}</td>
+                <td>{{ personnel.estMilitaire ? 'Yes' : 'No' }}</td>
+                <td>{{ personnel.actif ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('personnels_show', {'id': personnel.id}) }}">show</a>
+                    <a href="{{ path('personnels_edit', {'id': personnel.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="21">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('personnels_new') }}">Create new</a>
+{% endblock %}

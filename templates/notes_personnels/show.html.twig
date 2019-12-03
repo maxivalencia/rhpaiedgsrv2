@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NotesPersonnels{% endblock %}
+
+{% block body %}
+    <h1>NotesPersonnels</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ notes_personnel.id }}</td>
+            </tr>
+            <tr>
+                <th>Date_note</th>
+                <td>{{ notes_personnel.dateNote ? notes_personnel.dateNote|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ notes_personnel.note }}</td>
+            </tr>
+            <tr>
+                <th>Appreciation_global</th>
+                <td>{{ notes_personnel.appreciationGlobal }}</td>
+            </tr>
+            <tr>
+                <th>Reference_note</th>
+                <td>{{ notes_personnel.referenceNote }}</td>
+            </tr>
+            <tr>
+                <th>Date_reference</th>
+                <td>{{ notes_personnel.dateReference ? notes_personnel.dateReference|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('notes_personnels_index') }}">back to list</a>
+
+    <a href="{{ path('notes_personnels_edit', {'id': notes_personnel.id}) }}">edit</a>
+
+    {{ include('notes_personnels/_delete_form.html.twig') }}
+{% endblock %}

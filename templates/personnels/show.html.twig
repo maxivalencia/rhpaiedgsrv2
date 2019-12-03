@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Personnels{% endblock %}
+
+{% block body %}
+    <h1>Personnels</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ personnel.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ personnel.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenoms</th>
+                <td>{{ personnel.prenoms }}</td>
+            </tr>
+            <tr>
+                <th>Date_naissance</th>
+                <td>{{ personnel.dateNaissance ? personnel.dateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Lieu_naissance</th>
+                <td>{{ personnel.lieuNaissance }}</td>
+            </tr>
+            <tr>
+                <th>Nom_pere</th>
+                <td>{{ personnel.nomPere }}</td>
+            </tr>
+            <tr>
+                <th>Nom_mere</th>
+                <td>{{ personnel.nomMere }}</td>
+            </tr>
+            <tr>
+                <th>Num_cin</th>
+                <td>{{ personnel.numCin }}</td>
+            </tr>
+            <tr>
+                <th>Date_cin</th>
+                <td>{{ personnel.dateCin ? personnel.dateCin|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Lieu_cin</th>
+                <td>{{ personnel.lieuCin }}</td>
+            </tr>
+            <tr>
+                <th>Sexe</th>
+                <td>{{ personnel.sexe ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Est_marie</th>
+                <td>{{ personnel.estMarie ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ personnel.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ personnel.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Telephone_ice</th>
+                <td>{{ personnel.telephoneIce }}</td>
+            </tr>
+            <tr>
+                <th>Date_embauche</th>
+                <td>{{ personnel.dateEmbauche ? personnel.dateEmbauche|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Matricule</th>
+                <td>{{ personnel.matricule }}</td>
+            </tr>
+            <tr>
+                <th>Numero_cnaps</th>
+                <td>{{ personnel.numeroCnaps }}</td>
+            </tr>
+            <tr>
+                <th>Est_militaire</th>
+                <td>{{ personnel.estMilitaire ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ personnel.actif ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('personnels_index') }}">back to list</a>
+
+    <a href="{{ path('personnels_edit', {'id': personnel.id}) }}">edit</a>
+
+    {{ include('personnels/_delete_form.html.twig') }}
+{% endblock %}

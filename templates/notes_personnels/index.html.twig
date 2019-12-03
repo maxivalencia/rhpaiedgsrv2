@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NotesPersonnels index{% endblock %}
+
+{% block body %}
+    <h1>NotesPersonnels index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date_note</th>
+                <th>Note</th>
+                <th>Appreciation_global</th>
+                <th>Reference_note</th>
+                <th>Date_reference</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for notes_personnel in notes_personnels %}
+            <tr>
+                <td>{{ notes_personnel.id }}</td>
+                <td>{{ notes_personnel.dateNote ? notes_personnel.dateNote|date('Y-m-d') : '' }}</td>
+                <td>{{ notes_personnel.note }}</td>
+                <td>{{ notes_personnel.appreciationGlobal }}</td>
+                <td>{{ notes_personnel.referenceNote }}</td>
+                <td>{{ notes_personnel.dateReference ? notes_personnel.dateReference|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('notes_personnels_show', {'id': notes_personnel.id}) }}">show</a>
+                    <a href="{{ path('notes_personnels_edit', {'id': notes_personnel.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('notes_personnels_new') }}">Create new</a>
+{% endblock %}

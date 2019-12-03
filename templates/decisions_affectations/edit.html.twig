@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit DecisionsAffectations{% endblock %}
+
+{% block body %}
+    <h1>Edit DecisionsAffectations</h1>
+
+    {{ include('decisions_affectations/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('decisions_affectations_index') }}">back to list</a>
+
+    {{ include('decisions_affectations/_delete_form.html.twig') }}
+{% endblock %}

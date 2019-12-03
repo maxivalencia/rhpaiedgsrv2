@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New NominationsPersonnels{% endblock %}
+
+{% block body %}
+    <h1>Create new NominationsPersonnels</h1>
+
+    {{ include('nominations_personnels/_form.html.twig') }}
+
+    <a href="{{ path('nominations_personnels_index') }}">back to list</a>
+{% endblock %}

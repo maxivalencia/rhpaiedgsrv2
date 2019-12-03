@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DecisionsAffectations index{% endblock %}
+
+{% block body %}
+    <h1>DecisionsAffectations index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Reference_decision</th>
+                <th>Date_decision</th>
+                <th>Genre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for decisions_affectation in decisions_affectations %}
+            <tr>
+                <td>{{ decisions_affectation.id }}</td>
+                <td>{{ decisions_affectation.referenceDecision }}</td>
+                <td>{{ decisions_affectation.dateDecision ? decisions_affectation.dateDecision|date('Y-m-d') : '' }}</td>
+                <td>{{ decisions_affectation.genre }}</td>
+                <td>
+                    <a href="{{ path('decisions_affectations_show', {'id': decisions_affectation.id}) }}">show</a>
+                    <a href="{{ path('decisions_affectations_edit', {'id': decisions_affectation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('decisions_affectations_new') }}">Create new</a>
+{% endblock %}

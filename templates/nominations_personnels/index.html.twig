@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NominationsPersonnels index{% endblock %}
+
+{% block body %}
+    <h1>NominationsPersonnels index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date_nomination</th>
+                <th>Rang</th>
+                <th>Echelon</th>
+                <th>Class</th>
+                <th>Indice</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for nominations_personnel in nominations_personnels %}
+            <tr>
+                <td>{{ nominations_personnel.id }}</td>
+                <td>{{ nominations_personnel.dateNomination ? nominations_personnel.dateNomination|date('Y-m-d') : '' }}</td>
+                <td>{{ nominations_personnel.rang }}</td>
+                <td>{{ nominations_personnel.echelon }}</td>
+                <td>{{ nominations_personnel.class }}</td>
+                <td>{{ nominations_personnel.indice }}</td>
+                <td>
+                    <a href="{{ path('nominations_personnels_show', {'id': nominations_personnel.id}) }}">show</a>
+                    <a href="{{ path('nominations_personnels_edit', {'id': nominations_personnel.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('nominations_personnels_new') }}">Create new</a>
+{% endblock %}

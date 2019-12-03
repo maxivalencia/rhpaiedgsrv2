@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FonctionsConjoints index{% endblock %}
+
+{% block body %}
+    <h1>FonctionsConjoints index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>Abbreviation</th>
+                <th>Lieu_travail</th>
+                <th>Employeur</th>
+                <th>Adresse_employeur</th>
+                <th>Est_fonctionnaire</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fonctions_conjoint in fonctions_conjoints %}
+            <tr>
+                <td>{{ fonctions_conjoint.id }}</td>
+                <td>{{ fonctions_conjoint.libelle }}</td>
+                <td>{{ fonctions_conjoint.abbreviation }}</td>
+                <td>{{ fonctions_conjoint.lieuTravail }}</td>
+                <td>{{ fonctions_conjoint.employeur }}</td>
+                <td>{{ fonctions_conjoint.adresseEmployeur }}</td>
+                <td>{{ fonctions_conjoint.estFonctionnaire ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('fonctions_conjoints_show', {'id': fonctions_conjoint.id}) }}">show</a>
+                    <a href="{{ path('fonctions_conjoints_edit', {'id': fonctions_conjoint.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('fonctions_conjoints_new') }}">Create new</a>
+{% endblock %}

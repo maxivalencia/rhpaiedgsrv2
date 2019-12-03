@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AffectationsPersonnels index{% endblock %}
+
+{% block body %}
+    <h1>AffectationsPersonnels index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date_affectation</th>
+                <th>Date_disponibilite</th>
+                <th>Reference_disponibilite</th>
+                <th>Date_reference_disponibilite</th>
+                <th>Motif_affectation</th>
+                <th>Situation</th>
+                <th>Motif_annulation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for affectations_personnel in affectations_personnels %}
+            <tr>
+                <td>{{ affectations_personnel.id }}</td>
+                <td>{{ affectations_personnel.dateAffectation ? affectations_personnel.dateAffectation|date('Y-m-d') : '' }}</td>
+                <td>{{ affectations_personnel.dateDisponibilite ? affectations_personnel.dateDisponibilite|date('Y-m-d') : '' }}</td>
+                <td>{{ affectations_personnel.referenceDisponibilite }}</td>
+                <td>{{ affectations_personnel.dateReferenceDisponibilite ? affectations_personnel.dateReferenceDisponibilite|date('Y-m-d') : '' }}</td>
+                <td>{{ affectations_personnel.motifAffectation }}</td>
+                <td>{{ affectations_personnel.situation }}</td>
+                <td>{{ affectations_personnel.motifAnnulation }}</td>
+                <td>
+                    <a href="{{ path('affectations_personnels_show', {'id': affectations_personnel.id}) }}">show</a>
+                    <a href="{{ path('affectations_personnels_edit', {'id': affectations_personnel.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('affectations_personnels_new') }}">Create new</a>
+{% endblock %}

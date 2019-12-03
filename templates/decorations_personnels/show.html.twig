@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DecorationsPersonnels{% endblock %}
+
+{% block body %}
+    <h1>DecorationsPersonnels</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ decorations_personnel.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ decorations_personnel.date ? decorations_personnel.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Reference</th>
+                <td>{{ decorations_personnel.reference }}</td>
+            </tr>
+            <tr>
+                <th>Date_reference</th>
+                <td>{{ decorations_personnel.dateReference ? decorations_personnel.dateReference|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('decorations_personnels_index') }}">back to list</a>
+
+    <a href="{{ path('decorations_personnels_edit', {'id': decorations_personnel.id}) }}">edit</a>
+
+    {{ include('decorations_personnels/_delete_form.html.twig') }}
+{% endblock %}

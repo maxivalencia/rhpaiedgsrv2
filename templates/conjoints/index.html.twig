@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conjoints index{% endblock %}
+
+{% block body %}
+    <h1>Conjoints index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Rang</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Date_naissance</th>
+                <th>Lieu_naissance</th>
+                <th>Nom_pere</th>
+                <th>Nom_mere</th>
+                <th>Sexe</th>
+                <th>Date_mariage</th>
+                <th>Numero_cin</th>
+                <th>Date_cin</th>
+                <th>Lieu_cin</th>
+                <th>Reference_autorisation_mariage</th>
+                <th>Date_reference_autorisation_mariage</th>
+                <th>Lieu_mariage</th>
+                <th>Reference_officiel_mariage</th>
+                <th>Date_reference_officiel_mariage</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for conjoint in conjoints %}
+            <tr>
+                <td>{{ conjoint.id }}</td>
+                <td>{{ conjoint.rang }}</td>
+                <td>{{ conjoint.nom }}</td>
+                <td>{{ conjoint.prenom }}</td>
+                <td>{{ conjoint.dateNaissance ? conjoint.dateNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ conjoint.lieuNaissance }}</td>
+                <td>{{ conjoint.nomPere }}</td>
+                <td>{{ conjoint.nomMere }}</td>
+                <td>{{ conjoint.sexe ? 'Yes' : 'No' }}</td>
+                <td>{{ conjoint.dateMariage ? conjoint.dateMariage|date('Y-m-d') : '' }}</td>
+                <td>{{ conjoint.numeroCin }}</td>
+                <td>{{ conjoint.dateCin ? conjoint.dateCin|date('Y-m-d') : '' }}</td>
+                <td>{{ conjoint.lieuCin }}</td>
+                <td>{{ conjoint.referenceAutorisationMariage }}</td>
+                <td>{{ conjoint.dateReferenceAutorisationMariage ? conjoint.dateReferenceAutorisationMariage|date('Y-m-d') : '' }}</td>
+                <td>{{ conjoint.lieuMariage }}</td>
+                <td>{{ conjoint.referenceOfficielMariage }}</td>
+                <td>{{ conjoint.dateReferenceOfficielMariage ? conjoint.dateReferenceOfficielMariage|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('conjoints_show', {'id': conjoint.id}) }}">show</a>
+                    <a href="{{ path('conjoints_edit', {'id': conjoint.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="19">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('conjoints_new') }}">Create new</a>
+{% endblock %}

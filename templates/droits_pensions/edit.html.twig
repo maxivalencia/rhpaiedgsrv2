@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit DroitsPensions{% endblock %}
+
+{% block body %}
+    <h1>Edit DroitsPensions</h1>
+
+    {{ include('droits_pensions/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('droits_pensions_index') }}">back to list</a>
+
+    {{ include('droits_pensions/_delete_form.html.twig') }}
+{% endblock %}

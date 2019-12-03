@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DiplomesPersonnels{% endblock %}
+
+{% block body %}
+    <h1>DiplomesPersonnels</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ diplomes_personnel.id }}</td>
+            </tr>
+            <tr>
+                <th>Numero</th>
+                <td>{{ diplomes_personnel.numero }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ diplomes_personnel.date ? diplomes_personnel.date|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('diplomes_personnels_index') }}">back to list</a>
+
+    <a href="{{ path('diplomes_personnels_edit', {'id': diplomes_personnel.id}) }}">edit</a>
+
+    {{ include('diplomes_personnels/_delete_form.html.twig') }}
+{% endblock %}

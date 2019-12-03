@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,6 +48,16 @@ class Diplomes
      * @ORM\ManyToOne(targetEntity="App\Entity\NiveauDiplome", inversedBy="diplomes")
      */
     private $niveau;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\DiplomesPersonnels", mappedBy="diplome")
+     */
+    private $diplomesPersonnels;
+
+    public function __construct()
+    {
+        $this->diplomesPersonnels = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -131,5 +143,36 @@ class Diplomes
     public function __toString()
     {
         return $this->getLibelle();
+    }
+
+    /**
+     * @return Collection|DiplomesPersonnels[]
+     */
+    public function getDiplomesPersonnels(): Collection
+    {
+        return $this->diplomesPersonnels;
+    }
+
+    public function addDiplomesPersonnel(DiplomesPersonnels $diplomesPersonnel): self
+    {
+        if (!$this->diplomesPersonnels->contains($diplomesPersonnel)) {
+            $this->diplomesPersonnels[] = $diplomesPersonnel;
+            $diplomesPersonnel->setDiplome($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDiplomesPersonnel(DiplomesPersonnels $diplomesPersonnel): self
+    {
+        if ($this->diplomesPersonnels->contains($diplomesPersonnel)) {
+            $this->diplomesPersonnels->removeElement($diplomesPersonnel);
+            // set the owning side to null (unless already changed)
+            if ($diplomesPersonnel->getDiplome() === $this) {
+                $diplomesPersonnel->setDiplome(null);
+            }
+        }
+
+        return $this;
     }
 }

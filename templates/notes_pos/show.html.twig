@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NotesPOS{% endblock %}
+
+{% block body %}
+    <h1>NotesPOS</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ notes_p_o.id }}</td>
+            </tr>
+            <tr>
+                <th>Annee</th>
+                <td>{{ notes_p_o.annee ? notes_p_o.annee|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Qf</th>
+                <td>{{ notes_p_o.qf }}</td>
+            </tr>
+            <tr>
+                <th>Vet</th>
+                <td>{{ notes_p_o.vet }}</td>
+            </tr>
+            <tr>
+                <th>Ags</th>
+                <td>{{ notes_p_o.ags }}</td>
+            </tr>
+            <tr>
+                <th>Niveau</th>
+                <td>{{ notes_p_o.niveau }}</td>
+            </tr>
+            <tr>
+                <th>Potentiel</th>
+                <td>{{ notes_p_o.potentiel }}</td>
+            </tr>
+            <tr>
+                <th>Appreciation_complet</th>
+                <td>{{ notes_p_o.appreciationComplet }}</td>
+            </tr>
+            <tr>
+                <th>Personnel</th>
+                <td>{{ notes_p_o.personnel }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('notes_p_o_s_index') }}">back to list</a>
+
+    <a href="{{ path('notes_p_o_s_edit', {'id': notes_p_o.id}) }}">edit</a>
+
+    {{ include('notes_p_o_s/_delete_form.html.twig') }}
+{% endblock %}

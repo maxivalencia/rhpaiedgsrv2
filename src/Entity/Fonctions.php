@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +32,16 @@ class Fonctions
      * @ORM\Column(type="integer")
      */
     private $hierarchie;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\AffectationsPersonnels", mappedBy="fonction")
+     */
+    private $affectationsPersonnels;
+
+    public function __construct()
+    {
+        $this->affectationsPersonnels = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -79,5 +91,36 @@ class Fonctions
     public function __toString()
     {
         return $this->getLibelle();
+    }
+
+    /**
+     * @return Collection|AffectationsPersonnels[]
+     */
+    public function getAffectationsPersonnels(): Collection
+    {
+        return $this->affectationsPersonnels;
+    }
+
+    public function addAffectationsPersonnel(AffectationsPersonnels $affectationsPersonnel): self
+    {
+        if (!$this->affectationsPersonnels->contains($affectationsPersonnel)) {
+            $this->affectationsPersonnels[] = $affectationsPersonnel;
+            $affectationsPersonnel->setFonction($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAffectationsPersonnel(AffectationsPersonnels $affectationsPersonnel): self
+    {
+        if ($this->affectationsPersonnels->contains($affectationsPersonnel)) {
+            $this->affectationsPersonnels->removeElement($affectationsPersonnel);
+            // set the owning side to null (unless already changed)
+            if ($affectationsPersonnel->getFonction() === $this) {
+                $affectationsPersonnel->setFonction(null);
+            }
+        }
+
+        return $this;
     }
 }

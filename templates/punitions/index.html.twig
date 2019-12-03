@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Punitions index{% endblock %}
+
+{% block body %}
+    <h1>Punitions index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>Reference</th>
+                <th>Date_reference</th>
+                <th>Date_effet</th>
+                <th>Sanction</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for punition in punitions %}
+            <tr>
+                <td>{{ punition.id }}</td>
+                <td>{{ punition.libelle }}</td>
+                <td>{{ punition.reference }}</td>
+                <td>{{ punition.dateReference ? punition.dateReference|date('Y-m-d') : '' }}</td>
+                <td>{{ punition.dateEffet ? punition.dateEffet|date('Y-m-d') : '' }}</td>
+                <td>{{ punition.sanction }}</td>
+                <td>
+                    <a href="{{ path('punitions_show', {'id': punition.id}) }}">show</a>
+                    <a href="{{ path('punitions_edit', {'id': punition.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('punitions_new') }}">Create new</a>
+{% endblock %}

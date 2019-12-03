@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Decorations{% endblock %}
+
+{% block body %}
+    <h1>Create new Decorations</h1>
+
+    {{ include('decorations/_form.html.twig') }}
+
+    <a href="{{ path('decorations_index') }}">back to list</a>
+{% endblock %}

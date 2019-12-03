@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ExConjoints index{% endblock %}
+
+{% block body %}
+    <h1>ExConjoints index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Motif_rupture</th>
+                <th>Date_rupture</th>
+                <th>Reference_rupture</th>
+                <th>Date_reference_rupture</th>
+                <th>Adresse_veuve</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ex_conjoint in ex_conjoints %}
+            <tr>
+                <td>{{ ex_conjoint.id }}</td>
+                <td>{{ ex_conjoint.motifRupture }}</td>
+                <td>{{ ex_conjoint.dateRupture ? ex_conjoint.dateRupture|date('Y-m-d') : '' }}</td>
+                <td>{{ ex_conjoint.referenceRupture }}</td>
+                <td>{{ ex_conjoint.dateReferenceRupture ? ex_conjoint.dateReferenceRupture|date('Y-m-d') : '' }}</td>
+                <td>{{ ex_conjoint.adresseVeuve }}</td>
+                <td>
+                    <a href="{{ path('ex_conjoints_show', {'id': ex_conjoint.id}) }}">show</a>
+                    <a href="{{ path('ex_conjoints_edit', {'id': ex_conjoint.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ex_conjoints_new') }}">Create new</a>
+{% endblock %}

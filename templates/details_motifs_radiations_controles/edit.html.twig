@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit DetailsMotifsRadiationsControles{% endblock %}
+
+{% block body %}
+    <h1>Edit DetailsMotifsRadiationsControles</h1>
+
+    {{ include('details_motifs_radiations_controles/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('details_motifs_radiations_controles_index') }}">back to list</a>
+
+    {{ include('details_motifs_radiations_controles/_delete_form.html.twig') }}
+{% endblock %}

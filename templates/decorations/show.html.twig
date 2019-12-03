@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Decorations{% endblock %}
+
+{% block body %}
+    <h1>Decorations</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ decoration.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ decoration.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Abbreviation</th>
+                <td>{{ decoration.abbreviation }}</td>
+            </tr>
+            <tr>
+                <th>Ordre</th>
+                <td>{{ decoration.ordre }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('decorations_index') }}">back to list</a>
+
+    <a href="{{ path('decorations_edit', {'id': decoration.id}) }}">edit</a>
+
+    {{ include('decorations/_delete_form.html.twig') }}
+{% endblock %}

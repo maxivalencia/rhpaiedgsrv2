@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New NotesPOS{% endblock %}
+
+{% block body %}
+    <h1>Create new NotesPOS</h1>
+
+    {{ include('notes_p_o_s/_form.html.twig') }}
+
+    <a href="{{ path('notes_p_o_s_index') }}">back to list</a>
+{% endblock %}

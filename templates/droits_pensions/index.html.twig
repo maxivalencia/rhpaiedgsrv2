@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DroitsPensions index{% endblock %}
+
+{% block body %}
+    <h1>DroitsPensions index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for droits_pension in droits_pensions %}
+            <tr>
+                <td>{{ droits_pension.id }}</td>
+                <td>{{ droits_pension.libelle }}</td>
+                <td>
+                    <a href="{{ path('droits_pensions_show', {'id': droits_pension.id}) }}">show</a>
+                    <a href="{{ path('droits_pensions_edit', {'id': droits_pension.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('droits_pensions_new') }}">Create new</a>
+{% endblock %}

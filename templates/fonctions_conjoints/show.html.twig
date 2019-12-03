@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FonctionsConjoints{% endblock %}
+
+{% block body %}
+    <h1>FonctionsConjoints</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ fonctions_conjoint.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ fonctions_conjoint.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Abbreviation</th>
+                <td>{{ fonctions_conjoint.abbreviation }}</td>
+            </tr>
+            <tr>
+                <th>Lieu_travail</th>
+                <td>{{ fonctions_conjoint.lieuTravail }}</td>
+            </tr>
+            <tr>
+                <th>Employeur</th>
+                <td>{{ fonctions_conjoint.employeur }}</td>
+            </tr>
+            <tr>
+                <th>Adresse_employeur</th>
+                <td>{{ fonctions_conjoint.adresseEmployeur }}</td>
+            </tr>
+            <tr>
+                <th>Est_fonctionnaire</th>
+                <td>{{ fonctions_conjoint.estFonctionnaire ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('fonctions_conjoints_index') }}">back to list</a>
+
+    <a href="{{ path('fonctions_conjoints_edit', {'id': fonctions_conjoint.id}) }}">edit</a>
+
+    {{ include('fonctions_conjoints/_delete_form.html.twig') }}
+{% endblock %}

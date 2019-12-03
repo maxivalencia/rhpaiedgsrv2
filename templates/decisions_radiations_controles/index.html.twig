@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DecisionsRadiationsControles index{% endblock %}
+
+{% block body %}
+    <h1>DecisionsRadiationsControles index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Reference_decision</th>
+                <th>Date_reference</th>
+                <th>Reference_journal_officiel</th>
+                <th>Date_journal_officiel</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for decisions_radiations_controle in decisions_radiations_controles %}
+            <tr>
+                <td>{{ decisions_radiations_controle.id }}</td>
+                <td>{{ decisions_radiations_controle.referenceDecision }}</td>
+                <td>{{ decisions_radiations_controle.dateReference ? decisions_radiations_controle.dateReference|date('Y-m-d') : '' }}</td>
+                <td>{{ decisions_radiations_controle.referenceJournalOfficiel }}</td>
+                <td>{{ decisions_radiations_controle.dateJournalOfficiel ? decisions_radiations_controle.dateJournalOfficiel|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('decisions_radiations_controles_show', {'id': decisions_radiations_controle.id}) }}">show</a>
+                    <a href="{{ path('decisions_radiations_controles_edit', {'id': decisions_radiations_controle.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('decisions_radiations_controles_new') }}">Create new</a>
+{% endblock %}

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +32,16 @@ class DecisionsAffectations
      * @ORM\Column(type="string", length=128)
      */
     private $genre;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\AffectationsPersonnels", mappedBy="annulation")
+     */
+    private $affectationsPersonnels;
+
+    public function __construct()
+    {
+        $this->affectationsPersonnels = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -79,5 +91,36 @@ class DecisionsAffectations
     public function __toString()
     {
         return $this->getReferenceDecision();
+    }
+
+    /**
+     * @return Collection|AffectationsPersonnels[]
+     */
+    public function getAffectationsPersonnels(): Collection
+    {
+        return $this->affectationsPersonnels;
+    }
+
+    public function addAffectationsPersonnel(AffectationsPersonnels $affectationsPersonnel): self
+    {
+        if (!$this->affectationsPersonnels->contains($affectationsPersonnel)) {
+            $this->affectationsPersonnels[] = $affectationsPersonnel;
+            $affectationsPersonnel->setAnnulation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAffectationsPersonnel(AffectationsPersonnels $affectationsPersonnel): self
+    {
+        if ($this->affectationsPersonnels->contains($affectationsPersonnel)) {
+            $this->affectationsPersonnels->removeElement($affectationsPersonnel);
+            // set the owning side to null (unless already changed)
+            if ($affectationsPersonnel->getAnnulation() === $this) {
+                $affectationsPersonnel->setAnnulation(null);
+            }
+        }
+
+        return $this;
     }
 }

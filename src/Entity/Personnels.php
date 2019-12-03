@@ -134,11 +134,65 @@ class Personnels
      */
     private $notesPersonnels;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Punitions", mappedBy="personnel")
+     */
+    private $punitions;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\DiplomesPersonnels", mappedBy="personnel")
+     */
+    private $diplomesPersonnels;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Conjoints", mappedBy="personnel")
+     */
+    private $conjoints;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Enfants", mappedBy="personnel")
+     */
+    private $enfants;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Permissions", mappedBy="personnel")
+     */
+    private $permissions;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\NotesPOS", mappedBy="personnels")
+     */
+    private $notesPOS;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\DecorationsPersonnels", mappedBy="personnel")
+     */
+    private $decorationsPersonnels;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\AffectationsPersonnels", mappedBy="personnel")
+     */
+    private $affectationsPersonnels;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\RadiationsPersonnels", mappedBy="personnel")
+     */
+    private $radiationsPersonnels;
+
     public function __construct()
     {
         $this->nominationsPersonnels = new ArrayCollection();
         $this->photos = new ArrayCollection();
         $this->notesPersonnels = new ArrayCollection();
+        $this->punitions = new ArrayCollection();
+        $this->diplomesPersonnels = new ArrayCollection();
+        $this->conjoints = new ArrayCollection();
+        $this->enfants = new ArrayCollection();
+        $this->permissions = new ArrayCollection();
+        $this->notesPOS = new ArrayCollection();
+        $this->decorationsPersonnels = new ArrayCollection();
+        $this->affectationsPersonnels = new ArrayCollection();
+        $this->radiationsPersonnels = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -482,6 +536,285 @@ class Personnels
             // set the owning side to null (unless already changed)
             if ($notesPersonnel->getPersonnel() === $this) {
                 $notesPersonnel->setPersonnel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Punitions[]
+     */
+    public function getPunitions(): Collection
+    {
+        return $this->punitions;
+    }
+
+    public function addPunition(Punitions $punition): self
+    {
+        if (!$this->punitions->contains($punition)) {
+            $this->punitions[] = $punition;
+            $punition->setPersonnel($this);
+        }
+
+        return $this;
+    }
+
+    public function removePunition(Punitions $punition): self
+    {
+        if ($this->punitions->contains($punition)) {
+            $this->punitions->removeElement($punition);
+            // set the owning side to null (unless already changed)
+            if ($punition->getPersonnel() === $this) {
+                $punition->setPersonnel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|DiplomesPersonnels[]
+     */
+    public function getDiplomesPersonnels(): Collection
+    {
+        return $this->diplomesPersonnels;
+    }
+
+    public function addDiplomesPersonnel(DiplomesPersonnels $diplomesPersonnel): self
+    {
+        if (!$this->diplomesPersonnels->contains($diplomesPersonnel)) {
+            $this->diplomesPersonnels[] = $diplomesPersonnel;
+            $diplomesPersonnel->setPersonnel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDiplomesPersonnel(DiplomesPersonnels $diplomesPersonnel): self
+    {
+        if ($this->diplomesPersonnels->contains($diplomesPersonnel)) {
+            $this->diplomesPersonnels->removeElement($diplomesPersonnel);
+            // set the owning side to null (unless already changed)
+            if ($diplomesPersonnel->getPersonnel() === $this) {
+                $diplomesPersonnel->setPersonnel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Conjoints[]
+     */
+    public function getConjoints(): Collection
+    {
+        return $this->conjoints;
+    }
+
+    public function addConjoint(Conjoints $conjoint): self
+    {
+        if (!$this->conjoints->contains($conjoint)) {
+            $this->conjoints[] = $conjoint;
+            $conjoint->setPersonnel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConjoint(Conjoints $conjoint): self
+    {
+        if ($this->conjoints->contains($conjoint)) {
+            $this->conjoints->removeElement($conjoint);
+            // set the owning side to null (unless already changed)
+            if ($conjoint->getPersonnel() === $this) {
+                $conjoint->setPersonnel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Enfants[]
+     */
+    public function getEnfants(): Collection
+    {
+        return $this->enfants;
+    }
+
+    public function addEnfant(Enfants $enfant): self
+    {
+        if (!$this->enfants->contains($enfant)) {
+            $this->enfants[] = $enfant;
+            $enfant->setPersonnel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEnfant(Enfants $enfant): self
+    {
+        if ($this->enfants->contains($enfant)) {
+            $this->enfants->removeElement($enfant);
+            // set the owning side to null (unless already changed)
+            if ($enfant->getPersonnel() === $this) {
+                $enfant->setPersonnel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Permissions[]
+     */
+    public function getPermissions(): Collection
+    {
+        return $this->permissions;
+    }
+
+    public function addPermission(Permissions $permission): self
+    {
+        if (!$this->permissions->contains($permission)) {
+            $this->permissions[] = $permission;
+            $permission->setPersonnel($this);
+        }
+
+        return $this;
+    }
+
+    public function removePermission(Permissions $permission): self
+    {
+        if ($this->permissions->contains($permission)) {
+            $this->permissions->removeElement($permission);
+            // set the owning side to null (unless already changed)
+            if ($permission->getPersonnel() === $this) {
+                $permission->setPersonnel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|NotesPOS[]
+     */
+    public function getNotesPOS(): Collection
+    {
+        return $this->notesPOS;
+    }
+
+    public function addNotesPO(NotesPOS $notesPO): self
+    {
+        if (!$this->notesPOS->contains($notesPO)) {
+            $this->notesPOS[] = $notesPO;
+            $notesPO->setPersonnels($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNotesPO(NotesPOS $notesPO): self
+    {
+        if ($this->notesPOS->contains($notesPO)) {
+            $this->notesPOS->removeElement($notesPO);
+            // set the owning side to null (unless already changed)
+            if ($notesPO->getPersonnels() === $this) {
+                $notesPO->setPersonnels(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|DecorationsPersonnels[]
+     */
+    public function getDecorationsPersonnels(): Collection
+    {
+        return $this->decorationsPersonnels;
+    }
+
+    public function addDecorationsPersonnel(DecorationsPersonnels $decorationsPersonnel): self
+    {
+        if (!$this->decorationsPersonnels->contains($decorationsPersonnel)) {
+            $this->decorationsPersonnels[] = $decorationsPersonnel;
+            $decorationsPersonnel->setPersonnel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDecorationsPersonnel(DecorationsPersonnels $decorationsPersonnel): self
+    {
+        if ($this->decorationsPersonnels->contains($decorationsPersonnel)) {
+            $this->decorationsPersonnels->removeElement($decorationsPersonnel);
+            // set the owning side to null (unless already changed)
+            if ($decorationsPersonnel->getPersonnel() === $this) {
+                $decorationsPersonnel->setPersonnel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AffectationsPersonnels[]
+     */
+    public function getAffectationsPersonnels(): Collection
+    {
+        return $this->affectationsPersonnels;
+    }
+
+    public function addAffectationsPersonnel(AffectationsPersonnels $affectationsPersonnel): self
+    {
+        if (!$this->affectationsPersonnels->contains($affectationsPersonnel)) {
+            $this->affectationsPersonnels[] = $affectationsPersonnel;
+            $affectationsPersonnel->setPersonnel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAffectationsPersonnel(AffectationsPersonnels $affectationsPersonnel): self
+    {
+        if ($this->affectationsPersonnels->contains($affectationsPersonnel)) {
+            $this->affectationsPersonnels->removeElement($affectationsPersonnel);
+            // set the owning side to null (unless already changed)
+            if ($affectationsPersonnel->getPersonnel() === $this) {
+                $affectationsPersonnel->setPersonnel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|RadiationsPersonnels[]
+     */
+    public function getRadiationsPersonnels(): Collection
+    {
+        return $this->radiationsPersonnels;
+    }
+
+    public function addRadiationsPersonnel(RadiationsPersonnels $radiationsPersonnel): self
+    {
+        if (!$this->radiationsPersonnels->contains($radiationsPersonnel)) {
+            $this->radiationsPersonnels[] = $radiationsPersonnel;
+            $radiationsPersonnel->setPersonnel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRadiationsPersonnel(RadiationsPersonnels $radiationsPersonnel): self
+    {
+        if ($this->radiationsPersonnels->contains($radiationsPersonnel)) {
+            $this->radiationsPersonnels->removeElement($radiationsPersonnel);
+            // set the owning side to null (unless already changed)
+            if ($radiationsPersonnel->getPersonnel() === $this) {
+                $radiationsPersonnel->setPersonnel(null);
             }
         }
 

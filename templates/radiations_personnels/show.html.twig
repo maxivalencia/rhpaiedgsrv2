@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RadiationsPersonnels{% endblock %}
+
+{% block body %}
+    <h1>RadiationsPersonnels</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ radiations_personnel.id }}</td>
+            </tr>
+            <tr>
+                <th>Date_notification</th>
+                <td>{{ radiations_personnel.dateNotification ? radiations_personnel.dateNotification|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Lieu_repli</th>
+                <td>{{ radiations_personnel.lieuRepli }}</td>
+            </tr>
+            <tr>
+                <th>Date_radiation</th>
+                <td>{{ radiations_personnel.dateRadiation ? radiations_personnel.dateRadiation|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_prevu_radiation</th>
+                <td>{{ radiations_personnel.datePrevuRadiation ? radiations_personnel.datePrevuRadiation|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Reference_mrc_radiation</th>
+                <td>{{ radiations_personnel.referenceMrcRadiation }}</td>
+            </tr>
+            <tr>
+                <th>Date_mrc_radiation</th>
+                <td>{{ radiations_personnel.dateMrcRadiation ? radiations_personnel.dateMrcRadiation|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('radiations_personnels_index') }}">back to list</a>
+
+    <a href="{{ path('radiations_personnels_edit', {'id': radiations_personnel.id}) }}">edit</a>
+
+    {{ include('radiations_personnels/_delete_form.html.twig') }}
+{% endblock %}

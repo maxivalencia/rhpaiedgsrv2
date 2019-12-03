@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit DiplomesPersonnels{% endblock %}
+
+{% block body %}
+    <h1>Edit DiplomesPersonnels</h1>
+
+    {{ include('diplomes_personnels/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('diplomes_personnels_index') }}">back to list</a>
+
+    {{ include('diplomes_personnels/_delete_form.html.twig') }}
+{% endblock %}

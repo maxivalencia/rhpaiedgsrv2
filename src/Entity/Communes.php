@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,6 +34,22 @@ class Communes
      * @ORM\JoinColumn(nullable=false)
      */
     private $district;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Conjoints", mappedBy="commune")
+     */
+    private $conjoints;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Unites", mappedBy="commune")
+     */
+    private $unites;
+
+    public function __construct()
+    {
+        $this->conjoints = new ArrayCollection();
+        $this->unites = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -81,5 +99,67 @@ class Communes
     public function __toString()
     {
         return $this->getCommune();
+    }
+
+    /**
+     * @return Collection|Conjoints[]
+     */
+    public function getConjoints(): Collection
+    {
+        return $this->conjoints;
+    }
+
+    public function addConjoint(Conjoints $conjoint): self
+    {
+        if (!$this->conjoints->contains($conjoint)) {
+            $this->conjoints[] = $conjoint;
+            $conjoint->setCommune($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConjoint(Conjoints $conjoint): self
+    {
+        if ($this->conjoints->contains($conjoint)) {
+            $this->conjoints->removeElement($conjoint);
+            // set the owning side to null (unless already changed)
+            if ($conjoint->getCommune() === $this) {
+                $conjoint->setCommune(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Unites[]
+     */
+    public function getUnites(): Collection
+    {
+        return $this->unites;
+    }
+
+    public function addUnite(Unites $unite): self
+    {
+        if (!$this->unites->contains($unite)) {
+            $this->unites[] = $unite;
+            $unite->setCommune($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUnite(Unites $unite): self
+    {
+        if ($this->unites->contains($unite)) {
+            $this->unites->removeElement($unite);
+            // set the owning side to null (unless already changed)
+            if ($unite->getCommune() === $this) {
+                $unite->setCommune(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Permissions{% endblock %}
+
+{% block body %}
+    <h1>Permissions</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ permission.id }}</td>
+            </tr>
+            <tr>
+                <th>Annee</th>
+                <td>{{ permission.annee ? permission.annee|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_depart</th>
+                <td>{{ permission.dateDepart ? permission.dateDepart|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_fin</th>
+                <td>{{ permission.dateFin ? permission.dateFin|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Duree</th>
+                <td>{{ permission.duree }}</td>
+            </tr>
+            <tr>
+                <th>Reliquat</th>
+                <td>{{ permission.reliquat }}</td>
+            </tr>
+            <tr>
+                <th>Type_permission</th>
+                <td>{{ permission.typePermission }}</td>
+            </tr>
+            <tr>
+                <th>Lieu_jouissance</th>
+                <td>{{ permission.lieuJouissance }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('permissions_index') }}">back to list</a>
+
+    <a href="{{ path('permissions_edit', {'id': permission.id}) }}">edit</a>
+
+    {{ include('permissions/_delete_form.html.twig') }}
+{% endblock %}

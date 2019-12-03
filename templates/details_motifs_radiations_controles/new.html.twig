@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New DetailsMotifsRadiationsControles{% endblock %}
+
+{% block body %}
+    <h1>Create new DetailsMotifsRadiationsControles</h1>
+
+    {{ include('details_motifs_radiations_controles/_form.html.twig') }}
+
+    <a href="{{ path('details_motifs_radiations_controles_index') }}">back to list</a>
+{% endblock %}

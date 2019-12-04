@@ -2,11 +2,531 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>RHPAIEDGSR - {% block title %}Acceuil{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="/dist/images/logo_dgsr.png" />
+        <!-- rendre l'interface responsive -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Font Awesome -->
+        <link href="http://hayageek.github.io/jQuery-Upload-File/4.0.11/uploadfile.css" rel="stylesheet">
+        <link href="/dist/css/select2.css" rel="stylesheet"/>
+        <link href="/dist/css/bootstrap.min.css" rel="stylesheet"/>
+        {# <link rel="stylesheet" href="/css/style.css"> #}
+        <link rel="stylesheet" href="/css/notif.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Tempusdominus Bbootstrap 4 -->
+        <link rel="stylesheet" href="/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+        <!-- iCheck -->
+        <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+        <!-- JQVMap -->
+        <link rel="stylesheet" href="/plugins/jqvmap/jqvmap.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+        <!-- overlayScrollbars -->
+        <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+        <!-- Daterange picker -->
+        <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
+        <!-- summernote -->
+        <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.css">
+        <!-- Google Font: Source Sans Pro -->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
         {% block stylesheets %}{% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
+    <body class="hold-transition sidebar-mini layout-fixed">
+        <div class="wrapper">
+
+            <!-- Navbar -->
+            <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                <!-- Left navbar links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+                    </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a href="index3.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a href="#" class="nav-link">Contact</a>
+                    </li>
+                    </ul>
+
+                    <!-- SEARCH FORM -->
+                    <form class="form-inline ml-3">
+                    <div class="input-group input-group-sm">
+                        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                        <button class="btn btn-navbar" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        </div>
+                    </div>
+                    </form>
+
+                    <!-- Right navbar links -->
+                    <ul class="navbar-nav ml-auto">
+                    <!-- Messages Dropdown Menu -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-comments"></i>
+                        <span class="badge badge-danger navbar-badge">3</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                            <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                Brad Diesel
+                                <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">Call me whenever you can...</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                            <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                John Pierce
+                                <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">I got your message bro</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                            <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                Nora Silvester
+                                <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">The subject goes here</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                        </div>
+                    </li>
+                    <!-- Notifications Dropdown Menu -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-bell"></i>
+                        <span class="badge badge-warning navbar-badge">15</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> 4 new messages
+                            <span class="float-right text-muted text-sm">3 mins</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-users mr-2"></i> 8 friend requests
+                            <span class="float-right text-muted text-sm">12 hours</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-file mr-2"></i> 3 new reports
+                            <span class="float-right text-muted text-sm">2 days</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
+                        <i class="fas fa-th-large"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.navbar -->
+            <!-- Main Sidebar Container -->
+            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                <!-- Brand Logo -->
+                <a href="index3.html" class="brand-link">
+                <img src="/dist/images/logo_dgsr.png" alt="DGSR Logo" class="brand-image img-circle elevation-3"
+                    style="opacity: .8">
+                <span class="brand-text font-weight-light">RH-PAIE-DGSR</span>
+                </a>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                    <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                    <a href="#" class="d-block">Administrateur</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                        with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                        </a>                        
+                    </li>
+                    <li class="nav-header">ADMINISTRATION</li>
+                    <li class="nav-item">
+                        <a href="{{ path('nominations_personnels_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Nomination personnel
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('decisions_affectations_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Décision affectation
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('decisions_promotions_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Décision promotion
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('decisions_radiations_controles_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Décision radiation
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('affectations_personnels_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Affectatin personnel
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('radiations_personnels_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Radiation personnel
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('unites_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Unité
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('personnels_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Personnel
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('conjoints_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Conjoint
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('enfants_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Enfant
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('ex_conjoints_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Ex-Conjoint
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('diplomes_personnels_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Diplôme personnel
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('decorations_personnels_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Décoration personnel
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('notes_personnels_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Note personnel
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('notes_p_o_s_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Note P.O.S
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('permissions_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Permission
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('droits_pensions_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Droit pension
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('punitions_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Punition
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('fonctions_conjoints_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Fonction conjoint
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('photos_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Photo
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('diplomes_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Diplôme
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('decorations_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Décoration
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('domaine_diplome_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Domaine diplôme
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('niveau_diplome_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Niveau diplôme
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('grades_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Grade
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('fonctions_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Fonction
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('motifs_radiations_controles_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Motif radiation
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('details_motifs_radiations_controles_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Détail motif radiation
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('types_contrats_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Type de contrat
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('communes_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Commune
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('types_communes_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Type de Commune
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('districts_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            District
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('regions_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Region
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('provinces_index') }}" class="nav-link">
+                        <i class="nav-icon far fa-image"></i>
+                        <p>
+                            Province
+                        </p>
+                        </a>
+                    </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+                </div>
+                <!-- /.sidebar -->
+            </aside>
+            <div class="content-wrapper" style="padding:10px">{% block body %}{% endblock %}</div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <strong>Copyright &copy; 2019-2020 DGSR / DT / SIT.</strong>
+                All rights reserved.
+                <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 1.0.0
+                </div>
+            </footer>
+        </div>
+        <!-- jQuery -->
+        <script src="plugins/jquery/jquery.min.js"></script>
+        <script src="http://hayageek.github.io/jQuery-Upload-File/4.0.11/jquery.uploadfile.min.js"></script>
+        <script src="/dist/js/select2.js"></script>
+        <script src="/dist/js/up.js"></script>
+        <script src="/dist/js/bootstrap.min.js"></script>
+        <script src="/dist/js/jquery.uploadfile.js"></script>
+        <!-- inject:js -->
+        <script src="/js/off-canvas.js"></script>
+        <script src="/js/misc.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+        <script src="/js/notif.js"></script>
+        <!-- jQuery UI 1.11.4 -->
+        <script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
+        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+        <script>
+        $.widget.bridge('uibutton', $.ui.button)
+        </script>
+        <!-- Bootstrap 4 -->
+        <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- ChartJS -->
+        <script src="/plugins/chart.js/Chart.min.js"></script>
+        <!-- Sparkline -->
+        <script src="/plugins/sparklines/sparkline.js"></script>
+        <!-- JQVMap -->
+        <script src="/plugins/jqvmap/jquery.vmap.min.js"></script>
+        <script src="/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+        <!-- jQuery Knob Chart -->
+        <script src="/plugins/jquery-knob/jquery.knob.min.js"></script>
+        <!-- daterangepicker -->
+        <script src="/plugins/moment/moment.min.js"></script>
+        <script src="/plugins/daterangepicker/daterangepicker.js"></script>
+        <!-- Tempusdominus Bootstrap 4 -->
+        <script src="/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+        <!-- Summernote -->
+        <script src="/plugins/summernote/summernote-bs4.min.js"></script>
+        <!-- overlayScrollbars -->
+        <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="/dist/js/adminlte.js"></script>
+        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <script src="/dist/js/pages/dashboard.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="/dist/js/demo.js"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

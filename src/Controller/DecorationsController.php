@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DecorationsController extends AbstractController
 {
     /**
-     * @Route("/", name="decorations_index", methods={"GET"})
+     * @Route("/index/", name="decorations_index", methods={"GET"})
      */
     public function index(DecorationsRepository $decorationsRepository): Response
     {

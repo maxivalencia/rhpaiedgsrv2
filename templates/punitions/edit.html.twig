@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Punitions{% endblock %}
+{% block title %}Edition Punition{% endblock %}
 
 {% block body %}
-    <h1>Edit Punitions</h1>
+    <h1>Edition Punition</h1>
 
-    {{ include('punitions/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('punitions/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('punitions_index') }}">back to list</a>
+    <a href="{{ path('punitions_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 
     {{ include('punitions/_delete_form.html.twig') }}
 {% endblock %}

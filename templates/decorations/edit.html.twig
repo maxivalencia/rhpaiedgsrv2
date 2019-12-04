@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Decorations{% endblock %}
+{% block title %}Edition Decoration{% endblock %}
 
 {% block body %}
-    <h1>Edit Decorations</h1>
+    <h1>Edition Decoration</h1>
 
-    {{ include('decorations/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('decorations/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('decorations_index') }}">back to list</a>
+    <a href="{{ path('decorations_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 
     {{ include('decorations/_delete_form.html.twig') }}
 {% endblock %}

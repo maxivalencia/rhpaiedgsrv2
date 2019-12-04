@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit AffectationsPersonnels{% endblock %}
+{% block title %}Edition Affectation Personnel{% endblock %}
 
 {% block body %}
-    <h1>Edit AffectationsPersonnels</h1>
+    <h1>Edition Affectation Personnel</h1>
 
-    {{ include('affectations_personnels/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('affectations_personnels/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('affectations_personnels_index') }}">back to list</a>
+    <a href="{{ path('affectations_personnels_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 
     {{ include('affectations_personnels/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit NotesPOS{% endblock %}
+{% block title %}Edition Note POS{% endblock %}
 
 {% block body %}
-    <h1>Edit NotesPOS</h1>
+    <h1>Edition Note POS</h1>
 
-    {{ include('notes_p_o_s/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('notes_p_o_s/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('notes_p_o_s_index') }}">back to list</a>
+    <a href="{{ path('notes_p_o_s_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 
     {{ include('notes_p_o_s/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit RadiationsPersonnels{% endblock %}
+{% block title %}Edition Radiation Personnel{% endblock %}
 
 {% block body %}
-    <h1>Edit RadiationsPersonnels</h1>
+    <h1>Edition Radiation Personnel</h1>
 
-    {{ include('radiations_personnels/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('radiations_personnels/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('radiations_personnels_index') }}">back to list</a>
+    <a href="{{ path('radiations_personnels_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 
     {{ include('radiations_personnels/_delete_form.html.twig') }}
 {% endblock %}

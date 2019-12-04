@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit MotifsRadiationsControles{% endblock %}
+{% block title %}Edition Motif Radiation Controle{% endblock %}
 
 {% block body %}
-    <h1>Edit MotifsRadiationsControles</h1>
+    <h1>Edition Motif Radiation Controle</h1>
 
-    {{ include('motifs_radiations_controles/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('motifs_radiations_controles/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('motifs_radiations_controles_index') }}">back to list</a>
+    <a href="{{ path('motifs_radiations_controles_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 
     {{ include('motifs_radiations_controles/_delete_form.html.twig') }}
 {% endblock %}

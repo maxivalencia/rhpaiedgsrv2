@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit NotesPersonnels{% endblock %}
+{% block title %}Edition Note Personnel{% endblock %}
 
 {% block body %}
-    <h1>Edit NotesPersonnels</h1>
+    <h1>Edition Note Personnel</h1>
 
-    {{ include('notes_personnels/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('notes_personnels/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('notes_personnels_index') }}">back to list</a>
+    <a href="{{ path('notes_personnels_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 
     {{ include('notes_personnels/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Permissions{% endblock %}
+{% block title %}Edition Permission{% endblock %}
 
 {% block body %}
-    <h1>Edit Permissions</h1>
+    <h1>Edition Permission</h1>
 
-    {{ include('permissions/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('permissions/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('permissions_index') }}">back to list</a>
+    <a href="{{ path('permissions_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 
     {{ include('permissions/_delete_form.html.twig') }}
 {% endblock %}

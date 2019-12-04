@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Conjoints{% endblock %}
+{% block title %}Edition Conjoints{% endblock %}
 
 {% block body %}
-    <h1>Edit Conjoints</h1>
+    <h1>Edition Conjoints</h1>
 
-    {{ include('conjoints/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('conjoints/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('conjoints_index') }}">back to list</a>
+    <a href="{{ path('conjoints_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 
     {{ include('conjoints/_delete_form.html.twig') }}
 {% endblock %}

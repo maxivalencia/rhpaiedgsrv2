@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Communes{% endblock %}
+{% block title %}Edition Communes{% endblock %}
 
 {% block body %}
-    <h1>Edit Communes</h1>
+    <h1>Edition Communes</h1>
 
-    {{ include('communes/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('communes/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('communes_index') }}">back to list</a>
+    <a href="{{ path('communes_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 
     {{ include('communes/_delete_form.html.twig') }}
 {% endblock %}

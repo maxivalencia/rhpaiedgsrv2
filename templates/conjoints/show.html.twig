@@ -20,71 +20,71 @@
                 <td>{{ conjoint.nom }}</td>
             </tr>
             <tr>
-                <th>Prenom</th>
+                <th>Prénom</th>
                 <td>{{ conjoint.prenom }}</td>
             </tr>
             <tr>
-                <th>Date_naissance</th>
-                <td>{{ conjoint.dateNaissance ? conjoint.dateNaissance|date('Y-m-d') : '' }}</td>
+                <th>Date de naissance</th>
+                <td>{{ conjoint.dateNaissance ? conjoint.dateNaissance|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>Lieu_naissance</th>
+                <th>Lieu de naissance</th>
                 <td>{{ conjoint.lieuNaissance }}</td>
             </tr>
             <tr>
-                <th>Nom_pere</th>
+                <th>Nom du père</th>
                 <td>{{ conjoint.nomPere }}</td>
             </tr>
             <tr>
-                <th>Nom_mere</th>
+                <th>Nom de la mère</th>
                 <td>{{ conjoint.nomMere }}</td>
             </tr>
             <tr>
                 <th>Sexe</th>
-                <td>{{ conjoint.sexe ? 'Yes' : 'No' }}</td>
+                <td>{{ conjoint.sexe ? 'Féminin' : 'Masculin' }}</td>
             </tr>
             <tr>
-                <th>Date_mariage</th>
-                <td>{{ conjoint.dateMariage ? conjoint.dateMariage|date('Y-m-d') : '' }}</td>
+                <th>Date de mariage</th>
+                <td>{{ conjoint.dateMariage ? conjoint.dateMariage|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>Numero_cin</th>
+                <th>Numero CIN</th>
                 <td>{{ conjoint.numeroCin }}</td>
             </tr>
             <tr>
-                <th>Date_cin</th>
-                <td>{{ conjoint.dateCin ? conjoint.dateCin|date('Y-m-d') : '' }}</td>
+                <th>Date CIN</th>
+                <td>{{ conjoint.dateCin ? conjoint.dateCin|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>Lieu_cin</th>
+                <th>Lieu CIN</th>
                 <td>{{ conjoint.lieuCin }}</td>
             </tr>
             <tr>
-                <th>Reference_autorisation_mariage</th>
+                <th>Reférence de l'autorisation de mariage</th>
                 <td>{{ conjoint.referenceAutorisationMariage }}</td>
             </tr>
             <tr>
-                <th>Date_reference_autorisation_mariage</th>
-                <td>{{ conjoint.dateReferenceAutorisationMariage ? conjoint.dateReferenceAutorisationMariage|date('Y-m-d') : '' }}</td>
+                <th>Date de reférence de l'autorisation de mariage</th>
+                <td>{{ conjoint.dateReferenceAutorisationMariage ? conjoint.dateReferenceAutorisationMariage|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>Lieu_mariage</th>
+                <th>Lieu de mariage</th>
                 <td>{{ conjoint.lieuMariage }}</td>
             </tr>
             <tr>
-                <th>Reference_officiel_mariage</th>
+                <th>Reférence officiel du mariage</th>
                 <td>{{ conjoint.referenceOfficielMariage }}</td>
             </tr>
             <tr>
-                <th>Date_reference_officiel_mariage</th>
-                <td>{{ conjoint.dateReferenceOfficielMariage ? conjoint.dateReferenceOfficielMariage|date('Y-m-d') : '' }}</td>
+                <th>Date de reférence officiel du mariage</th>
+                <td>{{ conjoint.dateReferenceOfficielMariage ? conjoint.dateReferenceOfficielMariage|date('d/m/Y') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('conjoints_index') }}">back to list</a>
-
-    <a href="{{ path('conjoints_edit', {'id': conjoint.id}) }}">edit</a>
+    <a href="{{ path('conjoints_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+    <br>
+    <a href="{{ path('conjoints_edit', {'id': conjoint.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
 
     {{ include('conjoints/_delete_form.html.twig') }}
 {% endblock %}

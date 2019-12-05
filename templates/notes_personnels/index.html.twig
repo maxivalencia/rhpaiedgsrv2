@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}NotesPersonnels index{% endblock %}
+{% block title %}Liste Notes Personnels{% endblock %}
 
 {% block body %}
-    <h1>NotesPersonnels index</h1>
+    <h1>Liste Notes Personnels</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Date_note</th>
+                <th>Date de notation</th>
                 <th>Note</th>
-                <th>Appreciation_global</th>
-                <th>Reference_note</th>
-                <th>Date_reference</th>
+                <th>Appreciation global</th>
+                <th>Reference de la note</th>
+                <th>Date de reference</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,23 +21,23 @@
         {% for notes_personnel in notes_personnels %}
             <tr>
                 <td>{{ notes_personnel.id }}</td>
-                <td>{{ notes_personnel.dateNote ? notes_personnel.dateNote|date('Y-m-d') : '' }}</td>
+                <td>{{ notes_personnel.dateNote ? notes_personnel.dateNote|date('d/m/Y') : '' }}</td>
                 <td>{{ notes_personnel.note }}</td>
                 <td>{{ notes_personnel.appreciationGlobal }}</td>
                 <td>{{ notes_personnel.referenceNote }}</td>
-                <td>{{ notes_personnel.dateReference ? notes_personnel.dateReference|date('Y-m-d') : '' }}</td>
+                <td>{{ notes_personnel.dateReference ? notes_personnel.dateReference|date('d/m/Y') : '' }}</td>
                 <td>
-                    <a href="{{ path('notes_personnels_show', {'id': notes_personnel.id}) }}">show</a>
-                    <a href="{{ path('notes_personnels_edit', {'id': notes_personnel.id}) }}">edit</a>
+                    <a href="{{ path('notes_personnels_show', {'id': notes_personnel.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('notes_personnels_edit', {'id': notes_personnel.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('notes_personnels_new') }}">Create new</a>
+    <a href="{{ path('notes_personnels_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
 {% endblock %}

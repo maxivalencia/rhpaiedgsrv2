@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Enfants index{% endblock %}
+{% block title %}Liste Enfants{% endblock %}
 
 {% block body %}
-    <h1>Enfants index</h1>
+    <h1>Liste Enfants</h1>
 
     <table class="table">
         <thead>
@@ -12,12 +12,12 @@
                 <th>Rang</th>
                 <th>Nom</th>
                 <th>Prenom</th>
-                <th>Date_naissance</th>
-                <th>Lieu_naissance</th>
+                <th>Date de naissance</th>
+                <th>Lieu de naissance</th>
                 <th>Sexe</th>
                 <th>Qualite</th>
-                <th>Est_decede</th>
-                <th>Date_dece</th>
+                <th>Est decedé</th>
+                <th>Date de decé</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -28,24 +28,24 @@
                 <td>{{ enfant.rang }}</td>
                 <td>{{ enfant.nom }}</td>
                 <td>{{ enfant.prenom }}</td>
-                <td>{{ enfant.dateNaissance ? enfant.dateNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ enfant.dateNaissance ? enfant.dateNaissance|date('d/m/Y') : '' }}</td>
                 <td>{{ enfant.lieuNaissance }}</td>
-                <td>{{ enfant.sexe ? 'Yes' : 'No' }}</td>
+                <td>{{ enfant.sexe ? 'Féminin' : 'Masculin' }}</td>
                 <td>{{ enfant.qualite }}</td>
-                <td>{{ enfant.estDecede ? 'Yes' : 'No' }}</td>
-                <td>{{ enfant.dateDece ? enfant.dateDece|date('Y-m-d') : '' }}</td>
+                <td>{{ enfant.estDecede ? 'Oui' : 'Non' }}</td>
+                <td>{{ enfant.dateDece ? enfant.dateDece|date('d/m/Y') : '' }}</td>
                 <td>
-                    <a href="{{ path('enfants_show', {'id': enfant.id}) }}">show</a>
-                    <a href="{{ path('enfants_edit', {'id': enfant.id}) }}">edit</a>
+                    <a href="{{ path('enfants_show', {'id': enfant.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('enfants_edit', {'id': enfant.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="11">no records found</td>
+                <td colspan="11">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('enfants_new') }}">Create new</a>
+    <a href="{{ path('enfants_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
 {% endblock %}

@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}DecisionsRadiationsControles index{% endblock %}
+{% block title %}Liste Decisions Radiations Controles{% endblock %}
 
 {% block body %}
-    <h1>DecisionsRadiationsControles index</h1>
+    <h1>Liste Decisions Radiations Controles</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Reference_decision</th>
-                <th>Date_reference</th>
-                <th>Reference_journal_officiel</th>
-                <th>Date_journal_officiel</th>
+                <th>Reférence du decision</th>
+                <th>Date de reférence</th>
+                <th>Reférence de journal officiel</th>
+                <th>Date de journal officiel</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,21 +21,21 @@
             <tr>
                 <td>{{ decisions_radiations_controle.id }}</td>
                 <td>{{ decisions_radiations_controle.referenceDecision }}</td>
-                <td>{{ decisions_radiations_controle.dateReference ? decisions_radiations_controle.dateReference|date('Y-m-d') : '' }}</td>
+                <td>{{ decisions_radiations_controle.dateReference ? decisions_radiations_controle.dateReference|date('d/m/Y') : '' }}</td>
                 <td>{{ decisions_radiations_controle.referenceJournalOfficiel }}</td>
-                <td>{{ decisions_radiations_controle.dateJournalOfficiel ? decisions_radiations_controle.dateJournalOfficiel|date('Y-m-d') : '' }}</td>
+                <td>{{ decisions_radiations_controle.dateJournalOfficiel ? decisions_radiations_controle.dateJournalOfficiel|date('d/m/Y') : '' }}</td>
                 <td>
-                    <a href="{{ path('decisions_radiations_controles_show', {'id': decisions_radiations_controle.id}) }}">show</a>
-                    <a href="{{ path('decisions_radiations_controles_edit', {'id': decisions_radiations_controle.id}) }}">edit</a>
+                    <a href="{{ path('decisions_radiations_controles_show', {'id': decisions_radiations_controle.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('decisions_radiations_controles_edit', {'id': decisions_radiations_controle.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('decisions_radiations_controles_new') }}">Create new</a>
+    <a href="{{ path('decisions_radiations_controles_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
 {% endblock %}

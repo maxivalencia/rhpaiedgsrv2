@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}DiplomesPersonnels index{% endblock %}
+{% block title %}Liste Diplomes Personnels{% endblock %}
 
 {% block body %}
-    <h1>DiplomesPersonnels index</h1>
+    <h1>Liste Diplomes Personnels</h1>
 
     <table class="table">
         <thead>
@@ -19,19 +19,19 @@
             <tr>
                 <td>{{ diplomes_personnel.id }}</td>
                 <td>{{ diplomes_personnel.numero }}</td>
-                <td>{{ diplomes_personnel.date ? diplomes_personnel.date|date('Y-m-d') : '' }}</td>
+                <td>{{ diplomes_personnel.date ? diplomes_personnel.date|date('d/m/Y') : '' }}</td>
                 <td>
-                    <a href="{{ path('diplomes_personnels_show', {'id': diplomes_personnel.id}) }}">show</a>
-                    <a href="{{ path('diplomes_personnels_edit', {'id': diplomes_personnel.id}) }}">edit</a>
+                    <a href="{{ path('diplomes_personnels_show', {'id': diplomes_personnel.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('diplomes_personnels_edit', {'id': diplomes_personnel.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('diplomes_personnels_new') }}">Create new</a>
+    <a href="{{ path('diplomes_personnels_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
 {% endblock %}

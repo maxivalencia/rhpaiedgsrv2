@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Punitions index{% endblock %}
+{% block title %}Liste Punitions{% endblock %}
 
 {% block body %}
-    <h1>Punitions index</h1>
+    <h1>Liste Punitions</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Libelle</th>
-                <th>Reference</th>
-                <th>Date_reference</th>
-                <th>Date_effet</th>
+                <th>Reférence</th>
+                <th>Date de reférence</th>
+                <th>Date d'effet</th>
                 <th>Sanction</th>
                 <th>actions</th>
             </tr>
@@ -23,21 +23,21 @@
                 <td>{{ punition.id }}</td>
                 <td>{{ punition.libelle }}</td>
                 <td>{{ punition.reference }}</td>
-                <td>{{ punition.dateReference ? punition.dateReference|date('Y-m-d') : '' }}</td>
-                <td>{{ punition.dateEffet ? punition.dateEffet|date('Y-m-d') : '' }}</td>
+                <td>{{ punition.dateReference ? punition.dateReference|date('d/m/Y') : '' }}</td>
+                <td>{{ punition.dateEffet ? punition.dateEffet|date('d/m/Y') : '' }}</td>
                 <td>{{ punition.sanction }}</td>
                 <td>
-                    <a href="{{ path('punitions_show', {'id': punition.id}) }}">show</a>
-                    <a href="{{ path('punitions_edit', {'id': punition.id}) }}">edit</a>
+                    <a href="{{ path('punitions_show', {'id': punition.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('punitions_edit', {'id': punition.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('punitions_new') }}">Create new</a>
+    <a href="{{ path('punitions_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
 {% endblock %}

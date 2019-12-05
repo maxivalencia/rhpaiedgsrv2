@@ -1,21 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Permissions index{% endblock %}
+{% block title %}Liste Permissions{% endblock %}
 
 {% block body %}
-    <h1>Permissions index</h1>
+    <h1>Liste Permissions</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Annee</th>
-                <th>Date_depart</th>
-                <th>Date_fin</th>
+                <th>Date de depart</th>
+                <th>Date de fin</th>
                 <th>Duree</th>
                 <th>Reliquat</th>
-                <th>Type_permission</th>
-                <th>Lieu_jouissance</th>
+                <th>Type de permission</th>
+                <th>Lieu de jouissance</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,25 +23,25 @@
         {% for permission in permissions %}
             <tr>
                 <td>{{ permission.id }}</td>
-                <td>{{ permission.annee ? permission.annee|date('Y-m-d') : '' }}</td>
-                <td>{{ permission.dateDepart ? permission.dateDepart|date('Y-m-d') : '' }}</td>
-                <td>{{ permission.dateFin ? permission.dateFin|date('Y-m-d') : '' }}</td>
+                <td>{{ permission.annee ? permission.annee|date('d/m/Y') : '' }}</td>
+                <td>{{ permission.dateDepart ? permission.dateDepart|date('d/m/Y') : '' }}</td>
+                <td>{{ permission.dateFin ? permission.dateFin|date('d/m/Y') : '' }}</td>
                 <td>{{ permission.duree }}</td>
                 <td>{{ permission.reliquat }}</td>
                 <td>{{ permission.typePermission }}</td>
                 <td>{{ permission.lieuJouissance }}</td>
                 <td>
-                    <a href="{{ path('permissions_show', {'id': permission.id}) }}">show</a>
-                    <a href="{{ path('permissions_edit', {'id': permission.id}) }}">edit</a>
+                    <a href="{{ path('permissions_show', {'id': permission.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('permissions_edit', {'id': permission.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">no records found</td>
+                <td colspan="9">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('permissions_new') }}">Create new</a>
+    <a href="{{ path('permissions_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
 {% endblock %}

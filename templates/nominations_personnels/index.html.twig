@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}NominationsPersonnels index{% endblock %}
+{% block title %}Liste Nominations Personnels{% endblock %}
 
 {% block body %}
-    <h1>NominationsPersonnels index</h1>
+    <h1>Liste Nominations Personnels</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Date_nomination</th>
+                <th>Date de nomination</th>
                 <th>Rang</th>
                 <th>Echelon</th>
                 <th>Class</th>
@@ -21,23 +21,23 @@
         {% for nominations_personnel in nominations_personnels %}
             <tr>
                 <td>{{ nominations_personnel.id }}</td>
-                <td>{{ nominations_personnel.dateNomination ? nominations_personnel.dateNomination|date('Y-m-d') : '' }}</td>
+                <td>{{ nominations_personnel.dateNomination ? nominations_personnel.dateNomination|date('d/m/Y') : '' }}</td>
                 <td>{{ nominations_personnel.rang }}</td>
                 <td>{{ nominations_personnel.echelon }}</td>
                 <td>{{ nominations_personnel.class }}</td>
                 <td>{{ nominations_personnel.indice }}</td>
                 <td>
-                    <a href="{{ path('nominations_personnels_show', {'id': nominations_personnel.id}) }}">show</a>
-                    <a href="{{ path('nominations_personnels_edit', {'id': nominations_personnel.id}) }}">edit</a>
+                    <a href="{{ path('nominations_personnels_show', {'id': nominations_personnel.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('nominations_personnels_edit', {'id': nominations_personnel.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('nominations_personnels_new') }}">Create new</a>
+    <a href="{{ path('nominations_personnels_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
 {% endblock %}

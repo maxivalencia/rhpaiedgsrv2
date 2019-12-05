@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}DecisionsAffectations index{% endblock %}
+{% block title %}Liste Decisions Affectations{% endblock %}
 
 {% block body %}
-    <h1>DecisionsAffectations index</h1>
+    <h1>Liste Decisions Affectations</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Reference_decision</th>
-                <th>Date_decision</th>
+                <th>Reférence de la decision</th>
+                <th>Date de la decision</th>
                 <th>Genre</th>
                 <th>actions</th>
             </tr>
@@ -20,20 +20,20 @@
             <tr>
                 <td>{{ decisions_affectation.id }}</td>
                 <td>{{ decisions_affectation.referenceDecision }}</td>
-                <td>{{ decisions_affectation.dateDecision ? decisions_affectation.dateDecision|date('Y-m-d') : '' }}</td>
+                <td>{{ decisions_affectation.dateDecision ? decisions_affectation.dateDecision|date('d/m/Y') : '' }}</td>
                 <td>{{ decisions_affectation.genre }}</td>
                 <td>
-                    <a href="{{ path('decisions_affectations_show', {'id': decisions_affectation.id}) }}">show</a>
-                    <a href="{{ path('decisions_affectations_edit', {'id': decisions_affectation.id}) }}">edit</a>
+                    <a href="{{ path('decisions_affectations_show', {'id': decisions_affectation.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('decisions_affectations_edit', {'id': decisions_affectation.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('decisions_affectations_new') }}">Create new</a>
+    <a href="{{ path('decisions_affectations_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
 {% endblock %}

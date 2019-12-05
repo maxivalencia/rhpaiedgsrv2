@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}DecisionsPromotions index{% endblock %}
+{% block title %}Liste Decisions Promotions{% endblock %}
 
 {% block body %}
-    <h1>DecisionsPromotions index</h1>
+    <h1>Liste Decisions Promotions</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Reference_decision</th>
-                <th>Date_decision</th>
-                <th>Genre_decision</th>
+                <th>Reférence de la decision</th>
+                <th>Date de la decision</th>
+                <th>Genre de la decision</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,20 +20,20 @@
             <tr>
                 <td>{{ decisions_promotion.id }}</td>
                 <td>{{ decisions_promotion.referenceDecision }}</td>
-                <td>{{ decisions_promotion.dateDecision ? decisions_promotion.dateDecision|date('Y-m-d') : '' }}</td>
+                <td>{{ decisions_promotion.dateDecision ? decisions_promotion.dateDecision|date('d/m/Y') : '' }}</td>
                 <td>{{ decisions_promotion.genreDecision }}</td>
                 <td>
-                    <a href="{{ path('decisions_promotions_show', {'id': decisions_promotion.id}) }}">show</a>
-                    <a href="{{ path('decisions_promotions_edit', {'id': decisions_promotion.id}) }}">edit</a>
+                    <a href="{{ path('decisions_promotions_show', {'id': decisions_promotion.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('decisions_promotions_edit', {'id': decisions_promotion.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('decisions_promotions_new') }}">Create new</a>
+    <a href="{{ path('decisions_promotions_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
 {% endblock %}

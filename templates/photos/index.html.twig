@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Photos index{% endblock %}
+{% block title %}Liste Photos{% endblock %}
 
 {% block body %}
-    <h1>Photos index</h1>
+    <h1>Liste Photos</h1>
 
     <table class="table">
         <thead>
@@ -23,17 +23,17 @@
                 <td>{{ photo.type }}</td>
                 <td>{{ photo.taille }}</td>
                 <td>
-                    <a href="{{ path('photos_show', {'id': photo.id}) }}">show</a>
-                    <a href="{{ path('photos_edit', {'id': photo.id}) }}">edit</a>
+                    <a href="{{ path('photos_show', {'id': photo.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('photos_edit', {'id': photo.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('photos_new') }}">Create new</a>
+    <a href="{{ path('photos_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
 {% endblock %}

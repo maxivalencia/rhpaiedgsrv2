@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Districts index{% endblock %}
+{% block title %}Liste Districts{% endblock %}
 
 {% block body %}
-    <h1>Districts index</h1>
+    <h1>Liste Districts</h1>
 
     <table class="table">
         <thead>
@@ -19,17 +19,17 @@
                 <td>{{ district.id }}</td>
                 <td>{{ district.district }}</td>
                 <td>
-                    <a href="{{ path('districts_show', {'id': district.id}) }}">show</a>
-                    <a href="{{ path('districts_edit', {'id': district.id}) }}">edit</a>
+                    <a href="{{ path('districts_show', {'id': district.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('districts_edit', {'id': district.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('districts_new') }}">Create new</a>
+    <a href="{{ path('districts_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
 {% endblock %}

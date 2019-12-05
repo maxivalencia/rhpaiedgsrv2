@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}FonctionsConjoints index{% endblock %}
+{% block title %}Liste Fonctions Conjoints{% endblock %}
 
 {% block body %}
-    <h1>FonctionsConjoints index</h1>
+    <h1>Liste Fonctions Conjoints</h1>
 
     <table class="table">
         <thead>
@@ -11,10 +11,10 @@
                 <th>Id</th>
                 <th>Libelle</th>
                 <th>Abbreviation</th>
-                <th>Lieu_travail</th>
+                <th>Lieu de travail</th>
                 <th>Employeur</th>
-                <th>Adresse_employeur</th>
-                <th>Est_fonctionnaire</th>
+                <th>Adresse de l'employeur</th>
+                <th>Est fonctionnaire</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -27,19 +27,19 @@
                 <td>{{ fonctions_conjoint.lieuTravail }}</td>
                 <td>{{ fonctions_conjoint.employeur }}</td>
                 <td>{{ fonctions_conjoint.adresseEmployeur }}</td>
-                <td>{{ fonctions_conjoint.estFonctionnaire ? 'Yes' : 'No' }}</td>
+                <td>{{ fonctions_conjoint.estFonctionnaire ? 'Oui' : 'Non' }}</td>
                 <td>
-                    <a href="{{ path('fonctions_conjoints_show', {'id': fonctions_conjoint.id}) }}">show</a>
-                    <a href="{{ path('fonctions_conjoints_edit', {'id': fonctions_conjoint.id}) }}">edit</a>
+                    <a href="{{ path('fonctions_conjoints_show', {'id': fonctions_conjoint.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('fonctions_conjoints_edit', {'id': fonctions_conjoint.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('fonctions_conjoints_new') }}">Create new</a>
+    <a href="{{ path('fonctions_conjoints_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
 {% endblock %}

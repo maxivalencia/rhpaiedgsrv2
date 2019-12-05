@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}NotesPOS index{% endblock %}
+{% block title %}Liste Notes POS{% endblock %}
 
 {% block body %}
-    <h1>NotesPOS index</h1>
+    <h1>Liste Notes POS</h1>
 
     <table class="table">
         <thead>
@@ -15,7 +15,7 @@
                 <th>Ags</th>
                 <th>Niveau</th>
                 <th>Potentiel</th>
-                <th>Appreciation_complet</th>
+                <th>Appreciation complet</th>
                 <th>Personnel</th>
                 <th>actions</th>
             </tr>
@@ -24,7 +24,7 @@
         {% for notes_p_o in notes_p_o_ss %}
             <tr>
                 <td>{{ notes_p_o.id }}</td>
-                <td>{{ notes_p_o.annee ? notes_p_o.annee|date('Y-m-d') : '' }}</td>
+                <td>{{ notes_p_o.annee ? notes_p_o.annee|date('d/m/Y') : '' }}</td>
                 <td>{{ notes_p_o.qf }}</td>
                 <td>{{ notes_p_o.vet }}</td>
                 <td>{{ notes_p_o.ags }}</td>
@@ -33,17 +33,17 @@
                 <td>{{ notes_p_o.appreciationComplet }}</td>
                 <td>{{ notes_p_o.personnel }}</td>
                 <td>
-                    <a href="{{ path('notes_p_o_s_show', {'id': notes_p_o.id}) }}">show</a>
-                    <a href="{{ path('notes_p_o_s_edit', {'id': notes_p_o.id}) }}">edit</a>
+                    <a href="{{ path('notes_p_o_s_show', {'id': notes_p_o.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('notes_p_o_s_edit', {'id': notes_p_o.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="10">no records found</td>
+                <td colspan="10">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('notes_p_o_s_new') }}">Create new</a>
+    <a href="{{ path('notes_p_o_s_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
 {% endblock %}

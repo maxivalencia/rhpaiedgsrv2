@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste Details Motifs Radiations Controles{% endblock %}
+{% block title %}Liste Détails Motifs Radiations Controles{% endblock %}
 
 {% block body %}
-    <h1>Liste Details Motifs Radiations Controles</h1>
+    <h1>Liste Détails Motifs Radiations Controles</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Detail motif radiation</th>
+                <th>Détail motif radiation</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,8 +19,8 @@
                 <td>{{ details_motifs_radiations_controle.id }}</td>
                 <td>{{ details_motifs_radiations_controle.detailMotifRadiation }}</td>
                 <td>
-                    <a href="{{ path('details_motifs_radiations_controles_show', {'id': details_motifs_radiations_controle.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('details_motifs_radiations_controles_edit', {'id': details_motifs_radiations_controle.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('details_motifs_radiations_controles_show', {'id': details_motifs_radiations_controle.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('details_motifs_radiations_controles_edit', {'id': details_motifs_radiations_controle.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

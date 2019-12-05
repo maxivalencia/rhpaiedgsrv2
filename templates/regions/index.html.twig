@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste Regions{% endblock %}
+{% block title %}Liste Régions{% endblock %}
 
 {% block body %}
-    <h1>Liste Regions</h1>
+    <h1>Liste Régions</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Region</th>
+                <th>Région</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,8 +19,8 @@
                 <td>{{ region.id }}</td>
                 <td>{{ region.region }}</td>
                 <td>
-                    <a href="{{ path('regions_show', {'id': region.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('regions_edit', {'id': region.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('regions_show', {'id': region.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('regions_edit', {'id': region.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

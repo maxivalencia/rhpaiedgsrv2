@@ -19,8 +19,8 @@
                 <td>{{ province.id }}</td>
                 <td>{{ province.province }}</td>
                 <td>
-                    <a href="{{ path('provinces_show', {'id': province.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('provinces_edit', {'id': province.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('provinces_show', {'id': province.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('provinces_edit', {'id': province.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

@@ -9,10 +9,10 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Annee</th>
-                <th>Date de depart</th>
+                <th>Année</th>
+                <th>Date de départ</th>
                 <th>Date de fin</th>
-                <th>Duree</th>
+                <th>Durée</th>
                 <th>Reliquat</th>
                 <th>Type de permission</th>
                 <th>Lieu de jouissance</th>
@@ -31,8 +31,8 @@
                 <td>{{ permission.typePermission }}</td>
                 <td>{{ permission.lieuJouissance }}</td>
                 <td>
-                    <a href="{{ path('permissions_show', {'id': permission.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('permissions_edit', {'id': permission.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('permissions_show', {'id': permission.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('permissions_edit', {'id': permission.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

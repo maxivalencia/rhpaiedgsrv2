@@ -29,8 +29,8 @@
                 <td>{{ radiations_personnel.referenceMrcRadiation }}</td>
                 <td>{{ radiations_personnel.dateMrcRadiation ? radiations_personnel.dateMrcRadiation|date('d/m/Y') : '' }}</td>
                 <td>
-                    <a href="{{ path('radiations_personnels_show', {'id': radiations_personnel.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('radiations_personnels_edit', {'id': radiations_personnel.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('radiations_personnels_show', {'id': radiations_personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('radiations_personnels_edit', {'id': radiations_personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

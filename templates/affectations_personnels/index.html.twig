@@ -10,9 +10,9 @@
             <tr>
                 <th>Id</th>
                 <th>Date d'affectation</th>
-                <th>Date de disponibilite</th>
-                <th>Reférence de disponibilite</th>
-                <th>Date reférence de disponibilite</th>
+                <th>Date de disponibilité</th>
+                <th>Reférence de disponibilité</th>
+                <th>Date reférence de disponibilité</th>
                 <th>Motif de l'affectation</th>
                 <th>Situation</th>
                 <th>Motif de l'annulation</th>
@@ -31,8 +31,8 @@
                 <td>{{ affectations_personnel.situation }}</td>
                 <td>{{ affectations_personnel.motifAnnulation }}</td>
                 <td>
-                    <a href="{{ path('affectations_personnels_show', {'id': affectations_personnel.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('affectations_personnels_edit', {'id': affectations_personnel.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('affectations_personnels_show', {'id': affectations_personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('affectations_personnels_edit', {'id': affectations_personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

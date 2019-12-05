@@ -19,8 +19,8 @@
                 <td>{{ commune.id }}</td>
                 <td>{{ commune.commune }}</td>
                 <td>
-                    <a href="{{ path('communes_show', {'id': commune.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('communes_edit', {'id': commune.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('communes_show', {'id': commune.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('communes_edit', {'id': commune.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

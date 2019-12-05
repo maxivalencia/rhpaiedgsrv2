@@ -19,8 +19,8 @@
                 <td>{{ types_commune.id }}</td>
                 <td>{{ types_commune.type }}</td>
                 <td>
-                    <a href="{{ path('types_communes_show', {'id': types_commune.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('types_communes_edit', {'id': types_commune.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('types_communes_show', {'id': types_commune.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('types_communes_edit', {'id': types_commune.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

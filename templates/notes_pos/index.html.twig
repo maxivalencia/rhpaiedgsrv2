@@ -9,13 +9,13 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Annee</th>
+                <th>Année</th>
                 <th>Qf</th>
                 <th>Vet</th>
                 <th>Ags</th>
                 <th>Niveau</th>
                 <th>Potentiel</th>
-                <th>Appreciation complet</th>
+                <th>Appréciation complet</th>
                 <th>Personnel</th>
                 <th>actions</th>
             </tr>
@@ -33,8 +33,8 @@
                 <td>{{ notes_p_o.appreciationComplet }}</td>
                 <td>{{ notes_p_o.personnel }}</td>
                 <td>
-                    <a href="{{ path('notes_p_o_s_show', {'id': notes_p_o.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('notes_p_o_s_edit', {'id': notes_p_o.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('notes_p_o_s_show', {'id': notes_p_o.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('notes_p_o_s_edit', {'id': notes_p_o.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

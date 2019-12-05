@@ -10,7 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Libelle</th>
-                <th>Abbreviation</th>
+                <th>Abbréviation</th>
                 <th>Lieu de travail</th>
                 <th>Employeur</th>
                 <th>Adresse de l'employeur</th>
@@ -29,8 +29,8 @@
                 <td>{{ fonctions_conjoint.adresseEmployeur }}</td>
                 <td>{{ fonctions_conjoint.estFonctionnaire ? 'Oui' : 'Non' }}</td>
                 <td>
-                    <a href="{{ path('fonctions_conjoints_show', {'id': fonctions_conjoint.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('fonctions_conjoints_edit', {'id': fonctions_conjoint.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('fonctions_conjoints_show', {'id': fonctions_conjoint.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('fonctions_conjoints_edit', {'id': fonctions_conjoint.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

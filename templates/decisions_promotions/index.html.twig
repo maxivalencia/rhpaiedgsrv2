@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste Decisions Promotions{% endblock %}
+{% block title %}Liste Décisions Promotions{% endblock %}
 
 {% block body %}
-    <h1>Liste Decisions Promotions</h1>
+    <h1>Liste Décisions Promotions</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Reférence de la decision</th>
-                <th>Date de la decision</th>
-                <th>Genre de la decision</th>
+                <th>Reférence de la décision</th>
+                <th>Date de la décision</th>
+                <th>Genre de la décision</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,8 +23,8 @@
                 <td>{{ decisions_promotion.dateDecision ? decisions_promotion.dateDecision|date('d/m/Y') : '' }}</td>
                 <td>{{ decisions_promotion.genreDecision }}</td>
                 <td>
-                    <a href="{{ path('decisions_promotions_show', {'id': decisions_promotion.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('decisions_promotions_edit', {'id': decisions_promotion.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('decisions_promotions_show', {'id': decisions_promotion.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('decisions_promotions_edit', {'id': decisions_promotion.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

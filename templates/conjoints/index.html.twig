@@ -11,21 +11,21 @@
                 <th>Id</th>
                 <th>Rang</th>
                 <th>Nom</th>
-                <th>Prenom</th>
+                <th>Prénom</th>
                 <th>Date de naissance</th>
                 <th>Lieu de naissance</th>
                 <th>Nom du père</th>
                 <th>Nom de la mère</th>
                 <th>Sexe</th>
                 <th>Date de mariage</th>
-                <th>Numero CIN</th>
+                <th>Numéro CIN</th>
                 <th>Date CIN</th>
                 <th>Lieu CIN</th>
                 <th>Reférence de l'autorisation de mariage</th>
                 <th>Date reférence de l'autorisation de mariage</th>
                 <th>Lieu de mariage</th>
                 <th>Reférence officiel du mariage</th>
-                <th>Date reférence officiel dumariage</th>
+                <th>Date reférence officiel du mariage</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -51,8 +51,8 @@
                 <td>{{ conjoint.referenceOfficielMariage }}</td>
                 <td>{{ conjoint.dateReferenceOfficielMariage ? conjoint.dateReferenceOfficielMariage|date('d/m/Y') : '' }}</td>
                 <td>
-                    <a href="{{ path('conjoints_show', {'id': conjoint.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('conjoints_edit', {'id': conjoint.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('conjoints_show', {'id': conjoint.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('conjoints_edit', {'id': conjoint.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

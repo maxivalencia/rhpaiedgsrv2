@@ -23,8 +23,8 @@
                 <td>{{ photo.type }}</td>
                 <td>{{ photo.taille }}</td>
                 <td>
-                    <a href="{{ path('photos_show', {'id': photo.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('photos_edit', {'id': photo.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('photos_show', {'id': photo.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('photos_edit', {'id': photo.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

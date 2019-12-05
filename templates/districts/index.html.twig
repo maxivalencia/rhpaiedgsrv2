@@ -19,8 +19,8 @@
                 <td>{{ district.id }}</td>
                 <td>{{ district.district }}</td>
                 <td>
-                    <a href="{{ path('districts_show', {'id': district.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('districts_edit', {'id': district.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('districts_show', {'id': district.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('districts_edit', {'id': district.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

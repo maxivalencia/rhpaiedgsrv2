@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste Decorations Personnels{% endblock %}
+{% block title %}Liste Décorations Personnels{% endblock %}
 
 {% block body %}
-    <h1>Liste Decorations Personnels</h1>
+    <h1>Liste Décorations Personnels</h1>
 
     <table class="table">
         <thead>
@@ -23,8 +23,8 @@
                 <td>{{ decorations_personnel.reference }}</td>
                 <td>{{ decorations_personnel.dateReference ? decorations_personnel.dateReference|date('d/m/Y') : '' }}</td>
                 <td>
-                    <a href="{{ path('decorations_personnels_show', {'id': decorations_personnel.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('decorations_personnels_edit', {'id': decorations_personnel.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('decorations_personnels_show', {'id': decorations_personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('decorations_personnels_edit', {'id': decorations_personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

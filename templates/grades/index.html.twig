@@ -10,7 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Grade</th>
-                <th>Abbreviation</th>
+                <th>Abbréviation</th>
                 <th>Rang</th>
                 <th>actions</th>
             </tr>
@@ -23,8 +23,8 @@
                 <td>{{ grade.abbreviation }}</td>
                 <td>{{ grade.rang }}</td>
                 <td>
-                    <a href="{{ path('grades_show', {'id': grade.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('grades_edit', {'id': grade.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('grades_show', {'id': grade.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('grades_edit', {'id': grade.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

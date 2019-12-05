@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste Niveau Diplome{% endblock %}
+{% block title %}Liste Niveau Diplôme{% endblock %}
 
 {% block body %}
-    <h1>Liste Niveau Diplome</h1>
+    <h1>Liste Niveau Diplôme</h1>
 
     <table class="table">
         <thead>
@@ -19,8 +19,8 @@
                 <td>{{ niveau_diplome.id }}</td>
                 <td>{{ niveau_diplome.libelle }}</td>
                 <td>
-                    <a href="{{ path('niveau_diplome_show', {'id': niveau_diplome.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('niveau_diplome_edit', {'id': niveau_diplome.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('niveau_diplome_show', {'id': niveau_diplome.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('niveau_diplome_edit', {'id': niveau_diplome.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

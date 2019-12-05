@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste Decisions Affectations{% endblock %}
+{% block title %}Liste Décisions Affectations{% endblock %}
 
 {% block body %}
-    <h1>Liste Decisions Affectations</h1>
+    <h1>Liste Décisions Affectations</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Reférence de la decision</th>
-                <th>Date de la decision</th>
+                <th>Reférence de la décision</th>
+                <th>Date de la décision</th>
                 <th>Genre</th>
                 <th>actions</th>
             </tr>
@@ -23,8 +23,8 @@
                 <td>{{ decisions_affectation.dateDecision ? decisions_affectation.dateDecision|date('d/m/Y') : '' }}</td>
                 <td>{{ decisions_affectation.genre }}</td>
                 <td>
-                    <a href="{{ path('decisions_affectations_show', {'id': decisions_affectation.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('decisions_affectations_edit', {'id': decisions_affectation.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('decisions_affectations_show', {'id': decisions_affectation.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('decisions_affectations_edit', {'id': decisions_affectation.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

@@ -27,8 +27,8 @@
                 <td>{{ punition.dateEffet ? punition.dateEffet|date('d/m/Y') : '' }}</td>
                 <td>{{ punition.sanction }}</td>
                 <td>
-                    <a href="{{ path('punitions_show', {'id': punition.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('punitions_edit', {'id': punition.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('punitions_show', {'id': punition.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('punitions_edit', {'id': punition.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

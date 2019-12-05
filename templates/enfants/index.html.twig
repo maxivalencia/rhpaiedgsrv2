@@ -11,11 +11,11 @@
                 <th>Id</th>
                 <th>Rang</th>
                 <th>Nom</th>
-                <th>Prenom</th>
+                <th>Prénom</th>
                 <th>Date de naissance</th>
                 <th>Lieu de naissance</th>
                 <th>Sexe</th>
-                <th>Qualite</th>
+                <th>Qualité</th>
                 <th>Est decedé</th>
                 <th>Date de decé</th>
                 <th>actions</th>
@@ -35,8 +35,8 @@
                 <td>{{ enfant.estDecede ? 'Oui' : 'Non' }}</td>
                 <td>{{ enfant.dateDece ? enfant.dateDece|date('d/m/Y') : '' }}</td>
                 <td>
-                    <a href="{{ path('enfants_show', {'id': enfant.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('enfants_edit', {'id': enfant.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('enfants_show', {'id': enfant.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('enfants_edit', {'id': enfant.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

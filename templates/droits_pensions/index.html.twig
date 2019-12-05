@@ -19,8 +19,8 @@
                 <td>{{ droits_pension.id }}</td>
                 <td>{{ droits_pension.libelle }}</td>
                 <td>
-                    <a href="{{ path('droits_pensions_show', {'id': droits_pension.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('droits_pensions_edit', {'id': droits_pension.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('droits_pensions_show', {'id': droits_pension.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('droits_pensions_edit', {'id': droits_pension.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

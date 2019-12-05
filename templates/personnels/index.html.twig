@@ -10,11 +10,11 @@
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
-                <th>Prenoms</th>
+                <th>Prénoms</th>
                 <th>Date de naissance</th>
                 <th>Lieu de naissance</th>
-                <th>Nom du pere</th>
-                <th>Nom de la mere</th>
+                <th>Nom du père</th>
+                <th>Nom de la mère</th>
                 <th>Numéro CIN</th>
                 <th>Date CIN</th>
                 <th>Lieu CIN</th>
@@ -55,8 +55,8 @@
                 <td>{{ personnel.estMilitaire ? 'Oui' : 'Non' }}</td>
                 <td>{{ personnel.actif ? 'Oui' : 'Non' }}</td>
                 <td>
-                    <a href="{{ path('personnels_show', {'id': personnel.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('personnels_edit', {'id': personnel.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('personnels_show', {'id': personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('personnels_edit', {'id': personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

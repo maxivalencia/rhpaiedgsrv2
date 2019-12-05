@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste Decorations{% endblock %}
+{% block title %}Liste Décorations{% endblock %}
 
 {% block body %}
-    <h1>Liste Decorations</h1>
+    <h1>Liste Décorations</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Libelle</th>
-                <th>Abbreviation</th>
+                <th>Abbréviation</th>
                 <th>Ordre</th>
                 <th>actions</th>
             </tr>
@@ -23,8 +23,8 @@
                 <td>{{ decoration.abbreviation }}</td>
                 <td>{{ decoration.ordre }}</td>
                 <td>
-                    <a href="{{ path('decorations_show', {'id': decoration.id}) }}"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('decorations_edit', {'id': decoration.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ path('decorations_show', {'id': decoration.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('decorations_edit', {'id': decoration.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Communes{% endblock %}
+{% block title %}Nouvelle Communes{% endblock %}
 
 {% block body %}
-    <h1>Create new Communes</h1>
+    <h1>Ajout nouvelle Communes</h1>
 
     {{ include('communes/_form.html.twig') }}
 
-    <a href="{{ path('communes_index') }}">back to list</a>
+    <a href="{{ path('communes_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 {% endblock %}

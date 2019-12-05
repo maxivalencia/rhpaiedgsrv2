@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New NiveauDiplome{% endblock %}
+{% block title %}Nouveau Niveau Diplôme{% endblock %}
 
 {% block body %}
-    <h1>Create new NiveauDiplome</h1>
+    <h1>Ajout nouveau Niveau Diplôme</h1>
 
     {{ include('niveau_diplome/_form.html.twig') }}
 
-    <a href="{{ path('niveau_diplome_index') }}">back to list</a>
+    <a href="{{ path('niveau_diplome_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 {% endblock %}

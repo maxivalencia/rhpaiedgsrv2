@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New DetailsMotifsRadiationsControles{% endblock %}
+{% block title %}Nouvelle Détails Motifs Radiations Contrôles{% endblock %}
 
 {% block body %}
-    <h1>Create new DetailsMotifsRadiationsControles</h1>
+    <h1>Ajout new Détails Motifs Radiations Contrôles</h1>
 
     {{ include('details_motifs_radiations_controles/_form.html.twig') }}
 
-    <a href="{{ path('details_motifs_radiations_controles_index') }}">back to list</a>
+    <a href="{{ path('details_motifs_radiations_controles_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 {% endblock %}

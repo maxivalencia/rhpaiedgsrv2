@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New DecisionsPromotions{% endblock %}
+{% block title %}Nouvelle Décisions Promotions{% endblock %}
 
 {% block body %}
-    <h1>Create new DecisionsPromotions</h1>
+    <h1>Ajout nouvelle Décisions Promotions</h1>
 
     {{ include('decisions_promotions/_form.html.twig') }}
 
-    <a href="{{ path('decisions_promotions_index') }}">back to list</a>
+    <a href="{{ path('decisions_promotions_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 {% endblock %}

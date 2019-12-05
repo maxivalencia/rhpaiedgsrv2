@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New DomaineDiplome{% endblock %}
+{% block title %}Nouvelle Domaine Diplôme{% endblock %}
 
 {% block body %}
-    <h1>Create new DomaineDiplome</h1>
+    <h1>Ajout nouvelle Domaine Diplôme</h1>
 
     {{ include('domaine_diplome/_form.html.twig') }}
 
-    <a href="{{ path('domaine_diplome_index') }}">back to list</a>
+    <a href="{{ path('domaine_diplome_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 {% endblock %}

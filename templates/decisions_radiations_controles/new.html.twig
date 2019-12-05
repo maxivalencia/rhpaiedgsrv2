@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New DecisionsRadiationsControles{% endblock %}
+{% block title %}Nouvelle Décisions Radiations Contrôles{% endblock %}
 
 {% block body %}
-    <h1>Create new DecisionsRadiationsControles</h1>
+    <h1>Ajout nouvelle Décisions Radiations Contrôles</h1>
 
     {{ include('decisions_radiations_controles/_form.html.twig') }}
 
-    <a href="{{ path('decisions_radiations_controles_index') }}">back to list</a>
+    <a href="{{ path('decisions_radiations_controles_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 {% endblock %}

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New DroitsPensions{% endblock %}
+{% block title %}Nouveau Droits Pensions{% endblock %}
 
 {% block body %}
-    <h1>Create new DroitsPensions</h1>
+    <h1>Ajout nouveau Droits Pensions</h1>
 
     {{ include('droits_pensions/_form.html.twig') }}
 
-    <a href="{{ path('droits_pensions_index') }}">back to list</a>
+    <a href="{{ path('droits_pensions_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 {% endblock %}

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Provinces{% endblock %}
+{% block title %}Nouvelle Provinces{% endblock %}
 
 {% block body %}
-    <h1>Create new Provinces</h1>
+    <h1>Ajout nouvelle Provinces</h1>
 
     {{ include('provinces/_form.html.twig') }}
 
-    <a href="{{ path('provinces_index') }}">back to list</a>
+    <a href="{{ path('provinces_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 {% endblock %}

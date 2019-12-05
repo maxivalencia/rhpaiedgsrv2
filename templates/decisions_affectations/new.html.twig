@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New DecisionsAffectations{% endblock %}
+{% block title %}Nouvelle Décisions Affectations{% endblock %}
 
 {% block body %}
-    <h1>Create new DecisionsAffectations</h1>
+    <h1>Ajout nouvelle Décisions Affectations</h1>
 
     {{ include('decisions_affectations/_form.html.twig') }}
 
-    <a href="{{ path('decisions_affectations_index') }}">back to list</a>
+    <a href="{{ path('decisions_affectations_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 {% endblock %}

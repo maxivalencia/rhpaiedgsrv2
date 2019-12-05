@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New FonctionsConjoints{% endblock %}
+{% block title %}Nouvelle Fonctions Conjoints{% endblock %}
 
 {% block body %}
-    <h1>Create new FonctionsConjoints</h1>
+    <h1>Ajout nouvelle Fonctions Conjoints</h1>
 
     {{ include('fonctions_conjoints/_form.html.twig') }}
 
-    <a href="{{ path('fonctions_conjoints_index') }}">back to list</a>
+    <a href="{{ path('fonctions_conjoints_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 {% endblock %}

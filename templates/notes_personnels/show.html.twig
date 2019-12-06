@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}NotesPersonnels{% endblock %}
+{% block title %}Notes Personnels{% endblock %}
 
 {% block body %}
-    <h1>NotesPersonnels</h1>
+    <h1>Notes Personnels</h1>
 
     <table class="table">
         <tbody>
@@ -12,31 +12,31 @@
                 <td>{{ notes_personnel.id }}</td>
             </tr>
             <tr>
-                <th>Date_note</th>
-                <td>{{ notes_personnel.dateNote ? notes_personnel.dateNote|date('Y-m-d') : '' }}</td>
+                <th>Date de notification</th>
+                <td>{{ notes_personnel.dateNote ? notes_personnel.dateNote|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
                 <th>Note</th>
                 <td>{{ notes_personnel.note }}</td>
             </tr>
             <tr>
-                <th>Appreciation_global</th>
+                <th>Appréciation global</th>
                 <td>{{ notes_personnel.appreciationGlobal }}</td>
             </tr>
             <tr>
-                <th>Reference_note</th>
+                <th>Reférence de la note</th>
                 <td>{{ notes_personnel.referenceNote }}</td>
             </tr>
             <tr>
-                <th>Date_reference</th>
-                <td>{{ notes_personnel.dateReference ? notes_personnel.dateReference|date('Y-m-d') : '' }}</td>
+                <th>Date de la reférence</th>
+                <td>{{ notes_personnel.dateReference ? notes_personnel.dateReference|date('d/m/Y') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('notes_personnels_index') }}">back to list</a>
-
-    <a href="{{ path('notes_personnels_edit', {'id': notes_personnel.id}) }}">edit</a>
+    <a href="{{ path('notes_personnels_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+    <br>
+    <a href="{{ path('notes_personnels_edit', {'id': notes_personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
 
     {{ include('notes_personnels/_delete_form.html.twig') }}
 {% endblock %}

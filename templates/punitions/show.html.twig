@@ -16,16 +16,16 @@
                 <td>{{ punition.libelle }}</td>
             </tr>
             <tr>
-                <th>Reference</th>
+                <th>Reférence</th>
                 <td>{{ punition.reference }}</td>
             </tr>
             <tr>
-                <th>Date_reference</th>
-                <td>{{ punition.dateReference ? punition.dateReference|date('Y-m-d') : '' }}</td>
+                <th>Date de reférence</th>
+                <td>{{ punition.dateReference ? punition.dateReference|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>Date_effet</th>
-                <td>{{ punition.dateEffet ? punition.dateEffet|date('Y-m-d') : '' }}</td>
+                <th>Date de l'effet</th>
+                <td>{{ punition.dateEffet ? punition.dateEffet|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
                 <th>Sanction</th>
@@ -34,9 +34,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('punitions_index') }}">back to list</a>
-
-    <a href="{{ path('punitions_edit', {'id': punition.id}) }}">edit</a>
+    <a href="{{ path('punitions_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+    <br>
+    <a href="{{ path('punitions_edit', {'id': punition.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
 
     {{ include('punitions/_delete_form.html.twig') }}
 {% endblock %}

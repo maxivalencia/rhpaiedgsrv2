@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}NiveauDiplome{% endblock %}
+{% block title %}Niveau Diplôme{% endblock %}
 
 {% block body %}
-    <h1>NiveauDiplome</h1>
+    <h1>Niveau Diplôme</h1>
 
     <table class="table">
         <tbody>
@@ -18,9 +18,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('niveau_diplome_index') }}">back to list</a>
-
-    <a href="{{ path('niveau_diplome_edit', {'id': niveau_diplome.id}) }}">edit</a>
+    <a href="{{ path('niveau_diplome_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+    <br>
+    <a href="{{ path('niveau_diplome_edit', {'id': niveau_diplome.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
 
     {{ include('niveau_diplome/_delete_form.html.twig') }}
 {% endblock %}

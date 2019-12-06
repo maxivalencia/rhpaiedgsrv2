@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Unites{% endblock %}
+{% block title %}Unités{% endblock %}
 
 {% block body %}
-    <h1>Unites</h1>
+    <h1>Unités</h1>
 
     <table class="table">
         <tbody>
@@ -16,11 +16,11 @@
                 <td>{{ unite.libelle }}</td>
             </tr>
             <tr>
-                <th>Abbreviation</th>
+                <th>Abbréviation</th>
                 <td>{{ unite.abbreviation }}</td>
             </tr>
             <tr>
-                <th>Localite</th>
+                <th>Localité</th>
                 <td>{{ unite.localite }}</td>
             </tr>
             <tr>
@@ -28,15 +28,15 @@
                 <td>{{ unite.email }}</td>
             </tr>
             <tr>
-                <th>Phone</th>
+                <th>Téléphone</th>
                 <td>{{ unite.phone }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('unites_index') }}">back to list</a>
-
-    <a href="{{ path('unites_edit', {'id': unite.id}) }}">edit</a>
+    <a href="{{ path('unites_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+    <br>
+    <a href="{{ path('unites_edit', {'id': unite.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
 
     {{ include('unites/_delete_form.html.twig') }}
 {% endblock %}

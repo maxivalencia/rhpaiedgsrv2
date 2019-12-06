@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}DecisionsAffectations{% endblock %}
+{% block title %}Décisions Affectations{% endblock %}
 
 {% block body %}
-    <h1>DecisionsAffectations</h1>
+    <h1>Décisions Affectations</h1>
 
     <table class="table">
         <tbody>
@@ -12,23 +12,23 @@
                 <td>{{ decisions_affectation.id }}</td>
             </tr>
             <tr>
-                <th>Reference_decision</th>
+                <th>Reférence de la décision</th>
                 <td>{{ decisions_affectation.referenceDecision }}</td>
             </tr>
             <tr>
-                <th>Date_decision</th>
-                <td>{{ decisions_affectation.dateDecision ? decisions_affectation.dateDecision|date('Y-m-d') : '' }}</td>
+                <th>Date de la décision</th>
+                <td>{{ decisions_affectation.dateDecision ? decisions_affectation.dateDecision|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>Genre</th>
+                <th>Genre de décision</th>
                 <td>{{ decisions_affectation.genre }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('decisions_affectations_index') }}">back to list</a>
-
-    <a href="{{ path('decisions_affectations_edit', {'id': decisions_affectation.id}) }}">edit</a>
+    <a href="{{ path('decisions_affectations_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+    <br>
+    <a href="{{ path('decisions_affectations_edit', {'id': decisions_affectation.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
 
     {{ include('decisions_affectations/_delete_form.html.twig') }}
 {% endblock %}

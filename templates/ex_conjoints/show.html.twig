@@ -12,31 +12,31 @@
                 <td>{{ ex_conjoint.id }}</td>
             </tr>
             <tr>
-                <th>Motif_rupture</th>
+                <th>Motif de rupture</th>
                 <td>{{ ex_conjoint.motifRupture }}</td>
             </tr>
             <tr>
-                <th>Date_rupture</th>
-                <td>{{ ex_conjoint.dateRupture ? ex_conjoint.dateRupture|date('Y-m-d') : '' }}</td>
+                <th>Date de rupture</th>
+                <td>{{ ex_conjoint.dateRupture ? ex_conjoint.dateRupture|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>Reference_rupture</th>
+                <th>Reférence de rupture</th>
                 <td>{{ ex_conjoint.referenceRupture }}</td>
             </tr>
             <tr>
-                <th>Date_reference_rupture</th>
-                <td>{{ ex_conjoint.dateReferenceRupture ? ex_conjoint.dateReferenceRupture|date('Y-m-d') : '' }}</td>
+                <th>Date de reférence de rupture</th>
+                <td>{{ ex_conjoint.dateReferenceRupture ? ex_conjoint.dateReferenceRupture|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>Adresse_veuve</th>
+                <th>Adresse du (ou de la) veuf/veuve</th>
                 <td>{{ ex_conjoint.adresseVeuve }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('ex_conjoints_index') }}">back to list</a>
-
-    <a href="{{ path('ex_conjoints_edit', {'id': ex_conjoint.id}) }}">edit</a>
+    <a href="{{ path('ex_conjoints_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+    <br>
+    <a href="{{ path('ex_conjoints_edit', {'id': ex_conjoint.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
 
     {{ include('ex_conjoints/_delete_form.html.twig') }}
 {% endblock %}

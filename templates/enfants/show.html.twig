@@ -20,39 +20,39 @@
                 <td>{{ enfant.nom }}</td>
             </tr>
             <tr>
-                <th>Prenom</th>
+                <th>Prénom</th>
                 <td>{{ enfant.prenom }}</td>
             </tr>
             <tr>
-                <th>Date_naissance</th>
-                <td>{{ enfant.dateNaissance ? enfant.dateNaissance|date('Y-m-d') : '' }}</td>
+                <th>Date de naissance</th>
+                <td>{{ enfant.dateNaissance ? enfant.dateNaissance|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>Lieu_naissance</th>
+                <th>Lieu de naissance</th>
                 <td>{{ enfant.lieuNaissance }}</td>
             </tr>
             <tr>
                 <th>Sexe</th>
-                <td>{{ enfant.sexe ? 'Yes' : 'No' }}</td>
+                <td>{{ enfant.sexe ? 'Féminin' : 'Masculin' }}</td>
             </tr>
             <tr>
-                <th>Qualite</th>
+                <th>Qualité</th>
                 <td>{{ enfant.qualite }}</td>
             </tr>
             <tr>
-                <th>Est_decede</th>
-                <td>{{ enfant.estDecede ? 'Yes' : 'No' }}</td>
+                <th>Est decedé</th>
+                <td>{{ enfant.estDecede ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
                 <th>Date_dece</th>
-                <td>{{ enfant.dateDece ? enfant.dateDece|date('Y-m-d') : '' }}</td>
+                <td>{{ enfant.dateDece ? enfant.dateDece|date('d/m/Y') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('enfants_index') }}">back to list</a>
-
-    <a href="{{ path('enfants_edit', {'id': enfant.id}) }}">edit</a>
+    <a href="{{ path('enfants_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+    <br>
+    <a href="{{ path('enfants_edit', {'id': enfant.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
 
     {{ include('enfants/_delete_form.html.twig') }}
 {% endblock %}

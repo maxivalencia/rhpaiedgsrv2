@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}FonctionsConjoints{% endblock %}
+{% block title %}Fonctions Conjoints{% endblock %}
 
 {% block body %}
-    <h1>FonctionsConjoints</h1>
+    <h1>Fonctions Conjoints</h1>
 
     <table class="table">
         <tbody>
@@ -16,11 +16,11 @@
                 <td>{{ fonctions_conjoint.libelle }}</td>
             </tr>
             <tr>
-                <th>Abbreviation</th>
+                <th>Abbréviation</th>
                 <td>{{ fonctions_conjoint.abbreviation }}</td>
             </tr>
             <tr>
-                <th>Lieu_travail</th>
+                <th>Lieu de travail</th>
                 <td>{{ fonctions_conjoint.lieuTravail }}</td>
             </tr>
             <tr>
@@ -28,19 +28,19 @@
                 <td>{{ fonctions_conjoint.employeur }}</td>
             </tr>
             <tr>
-                <th>Adresse_employeur</th>
+                <th>Adresse de l'employeur</th>
                 <td>{{ fonctions_conjoint.adresseEmployeur }}</td>
             </tr>
             <tr>
-                <th>Est_fonctionnaire</th>
-                <td>{{ fonctions_conjoint.estFonctionnaire ? 'Yes' : 'No' }}</td>
+                <th>Est fonctionnaire</th>
+                <td>{{ fonctions_conjoint.estFonctionnaire ? 'Oui' : 'Non' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('fonctions_conjoints_index') }}">back to list</a>
-
-    <a href="{{ path('fonctions_conjoints_edit', {'id': fonctions_conjoint.id}) }}">edit</a>
+    <a href="{{ path('fonctions_conjoints_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+    <br>
+    <a href="{{ path('fonctions_conjoints_edit', {'id': fonctions_conjoint.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
 
     {{ include('fonctions_conjoints/_delete_form.html.twig') }}
 {% endblock %}

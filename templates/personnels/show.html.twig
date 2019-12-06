@@ -16,83 +16,83 @@
                 <td>{{ personnel.nom }}</td>
             </tr>
             <tr>
-                <th>Prenoms</th>
+                <th>Prénom</th>
                 <td>{{ personnel.prenoms }}</td>
             </tr>
             <tr>
-                <th>Date_naissance</th>
-                <td>{{ personnel.dateNaissance ? personnel.dateNaissance|date('Y-m-d') : '' }}</td>
+                <th>Date de naissance</th>
+                <td>{{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>Lieu_naissance</th>
+                <th>Lieu de naissance</th>
                 <td>{{ personnel.lieuNaissance }}</td>
             </tr>
             <tr>
-                <th>Nom_pere</th>
+                <th>Nom du père</th>
                 <td>{{ personnel.nomPere }}</td>
             </tr>
             <tr>
-                <th>Nom_mere</th>
+                <th>Nom de la mère</th>
                 <td>{{ personnel.nomMere }}</td>
             </tr>
             <tr>
-                <th>Num_cin</th>
+                <th>Numéro CIN</th>
                 <td>{{ personnel.numCin }}</td>
             </tr>
             <tr>
-                <th>Date_cin</th>
-                <td>{{ personnel.dateCin ? personnel.dateCin|date('Y-m-d') : '' }}</td>
+                <th>Date de la CIN</th>
+                <td>{{ personnel.dateCin ? personnel.dateCin|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>Lieu_cin</th>
+                <th>Lieu de la CIN</th>
                 <td>{{ personnel.lieuCin }}</td>
             </tr>
             <tr>
                 <th>Sexe</th>
-                <td>{{ personnel.sexe ? 'Yes' : 'No' }}</td>
+                <td>{{ personnel.sexe ? 'Féminin' : 'Masculin' }}</td>
             </tr>
             <tr>
-                <th>Est_marie</th>
-                <td>{{ personnel.estMarie ? 'Yes' : 'No' }}</td>
+                <th>Est marié(e)</th>
+                <td>{{ personnel.estMarie ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
                 <th>Adresse</th>
                 <td>{{ personnel.adresse }}</td>
             </tr>
             <tr>
-                <th>Telephone</th>
+                <th>Téléphone</th>
                 <td>{{ personnel.telephone }}</td>
             </tr>
             <tr>
-                <th>Telephone_ice</th>
+                <th>Téléphone ICE</th>
                 <td>{{ personnel.telephoneIce }}</td>
             </tr>
             <tr>
-                <th>Date_embauche</th>
-                <td>{{ personnel.dateEmbauche ? personnel.dateEmbauche|date('Y-m-d') : '' }}</td>
+                <th>Date embauche</th>
+                <td>{{ personnel.dateEmbauche ? personnel.dateEmbauche|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
                 <th>Matricule</th>
                 <td>{{ personnel.matricule }}</td>
             </tr>
             <tr>
-                <th>Numero_cnaps</th>
+                <th>Numéro_cnaps</th>
                 <td>{{ personnel.numeroCnaps }}</td>
             </tr>
             <tr>
-                <th>Est_militaire</th>
-                <td>{{ personnel.estMilitaire ? 'Yes' : 'No' }}</td>
+                <th>Est militaire</th>
+                <td>{{ personnel.estMilitaire ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
                 <th>Actif</th>
-                <td>{{ personnel.actif ? 'Yes' : 'No' }}</td>
+                <td>{{ personnel.actif ? 'Oui' : 'Non' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('personnels_index') }}">back to list</a>
-
-    <a href="{{ path('personnels_edit', {'id': personnel.id}) }}">edit</a>
+    <a href="{{ path('personnels_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+    <br>
+    <a href="{{ path('personnels_edit', {'id': personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
 
     {{ include('personnels/_delete_form.html.twig') }}
 {% endblock %}

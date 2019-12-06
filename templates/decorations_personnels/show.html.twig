@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}DecorationsPersonnels{% endblock %}
+{% block title %}Décorations Personnels{% endblock %}
 
 {% block body %}
-    <h1>DecorationsPersonnels</h1>
+    <h1>Décorations Personnels</h1>
 
     <table class="table">
         <tbody>
@@ -13,22 +13,22 @@
             </tr>
             <tr>
                 <th>Date</th>
-                <td>{{ decorations_personnel.date ? decorations_personnel.date|date('Y-m-d') : '' }}</td>
+                <td>{{ decorations_personnel.date ? decorations_personnel.date|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>Reference</th>
+                <th>Reférence</th>
                 <td>{{ decorations_personnel.reference }}</td>
             </tr>
             <tr>
-                <th>Date_reference</th>
-                <td>{{ decorations_personnel.dateReference ? decorations_personnel.dateReference|date('Y-m-d') : '' }}</td>
+                <th>Date de reférence</th>
+                <td>{{ decorations_personnel.dateReference ? decorations_personnel.dateReference|date('d/m/Y') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('decorations_personnels_index') }}">back to list</a>
-
-    <a href="{{ path('decorations_personnels_edit', {'id': decorations_personnel.id}) }}">edit</a>
+    <a href="{{ path('decorations_personnels_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+    <br>
+    <a href="{{ path('decorations_personnels_edit', {'id': decorations_personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
 
     {{ include('decorations_personnels/_delete_form.html.twig') }}
 {% endblock %}

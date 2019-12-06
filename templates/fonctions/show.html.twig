@@ -16,7 +16,7 @@
                 <td>{{ fonction.libelle }}</td>
             </tr>
             <tr>
-                <th>Abbreviation</th>
+                <th>Abbréviation</th>
                 <td>{{ fonction.abbreviation }}</td>
             </tr>
             <tr>
@@ -26,9 +26,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('fonctions_index') }}">back to list</a>
-
-    <a href="{{ path('fonctions_edit', {'id': fonction.id}) }}">edit</a>
+    <a href="{{ path('fonctions_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+    <br>
+    <a href="{{ path('fonctions_edit', {'id': fonction.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
 
     {{ include('fonctions/_delete_form.html.twig') }}
 {% endblock %}

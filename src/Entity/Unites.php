@@ -59,9 +59,15 @@ class Unites
      */
     private $unites;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\AffectationsPersonnels", mappedBy="unite")
+     */
+    private $affectationsPersonnels;
+
     public function __construct()
     {
         $this->unites = new ArrayCollection();
+        $this->affectationsPersonnels = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -191,5 +197,36 @@ class Unites
     public function __toString()
     {
         return $this->getLibelle();
+    }
+
+    /**
+     * @return Collection|AffectationsPersonnels[]
+     */
+    public function getAffectationsPersonnels(): Collection
+    {
+        return $this->affectationsPersonnels;
+    }
+
+    public function addAffectationsPersonnel(AffectationsPersonnels $affectationsPersonnel): self
+    {
+        if (!$this->affectationsPersonnels->contains($affectationsPersonnel)) {
+            $this->affectationsPersonnels[] = $affectationsPersonnel;
+            $affectationsPersonnel->setUnite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAffectationsPersonnel(AffectationsPersonnels $affectationsPersonnel): self
+    {
+        if ($this->affectationsPersonnels->contains($affectationsPersonnel)) {
+            $this->affectationsPersonnels->removeElement($affectationsPersonnel);
+            // set the owning side to null (unless already changed)
+            if ($affectationsPersonnel->getUnite() === $this) {
+                $affectationsPersonnel->setUnite(null);
+            }
+        }
+
+        return $this;
     }
 }

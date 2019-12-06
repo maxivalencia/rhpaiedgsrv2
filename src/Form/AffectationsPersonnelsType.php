@@ -23,6 +23,7 @@ class AffectationsPersonnelsType extends AbstractType
             ->add('fonction')
             ->add('personnel')
             ->add('decision_affectation')
+            ->add('unite')
         ;
     }
 

@@ -71,6 +71,11 @@ class AffectationsPersonnels
      */
     private $decision_affectation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Unites", inversedBy="affectationsPersonnels")
+     */
+    private $unite;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -215,5 +220,17 @@ class AffectationsPersonnels
     public function __toString()
     {
         return $this->getPersonnel();
+    }
+
+    public function getUnite(): ?Unites
+    {
+        return $this->unite;
+    }
+
+    public function setUnite(?Unites $unite): self
+    {
+        $this->unite = $unite;
+
+        return $this;
     }
 }

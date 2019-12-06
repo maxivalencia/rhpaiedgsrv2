@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Commune</th>
                 <th>actions</th>
             </tr>
@@ -16,7 +16,7 @@
         <tbody>
         {% for commune in communes %}
             <tr>
-                <td>{{ commune.id }}</td>
+                {# <td>{{ commune.id }}</td> #}
                 <td>{{ commune.commune }}</td>
                 <td>
                     <a href="{{ path('communes_show', {'id': commune.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>

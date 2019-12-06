@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Date d'affectation</th>
                 <th>Date de disponibilité</th>
                 <th>Reférence de disponibilité</th>
@@ -22,7 +22,7 @@
         <tbody>
         {% for affectations_personnel in affectations_personnels %}
             <tr>
-                <td>{{ affectations_personnel.id }}</td>
+                {# <td>{{ affectations_personnel.id }}</td> #}
                 <td>{{ affectations_personnel.dateAffectation ? affectations_personnel.dateAffectation|date('d/m/Y') : '' }}</td>
                 <td>{{ affectations_personnel.dateDisponibilite ? affectations_personnel.dateDisponibilite|date('d/m/Y') : '' }}</td>
                 <td>{{ affectations_personnel.referenceDisponibilite }}</td>

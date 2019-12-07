@@ -10,6 +10,7 @@
             <tr>
                 {# <th>Id</th> #}
                 <th>Région</th>
+                <th>Province</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
             <tr>
                 {# <td>{{ region.id }}</td> #}
                 <td>{{ region.region }}</td>
+                <td>{{ region.province }}</td>
                 <td>
                     <a href="{{ path('regions_show', {'id': region.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
                     <a href="{{ path('regions_edit', {'id': region.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>

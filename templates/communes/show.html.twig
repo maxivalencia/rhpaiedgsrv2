@@ -15,6 +15,22 @@
                 <th>Commune</th>
                 <td>{{ commune.commune }}</td>
             </tr>
+            <tr>
+                <th>Type Commune</th>
+                <td>{{ commune.type }}</td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td>{{ commune.district }}</td>
+            </tr>
+            <tr>
+                <th>Région</th>
+                <td>{{ commune.district.region }}</td>
+            </tr>
+            <tr>
+                <th>Province</th>
+                <td>{{ commune.district.region.province  }}</td>
+            </tr>
         </tbody>
     </table>
 

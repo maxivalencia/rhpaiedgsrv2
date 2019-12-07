@@ -13,9 +13,10 @@
                 <th>Date de départ</th>
                 <th>Date de fin</th>
                 <th>Durée</th>
-                <th>Reliquat</th>
-                <th>Type de permission</th>
-                <th>Lieu de jouissance</th>
+                <th>Personnel</th>
+                {# <th>Reliquat</th> #}
+                {# <th>Type de permission</th> #}
+                {# <th>Lieu de jouissance</th> #}
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,13 +24,14 @@
         {% for permission in permissions %}
             <tr>
                 {# <td>{{ permission.id }}</td> #}
-                <td>{{ permission.annee ? permission.annee|date('d/m/Y') : '' }}</td>
+                <td>{{ permission.annee ? permission.annee|date('Y') : '' }}</td>
                 <td>{{ permission.dateDepart ? permission.dateDepart|date('d/m/Y') : '' }}</td>
                 <td>{{ permission.dateFin ? permission.dateFin|date('d/m/Y') : '' }}</td>
                 <td>{{ permission.duree }}</td>
-                <td>{{ permission.reliquat }}</td>
-                <td>{{ permission.typePermission }}</td>
-                <td>{{ permission.lieuJouissance }}</td>
+                <td>{{ permission.personnel }}</td>
+                {# <td>{{ permission.reliquat }}</td> #}
+                {# <td>{{ permission.typePermission }}</td> #}
+                {# <td>{{ permission.lieuJouissance }}</td> #}
                 <td>
                     <a href="{{ path('permissions_show', {'id': permission.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
                     <a href="{{ path('permissions_edit', {'id': permission.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>

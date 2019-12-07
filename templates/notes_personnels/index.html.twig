@@ -9,11 +9,12 @@
         <thead>
             <tr>
                 {# <th>Id</th> #}
-                <th>Date de notation</th>
+                <th>Année</th>
+                <th>Personnel</th>
                 <th>Note</th>
                 <th>Appréciation global</th>
-                <th>Reférence de la note</th>
-                <th>Date de reférence</th>
+                {# <th>Reférence de la note</th> #}
+                {# <th>Date de reférence</th> #}
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,11 +22,12 @@
         {% for notes_personnel in notes_personnels %}
             <tr>
                 {# <td>{{ notes_personnel.id }}</td> #}
-                <td>{{ notes_personnel.dateNote ? notes_personnel.dateNote|date('d/m/Y') : '' }}</td>
+                <td>{{ notes_personnel.dateNote ? notes_personnel.dateNote|date('Y') : '' }}</td>
+                <td>{{ notes_personnel.personnel }}</td>
                 <td>{{ notes_personnel.note }}</td>
                 <td>{{ notes_personnel.appreciationGlobal }}</td>
-                <td>{{ notes_personnel.referenceNote }}</td>
-                <td>{{ notes_personnel.dateReference ? notes_personnel.dateReference|date('d/m/Y') : '' }}</td>
+                {# <td>{{ notes_personnel.referenceNote }}</td> #}
+                {# <td>{{ notes_personnel.dateReference ? notes_personnel.dateReference|date('d/m/Y') : '' }}</td> #}
                 <td>
                     <a href="{{ path('notes_personnels_show', {'id': notes_personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
                     <a href="{{ path('notes_personnels_edit', {'id': notes_personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>

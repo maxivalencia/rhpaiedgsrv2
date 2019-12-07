@@ -9,11 +9,12 @@
         <thead>
             <tr>
                 {# <th>Id</th> #}
+                <th>Personnel</th>
                 <th>Libelle</th>
-                <th>Reférence</th>
-                <th>Date de reférence</th>
+                {# <th>Reférence</th> #}
+                {# <th>Date de reférence</th> #}
                 <th>Date d'effet</th>
-                <th>Sanction</th>
+                {# <th>Sanction</th> #}
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,11 +22,12 @@
         {% for punition in punitions %}
             <tr>
                 {# <td>{{ punition.id }}</td> #}
+                <td>{{ punition.personnel }}</td>
                 <td>{{ punition.libelle }}</td>
-                <td>{{ punition.reference }}</td>
-                <td>{{ punition.dateReference ? punition.dateReference|date('d/m/Y') : '' }}</td>
+                {# <td>{{ punition.reference }}</td> #}
+                {# <td>{{ punition.dateReference ? punition.dateReference|date('d/m/Y') : '' }}</td> #}
                 <td>{{ punition.dateEffet ? punition.dateEffet|date('d/m/Y') : '' }}</td>
-                <td>{{ punition.sanction }}</td>
+                {# <td>{{ punition.sanction }}</td> #}
                 <td>
                     <a href="{{ path('punitions_show', {'id': punition.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
                     <a href="{{ path('punitions_edit', {'id': punition.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>

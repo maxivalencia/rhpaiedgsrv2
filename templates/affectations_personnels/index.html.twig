@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 {# <th>Id</th> #}
+                <th>Personnel</th>
                 <th>Date d'affectation</th>
                 <th>Date de disponibilité</th>
                 <th>Reférence de disponibilité</th>
@@ -23,6 +24,7 @@
         {% for affectations_personnel in affectations_personnels %}
             <tr>
                 {# <td>{{ affectations_personnel.id }}</td> #}
+                <td>{{ affectations_personnel.personnel }}</td>
                 <td>{{ affectations_personnel.dateAffectation ? affectations_personnel.dateAffectation|date('d/m/Y') : '' }}</td>
                 <td>{{ affectations_personnel.dateDisponibilite ? affectations_personnel.dateDisponibilite|date('d/m/Y') : '' }}</td>
                 <td>{{ affectations_personnel.referenceDisponibilite }}</td>

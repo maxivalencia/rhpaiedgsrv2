@@ -9,11 +9,12 @@
         <thead>
             <tr>
                 {# <th>Id</th> #}
+                <th>Conjoint</th>
                 <th>Libelle</th>
-                <th>Abbréviation</th>
-                <th>Lieu de travail</th>
+                {# <th>Abbréviation</th> #}
+                {# <th>Lieu de travail</th> #}
                 <th>Employeur</th>
-                <th>Adresse de l'employeur</th>
+                {# <th>Adresse de l'employeur</th> #}
                 <th>Est fonctionnaire</th>
                 <th>actions</th>
             </tr>
@@ -22,11 +23,12 @@
         {% for fonctions_conjoint in fonctions_conjoints %}
             <tr>
                 {# <td>{{ fonctions_conjoint.id }}</td> #}
+                <td>{{ fonctions_conjoint.conjoint }}</td>
                 <td>{{ fonctions_conjoint.libelle }}</td>
-                <td>{{ fonctions_conjoint.abbreviation }}</td>
-                <td>{{ fonctions_conjoint.lieuTravail }}</td>
+                {# <td>{{ fonctions_conjoint.abbreviation }}</td> #}
+                {# <td>{{ fonctions_conjoint.lieuTravail }}</td> #}
                 <td>{{ fonctions_conjoint.employeur }}</td>
-                <td>{{ fonctions_conjoint.adresseEmployeur }}</td>
+                {# <td>{{ fonctions_conjoint.adresseEmployeur }}</td> #}
                 <td>{{ fonctions_conjoint.estFonctionnaire ? 'Oui' : 'Non' }}</td>
                 <td>
                     <a href="{{ path('fonctions_conjoints_show', {'id': fonctions_conjoint.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>

@@ -9,15 +9,15 @@
         <thead>
             <tr>
                 {# <th>Id</th> #}
-                <th>Rang</th>
+                {# <th>Rang</th> #}
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Date de naissance</th>
                 <th>Lieu de naissance</th>
                 <th>Sexe</th>
-                <th>Qualité</th>
-                <th>Est decedé</th>
-                <th>Date de decé</th>
+                {# <th>Qualité</th> #}
+                {# <th>Est decedé</th> #}
+                {# <th>Date de decé</th> #}
                 <th>actions</th>
             </tr>
         </thead>
@@ -25,15 +25,15 @@
         {% for enfant in enfants %}
             <tr>
                 {# <td>{{ enfant.id }}</td> #}
-                <td>{{ enfant.rang }}</td>
+                {# <td>{{ enfant.rang }}</td> #}
                 <td>{{ enfant.nom }}</td>
                 <td>{{ enfant.prenom }}</td>
                 <td>{{ enfant.dateNaissance ? enfant.dateNaissance|date('d/m/Y') : '' }}</td>
                 <td>{{ enfant.lieuNaissance }}</td>
                 <td>{{ enfant.sexe ? 'Féminin' : 'Masculin' }}</td>
-                <td>{{ enfant.qualite }}</td>
-                <td>{{ enfant.estDecede ? 'Oui' : 'Non' }}</td>
-                <td>{{ enfant.dateDece ? enfant.dateDece|date('d/m/Y') : '' }}</td>
+                {# <td>{{ enfant.qualite }}</td> #}
+                {# <td>{{ enfant.estDecede ? 'Oui' : 'Non' }}</td> #}
+                {# <td>{{ enfant.dateDece ? enfant.dateDece|date('d/m/Y') : '' }}</td> #}
                 <td>
                     <a href="{{ path('enfants_show', {'id': enfant.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
                     <a href="{{ path('enfants_edit', {'id': enfant.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>

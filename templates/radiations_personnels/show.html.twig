@@ -12,6 +12,10 @@
                 <td>{{ radiations_personnel.id }}</td>
             </tr> #}
             <tr>
+                <th>Personnel</th>
+                <td>{{ radiations_personnel.personnel }}</td>
+            </tr>
+            <tr>
                 <th>Date de notification</th>
                 <td>{{ radiations_personnel.dateNotification ? radiations_personnel.dateNotification|date('d/m/Y') : '' }}</td>
             </tr>
@@ -34,6 +38,22 @@
             <tr>
                 <th>Date mrc de la radiation</th>
                 <td>{{ radiations_personnel.dateMrcRadiation ? radiations_personnel.dateMrcRadiation|date('d/m/Y') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Motif de radiation</th>
+                <td>{{ radiations_personnel.motifRadiation }}</td>
+            </tr>
+            <tr>
+                <th>Détails du motif de radiation</th>
+                <td>{{ radiations_personnel.detailMotifRadiation }}</td>
+            </tr>
+            <tr>
+                <th>Décision de radiation</th>
+                <td>{{ radiations_personnel.decisionRadiation }}</td>
+            </tr>
+            <tr>
+                <th>Droit au pension</th>
+                <td>{{ radiations_personnel.droitPension }}</td>
             </tr>
         </tbody>
     </table>

@@ -19,6 +19,17 @@
                 <th>Date</th>
                 <td>{{ diplomes_personnel.date ? diplomes_personnel.date|date('d/m/Y') : '' }}</td>
             </tr>
+                <th>Diplôme</th>
+                <td>
+                    {{ diplomes_personnel.diplome }}
+                    {{ diplomes_personnel.diplome.domaine }}
+                    {{ diplomes_personnel.diplome.niveau }}
+                    {{ diplomes_personnel.diplome.estDiplomeMilitaire ? 'Oui' : 'Non' }}
+                </td>
+            </tr>
+                <th>Personnel</th>
+                <td>{{ diplomes_personnel.personnel }}</td>
+            </tr>
         </tbody>
     </table>
 

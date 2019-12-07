@@ -12,12 +12,13 @@
                 {# <th>Rang</th> #}
                 <th>Nom</th>
                 <th>Prénom</th>
+                <th>Conjoint</th>
                 <th>Date de naissance</th>
                 <th>Lieu de naissance</th>
-                <th>Nom du père</th>
-                <th>Nom de la mère</th>
+                {# <th>Nom du père</th> #}
+                {# <th>Nom de la mère</th> #}
                 <th>Sexe</th>
-                <th>Date de mariage</th>
+                {# <th>Date de mariage</th> #}
                 <th>Numéro CIN</th>
                 {# <th>Date CIN</th> #}
                 {# <th>Lieu CIN</th> #}
@@ -36,12 +37,13 @@
                 {# <td>{{ conjoint.rang }}</td> #}
                 <td>{{ conjoint.nom }}</td>
                 <td>{{ conjoint.prenom }}</td>
+                <td>{{ conjoint.personnel }}</td>
                 <td>{{ conjoint.dateNaissance ? conjoint.dateNaissance|date('d/m/Y') : '' }}</td>
                 <td>{{ conjoint.lieuNaissance }}</td>
-                <td>{{ conjoint.nomPere }}</td>
-                <td>{{ conjoint.nomMere }}</td>
+                {# <td>{{ conjoint.nomPere }}</td> #}
+                {# <td>{{ conjoint.nomMere }}</td> #}
                 <td>{{ conjoint.sexe ? 'Féminin' : 'Masculin' }}</td>
-                <td>{{ conjoint.dateMariage ? conjoint.dateMariage|date('d/m/Y') : '' }}</td>
+                {# <td>{{ conjoint.dateMariage ? conjoint.dateMariage|date('d/m/Y') : '' }}</td> #}
                 <td>{{ conjoint.numeroCin }}</td>
                 {# <td>{{ conjoint.dateCin ? conjoint.dateCin|date('d/m/Y') : '' }}</td> #}
                 {# <td>{{ conjoint.lieuCin }}</td> #}

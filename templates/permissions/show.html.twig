@@ -13,7 +13,7 @@
             </tr> #}
             <tr>
                 <th>Année</th>
-                <td>{{ permission.annee ? permission.annee|date('d/m/Y') : '' }}</td>
+                <td>{{ permission.annee ? permission.annee|date('Y') : '' }}</td>
             </tr>
             <tr>
                 <th>Date départ</th>
@@ -38,6 +38,10 @@
             <tr>
                 <th>Lieu de jouissance</th>
                 <td>{{ permission.lieuJouissance }}</td>
+            </tr>
+            <tr>
+                <th>Personnel</th>
+                <td>{{ permission.personnel }}</td>
             </tr>
         </tbody>
     </table>

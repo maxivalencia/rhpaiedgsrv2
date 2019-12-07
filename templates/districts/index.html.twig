@@ -10,6 +10,8 @@
             <tr>
                 {# <th>Id</th> #}
                 <th>District</th>
+                <th>Région</th>
+                <th>Province</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,6 +20,8 @@
             <tr>
                 {# <td>{{ district.id }}</td> #}
                 <td>{{ district.district }}</td>
+                <td>{{ district.region }}</td>
+                <td>{{ district.region.province }}</td>
                 <td>
                     <a href="{{ path('districts_show', {'id': district.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
                     <a href="{{ path('districts_edit', {'id': district.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>

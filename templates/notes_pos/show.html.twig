@@ -13,7 +13,7 @@
             </tr> #}
             <tr>
                 <th>Année</th>
-                <td>{{ notes_p_o.annee ? notes_p_o.annee|date('d/m/Y') : '' }}</td>
+                <td>{{ notes_p_o.annee ? notes_p_o.annee|date('Y') : '' }}</td>
             </tr>
             <tr>
                 <th>Qf</th>
@@ -41,7 +41,7 @@
             </tr>
             <tr>
                 <th>Personnel</th>
-                <td>{{ notes_p_o.personnel }}</td>
+                <td>{{ notes_p_o.personnels }}</td>
             </tr>
         </tbody>
     </table>

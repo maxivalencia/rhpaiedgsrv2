@@ -11,6 +11,8 @@
                 {# <th>Id</th> #}
                 <th>Numéro</th>
                 <th>Date</th>
+                <th>Diplôme</th>
+                <th>Personnel</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +22,8 @@
                 {# <td>{{ diplomes_personnel.id }}</td> #}
                 <td>{{ diplomes_personnel.numero }}</td>
                 <td>{{ diplomes_personnel.date ? diplomes_personnel.date|date('d/m/Y') : '' }}</td>
+                <td>{{ diplomes_personnel.diplome }}</td>
+                <td>{{ diplomes_personnel.personnel }}</td>
                 <td>
                     <a href="{{ path('diplomes_personnels_show', {'id': diplomes_personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
                     <a href="{{ path('diplomes_personnels_edit', {'id': diplomes_personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>

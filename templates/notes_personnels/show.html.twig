@@ -12,8 +12,12 @@
                 <td>{{ notes_personnel.id }}</td>
             </tr> #}
             <tr>
-                <th>Date de notification</th>
-                <td>{{ notes_personnel.dateNote ? notes_personnel.dateNote|date('d/m/Y') : '' }}</td>
+                <th>Année</th>
+                <td>{{ notes_personnel.dateNote ? notes_personnel.dateNote|date('Y') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Personnel</th>
+                <td>{{ notes_personnel.personnel }}</td>
             </tr>
             <tr>
                 <th>Note</th>

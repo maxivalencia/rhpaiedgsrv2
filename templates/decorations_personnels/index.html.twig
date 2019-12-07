@@ -12,6 +12,7 @@
                 <th>Date</th>
                 <th>Reférence</th>
                 <th>Date de reférence</th>
+                <th>Personnel</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                 <td>{{ decorations_personnel.date ? decorations_personnel.date|date('d/m/Y') : '' }}</td>
                 <td>{{ decorations_personnel.reference }}</td>
                 <td>{{ decorations_personnel.dateReference ? decorations_personnel.dateReference|date('d/m/Y') : '' }}</td>
+                <td>{{ decorations_personnel.personnel }}</td>
                 <td>
                     <a href="{{ path('decorations_personnels_show', {'id': decorations_personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
                     <a href="{{ path('decorations_personnels_edit', {'id': decorations_personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>

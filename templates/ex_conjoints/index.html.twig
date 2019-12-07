@@ -11,9 +11,10 @@
                 {# <th>Id</th> #}
                 <th>Motif de rupture</th>
                 <th>Date de rupture</th>
-                <th>Reférence de rupture</th>
-                <th>Date de reférence de rupture</th>
-                <th>Adresse de la veuve/veuf</th>
+                {# <th>Reférence de rupture</th> #}
+                {# <th>Date de reférence de rupture</th> #}
+                {# <th>Adresse de la veuve/veuf</th> #}
+                <th>Conjoint</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,9 +24,10 @@
                 {# <td>{{ ex_conjoint.id }}</td> #}
                 <td>{{ ex_conjoint.motifRupture }}</td>
                 <td>{{ ex_conjoint.dateRupture ? ex_conjoint.dateRupture|date('d/m/Y') : '' }}</td>
-                <td>{{ ex_conjoint.referenceRupture }}</td>
-                <td>{{ ex_conjoint.dateReferenceRupture ? ex_conjoint.dateReferenceRupture|date('d/m/Y') : '' }}</td>
-                <td>{{ ex_conjoint.adresseVeuve }}</td>
+                {# <td>{{ ex_conjoint.referenceRupture }}</td> #}
+                {# <td>{{ ex_conjoint.dateReferenceRupture ? ex_conjoint.dateReferenceRupture|date('d/m/Y') : '' }}</td> #}
+                {# <td>{{ ex_conjoint.adresseVeuve }}</td> #}
+                <td>{{ ex_conjoint.conjoint }}</td>
                 <td>
                     <a href="{{ path('ex_conjoints_show', {'id': ex_conjoint.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
                     <a href="{{ path('ex_conjoints_edit', {'id': ex_conjoint.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>

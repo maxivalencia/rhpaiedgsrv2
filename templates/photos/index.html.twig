@@ -12,6 +12,7 @@
                 <th>Photo</th>
                 <th>Type</th>
                 <th>Taille</th>
+                <th>Personnel</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                 <td>{{ photo.photo }}</td>
                 <td>{{ photo.type }}</td>
                 <td>{{ photo.taille }}</td>
+                <td>{{ photo.personnel }}</td>
                 <td>
                     <a href="{{ path('photos_show', {'id': photo.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
                     <a href="{{ path('photos_edit', {'id': photo.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>

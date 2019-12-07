@@ -10,6 +10,10 @@
             <tr>
                 {# <th>Id</th> #}
                 <th>Commune</th>
+                <th>Type Commune</th>
+                <th>District</th>
+                <th>Région</th>
+                <th>Province</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,6 +22,10 @@
             <tr>
                 {# <td>{{ commune.id }}</td> #}
                 <td>{{ commune.commune }}</td>
+                <td>{{ commune.type }}</td>
+                <td>{{ commune.district }}</td>
+                <td>{{ commune.district.region }}</td>
+                <td>{{ commune.district.region.province }}</td>
                 <td>
                     <a href="{{ path('communes_show', {'id': commune.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
                     <a href="{{ path('communes_edit', {'id': commune.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>

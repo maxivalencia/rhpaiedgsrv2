@@ -9,12 +9,13 @@
         <thead>
             <tr>
                 {# <th>Id</th> #}
+                <th>Personnel</th>
                 <th>Date de notification</th>
                 <th>Lieu de repli</th>
                 <th>Date de radiation</th>
-                <th>Date prévu de radiation</th>
-                <th>Reférence mrc radiation</th>
-                <th>Date de mrc radiation</th>
+                {# <th>Date prévu de radiation</th> #}
+                {# <th>Reférence mrc radiation</th> #}
+                {# <th>Date de mrc radiation</th> #}
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,12 +23,13 @@
         {% for radiations_personnel in radiations_personnels %}
             <tr>
                 {# <td>{{ radiations_personnel.id }}</td> #}
+                <td>{{ radiations_personnel.personnel }}</td>
                 <td>{{ radiations_personnel.dateNotification ? radiations_personnel.dateNotification|date('d/m/Y') : '' }}</td>
                 <td>{{ radiations_personnel.lieuRepli }}</td>
                 <td>{{ radiations_personnel.dateRadiation ? radiations_personnel.dateRadiation|date('d/m/Y') : '' }}</td>
-                <td>{{ radiations_personnel.datePrevuRadiation ? radiations_personnel.datePrevuRadiation|date('d/m/Y') : '' }}</td>
-                <td>{{ radiations_personnel.referenceMrcRadiation }}</td>
-                <td>{{ radiations_personnel.dateMrcRadiation ? radiations_personnel.dateMrcRadiation|date('d/m/Y') : '' }}</td>
+                {# <td>{{ radiations_personnel.datePrevuRadiation ? radiations_personnel.datePrevuRadiation|date('d/m/Y') : '' }}</td> #}
+                {# <td>{{ radiations_personnel.referenceMrcRadiation }}</td> #}
+                {# <td>{{ radiations_personnel.dateMrcRadiation ? radiations_personnel.dateMrcRadiation|date('d/m/Y') : '' }}</td> #}
                 <td>
                     <a href="{{ path('radiations_personnels_show', {'id': radiations_personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
                     <a href="{{ path('radiations_personnels_edit', {'id': radiations_personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>

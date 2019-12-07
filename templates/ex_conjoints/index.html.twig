@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Motif de rupture</th>
                 <th>Date de rupture</th>
                 <th>Reférence de rupture</th>
@@ -20,7 +20,7 @@
         <tbody>
         {% for ex_conjoint in ex_conjoints %}
             <tr>
-                <td>{{ ex_conjoint.id }}</td>
+                {# <td>{{ ex_conjoint.id }}</td> #}
                 <td>{{ ex_conjoint.motifRupture }}</td>
                 <td>{{ ex_conjoint.dateRupture ? ex_conjoint.dateRupture|date('d/m/Y') : '' }}</td>
                 <td>{{ ex_conjoint.referenceRupture }}</td>

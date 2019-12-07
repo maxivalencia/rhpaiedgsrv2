@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Date</th>
                 <th>Reférence</th>
                 <th>Date de reférence</th>
@@ -18,7 +18,7 @@
         <tbody>
         {% for decorations_personnel in decorations_personnels %}
             <tr>
-                <td>{{ decorations_personnel.id }}</td>
+                {# <td>{{ decorations_personnel.id }}</td> #}
                 <td>{{ decorations_personnel.date ? decorations_personnel.date|date('d/m/Y') : '' }}</td>
                 <td>{{ decorations_personnel.reference }}</td>
                 <td>{{ decorations_personnel.dateReference ? decorations_personnel.dateReference|date('d/m/Y') : '' }}</td>

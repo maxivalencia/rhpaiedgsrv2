@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Reférence du décision</th>
                 <th>Date de reférence</th>
                 <th>Reférence de journal officiel</th>
@@ -19,7 +19,7 @@
         <tbody>
         {% for decisions_radiations_controle in decisions_radiations_controles %}
             <tr>
-                <td>{{ decisions_radiations_controle.id }}</td>
+                {# <td>{{ decisions_radiations_controle.id }}</td> #}
                 <td>{{ decisions_radiations_controle.referenceDecision }}</td>
                 <td>{{ decisions_radiations_controle.dateReference ? decisions_radiations_controle.dateReference|date('d/m/Y') : '' }}</td>
                 <td>{{ decisions_radiations_controle.referenceJournalOfficiel }}</td>

@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Libelle</th>
                 <th>actions</th>
             </tr>
@@ -16,7 +16,7 @@
         <tbody>
         {% for droits_pension in droits_pensions %}
             <tr>
-                <td>{{ droits_pension.id }}</td>
+                {# <td>{{ droits_pension.id }}</td> #}
                 <td>{{ droits_pension.libelle }}</td>
                 <td>
                     <a href="{{ path('droits_pensions_show', {'id': droits_pension.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>

@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Détail motif radiation</th>
                 <th>actions</th>
             </tr>
@@ -16,7 +16,7 @@
         <tbody>
         {% for details_motifs_radiations_controle in details_motifs_radiations_controles %}
             <tr>
-                <td>{{ details_motifs_radiations_controle.id }}</td>
+                {# <td>{{ details_motifs_radiations_controle.id }}</td> #}
                 <td>{{ details_motifs_radiations_controle.detailMotifRadiation }}</td>
                 <td>
                     <a href="{{ path('details_motifs_radiations_controles_show', {'id': details_motifs_radiations_controle.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>

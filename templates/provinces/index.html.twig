@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Province</th>
                 <th>actions</th>
             </tr>
@@ -16,7 +16,7 @@
         <tbody>
         {% for province in provinces %}
             <tr>
-                <td>{{ province.id }}</td>
+                {# <td>{{ province.id }}</td> #}
                 <td>{{ province.province }}</td>
                 <td>
                     <a href="{{ path('provinces_show', {'id': province.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>

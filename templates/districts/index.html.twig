@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>District</th>
                 <th>actions</th>
             </tr>
@@ -16,7 +16,7 @@
         <tbody>
         {% for district in districts %}
             <tr>
-                <td>{{ district.id }}</td>
+                {# <td>{{ district.id }}</td> #}
                 <td>{{ district.district }}</td>
                 <td>
                     <a href="{{ path('districts_show', {'id': district.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>

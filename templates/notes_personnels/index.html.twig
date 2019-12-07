@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Date de notation</th>
                 <th>Note</th>
                 <th>Appréciation global</th>
@@ -20,7 +20,7 @@
         <tbody>
         {% for notes_personnel in notes_personnels %}
             <tr>
-                <td>{{ notes_personnel.id }}</td>
+                {# <td>{{ notes_personnel.id }}</td> #}
                 <td>{{ notes_personnel.dateNote ? notes_personnel.dateNote|date('d/m/Y') : '' }}</td>
                 <td>{{ notes_personnel.note }}</td>
                 <td>{{ notes_personnel.appreciationGlobal }}</td>

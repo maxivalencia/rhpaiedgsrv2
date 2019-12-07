@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Libelle</th>
                 <th>Reférence</th>
                 <th>Date de reférence</th>
@@ -20,7 +20,7 @@
         <tbody>
         {% for punition in punitions %}
             <tr>
-                <td>{{ punition.id }}</td>
+                {# <td>{{ punition.id }}</td> #}
                 <td>{{ punition.libelle }}</td>
                 <td>{{ punition.reference }}</td>
                 <td>{{ punition.dateReference ? punition.dateReference|date('d/m/Y') : '' }}</td>

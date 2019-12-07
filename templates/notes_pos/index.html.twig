@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Année</th>
                 <th>Qf</th>
                 <th>Vet</th>
@@ -23,7 +23,7 @@
         <tbody>
         {% for notes_p_o in notes_p_o_ss %}
             <tr>
-                <td>{{ notes_p_o.id }}</td>
+                {# <td>{{ notes_p_o.id }}</td> #}
                 <td>{{ notes_p_o.annee ? notes_p_o.annee|date('d/m/Y') : '' }}</td>
                 <td>{{ notes_p_o.qf }}</td>
                 <td>{{ notes_p_o.vet }}</td>

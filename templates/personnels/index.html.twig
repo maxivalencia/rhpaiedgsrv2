@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Nom</th>
                 <th>Prénoms</th>
                 <th>Date de naissance</th>
@@ -34,7 +34,7 @@
         <tbody>
         {% for personnel in personnels %}
             <tr>
-                <td>{{ personnel.id }}</td>
+                {# <td>{{ personnel.id }}</td> #}
                 <td>{{ personnel.nom }}</td>
                 <td>{{ personnel.prenoms }}</td>
                 <td>{{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }}</td>

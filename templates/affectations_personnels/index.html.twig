@@ -12,9 +12,9 @@
                 <th>Date d'affectation</th>
                 <th>Date de disponibilité</th>
                 <th>Reférence de disponibilité</th>
-                <th>Date reférence de disponibilité</th>
+                {# <th>Date reférence de disponibilité</th> #}
                 <th>Motif de l'affectation</th>
-                <th>Situation</th>
+                {# <th>Situation</th> #}
                 <th>Motif de l'annulation</th>
                 <th>actions</th>
             </tr>
@@ -26,9 +26,9 @@
                 <td>{{ affectations_personnel.dateAffectation ? affectations_personnel.dateAffectation|date('d/m/Y') : '' }}</td>
                 <td>{{ affectations_personnel.dateDisponibilite ? affectations_personnel.dateDisponibilite|date('d/m/Y') : '' }}</td>
                 <td>{{ affectations_personnel.referenceDisponibilite }}</td>
-                <td>{{ affectations_personnel.dateReferenceDisponibilite ? affectations_personnel.dateReferenceDisponibilite|date('d/m/Y') : '' }}</td>
+                {# <td>{{ affectations_personnel.dateReferenceDisponibilite ? affectations_personnel.dateReferenceDisponibilite|date('d/m/Y') : '' }}</td> #}
                 <td>{{ affectations_personnel.motifAffectation }}</td>
-                <td>{{ affectations_personnel.situation }}</td>
+                {# <td>{{ affectations_personnel.situation }}</td> #}
                 <td>{{ affectations_personnel.motifAnnulation }}</td>
                 <td>
                     <a href="{{ path('affectations_personnels_show', {'id': affectations_personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>

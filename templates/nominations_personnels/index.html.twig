@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Date de nomination</th>
                 <th>Rang</th>
                 <th>Echélon</th>
@@ -20,7 +20,7 @@
         <tbody>
         {% for nominations_personnel in nominations_personnels %}
             <tr>
-                <td>{{ nominations_personnel.id }}</td>
+                {# <td>{{ nominations_personnel.id }}</td> #}
                 <td>{{ nominations_personnel.dateNomination ? nominations_personnel.dateNomination|date('d/m/Y') : '' }}</td>
                 <td>{{ nominations_personnel.rang }}</td>
                 <td>{{ nominations_personnel.echelon }}</td>

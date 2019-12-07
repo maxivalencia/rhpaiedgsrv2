@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Type</th>
                 <th>actions</th>
             </tr>
@@ -16,7 +16,7 @@
         <tbody>
         {% for types_commune in types_communes %}
             <tr>
-                <td>{{ types_commune.id }}</td>
+                {# <td>{{ types_commune.id }}</td> #}
                 <td>{{ types_commune.type }}</td>
                 <td>
                     <a href="{{ path('types_communes_show', {'id': types_commune.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>

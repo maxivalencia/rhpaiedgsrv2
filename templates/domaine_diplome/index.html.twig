@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Libelle</th>
                 <th>actions</th>
             </tr>
@@ -16,7 +16,7 @@
         <tbody>
         {% for domaine_diplome in domaine_diplomes %}
             <tr>
-                <td>{{ domaine_diplome.id }}</td>
+                {# <td>{{ domaine_diplome.id }}</td> #}
                 <td>{{ domaine_diplome.libelle }}</td>
                 <td>
                     <a href="{{ path('domaine_diplome_show', {'id': domaine_diplome.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>

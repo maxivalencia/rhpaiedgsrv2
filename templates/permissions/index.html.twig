@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Année</th>
                 <th>Date de départ</th>
                 <th>Date de fin</th>
@@ -22,7 +22,7 @@
         <tbody>
         {% for permission in permissions %}
             <tr>
-                <td>{{ permission.id }}</td>
+                {# <td>{{ permission.id }}</td> #}
                 <td>{{ permission.annee ? permission.annee|date('d/m/Y') : '' }}</td>
                 <td>{{ permission.dateDepart ? permission.dateDepart|date('d/m/Y') : '' }}</td>
                 <td>{{ permission.dateFin ? permission.dateFin|date('d/m/Y') : '' }}</td>

@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Date de notification</th>
                 <th>Lieu de repli</th>
                 <th>Date de radiation</th>
@@ -21,7 +21,7 @@
         <tbody>
         {% for radiations_personnel in radiations_personnels %}
             <tr>
-                <td>{{ radiations_personnel.id }}</td>
+                {# <td>{{ radiations_personnel.id }}</td> #}
                 <td>{{ radiations_personnel.dateNotification ? radiations_personnel.dateNotification|date('d/m/Y') : '' }}</td>
                 <td>{{ radiations_personnel.lieuRepli }}</td>
                 <td>{{ radiations_personnel.dateRadiation ? radiations_personnel.dateRadiation|date('d/m/Y') : '' }}</td>

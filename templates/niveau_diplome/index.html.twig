@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Libelle</th>
                 <th>actions</th>
             </tr>
@@ -16,7 +16,7 @@
         <tbody>
         {% for niveau_diplome in niveau_diplomes %}
             <tr>
-                <td>{{ niveau_diplome.id }}</td>
+                {# <td>{{ niveau_diplome.id }}</td> #}
                 <td>{{ niveau_diplome.libelle }}</td>
                 <td>
                     <a href="{{ path('niveau_diplome_show', {'id': niveau_diplome.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>

@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Reférence de la décision</th>
                 <th>Date de la décision</th>
                 <th>Genre</th>
@@ -18,7 +18,7 @@
         <tbody>
         {% for decisions_affectation in decisions_affectations %}
             <tr>
-                <td>{{ decisions_affectation.id }}</td>
+                {# <td>{{ decisions_affectation.id }}</td> #}
                 <td>{{ decisions_affectation.referenceDecision }}</td>
                 <td>{{ decisions_affectation.dateDecision ? decisions_affectation.dateDecision|date('d/m/Y') : '' }}</td>
                 <td>{{ decisions_affectation.genre }}</td>

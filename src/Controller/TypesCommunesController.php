@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/types/communes")
@@ -18,10 +19,15 @@ class TypesCommunesController extends AbstractController
     /**
      * @Route("/", name="types_communes_index", methods={"GET"})
      */
-    public function index(TypesCommunesRepository $typesCommunesRepository): Response
+    public function index(TypesCommunesRepository $typesCommunesRepository, Request $request, PaginatorInterface $paginator): Response
     {
+        $pagination = $paginator->paginate(
+            $typesCommunesRepository->findAll(), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
         return $this->render('types_communes/index.html.twig', [
-            'types_communes' => $typesCommunesRepository->findAll(),
+            'types_communes' => $pagination,
         ]);
     }
 

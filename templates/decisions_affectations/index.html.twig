@@ -35,5 +35,9 @@
         </tbody>
     </table>
 
+    <div class="navigation">
+        {{ knp_pagination_render(decisions_affectations) }}
+    </div>
+
     <a href="{{ path('decisions_affectations_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
 {% endblock %}

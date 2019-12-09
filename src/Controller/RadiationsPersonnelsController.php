@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/radiations/personnels")
@@ -18,10 +19,15 @@ class RadiationsPersonnelsController extends AbstractController
     /**
      * @Route("/", name="radiations_personnels_index", methods={"GET"})
      */
-    public function index(RadiationsPersonnelsRepository $radiationsPersonnelsRepository): Response
+    public function index(RadiationsPersonnelsRepository $radiationsPersonnelsRepository, Request $request, PaginatorInterface $paginator): Response
     {
+        $pagination = $paginator->paginate(
+            $radiationsPersonnelsRepository->findAll(), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
         return $this->render('radiations_personnels/index.html.twig', [
-            'radiations_personnels' => $radiationsPersonnelsRepository->findAll(),
+            'radiations_personnels' => $pagination,
         ]);
     }
 

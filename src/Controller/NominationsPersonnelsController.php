@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/nominations/personnels")
@@ -18,10 +19,15 @@ class NominationsPersonnelsController extends AbstractController
     /**
      * @Route("/", name="nominations_personnels_index", methods={"GET"})
      */
-    public function index(NominationsPersonnelsRepository $nominationsPersonnelsRepository): Response
+    public function index(NominationsPersonnelsRepository $nominationsPersonnelsRepository, Request $request, PaginatorInterface $paginator): Response
     {
+        $pagination = $paginator->paginate(
+            $nominationsPersonnelsRepository->findAll(), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
         return $this->render('nominations_personnels/index.html.twig', [
-            'nominations_personnels' => $nominationsPersonnelsRepository->findAll(),
+            'nominations_personnels' => $pagination,
         ]);
     }
 

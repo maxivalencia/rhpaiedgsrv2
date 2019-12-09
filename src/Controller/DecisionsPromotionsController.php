@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/decisions/promotions")
@@ -18,10 +19,15 @@ class DecisionsPromotionsController extends AbstractController
     /**
      * @Route("/", name="decisions_promotions_index", methods={"GET"})
      */
-    public function index(DecisionsPromotionsRepository $decisionsPromotionsRepository): Response
+    public function index(DecisionsPromotionsRepository $decisionsPromotionsRepository, Request $request, PaginatorInterface $paginator): Response
     {
+        $pagination = $paginator->paginate(
+            $decisionsPromotionsRepository->findAll(), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        ); 
         return $this->render('decisions_promotions/index.html.twig', [
-            'decisions_promotions' => $decisionsPromotionsRepository->findAll(),
+            'decisions_promotions' => $pagination,
         ]);
     }
 

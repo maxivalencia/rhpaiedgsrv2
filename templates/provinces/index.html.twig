@@ -4,7 +4,12 @@
 
 {% block body %}
     <h1>Liste Provinces</h1>
-
+    <form class="mt-2 mt-md-0 d-none d-lg-block search-input" action="#">
+        <div class="input-group">
+            <span class="input-group-addon d-flex align-items-center"><i class="icon-magnifier icons"></i></span>
+            <input type="text" name="search" class="form-control" placeholder="Search...">
+        </div>
+    </form>
     <table class="table">
         <thead>
             <tr>

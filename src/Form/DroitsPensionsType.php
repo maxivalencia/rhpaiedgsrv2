@@ -12,7 +12,9 @@ class DroitsPensionsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('libelle')
+            ->add('libelle', null, [
+                'label' => 'Droit Pension',
+            ])
         ;
     }
 

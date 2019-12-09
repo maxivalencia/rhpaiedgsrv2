@@ -12,9 +12,15 @@ class GradesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('grade')
-            ->add('abbreviation')
-            ->add('rang')
+            ->add('grade', null, [
+                'label' => 'Grade',
+            ])
+            ->add('abbreviation', null, [
+                'label' => 'Abréviation',
+            ])
+            ->add('rang', null, [
+                'label' => 'Rang du grade',
+            ])
         ;
     }
 

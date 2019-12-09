@@ -12,9 +12,15 @@ class FonctionsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('libelle')
-            ->add('abbreviation')
-            ->add('hierarchie')
+            ->add('libelle', null, [
+                'label' => 'Fonction',
+            ])
+            ->add('abbreviation', null, [
+                'label' => 'Abréviation',
+            ])
+            ->add('hierarchie', null, [
+                'label' => 'Hierarchie',
+            ])
         ;
     }
 

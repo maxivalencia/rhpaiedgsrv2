@@ -12,7 +12,9 @@ class MotifsRadiationsControlesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('libelle')
+            ->add('libelle', null, [
+                'label' => 'Motif de radiation du controle',
+            ])
         ;
     }
 

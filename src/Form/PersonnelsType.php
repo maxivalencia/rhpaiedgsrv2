@@ -6,31 +6,93 @@ use App\Entity\Personnels;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class PersonnelsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $sexe = [
+            'Féminin' => true,
+            'Masculin' => false
+        ];
         $builder
-            ->add('nom')
-            ->add('prenoms')
-            ->add('date_naissance')
-            ->add('lieu_naissance')
-            ->add('nom_pere')
-            ->add('nom_mere')
-            ->add('num_cin')
-            ->add('date_cin')
-            ->add('lieu_cin')
-            ->add('sexe')
-            ->add('est_marie')
-            ->add('adresse')
-            ->add('telephone')
-            ->add('telephone_ice')
-            ->add('date_embauche')
-            ->add('matricule')
-            ->add('numero_cnaps')
-            ->add('est_militaire')
-            ->add('actif')
+            ->add('nom', null, [
+                'label' => 'Nom',
+            ])
+            ->add('prenoms', null, [
+                'label' => 'Prénom',
+            ])
+            ->add('date_naissance', null, [
+                'label' => 'Date de naissance',
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'datetimepicker',
+                ],
+                'data' => new \DateTime('now'),
+            ])
+            ->add('lieu_naissance', null, [
+                'label' => 'Lieu de naissance',
+            ])
+            ->add('nom_pere', null, [
+                'label' => 'Nom et prénom du père',
+            ])
+            ->add('nom_mere', null, [
+                'label' => 'Nom et prénom de la mère',
+            ])
+            ->add('num_cin', null, [
+                'label' => 'Numéro de la carte d\'identité national',
+            ])
+            ->add('date_cin', null, [
+                'label' => 'Date de réalisation de la carte d\'identité national',
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'datetimepicker',
+                ],
+                'data' => new \DateTime('now'),
+            ])
+            ->add('lieu_cin', null, [
+                'label' => 'Lieu de réalisation de la cacrte d\'identité national',
+            ])
+            ->add('sexe', ChoiceType::class, [
+                //'value' => false,
+                'choices' => $sexe,
+                'label' => "Sexe",
+                'required' => true,
+            ])
+            ->add('est_marie', null, [
+                'label' => 'Est marié(e) : situation matrimonial',
+            ])
+            ->add('adresse', null, [
+                'label' => 'Adresse actuel du personnel',
+            ])
+            ->add('telephone', null, [
+                'label' => 'Numéro de téléphone du personnel',
+            ])
+            ->add('telephone_ice', null, [
+                'label' => 'Téléphone ICE : à contacter en cas d\'urgence',
+            ])
+            ->add('date_embauche', null, [
+                'label' => 'Date d\'embauche au sein de l\'entreprise',
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'datetimepicker',
+                ],
+                'data' => new \DateTime('now'),
+            ])
+            ->add('matricule', null, [
+                'label' => 'Numéro de matricule',
+            ])
+            ->add('numero_cnaps', null, [
+                'label' => 'Numéro de la carte CNAPS (sécurité social)',
+            ])
+            ->add('est_militaire', null, [
+                'label' => 'Est militaire : situation civique',
+            ])
+            ->add('actif', null, [
+                'label' => 'Est actif : situation fonctionnelle',
+            ])
         ;
     }
 

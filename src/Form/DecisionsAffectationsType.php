@@ -12,9 +12,20 @@ class DecisionsAffectationsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('reference_decision')
-            ->add('date_decision')
-            ->add('genre')
+            ->add('reference_decision', null, [
+                'label' => 'Reférence de la décision',
+            ])
+            ->add('date_decision', null, [
+                'label' => 'Date de la décision',
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'datetimepicker',
+                ],
+                'data' => new \DateTime('now'),
+            ])
+            ->add('genre', null, [
+                'label' => 'Genre de la décision',
+            ])
         ;
     }
 

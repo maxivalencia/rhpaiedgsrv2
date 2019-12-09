@@ -12,7 +12,9 @@ class DetailsMotifsRadiationsControlesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('detail_motif_radiation')
+            ->add('detail_motif_radiation', null, [
+                'label' => 'Détail du motif de radiation',
+            ])
         ;
     }
 

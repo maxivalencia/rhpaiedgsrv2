@@ -12,7 +12,9 @@ class ProvincesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('province')
+            ->add('province', null, [
+                'label' => 'Province',
+            ])
         ;
     }
 

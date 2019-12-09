@@ -12,11 +12,31 @@ class DecorationsPersonnelsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date')
-            ->add('reference')
-            ->add('date_reference')
-            ->add('personnel')
-            ->add('decoration')
+            ->add('date', null, [
+                'label' => 'Date',
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'datetimepicker',
+                ],
+                'data' => new \DateTime('now'),
+            ])
+            ->add('reference', null, [
+                'label' => 'Reférence',
+            ])
+            ->add('date_reference', null, [
+                'label' => 'Date de la reférence',
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'datetimepicker',
+                ],
+                'data' => new \DateTime('now'),
+            ])
+            ->add('personnel', null, [
+                'label' => 'Personnel',
+            ])
+            ->add('decoration', null, [
+                'label' => 'Décoration',
+            ])
         ;
     }
 

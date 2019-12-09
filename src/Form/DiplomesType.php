@@ -12,12 +12,24 @@ class DiplomesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('libelle')
-            ->add('abbreviation')
-            ->add('type')
-            ->add('est_diplome_militaire')
-            ->add('domaine')
-            ->add('niveau')
+            ->add('libelle', null, [
+                'label' => 'Diplôme',
+            ])
+            ->add('abbreviation', null, [
+                'label' => 'Abréviation',
+            ])
+            ->add('type', null, [
+                'label' => 'Type',
+            ])
+            ->add('est_diplome_militaire', null, [
+                'label' => 'Est un diplôme militaire : si le diplôme est obtenue au sein d\'un coprs militaire',
+            ])
+            ->add('domaine', null, [
+                'label' => 'Domaine du diplôme',
+            ])
+            ->add('niveau', null, [
+                'label' => 'Niveau du diplôme',
+            ])
         ;
     }
 

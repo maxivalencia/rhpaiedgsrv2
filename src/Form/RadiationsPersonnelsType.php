@@ -12,17 +12,59 @@ class RadiationsPersonnelsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date_notification')
-            ->add('lieu_repli')
-            ->add('date_radiation')
-            ->add('date_prevu_radiation')
-            ->add('reference_mrc_radiation')
-            ->add('date_mrc_radiation')
-            ->add('personnel')
-            ->add('motif_radiation')
-            ->add('detail_motif_radiation')
-            ->add('decision_radiation')
-            ->add('droit_pension')
+            ->add('date_notification', null, [
+                'label' => 'Date de notification',
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'datetimepicker',
+                ],
+                'data' => new \DateTime('now'),
+            ])
+            ->add('lieu_repli', null, [
+                'label' => 'Lieu de repli',
+            ])
+            ->add('date_radiation', null, [
+                'label' => 'Date de radiation',
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'datetimepicker',
+                ],
+                'data' => new \DateTime('now'),
+            ])
+            ->add('date_prevu_radiation', null, [
+                'label' => 'Date prévu de radiation',
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'datetimepicker',
+                ],
+                'data' => new \DateTime('now'),
+            ])
+            ->add('reference_mrc_radiation', null, [
+                'label' => 'Reférence compte rendue de radiation',
+            ])
+            ->add('date_mrc_radiation', null, [
+                'label' => 'Date message reférence compte rendue de radiation',
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'datetimepicker',
+                ],
+                'data' => new \DateTime('now'),
+            ])
+            ->add('personnel', null, [
+                'label' => 'Personnel',
+            ])
+            ->add('motif_radiation', null, [
+                'label' => 'Motif de radiation',
+            ])
+            ->add('detail_motif_radiation', null, [
+                'label' => 'Détail du motif de radiation',
+            ])
+            ->add('decision_radiation', null, [
+                'label' => 'Décision de radiation',
+            ])
+            ->add('droit_pension', null, [
+                'label' => 'Droit à la pension',
+            ])
         ;
     }
 

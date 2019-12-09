@@ -12,9 +12,15 @@ class DecorationsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('libelle')
-            ->add('abbreviation')
-            ->add('ordre')
+            ->add('libelle', null, [
+                'label' => 'Décoration',
+            ])
+            ->add('abbreviation', null, [
+                'label' => 'Abréviation',
+            ])
+            ->add('ordre', null, [
+                'label' => 'Ordre',
+            ])
         ;
     }
 

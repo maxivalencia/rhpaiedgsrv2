@@ -12,10 +12,18 @@ class PhotosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('photo')
-            ->add('type')
-            ->add('taille')
-            ->add('personnel')
+            ->add('photo', null, [
+                'label' => 'Photo',
+            ])
+            ->add('type', null, [
+                'label' => 'Type',
+            ])
+            ->add('taille', null, [
+                'label' => 'Taille',
+            ])
+            ->add('personnel', null, [
+                'label' => 'Personnel',
+            ])
         ;
     }
 

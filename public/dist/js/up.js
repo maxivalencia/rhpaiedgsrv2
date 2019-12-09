@@ -57,4 +57,9 @@ $(document).ready(function() {
             //alert(data['dataResponse']);
         });
     });
+
+    //mise en place datetimepicker
+    //$('#datetimepicker').data("DateTimePicker").FUNCTION()
+    //$('.datetimepicker').data("DateTimePicker");
+    $('#.datetimepicker').datetimepicker();
 });

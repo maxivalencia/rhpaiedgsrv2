@@ -12,8 +12,12 @@ class DistrictsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('district')
-            ->add('region')
+            ->add('district', null, [
+                'label' => 'District',
+            ])
+            ->add('region', null, [
+                'label' => 'Région',
+            ])
         ;
     }
 

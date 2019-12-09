@@ -9,7 +9,6 @@
         <thead>
             <tr>
                 {# <th>Id</th> #}
-                <th>Photo</th>
                 <th>Nom</th>
                 <th>Prénoms</th>
                 <th>Date de naissance</th>
@@ -29,6 +28,7 @@
                 {# <th>Numéro CNAPS</th> #}
                 {# <th>Est militaire</th> #}
                 {# <th>Actif</th> #}
+                <th>Photo</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -37,9 +37,6 @@
             {% for photo in photos %}
                 <tr>
                     {# <td>{{ personnel.id }}</td> #}
-                    {% if photo.personnel.id == personnel.id %}
-                        <td><img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:50px;"></td>
-                    {% endif %}
                     <td>{{ personnel.nom }}</td>
                     <td>{{ personnel.prenoms }}</td>
                     <td>{{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }}</td>
@@ -59,6 +56,9 @@
                     {# <td>{{ personnel.numeroCnaps }}</td> #}
                     {# <td>{{ personnel.estMilitaire ? 'Oui' : 'Non' }}</td> #}
                     {# <td>{{ personnel.actif ? 'Oui' : 'Non' }}</td> #}
+                    {% if photo.personnel.id == personnel.id %}
+                        <td><img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:50px;"></td>
+                    {% endif %}
                     <td>
                         <a href="{{ path('personnels_show', {'id': personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
                         <a href="{{ path('personnels_edit', {'id': personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>

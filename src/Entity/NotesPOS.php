@@ -80,60 +80,60 @@ class NotesPOS
 
     public function getQf(): ?string
     {
-        return $this->qf;
+        return strtoupper($this->qf);
     }
 
     public function setQf(string $qf): self
     {
-        $this->qf = $qf;
+        $this->qf = strtoupper($qf);
 
         return $this;
     }
 
     public function getVet(): ?string
     {
-        return $this->vet;
+        return strtoupper($this->vet);
     }
 
     public function setVet(string $vet): self
     {
-        $this->vet = $vet;
+        $this->vet = strtoupper($vet);
 
         return $this;
     }
 
     public function getAgs(): ?string
     {
-        return $this->ags;
+        return strtoupper($this->ags);
     }
 
     public function setAgs(string $ags): self
     {
-        $this->ags = $ags;
+        $this->ags = strtoupper($ags);
 
         return $this;
     }
 
     public function getNiveau(): ?string
     {
-        return $this->niveau;
+        return strtoupper($this->niveau);
     }
 
     public function setNiveau(string $niveau): self
     {
-        $this->niveau = $niveau;
+        $this->niveau = strtoupper($niveau);
 
         return $this;
     }
 
     public function getPotentiel(): ?string
     {
-        return $this->potentiel;
+        return strtoupper($this->potentiel);
     }
 
     public function setPotentiel(string $potentiel): self
     {
-        $this->potentiel = $potentiel;
+        $this->potentiel = strtoupper($potentiel);
 
         return $this;
     }

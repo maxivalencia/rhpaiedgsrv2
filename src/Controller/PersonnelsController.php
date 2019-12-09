@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Personnels;
 use App\Form\PersonnelsType;
 use App\Repository\PersonnelsRepository;
+use App\Repository\PhotosRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,10 +19,11 @@ class PersonnelsController extends AbstractController
     /**
      * @Route("/", name="personnels_index", methods={"GET"})
      */
-    public function index(PersonnelsRepository $personnelsRepository): Response
+    public function index(PersonnelsRepository $personnelsRepository, PhotosRepository $photosRepository): Response
     {
         return $this->render('personnels/index.html.twig', [
             'personnels' => $personnelsRepository->findAll(),
+            'photos' => $photosRepository->findAll(),
         ]);
     }
 
@@ -51,10 +53,12 @@ class PersonnelsController extends AbstractController
     /**
      * @Route("/{id}", name="personnels_show", methods={"GET"})
      */
-    public function show(Personnels $personnel): Response
+    public function show(Personnels $personnel, PhotosRepository $photosRepository): Response
     {
+        $photo = $photosRepository->findOneBy(['personnel' => $personnel]);
         return $this->render('personnels/show.html.twig', [
             'personnel' => $personnel,
+            'photo' => $photo,
         ]);
     }
 

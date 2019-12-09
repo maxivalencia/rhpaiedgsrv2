@@ -50,24 +50,24 @@ class Grades
 
     public function getGrade(): ?string
     {
-        return $this->grade;
+        return strtoupper($this->grade);
     }
 
     public function setGrade(string $grade): self
     {
-        $this->grade = $grade;
+        $this->grade = strtoupper($grade);
 
         return $this;
     }
 
     public function getAbbreviation(): ?string
     {
-        return $this->abbreviation;
+        return strtoupper($this->abbreviation);
     }
 
     public function setAbbreviation(string $abbreviation): self
     {
-        $this->abbreviation = $abbreviation;
+        $this->abbreviation = strtoupper($abbreviation);
 
         return $this;
     }

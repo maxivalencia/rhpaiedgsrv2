@@ -66,12 +66,12 @@ class Punitions
 
     public function getReference(): ?string
     {
-        return $this->reference;
+        return strtoupper($this->reference);
     }
 
     public function setReference(string $reference): self
     {
-        $this->reference = $reference;
+        $this->reference = strtoupper($reference);
 
         return $this;
     }

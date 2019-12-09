@@ -55,12 +55,12 @@ class DecisionsRadiationsControles
 
     public function getReferenceDecision(): ?string
     {
-        return $this->reference_decision;
+        return strtoupper($this->reference_decision);
     }
 
     public function setReferenceDecision(string $reference_decision): self
     {
-        $this->reference_decision = $reference_decision;
+        $this->reference_decision = strtoupper($reference_decision);
 
         return $this;
     }
@@ -79,12 +79,12 @@ class DecisionsRadiationsControles
 
     public function getReferenceJournalOfficiel(): ?string
     {
-        return $this->reference_journal_officiel;
+        return strtoupper($this->reference_journal_officiel);
     }
 
     public function setReferenceJournalOfficiel(string $reference_journal_officiel): self
     {
-        $this->reference_journal_officiel = $reference_journal_officiel;
+        $this->reference_journal_officiel = strtoupper($reference_journal_officiel);
 
         return $this;
     }

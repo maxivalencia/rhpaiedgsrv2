@@ -60,6 +60,8 @@ $(document).ready(function() {
 
     //mise en place datetimepicker
     //$('#datetimepicker').data("DateTimePicker").FUNCTION()
-    //$('.datetimepicker').data("DateTimePicker");
-    $('#.datetimepicker').datetimepicker();
+    $('.datetimepickerannee').datetimepicker({
+        format : 'yyyy'
+    });
+    //$('#.datetimepicker').datetimepicker();
 });

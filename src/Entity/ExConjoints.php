@@ -78,12 +78,12 @@ class ExConjoints
 
     public function getReferenceRupture(): ?string
     {
-        return $this->reference_rupture;
+        return strtoupper($this->reference_rupture);
     }
 
     public function setReferenceRupture(?string $reference_rupture): self
     {
-        $this->reference_rupture = $reference_rupture;
+        $this->reference_rupture = strtoupper($reference_rupture);
 
         return $this;
     }

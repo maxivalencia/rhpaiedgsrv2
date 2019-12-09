@@ -91,12 +91,12 @@ class RadiationsPersonnels
 
     public function getLieuRepli(): ?string
     {
-        return $this->lieu_repli;
+        return strtoupper($this->lieu_repli);
     }
 
     public function setLieuRepli(string $lieu_repli): self
     {
-        $this->lieu_repli = $lieu_repli;
+        $this->lieu_repli = strtoupper($lieu_repli);
 
         return $this;
     }
@@ -127,12 +127,12 @@ class RadiationsPersonnels
 
     public function getReferenceMrcRadiation(): ?string
     {
-        return $this->reference_mrc_radiation;
+        return strtoupper($this->reference_mrc_radiation);
     }
 
     public function setReferenceMrcRadiation(?string $reference_mrc_radiation): self
     {
-        $this->reference_mrc_radiation = $reference_mrc_radiation;
+        $this->reference_mrc_radiation = strtoupper($reference_mrc_radiation);
 
         return $this;
     }

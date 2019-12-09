@@ -93,6 +93,9 @@ class PersonnelsType extends AbstractType
             ->add('actif', null, [
                 'label' => 'Est actif : situation fonctionnelle',
             ])
+            ->add('contrat', null, [
+                'label' => 'Type de contrat au sein de l\'institution',
+            ])
         ;
     }
 

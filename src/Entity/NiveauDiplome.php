@@ -40,12 +40,12 @@ class NiveauDiplome
 
     public function getLibelle(): ?string
     {
-        return $this->libelle;
+        return strtoupper($this->libelle);
     }
 
     public function setLibelle(string $libelle): self
     {
-        $this->libelle = $libelle;
+        $this->libelle = strtoupper($libelle);
 
         return $this;
     }

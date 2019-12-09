@@ -24,12 +24,12 @@ class Photos
     /**
      * @ORM\Column(type="string", length=128)
      */
-    private $type;
+    //private $type;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $taille;
+    //private $taille;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Personnels", inversedBy="photos")

@@ -35,9 +35,23 @@ class PhotosController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($photo);
-            $entityManager->flush();
+            $photoFile = $form['image']->getData();
+            if ($photoFile) {
+                $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$photoFile->guessExtension();
+                $photoFile->move(
+                    $this->getParameter('photo'),
+                    $newFilename
+                );
+                
+                $entityManager = $this->getDoctrine()->getManager();
+                $photo->setPhoto($newFilename);
+                //$photo->setTaille();
+                //$photo->setType();
+                $entityManager->persist($photo);
+                $entityManager->flush();
+            }
 
             return $this->redirectToRoute('photos_index');
         }
@@ -66,8 +80,25 @@ class PhotosController extends AbstractController
         $form = $this->createForm(PhotosType::class, $photo);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        if ($form->isSubmitted() && $form->isValid()) {            
+            $photoFile = $form['image']->getData();
+            if ($photoFile) {
+                $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$photoFile->guessExtension();
+                $photoFile->move(
+                    $this->getParameter('photo'),
+                    $newFilename
+                );
+                
+                $entityManager = $this->getDoctrine()->getManager();
+                $photo->setPhoto($newFilename);
+                //$photo->setTaille();
+                //$photo->setType();
+                $entityManager->persist($photo);
+                $entityManager->flush();
+            }
+            //$this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('photos_index');
         }

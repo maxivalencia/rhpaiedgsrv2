@@ -50,12 +50,12 @@ class DecisionsPromotions
 
     public function getReferenceDecision(): ?string
     {
-        return $this->reference_decision;
+        return strtoupper($this->reference_decision);
     }
 
     public function setReferenceDecision(string $reference_decision): self
     {
-        $this->reference_decision = $reference_decision;
+        $this->reference_decision = strtoupper($reference_decision);
 
         return $this;
     }

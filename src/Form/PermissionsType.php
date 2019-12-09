@@ -18,9 +18,10 @@ class PermissionsType extends AbstractType
                 'label' => 'Année',
                 'widget' => 'single_text',
                 'attr' => [
-                    'class' => 'datetimepicker',
+                    'class' => 'datetimepickerannee',
                 ],
                 'data' => new \DateTime('now'),
+                //'format' => 'MM/yyyy',
             ])
             ->add('date_depart', null, [
                 'label' => 'Date de départ',

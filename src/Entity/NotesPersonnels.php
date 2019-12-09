@@ -90,12 +90,12 @@ class NotesPersonnels
 
     public function getReferenceNote(): ?string
     {
-        return $this->reference_note;
+        return strtoupper($this->reference_note);
     }
 
     public function setReferenceNote(string $reference_note): self
     {
-        $this->reference_note = $reference_note;
+        $this->reference_note = strtoupper($reference_note);
 
         return $this;
     }

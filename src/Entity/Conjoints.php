@@ -148,12 +148,12 @@ class Conjoints
 
     public function getNom(): ?string
     {
-        return $this->nom;
+        return strtoupper($this->nom);
     }
 
     public function setNom(string $nom): self
     {
-        $this->nom = $nom;
+        $this->nom = strtoupper($nom);
 
         return $this;
     }
@@ -280,12 +280,12 @@ class Conjoints
 
     public function getReferenceAutorisationMariage(): ?string
     {
-        return $this->reference_autorisation_mariage;
+        return strtoupper($this->reference_autorisation_mariage);
     }
 
     public function setReferenceAutorisationMariage(?string $reference_autorisation_mariage): self
     {
-        $this->reference_autorisation_mariage = $reference_autorisation_mariage;
+        $this->reference_autorisation_mariage = strtoupper($reference_autorisation_mariage);
 
         return $this;
     }
@@ -316,12 +316,12 @@ class Conjoints
 
     public function getReferenceOfficielMariage(): ?string
     {
-        return $this->reference_officiel_mariage;
+        return strtoupper($this->reference_officiel_mariage);
     }
 
     public function setReferenceOfficielMariage(string $reference_officiel_mariage): self
     {
-        $this->reference_officiel_mariage = $reference_officiel_mariage;
+        $this->reference_officiel_mariage = strtoupper($reference_officiel_mariage);
 
         return $this;
     }

@@ -62,12 +62,12 @@ class Decorations
 
     public function getAbbreviation(): ?string
     {
-        return $this->abbreviation;
+        return strtoupper($this->abbreviation);
     }
 
     public function setAbbreviation(string $abbreviation): self
     {
-        $this->abbreviation = $abbreviation;
+        $this->abbreviation = strtoupper($abbreviation);
 
         return $this;
     }

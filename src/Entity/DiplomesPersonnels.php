@@ -47,12 +47,12 @@ class DiplomesPersonnels
 
     public function getNumero(): ?string
     {
-        return $this->numero;
+        return strtoupper($this->numero);
     }
 
     public function setNumero(string $numero): self
     {
-        $this->numero = $numero;
+        $this->numero = strtoupper($numero);
 
         return $this;
     }

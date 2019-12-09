@@ -75,12 +75,12 @@ class FonctionsConjoints
 
     public function getAbbreviation(): ?string
     {
-        return $this->abbreviation;
+        return strtoupper($this->abbreviation);
     }
 
     public function setAbbreviation(?string $abbreviation): self
     {
-        $this->abbreviation = $abbreviation;
+        $this->abbreviation = strtoupper($abbreviation);
 
         return $this;
     }
@@ -99,12 +99,12 @@ class FonctionsConjoints
 
     public function getEmployeur(): ?string
     {
-        return $this->employeur;
+        return strtoupper($this->employeur);
     }
 
     public function setEmployeur(string $employeur): self
     {
-        $this->employeur = $employeur;
+        $this->employeur = strtoupper($employeur);
 
         return $this;
     }

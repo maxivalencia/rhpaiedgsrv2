@@ -40,12 +40,12 @@ class DetailsMotifsRadiationsControles
 
     public function getDetailMotifRadiation(): ?string
     {
-        return $this->detail_motif_radiation;
+        return strtoupper($this->detail_motif_radiation);
     }
 
     public function setDetailMotifRadiation(string $detail_motif_radiation): self
     {
-        $this->detail_motif_radiation = $detail_motif_radiation;
+        $this->detail_motif_radiation = strtoupper($detail_motif_radiation);
 
         return $this;
     }

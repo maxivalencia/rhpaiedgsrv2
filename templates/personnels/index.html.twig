@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 {# <th>Id</th> #}
+                <th>Photo</th>
                 <th>Nom</th>
                 <th>Prénoms</th>
                 <th>Date de naissance</th>
@@ -33,32 +34,37 @@
         </thead>
         <tbody>
         {% for personnel in personnels %}
-            <tr>
-                {# <td>{{ personnel.id }}</td> #}
-                <td>{{ personnel.nom }}</td>
-                <td>{{ personnel.prenoms }}</td>
-                <td>{{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }}</td>
-                <td>{{ personnel.lieuNaissance }}</td>
-                {# <td>{{ personnel.nomPere }}</td> #}
-                {# <td>{{ personnel.nomMere }}</td> #}
-                <td>{{ personnel.numCin }}</td>
-                {# <td>{{ personnel.dateCin ? personnel.dateCin|date('d/m/Y') : '' }}</td> #}
-                {# <td>{{ personnel.lieuCin }}</td> #}
-                <td>{{ personnel.sexe ? 'Féminin' : 'Masculin' }}</td>
-                <td>{{ personnel.estMarie ? 'Oui' : 'Non' }}</td>
-                {# <td>{{ personnel.adresse }}</td> #}
-                <td>{{ personnel.telephone }}</td>
-                <td>{{ personnel.telephoneIce }}</td>
-                {# <td>{{ personnel.dateEmbauche ? personnel.dateEmbauche|date('d/m/Y') : '' }}</td> #}
-                {# <td>{{ personnel.matricule }}</td> #}
-                {# <td>{{ personnel.numeroCnaps }}</td> #}
-                {# <td>{{ personnel.estMilitaire ? 'Oui' : 'Non' }}</td> #}
-                {# <td>{{ personnel.actif ? 'Oui' : 'Non' }}</td> #}
-                <td>
-                    <a href="{{ path('personnels_show', {'id': personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('personnels_edit', {'id': personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                </td>
-            </tr>
+            {% for photo in photos %}
+                <tr>
+                    {# <td>{{ personnel.id }}</td> #}
+                    {% if photo.personnel.id == personnel.id %}
+                        <td><img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:50px;"></td>
+                    {% endif %}
+                    <td>{{ personnel.nom }}</td>
+                    <td>{{ personnel.prenoms }}</td>
+                    <td>{{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }}</td>
+                    <td>{{ personnel.lieuNaissance }}</td>
+                    {# <td>{{ personnel.nomPere }}</td> #}
+                    {# <td>{{ personnel.nomMere }}</td> #}
+                    <td>{{ personnel.numCin }}</td>
+                    {# <td>{{ personnel.dateCin ? personnel.dateCin|date('d/m/Y') : '' }}</td> #}
+                    {# <td>{{ personnel.lieuCin }}</td> #}
+                    <td>{{ personnel.sexe ? 'Féminin' : 'Masculin' }}</td>
+                    <td>{{ personnel.estMarie ? 'Oui' : 'Non' }}</td>
+                    {# <td>{{ personnel.adresse }}</td> #}
+                    <td>{{ personnel.telephone }}</td>
+                    <td>{{ personnel.telephoneIce }}</td>
+                    {# <td>{{ personnel.dateEmbauche ? personnel.dateEmbauche|date('d/m/Y') : '' }}</td> #}
+                    {# <td>{{ personnel.matricule }}</td> #}
+                    {# <td>{{ personnel.numeroCnaps }}</td> #}
+                    {# <td>{{ personnel.estMilitaire ? 'Oui' : 'Non' }}</td> #}
+                    {# <td>{{ personnel.actif ? 'Oui' : 'Non' }}</td> #}
+                    <td>
+                        <a href="{{ path('personnels_show', {'id': personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                        <a href="{{ path('personnels_edit', {'id': personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </td>
+                </tr>                
+            {% endfor %}
         {% else %}
             <tr>
                 <td colspan="21">Aucun enregistrement trouvé</td>

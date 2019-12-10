@@ -33,6 +33,11 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $rolesimple;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -65,6 +70,7 @@ class User implements UserInterface
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
+        //return $this->roles;
     }
 
     public function setRoles(array $roles): self
@@ -104,5 +110,26 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+    * toString
+    * @return string
+    */
+    public function __toString()
+    {
+        return $this->getUsername();
+    }
+
+    public function getRolesimple(): ?string
+    {
+        return strtoupper($this->rolesimple);
+    }
+
+    public function setRolesimple(string $rolesimple): self
+    {
+        $this->rolesimple = strtoupper($rolesimple);
+
+        return $this;
     }
 }

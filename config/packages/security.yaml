@@ -1,4 +1,11 @@
 security:
+    role_hierarchy:
+        ROLE_CIVIL : ROLE_USER
+        ROLE_MILITAIRE : ROLE_USER
+        ROLE_SUPERVISEUR : [ROLE_CIVIL, ROLE_MILITAIRE]
+        ROLE_ADMIN : ROLE_SUPERVISEUR
+        ROLE_SUPER_ADMIN : [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
     encoders:
         App\Entity\User:
             algorithm: auto
@@ -35,3 +42,39 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/affectations/personnels, roles: ROLE_USER }
+        - { path: ^/communes, roles: ROLE_USER }
+        - { path: ^/conjoints, roles: ROLE_USER }
+        - { path: ^/decisions/affectations, roles: ROLE_USER }
+        - { path: ^/decisions/promotions, roles: ROLE_USER }
+        - { path: ^/decisions/radiations/controles, roles: ROLE_USER }
+        - { path: ^/decorations, roles: ROLE_ADMIN }
+        - { path: ^/decorationspersonnels, roles: ROLE_USER }
+        - { path: ^/details/motifs/radiations/controles, roles: ROLE_ADMIN }
+        - { path: ^/diplomes, roles: ROLE_USER }
+        - { path: ^/diplomes/personnels, roles: ROLE_USER }
+        - { path: ^/districts, roles: ROLE_USER }
+        - { path: ^/domaine/diplome, roles: ROLE_ADMIN }
+        - { path: ^/droits/pensions, roles: ROLE_ADMIN }
+        - { path: ^/enfants, roles: ROLE_USER }
+        - { path: ^/ex/conjoints, roles: ROLE_USER }
+        - { path: ^/fonctions/conjoints, roles: ROLE_USER }
+        - { path: ^/fonctions, roles: ROLE_ADMIN }
+        - { path: ^/grades, roles: ROLE_ADMIN }
+        - { path: ^/motifs/radiations/controles, roles: ROLE_ADMIN }
+        - { path: ^/niveau/diplome, roles: ROLE_ADMIN }
+        - { path: ^/nominations/personnels, roles: ROLE_MILITAIRE }
+        - { path: ^/notes/p/o/s, roles: ROLE_SUPERVISEUR }
+        - { path: ^/notes/personnels, roles: ROLE_USER }
+        - { path: ^/permissions, roles: ROLE_USER }
+        - { path: ^/personnels, roles: ROLE_USER }
+        - { path: ^/photos, roles: ROLE_USER }
+        - { path: ^/provinces, roles: ROLE_ADMIN }
+        - { path: ^/punitions, roles: ROLE_ADMIN }
+        - { path: ^/radiations/personnels, roles: ROLE_USER }
+        - { path: ^/regions, roles: ROLE_ADMIN }
+        - { path: ^/roles, roles: ROLE_ADMIN }
+        - { path: ^/types/communes, roles: ROLE_USER }
+        - { path: ^/types/contrats, roles: ROLE_USER }
+        - { path: ^/unites, roles: ROLE_USER }
+        - { path: ^/user, roles: ROLE_ADMIN }

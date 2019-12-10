@@ -16,6 +16,13 @@ class HomeController extends AbstractController
      */
     public function index():Response
     {
-        return new Response('Tongasoa');
+        if(!empty($_SESSION['username']))
+        {
+            // à remplacer par le tableau de bord quand le tableau de bord sera mise en place
+            return $this->redirectToRoute('personnels_index');
+        } else 
+        {
+            return $this->redirectToRoute('app_login');
+        }
     }
 }

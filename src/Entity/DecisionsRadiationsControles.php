@@ -107,7 +107,7 @@ class DecisionsRadiationsControles
     */
     public function __toString()
     {
-        return $this->getReferenceJournalOfficiel();
+        return $this->getReferenceJournalOfficiel().' du '.$this->getDateReference()->format('d/m/Y');
     }
 
     /**

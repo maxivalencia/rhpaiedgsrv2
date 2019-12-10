@@ -121,6 +121,6 @@ class DecisionsPromotions
     */
     public function __toString()
     {
-        return $this->getReferenceDecision();
+        return $this->getReferenceDecision().' du '.$this->getDateDecision()->format('d/m/Y');
     }
 }

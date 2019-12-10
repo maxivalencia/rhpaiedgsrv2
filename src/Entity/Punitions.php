@@ -130,6 +130,6 @@ class Punitions
     */
     public function __toString()
     {
-        return $this->getLibelle();
+        return $this->getLibelle().' : '.$this->getReference().' du '.$this->getDateReference()->format('d/m/Y');
     }
 }

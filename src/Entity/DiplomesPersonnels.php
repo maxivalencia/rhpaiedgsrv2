@@ -99,6 +99,6 @@ class DiplomesPersonnels
     */
     public function __toString()
     {
-        return $this->getNumero();
+        return $this->getNumero().' du '.$this->getDate()->format('d/m/Y').' : '.$this->getDiplome();
     }
 }

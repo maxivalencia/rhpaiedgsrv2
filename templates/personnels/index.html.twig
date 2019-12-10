@@ -38,40 +38,40 @@
             </tr>
         </thead>
         <tbody>
-        {% for personnel in personnels %}
-            {% for photo in photos %}
-                <tr>
-                    {# <td valign="center">{{ personnel.id }}</td> #}
-                    <td style="vertical-align:middle;">{{ personnel.nom }}</td>
-                    <td style="vertical-align:middle;">{{ personnel.prenoms }}</td>
-                    <td style="vertical-align:middle;">{{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }}</td>
-                    <td style="vertical-align:middle;">{{ personnel.lieuNaissance }}</td>
-                    {# <td valign="center">{{ personnel.nomPere }}</td> #}
-                    {# <td valign="center">{{ personnel.nomMere }}</td> #}
-                    <td style="vertical-align:middle;">{{ personnel.numCin }}</td>
-                    {# <td valign="center">{{ personnel.dateCin ? personnel.dateCin|date('d/m/Y') : '' }}</td> #}
-                    {# <td valign="center">{{ personnel.lieuCin }}</td> #}
-                    <td style="vertical-align:middle;">{{ personnel.sexe ? 'Féminin' : 'Masculin' }}</td>
-                    <td style="vertical-align:middle;">{{ personnel.estMarie ? 'Oui' : 'Non' }}</td>
-                    {# <td valign="center">{{ personnel.adresse }}</td> #}
-                    <td style="vertical-align:middle;">{{ personnel.telephone }}</td>
-                    <td style="vertical-align:middle;">{{ personnel.telephoneIce }}</td>
-                    {# <td valign="center">{{ personnel.dateEmbauche ? personnel.dateEmbauche|date('d/m/Y') : '' }}</td> #}
-                    {# <td valign="center">{{ personnel.matricule }}</td> #}
-                    {# <td valign="center">{{ personnel.numeroCnaps }}</td> #}
-                    {# <td valign="center">{{ personnel.estMilitaire ? 'Oui' : 'Non' }}</td> #}
-                    {# <td valign="center">{{ personnel.actif ? 'Oui' : 'Non' }}</td> #}
-                    <td style="vertical-align:middle;">
+        {% for personnel in personnels %}            
+            <tr>
+                {# <td valign="center">{{ personnel.id }}</td> #}
+                <td style="vertical-align:middle;">{{ personnel.nom }}</td>
+                <td style="vertical-align:middle;">{{ personnel.prenoms }}</td>
+                <td style="vertical-align:middle;">{{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }}</td>
+                <td style="vertical-align:middle;">{{ personnel.lieuNaissance }}</td>
+                {# <td valign="center">{{ personnel.nomPere }}</td> #}
+                {# <td valign="center">{{ personnel.nomMere }}</td> #}
+                <td style="vertical-align:middle;">{{ personnel.numCin }}</td>
+                {# <td valign="center">{{ personnel.dateCin ? personnel.dateCin|date('d/m/Y') : '' }}</td> #}
+                {# <td valign="center">{{ personnel.lieuCin }}</td> #}
+                <td style="vertical-align:middle;">{{ personnel.sexe ? 'Féminin' : 'Masculin' }}</td>
+                <td style="vertical-align:middle;">{{ personnel.estMarie ? 'Oui' : 'Non' }}</td>
+                {# <td valign="center">{{ personnel.adresse }}</td> #}
+                <td style="vertical-align:middle;">{{ personnel.telephone }}</td>
+                <td style="vertical-align:middle;">{{ personnel.telephoneIce }}</td>
+                {# <td valign="center">{{ personnel.dateEmbauche ? personnel.dateEmbauche|date('d/m/Y') : '' }}</td> #}
+                {# <td valign="center">{{ personnel.matricule }}</td> #}
+                {# <td valign="center">{{ personnel.numeroCnaps }}</td> #}
+                {# <td valign="center">{{ personnel.estMilitaire ? 'Oui' : 'Non' }}</td> #}
+                {# <td valign="center">{{ personnel.actif ? 'Oui' : 'Non' }}</td> #}
+                <td style="vertical-align:middle;">
+                    {% for photo in photos %}
                         {% if photo.personnel.id == personnel.id %}
                             <img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:50px;height:60px">
-                        {% endif %}
-                    </td>
-                    <td style="vertical-align:middle;">
-                        <a href="{{ path('personnels_show', {'id': personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
-                        <a href="{{ path('personnels_edit', {'id': personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                    </td>
-                </tr>                
-            {% endfor %}
+                        {% endif %}                
+                    {% endfor %}
+                </td>
+                <td style="vertical-align:middle;">
+                    <a href="{{ path('personnels_show', {'id': personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('personnels_edit', {'id': personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
         {% else %}
             <tr>
                 <td colspan="21">Aucun enregistrement trouvé</td>

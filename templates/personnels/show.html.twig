@@ -13,7 +13,7 @@
             </tr> #}
             <tr>
                 {# <th>Nom</th> #}
-                <td style="width:300px;"><img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:250px;"></td>
+                <td style="width:260px;"><img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:250px;"></td>
             </tr>
             <tr>
                 <th>Nom</th>
@@ -80,7 +80,7 @@
                 <td>{{ personnel.matricule }}</td>
             </tr>
             <tr>
-                <th>Numéro_cnaps</th>
+                <th>Numéro CNAPS</th>
                 <td>{{ personnel.numeroCnaps }}</td>
             </tr>
             <tr>
@@ -97,6 +97,173 @@
             </tr>
         </tbody>
     </table>
+
+    <h2>Conjoint(e)(s)</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de naissance</th>
+                <th>Lieu de naissance</th>
+                <th>Sexe</th>
+                <th>Numéro CIN</th>
+                <th>Fonction</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for conjoint in conjoints %}
+            {% for fonctionConjoint in fonctionConjoints %}
+                <tr>
+                    <td>{{ conjoint.nom }}</td>
+                    <td>{{ conjoint.prenom }}</td>
+                    <td>{{ conjoint.dateNaissance ? conjoint.dateNaissance|date('d/m/Y') : '' }}</td>
+                    <td>{{ conjoint.lieuNaissance }}</td>
+                    <td>{{ conjoint.sexe ? 'Féminin' : 'Masculin' }}</td>
+                    <td>{{ conjoint.numeroCin }}</td>
+                    <td>
+                        {% if conjoint.id == fonctionConjoint.conjoint.id %}
+                            {{ fonctionConjoint.abbreviation }}
+                        {% endif %}                    
+                    </td>
+                </tr>                
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="19">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Enfant(s)</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de naissance</th>
+                <th>Lieu de naissance</th>
+                <th>Sexe</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for enfant in enfants %}
+            <tr>
+                <td>{{ enfant.nom }}</td>
+                <td>{{ enfant.prenom }}</td>
+                <td>{{ enfant.dateNaissance ? enfant.dateNaissance|date('d/m/Y') : '' }}</td>
+                <td>{{ enfant.lieuNaissance }}</td>
+                <td>{{ enfant.sexe ? 'Féminin' : 'Masculin' }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Affectation(s)</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date d'affectation</th>
+                <th>Date de disponibilité</th>
+                <th>Reférence de disponibilité</th>
+                <th>Unité</th>
+                <th>Motif de l'affectation</th>
+                <th>Motif de l'annulation</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for affectations_personnel in affectations %}
+            <tr>
+                <td>{{ affectations_personnel.dateAffectation ? affectations_personnel.dateAffectation|date('d/m/Y') : '' }}</td>
+                <td>{{ affectations_personnel.dateDisponibilite ? affectations_personnel.dateDisponibilite|date('d/m/Y') : '' }}</td>
+                <td>{{ affectations_personnel.referenceDisponibilite }}</td>
+                <td>{{ affectations_personnel.unite }}</td>
+                <td>{{ affectations_personnel.motifAffectation }}</td>
+                <td>{{ affectations_personnel.motifAnnulation }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Nomination(s)</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date de nomination</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for nominations_personnel in nominations %}
+            <tr>
+                <td>{{ nominations_personnel.dateNomination ? nominations_personnel.dateNomination|date('d/m/Y') : '' }}</td>
+                <td>{{ nominations_personnel.grade }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Diplômes(s)</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Numéro</th>
+                <th>Date</th>
+                <th>Diplôme</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for diplomes_personnel in diplomes %}
+            <tr>
+                <td>{{ diplomes_personnel.numero }}</td>
+                <td>{{ diplomes_personnel.date ? diplomes_personnel.date|date('d/m/Y') : '' }}</td>
+                <td>{{ diplomes_personnel.diplome }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Décoration(s)</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Reférence</th>
+                <th>Décoration</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for decorations_personnel in decorations %}
+            <tr>
+                <td>{{ decorations_personnel.date ? decorations_personnel.date|date('d/m/Y') : '' }}</td>
+                <td>{{ decorations_personnel.reference }}</td>
+                <td>{{ decorations_personnel.decoration }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
 
     <a href="{{ path('personnels_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
     <br>

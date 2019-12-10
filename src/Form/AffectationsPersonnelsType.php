@@ -47,6 +47,7 @@ class AffectationsPersonnelsType extends AbstractType
             ])
             ->add('motif_annulation', null, [
                 'label' => 'Motif de l\'annulation',
+                'data' => 'N/A',
             ])
             ->add('annulation', null, [
                 'label' => 'Annulation',

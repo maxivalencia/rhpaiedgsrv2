@@ -30,6 +30,21 @@ class AffectationsPersonnelsController extends AbstractController
             'affectations_personnels' => $pagination,
         ]);
     }
+    
+    /**
+     * @Route("/recherche", name="affectations_personnels_recherche", methods={"GET"})
+     */
+    public function recherche(AffectationsPersonnelsRepository $affectationsPersonnelsRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $affectationsPersonnelsRepository->recherche($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        ); 
+        return $this->render('affectations_personnels/index.html.twig', [
+            'affectations_personnels' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="affectations_personnels_new", methods={"GET","POST"})

@@ -12,6 +12,10 @@
                 <td>{{ decorations_personnel.id }}</td>
             </tr> #}
             <tr>
+                <th>Décoration</th>
+                <td>{{ decorations_personnel.decoration }}</td>
+            </tr>
+            <tr>
                 <th>Date</th>
                 <td>{{ decorations_personnel.date ? decorations_personnel.date|date('d/m/Y') : '' }}</td>
             </tr>

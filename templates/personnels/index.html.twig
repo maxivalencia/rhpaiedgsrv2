@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Liste Personnels</h1>
-    <form class="mt-2 mt-md-0 d-none d-lg-block search-input" action="#">
+    <form class="mt-2 mt-md-0 d-none d-lg-block search-input" action="{{ path('personnels_recherche') }}">
         <div class="input-group">
             <span class="input-group-addon d-flex align-items-center"><i class="icon-magnifier icons"></i></span>
             <input type="text" name="search" class="form-control" placeholder="Search...">
@@ -41,30 +41,30 @@
         {% for personnel in personnels %}
             {% for photo in photos %}
                 <tr>
-                    {# <td>{{ personnel.id }}</td> #}
-                    <td>{{ personnel.nom }}</td>
-                    <td>{{ personnel.prenoms }}</td>
-                    <td>{{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }}</td>
-                    <td>{{ personnel.lieuNaissance }}</td>
-                    {# <td>{{ personnel.nomPere }}</td> #}
-                    {# <td>{{ personnel.nomMere }}</td> #}
-                    <td>{{ personnel.numCin }}</td>
-                    {# <td>{{ personnel.dateCin ? personnel.dateCin|date('d/m/Y') : '' }}</td> #}
-                    {# <td>{{ personnel.lieuCin }}</td> #}
-                    <td>{{ personnel.sexe ? 'Féminin' : 'Masculin' }}</td>
-                    <td>{{ personnel.estMarie ? 'Oui' : 'Non' }}</td>
-                    {# <td>{{ personnel.adresse }}</td> #}
-                    <td>{{ personnel.telephone }}</td>
-                    <td>{{ personnel.telephoneIce }}</td>
-                    {# <td>{{ personnel.dateEmbauche ? personnel.dateEmbauche|date('d/m/Y') : '' }}</td> #}
-                    {# <td>{{ personnel.matricule }}</td> #}
-                    {# <td>{{ personnel.numeroCnaps }}</td> #}
-                    {# <td>{{ personnel.estMilitaire ? 'Oui' : 'Non' }}</td> #}
-                    {# <td>{{ personnel.actif ? 'Oui' : 'Non' }}</td> #}
+                    {# <td valign="center">{{ personnel.id }}</td> #}
+                    <td style="vertical-align:middle;">{{ personnel.nom }}</td>
+                    <td style="vertical-align:middle;">{{ personnel.prenoms }}</td>
+                    <td style="vertical-align:middle;">{{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }}</td>
+                    <td style="vertical-align:middle;">{{ personnel.lieuNaissance }}</td>
+                    {# <td valign="center">{{ personnel.nomPere }}</td> #}
+                    {# <td valign="center">{{ personnel.nomMere }}</td> #}
+                    <td style="vertical-align:middle;">{{ personnel.numCin }}</td>
+                    {# <td valign="center">{{ personnel.dateCin ? personnel.dateCin|date('d/m/Y') : '' }}</td> #}
+                    {# <td valign="center">{{ personnel.lieuCin }}</td> #}
+                    <td style="vertical-align:middle;">{{ personnel.sexe ? 'Féminin' : 'Masculin' }}</td>
+                    <td style="vertical-align:middle;">{{ personnel.estMarie ? 'Oui' : 'Non' }}</td>
+                    {# <td valign="center">{{ personnel.adresse }}</td> #}
+                    <td style="vertical-align:middle;">{{ personnel.telephone }}</td>
+                    <td style="vertical-align:middle;">{{ personnel.telephoneIce }}</td>
+                    {# <td valign="center">{{ personnel.dateEmbauche ? personnel.dateEmbauche|date('d/m/Y') : '' }}</td> #}
+                    {# <td valign="center">{{ personnel.matricule }}</td> #}
+                    {# <td valign="center">{{ personnel.numeroCnaps }}</td> #}
+                    {# <td valign="center">{{ personnel.estMilitaire ? 'Oui' : 'Non' }}</td> #}
+                    {# <td valign="center">{{ personnel.actif ? 'Oui' : 'Non' }}</td> #}
                     {% if photo.personnel.id == personnel.id %}
-                        <td><img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:50px;"></td>
+                        <td style="vertical-align:middle;"><img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:50px;height:60px"></td>
                     {% endif %}
-                    <td>
+                    <td style="vertical-align:middle;">
                         <a href="{{ path('personnels_show', {'id': personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
                         <a href="{{ path('personnels_edit', {'id': personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </td>

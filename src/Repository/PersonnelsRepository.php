@@ -19,6 +19,30 @@ class PersonnelsRepository extends ServiceEntityRepository
         parent::__construct($registry, Personnels::class);
     }
 
+    /**
+     * @return Personnels[] Returns an array of Personnels objects
+     */
+    public function rechercher($value)
+    {
+        return $this->createQueryBuilder('p')
+            ->Where('p.nom LIKE :val')
+            ->orWhere('p.prenoms LIKE :val')
+            ->orWhere('p.nom_pere LIKE :val')
+            ->orWhere('p.nom_mere LIKE :val')
+            ->orWhere('p.num_cin LIKE :val')
+            ->orWhere('p.adresse LIKE :val')
+            ->orWhere('p.telephone LIKE :val')
+            ->orWhere('p.telephone_ice LIKE :val')
+            ->orWhere('p.matricule LIKE :val')
+            ->orWhere('p.numero_cnaps LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('p.id', 'DESC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Personnels[] Returns an array of Personnels objects
     //  */

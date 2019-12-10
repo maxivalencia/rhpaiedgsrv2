@@ -19,6 +19,27 @@ class AffectationsPersonnelsRepository extends ServiceEntityRepository
         parent::__construct($registry, AffectationsPersonnels::class);
     }
 
+    /**
+     * @return AffectationsPersonnels[] Returns an array of AffectationsPersonnels objects
+     */
+    public function recherche($value)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.date_affectation = :val')
+            ->orWhere('a.date_disponibilite = :val')
+            ->orWhere('a.reference_disponibilite = :val')
+            ->orWhere('a.date_reference_disponibilite = :val')
+            ->orWhere('a.motif_affectation = :val')
+            ->orWhere('a.situation = :val')
+            ->orWhere('a.motif_annulation = :val')
+            ->setParameter('val', $value)
+            ->orderBy('a.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return AffectationsPersonnels[] Returns an array of AffectationsPersonnels objects
     //  */

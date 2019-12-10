@@ -14,6 +14,7 @@
         <thead>
             <tr>
                 {# <th>Id</th> #}
+                <th>Décoration</th>
                 <th>Date</th>
                 <th>Reférence</th>
                 <th>Date de reférence</th>
@@ -25,6 +26,7 @@
         {% for decorations_personnel in decorations_personnels %}
             <tr>
                 {# <td>{{ decorations_personnel.id }}</td> #}
+                <td>{{ decorations_personnel.decoration }}</td>
                 <td>{{ decorations_personnel.date ? decorations_personnel.date|date('d/m/Y') : '' }}</td>
                 <td>{{ decorations_personnel.reference }}</td>
                 <td>{{ decorations_personnel.dateReference ? decorations_personnel.dateReference|date('d/m/Y') : '' }}</td>
@@ -36,7 +38,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">Aucun enregistrement trouvé</td>
+                <td colspan="6">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>

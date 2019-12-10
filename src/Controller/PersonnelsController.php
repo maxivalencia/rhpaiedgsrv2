@@ -4,8 +4,21 @@ namespace App\Controller;
 
 use App\Entity\Personnels;
 use App\Form\PersonnelsType;
+use App\Repository\AffectationsPersonnelsRepository;
+use App\Repository\ConjointsRepository;
+use App\Repository\DecorationsPersonnelsRepository;
+use App\Repository\DecorationsRepository;
+use App\Repository\DiplomesPersonnelsRepository;
+use App\Repository\DiplomesRepository;
+use App\Repository\EnfantsRepository;
+use App\Repository\ExConjointsRepository;
+use App\Repository\FonctionsConjointsRepository;
+use App\Repository\GradesRepository;
+use App\Repository\NominationsPersonnelsRepository;
+use App\Repository\PermissionsRepository;
 use App\Repository\PersonnelsRepository;
 use App\Repository\PhotosRepository;
+use App\Repository\PunitionsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,6 +36,22 @@ class PersonnelsController extends AbstractController
     {
         $pagination = $paginator->paginate(
             $personnelsRepository->findAll(), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );        
+        return $this->render('personnels/index.html.twig', [
+            'personnels' => $pagination,
+            'photos' => $photosRepository->findAll(),
+        ]);
+    }
+    
+    /**
+     * @Route("/recherche", name="personnels_recherche", methods={"GET"})
+     */
+    public function recherche(PersonnelsRepository $personnelsRepository, PhotosRepository $photosRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $personnelsRepository->rechercher($request->query->get('search')), /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/
         );        
@@ -58,12 +87,28 @@ class PersonnelsController extends AbstractController
     /**
      * @Route("/{id}", name="personnels_show", methods={"GET"})
      */
-    public function show(Personnels $personnel, PhotosRepository $photosRepository): Response
+    public function show(Personnels $personnel, FonctionsConjointsRepository $fonctionsConjointsRepository, PhotosRepository $photosRepository, ConjointsRepository $conjointsRepository, EnfantsRepository $enfantsRepository, DiplomesPersonnelsRepository $diplomesPersonnelsRepository, DecorationsPersonnelsRepository $decorationsPersonnelsRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository, NominationsPersonnelsRepository $nominationsPersonnelsRepository): Response
     {
         $photo = $photosRepository->findOneBy(['personnel' => $personnel]);
+        $conjoints = $conjointsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+        //$conjoint = $conjointsRepository->findOneBy(["personnel" => $personnel], ["id" => "DESC"]);
+        //$fonctionConjoint = $fonctionsConjointsRepository->findOneBy(["conjoint" => $conjoint], ["id" => "DESC"]);
+        $fonctionConjoint = $fonctionsConjointsRepository->findAll();
+        $enfants = $enfantsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $diplomes = $diplomesPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $decorations = $decorationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $affectations = $affectationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $nominations = $nominationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
         return $this->render('personnels/show.html.twig', [
             'personnel' => $personnel,
             'photo' => $photo,
+            'conjoints' => $conjoints,
+            'enfants' => $enfants,
+            'diplomes' => $diplomes,
+            'decorations' => $decorations,
+            'affectations' => $affectations,
+            'nominations' => $nominations,
+            'fonctionConjoints' => $fonctionConjoint,
         ]);
     }
 

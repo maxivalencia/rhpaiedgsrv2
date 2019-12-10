@@ -22,7 +22,7 @@ class DiplomesPersonnelsController extends AbstractController
     public function index(DiplomesPersonnelsRepository $diplomesPersonnelsRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $diplomesPersonnelsRepository->findAll(), /* query NOT result */
+            $diplomesPersonnelsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/
         );

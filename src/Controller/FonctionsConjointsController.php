@@ -22,7 +22,7 @@ class FonctionsConjointsController extends AbstractController
     public function index(FonctionsConjointsRepository $fonctionsConjointsRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $fonctionsConjointsRepository->findAll(), /* query NOT result */
+            $fonctionsConjointsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/
         );

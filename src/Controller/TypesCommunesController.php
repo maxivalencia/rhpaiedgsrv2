@@ -22,7 +22,7 @@ class TypesCommunesController extends AbstractController
     public function index(TypesCommunesRepository $typesCommunesRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $typesCommunesRepository->findAll(), /* query NOT result */
+            $typesCommunesRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/
         );

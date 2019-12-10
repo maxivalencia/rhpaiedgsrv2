@@ -61,9 +61,11 @@
                     {# <td valign="center">{{ personnel.numeroCnaps }}</td> #}
                     {# <td valign="center">{{ personnel.estMilitaire ? 'Oui' : 'Non' }}</td> #}
                     {# <td valign="center">{{ personnel.actif ? 'Oui' : 'Non' }}</td> #}
-                    {% if photo.personnel.id == personnel.id %}
-                        <td style="vertical-align:middle;"><img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:50px;height:60px"></td>
-                    {% endif %}
+                    <td style="vertical-align:middle;">
+                        {% if photo.personnel.id == personnel.id %}
+                            <img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:50px;height:60px">
+                        {% endif %}
+                    </td>
                     <td style="vertical-align:middle;">
                         <a href="{{ path('personnels_show', {'id': personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
                         <a href="{{ path('personnels_edit', {'id': personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>

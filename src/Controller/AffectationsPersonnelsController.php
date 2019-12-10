@@ -22,7 +22,7 @@ class AffectationsPersonnelsController extends AbstractController
     public function index(AffectationsPersonnelsRepository $affectationsPersonnelsRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $affectationsPersonnelsRepository->findAll(), /* query NOT result */
+            $affectationsPersonnelsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/
         ); 

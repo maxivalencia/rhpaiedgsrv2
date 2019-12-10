@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Utilisateur{% endblock %}
+
+{% block body %}
+    <h1>Liste des Utilisateur</h1>
+    <form class="mt-2 mt-md-0 d-none d-lg-block search-input" action="#">
+        <div class="input-group">
+            <span class="input-group-addon d-flex align-items-center"><i class="icon-magnifier icons"></i></span>
+            <input type="text" name="search" class="form-control" placeholder="Search...">
+        </div>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                {# <th>Id</th> #}
+                <th>Username</th>
+                <th>Roles</th>
+                <th>Password</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                {# <td>{{ user.id }}</td> #}
+                <td>{{ user.username }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.password }}</td>
+                <td>
+                    <a href="{{ path('user_show', {'id': user.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="navigation">
+        {{ knp_pagination_render(users) }}
+    </div>
+
+    <a href="{{ path('user_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+{% endblock %}

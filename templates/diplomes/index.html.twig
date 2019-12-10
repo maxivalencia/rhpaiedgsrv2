@@ -18,6 +18,8 @@
                 <th>Abbréviation</th>
                 <th>Type</th>
                 <th>Est diplôme militaire</th>
+                <th>Domaine</th>
+                <th>Niveau</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -29,6 +31,8 @@
                 <td>{{ diplome.abbreviation }}</td>
                 <td>{{ diplome.type }}</td>
                 <td>{{ diplome.estDiplomeMilitaire ? 'Oui' : 'Non' }}</td>
+                <td>{{ diplome.domaine }}</td>
+                <td>{{ diplome.niveau }}</td>
                 <td>
                     <a href="{{ path('diplomes_show', {'id': diplome.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
                     <a href="{{ path('diplomes_edit', {'id': diplome.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>

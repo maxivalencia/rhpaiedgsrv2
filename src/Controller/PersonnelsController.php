@@ -35,7 +35,7 @@ class PersonnelsController extends AbstractController
     public function index(PersonnelsRepository $personnelsRepository, PhotosRepository $photosRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $personnelsRepository->findAll(), /* query NOT result */
+            $personnelsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/
         );        

@@ -11,10 +11,12 @@
                 <th>Id</th>
                 <td>{{ personnel.id }}</td>
             </tr> #}
-            <tr>
-                {# <th>Nom</th> #}
-                <td style="width:260px;"><img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:250px;"></td>
-            </tr>
+            {% if photo %}
+                <tr>
+                    {# <th>Nom</th> #}
+                    <td style="width:260px;"><img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:250px;"></td>
+                </tr>
+            {% endif %}
             <tr>
                 <th>Nom</th>
                 <td>{{ personnel.nom }}</td>

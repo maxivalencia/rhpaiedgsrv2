@@ -22,7 +22,7 @@ class DroitsPensionsController extends AbstractController
     public function index(DroitsPensionsRepository $droitsPensionsRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $droitsPensionsRepository->findAll(), /* query NOT result */
+            $droitsPensionsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/
         );

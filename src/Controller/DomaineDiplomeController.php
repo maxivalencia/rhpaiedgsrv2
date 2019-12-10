@@ -22,7 +22,7 @@ class DomaineDiplomeController extends AbstractController
     public function index(DomaineDiplomeRepository $domaineDiplomeRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $domaineDiplomeRepository->findAll(), /* query NOT result */
+            $domaineDiplomeRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/
         );

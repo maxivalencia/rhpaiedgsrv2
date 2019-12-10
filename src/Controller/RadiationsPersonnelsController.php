@@ -22,7 +22,7 @@ class RadiationsPersonnelsController extends AbstractController
     public function index(RadiationsPersonnelsRepository $radiationsPersonnelsRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $radiationsPersonnelsRepository->findAll(), /* query NOT result */
+            $radiationsPersonnelsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/
         );

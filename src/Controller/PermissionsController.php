@@ -22,7 +22,7 @@ class PermissionsController extends AbstractController
     public function index(PermissionsRepository $permissionsRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $permissionsRepository->findAll(), /* query NOT result */
+            $permissionsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/
         );

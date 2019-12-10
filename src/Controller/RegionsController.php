@@ -22,7 +22,7 @@ class RegionsController extends AbstractController
     public function index(RegionsRepository $regionsRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $regionsRepository->findAll(), /* query NOT result */
+            $regionsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/
         );

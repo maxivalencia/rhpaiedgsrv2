@@ -21,10 +21,10 @@
             </tr>
                 <th>Diplôme</th>
                 <td>
-                    {{ diplomes_personnel.diplome }}
-                    {{ diplomes_personnel.diplome.domaine }}
-                    {{ diplomes_personnel.diplome.niveau }}
-                    {{ diplomes_personnel.diplome.estDiplomeMilitaire ? 'Oui' : 'Non' }}
+                    Intitulé du diplôme : {{ diplomes_personnel.diplome }}<br>
+                    Dans le domaine de :{{ diplomes_personnel.diplome.domaine }}<br>
+                    Au niveau de : {{ diplomes_personnel.diplome.niveau }}<br>
+                    Diplôme militaire : {{ diplomes_personnel.diplome.estDiplomeMilitaire ? 'Oui' : 'Non' }}
                 </td>
             </tr>
                 <th>Personnel</th>

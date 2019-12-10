@@ -22,7 +22,7 @@ class DecisionsPromotionsController extends AbstractController
     public function index(DecisionsPromotionsRepository $decisionsPromotionsRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $decisionsPromotionsRepository->findAll(), /* query NOT result */
+            $decisionsPromotionsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/
         ); 

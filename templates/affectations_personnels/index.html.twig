@@ -18,6 +18,7 @@
                 <th>Date de disponibilité</th>
                 <th>Reférence de disponibilité</th>
                 <th>Unité</th>
+                <th>Fonction</th>
                 <th>Motif de l'affectation</th>
                 <th>Motif de l'annulation</th>
                 <th>actions</th>
@@ -32,6 +33,7 @@
                 <td>{{ affectations_personnel.dateDisponibilite ? affectations_personnel.dateDisponibilite|date('d/m/Y') : '' }}</td>
                 <td>{{ affectations_personnel.referenceDisponibilite }}</td>
                 <td>{{ affectations_personnel.unite }}</td>
+                <td>{{ affectations_personnel.fonction }}</td>
                 {# <td>{{ affectations_personnel.dateReferenceDisponibilite ? affectations_personnel.dateReferenceDisponibilite|date('d/m/Y') : '' }}</td> #}
                 <td>{{ affectations_personnel.motifAffectation }}</td>
                 {# <td>{{ affectations_personnel.situation }}</td> #}

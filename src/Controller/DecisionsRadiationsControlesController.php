@@ -22,7 +22,7 @@ class DecisionsRadiationsControlesController extends AbstractController
     public function index(DecisionsRadiationsControlesRepository $decisionsRadiationsControlesRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $decisionsRadiationsControlesRepository->findAll(), /* query NOT result */
+            $decisionsRadiationsControlesRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/
         ); 

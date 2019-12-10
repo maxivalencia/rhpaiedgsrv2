@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Roles{% endblock %}
+
+{% block body %}
+    <h1>Liste des Roles</h1>
+    <form class="mt-2 mt-md-0 d-none d-lg-block search-input" action="#">
+        <div class="input-group">
+            <span class="input-group-addon d-flex align-items-center"><i class="icon-magnifier icons"></i></span>
+            <input type="text" name="search" class="form-control" placeholder="Search...">
+        </div>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                {# <th>Id</th> #}
+                <th>Role</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for role in roles %}
+            <tr>
+                {# <td>{{ role.id }}</td> #}
+                <td>{{ role.role }}</td>
+                <td>
+                    <a href="{{ path('roles_show', {'id': role.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('roles_edit', {'id': role.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="navigation">
+        {{ knp_pagination_render(roles) }}
+    </div>
+
+    <a href="{{ path('roles_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+{% endblock %}

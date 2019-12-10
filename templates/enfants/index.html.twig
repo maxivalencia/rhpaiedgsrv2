@@ -20,7 +20,7 @@
                 <th>Date de naissance</th>
                 <th>Lieu de naissance</th>
                 <th>Sexe</th>
-                {# <th>Qualité</th> #}
+                <th>Personnel parent</th>
                 {# <th>Est decedé</th> #}
                 {# <th>Date de decé</th> #}
                 <th>actions</th>
@@ -36,7 +36,7 @@
                 <td>{{ enfant.dateNaissance ? enfant.dateNaissance|date('d/m/Y') : '' }}</td>
                 <td>{{ enfant.lieuNaissance }}</td>
                 <td>{{ enfant.sexe ? 'Féminin' : 'Masculin' }}</td>
-                {# <td>{{ enfant.qualite }}</td> #}
+                <td>{{ enfant.personnel }}</td>
                 {# <td>{{ enfant.estDecede ? 'Oui' : 'Non' }}</td> #}
                 {# <td>{{ enfant.dateDece ? enfant.dateDece|date('d/m/Y') : '' }}</td> #}
                 <td>

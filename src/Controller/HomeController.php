@@ -19,7 +19,7 @@ class HomeController extends AbstractController
         if(!empty($_SESSION['username']))
         {
             // à remplacer par le tableau de bord quand le tableau de bord sera mise en place
-            return $this->redirectToRoute('personnels_index');
+            return $this->redirectToRoute('dash_board');
         } else 
         {
             return $this->redirectToRoute('app_login');

@@ -22,8 +22,22 @@ class DashBoardController extends AbstractController
      */
     public function index(PersonnelsRepository $personnelsRepository, PermissionsRepository $permissionsRepository, NominationsPersonnelsRepository $nominationsPersonnelsRepository, DecorationsPersonnelsRepository $decorationsPersonnelsRepository, EnfantsRepository $enfantsRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository, RadiationsPersonnelsRepository $radiationsPersonnelsRepository)
     {
+        $nbpersonnel = count($personnelsRepository->findAll());
+        $nbnomination = count($nominationsPersonnelsRepository->findAll());
+        $nbenfant = count($enfantsRepository->findAll());
+        $nbdecoration = count($decorationsPersonnelsRepository->findAll());
+        $nbpermission = count($permissionsRepository->findAll());
+        $nbaffectation = count($affectationsPersonnelsRepository->findAll());
+        $nbradiation = count($radiationsPersonnelsRepository->findAll());
         return $this->render('dash_board/index.html.twig', [
             'controller_name' => 'DashBoardController',
+            'nombre_personnels' => $nbpersonnel,
+            'nombre_nominations' => $nbnomination,
+            'nombre_enfants' => $nbenfant,
+            'nombre_decorations' => $nbdecoration,
+            'nombre_permissions' => $nbpermission,
+            'nombre_affectations' => $nbaffectation,
+            'nombre_radiations' => $nbradiation,
         ]);
     }
 }

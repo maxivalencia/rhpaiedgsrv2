@@ -38,6 +38,11 @@ class User implements UserInterface
      */
     private $rolesimple;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Personnels", inversedBy="users")
+     */
+    private $utilisateur;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -129,6 +134,18 @@ class User implements UserInterface
     public function setRolesimple(string $rolesimple): self
     {
         $this->rolesimple = strtoupper($rolesimple);
+
+        return $this;
+    }
+
+    public function getUtilisateur(): ?Personnels
+    {
+        return $this->utilisateur;
+    }
+
+    public function setUtilisateur(?Personnels $utilisateur): self
+    {
+        $this->utilisateur = $utilisateur;
 
         return $this;
     }

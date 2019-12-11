@@ -42,6 +42,9 @@ class UserType extends AbstractType
                 'first_options'  => ['label' => 'Veuillez entrer le Mot de pass de l\'utilisateur'],
                 'second_options' => ['label' => 'Veuillez repeter le mot de pass de l\'utilisateur'],
             ])
+            ->add('utilisateur', null, [
+                'label' => 'Personnel utilisateur',
+            ])
         ;
     }
 

@@ -19,6 +19,10 @@
                 <th>Roles</th>
                 <td>{{ user.rolesimple }}</td>
             </tr>
+            <tr>
+                <th>Personnel</th>
+                <td>{{ user.utilisateur }}</td>
+            </tr>
             {# <tr>
                 <th>Password</th>
                 <td>{{ user.password }}</td>
@@ -27,7 +31,7 @@
     </table>
 
     <a href="{{ path('user_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
-
+    <br>
     <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
 
     {{ include('user/_delete_form.html.twig') }}

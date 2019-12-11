@@ -179,6 +179,11 @@ class Personnels
      */
     private $radiationsPersonnels;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="utilisateur")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->nominationsPersonnels = new ArrayCollection();
@@ -193,6 +198,7 @@ class Personnels
         $this->decorationsPersonnels = new ArrayCollection();
         $this->affectationsPersonnels = new ArrayCollection();
         $this->radiationsPersonnels = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -815,6 +821,37 @@ class Personnels
             // set the owning side to null (unless already changed)
             if ($radiationsPersonnel->getPersonnel() === $this) {
                 $radiationsPersonnel->setPersonnel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            // set the owning side to null (unless already changed)
+            if ($user->getUtilisateur() === $this) {
+                $user->setUtilisateur(null);
             }
         }
 

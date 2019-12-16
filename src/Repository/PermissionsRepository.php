@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Permissions;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @method Permissions|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,23 @@ class PermissionsRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Permissions::class);
+    }
+
+    /**
+     * @return Permissions[] Returns an array of Permissions objects
+     */
+    public function indisponible()
+    {
+        $myDateTime = new \DateTime();
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.date_fin >= :val')
+            ->setParameter('val', $myDateTime)
+            ->groupBy('p.personnel')
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     // /**

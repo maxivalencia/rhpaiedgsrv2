@@ -54,9 +54,11 @@
                 {% if is_granted("ROLE_USER") %}
                     <ul class="navbar-nav ml-auto">
                         <li>
-                            {% for photo in app.user.utilisateur.photos %}                                
-                                <img src="/photos/{{ photo }}" width="45px" height="45px" alt="{{ app.user.utilisateur }}" class="brand-image img-circle elevation-3" style="opacity: .8">
-                            {% endfor %}
+                            {% set pht = '' %}
+                            {% for photo in app.user.utilisateur.photos %}  
+                                {% set pht = photo %}
+                            {% endfor %}                                
+                                <img src="/photos/{{ pht }}" width="45px" height="45px" alt="{{ app.user.utilisateur }}" class="brand-image img-circle elevation-3" style="opacity: .8">
                             {# {{ app.user.utilisateur.photos.photo }} #} {{ app.user.utilisateur }} &nbsp;
                         </li>
                         <li>
@@ -81,9 +83,11 @@
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
                         {% if is_granted("ROLE_USER") %}
-                            {% for photo in app.user.utilisateur.photos %}                                
-                                <img src="/photos/{{ photo }}" width="40px" height="40px" alt="{{ app.user.utilisateur }}" class="brand-image img-circle elevation-3" style="opacity: .8">
-                            {% endfor %}
+                            {% set pht = '' %}
+                            {% for photo in app.user.utilisateur.photos %}  
+                                {% set pht = photo %}
+                            {% endfor %}                              
+                                <img src="/photos/{{ pht }}" width="40px" height="40px" alt="{{ app.user.utilisateur }}" class="brand-image img-circle elevation-3" style="opacity: .8">
                         {% else %}
                             <img src="/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
                         {% endif %} 
@@ -202,6 +206,14 @@
                                             <i class="nav-icon far fa-image"></i>
                                             <p>
                                                 Utilisateurs
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path('logo') }}" class="nav-link">
+                                            <i class="nav-icon far fa-image"></i>
+                                            <p>
+                                                Logo
                                             </p>
                                         </a>
                                     </li>

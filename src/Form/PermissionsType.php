@@ -18,7 +18,7 @@ class PermissionsType extends AbstractType
                 'label' => 'Année',
                 'widget' => 'single_text',
                 'attr' => [
-                    'class' => 'datetimepickerannee',
+                    'class' => 'datetimepicker',
                 ],
                 'data' => new \DateTime('now'),
                 //'format' => 'MM/yyyy',

@@ -24,16 +24,19 @@ class AffectationsPersonnelsRepository extends ServiceEntityRepository
      */
     public function recherche($value)
     {
+        $valuedate = explode("/", $value);
+        $date = $valuedate[2]."-".$valuedate[1]."-".$valuedate[0];
         return $this->createQueryBuilder('a')
-            ->andWhere('a.date_affectation = :val')
-            ->orWhere('a.date_disponibilite = :val')
-            ->orWhere('a.reference_disponibilite = :val')
-            ->orWhere('a.date_reference_disponibilite = :val')
-            ->orWhere('a.motif_affectation = :val')
-            ->orWhere('a.situation = :val')
-            ->orWhere('a.motif_annulation = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
+            ->andWhere('a.date_affectation = :valdate')
+            ->orWhere('a.date_disponibilite = :valdate')
+            ->orWhere('a.reference_disponibilite LIKE :val')
+            ->orWhere('a.date_reference_disponibilite = :valdate')
+            ->orWhere('a.motif_affectation LIKE :val')
+            ->orWhere('a.situation LIKE :val')
+            ->orWhere('a.motif_annulation LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->setParameter('valdate', date_create($date))
+            ->orderBy('a.id', 'DESC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()

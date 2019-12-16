@@ -6,6 +6,7 @@ use App\Entity\Personnels;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use phpDocumentor\Reflection\Types\Integer;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @method Personnels|null find($id, $lockMode = null, $lockVersion = null)
@@ -25,18 +26,26 @@ class PersonnelsRepository extends ServiceEntityRepository
      */
     public function rechercher($value)
     {
+        $valuedate = explode("/", $value);
+        $date = $valuedate[2]."-".$valuedate[1]."-".$valuedate[0];
         return $this->createQueryBuilder('p')
             ->Where('p.nom LIKE :val')
             ->orWhere('p.prenoms LIKE :val')
+            ->orWhere('p.date_naissance = :valdate')
+            ->orWhere('p.lieu_naissance LIKE :val')
             ->orWhere('p.nom_pere LIKE :val')
             ->orWhere('p.nom_mere LIKE :val')
             ->orWhere('p.num_cin LIKE :val')
+            ->orWhere('p.date_cin = :valdate')
+            ->orWhere('p.lieu_cin LIKE :val')
             ->orWhere('p.adresse LIKE :val')
             ->orWhere('p.telephone LIKE :val')
             ->orWhere('p.telephone_ice LIKE :val')
+            ->orWhere('p.date_embauche = :valdate')
             ->orWhere('p.matricule LIKE :val')
             ->orWhere('p.numero_cnaps LIKE :val')
             ->setParameter('val', '%'.$value.'%')
+            ->setParameter('valdate', date_create($date))
             ->orderBy('p.id', 'DESC')
             //->setMaxResults(10)
             ->getQuery()

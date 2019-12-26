@@ -30,6 +30,20 @@ class UnitesController extends AbstractController
             'unites' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="unites_recherche", methods={"GET"})
+     */
+    public function recherche(UnitesRepository $unitesRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $unitesRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        ); 
+        return $this->render('unites/index.html.twig', [
+            'unites' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="unites_new", methods={"GET","POST"})

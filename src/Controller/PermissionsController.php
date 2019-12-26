@@ -30,6 +30,20 @@ class PermissionsController extends AbstractController
             'permissions' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="permissions_recherche", methods={"GET"})
+     */
+    public function recherche(PermissionsRepository $permissionsRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $permissionsRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        return $this->render('permissions/index.html.twig', [
+            'permissions' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="permissions_new", methods={"GET","POST"})

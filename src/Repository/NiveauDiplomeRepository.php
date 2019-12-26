@@ -19,6 +19,21 @@ class NiveauDiplomeRepository extends ServiceEntityRepository
         parent::__construct($registry, NiveauDiplome::class);
     }
 
+    /**
+     * @return NiveauDiplome[] Returns an array of NiveauDiplome objects
+     */
+    public function rechercher($value)
+    {
+        return $this->createQueryBuilder('n')
+            ->andWhere('n.libelle LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('n.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return NiveauDiplome[] Returns an array of NiveauDiplome objects
     //  */

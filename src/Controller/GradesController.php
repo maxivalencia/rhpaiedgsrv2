@@ -30,6 +30,20 @@ class GradesController extends AbstractController
             'grades' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="grades_recherche", methods={"GET"})
+     */
+    public function recherche(GradesRepository $gradesRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $gradesRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        return $this->render('grades/index.html.twig', [
+            'grades' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="grades_new", methods={"GET","POST"})

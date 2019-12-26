@@ -19,6 +19,21 @@ class RegionsRepository extends ServiceEntityRepository
         parent::__construct($registry, Regions::class);
     }
 
+    /**
+     * @return Regions[] Returns an array of Regions objects
+     */
+    public function rechercher($value)
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.region LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('r.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Regions[] Returns an array of Regions objects
     //  */

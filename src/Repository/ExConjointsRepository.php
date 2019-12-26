@@ -19,6 +19,31 @@ class ExConjointsRepository extends ServiceEntityRepository
         parent::__construct($registry, ExConjoints::class);
     }
 
+    /**
+     * @return ExConjoints[] Returns an array of ExConjoints objects
+     */
+    public function rechercher($value)
+    {
+        $valuedate = explode("/", $value);
+        $date = '';
+        if(!empty($valuedate[2]) && empty($valuedate[3])){
+            $date = $valuedate[2]."-".$valuedate[1]."-".$valuedate[0];
+        }
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.motif_rupture LIKE :val')
+            ->orWhere('e.date_rupture = :valdate')
+            ->orWhere('e.reference_rupture LIKE :val')
+            ->orWhere('e.date_reference_rupture = :valdate')
+            ->orWhere('e.adresse_veuve LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->setParameter('valdate', date_create($date))
+            ->orderBy('e.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return ExConjoints[] Returns an array of ExConjoints objects
     //  */

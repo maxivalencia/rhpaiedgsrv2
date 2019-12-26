@@ -22,10 +22,13 @@ class AffectationsPersonnelsRepository extends ServiceEntityRepository
     /**
      * @return AffectationsPersonnels[] Returns an array of AffectationsPersonnels objects
      */
-    public function recherche($value)
+    public function rechercher($value)
     {
         $valuedate = explode("/", $value);
-        $date = $valuedate[2]."-".$valuedate[1]."-".$valuedate[0];
+        $date = '';
+        if(!empty($valuedate[2]) && empty($valuedate[3])){
+            $date = $valuedate[2]."-".$valuedate[1]."-".$valuedate[0];
+        }        
         return $this->createQueryBuilder('a')
             ->andWhere('a.date_affectation = :valdate')
             ->orWhere('a.date_disponibilite = :valdate')
@@ -34,6 +37,7 @@ class AffectationsPersonnelsRepository extends ServiceEntityRepository
             ->orWhere('a.motif_affectation LIKE :val')
             ->orWhere('a.situation LIKE :val')
             ->orWhere('a.motif_annulation LIKE :val')
+            //->orWhere('a.personnel LIKE :val')
             ->setParameter('val', '%'.$value.'%')
             ->setParameter('valdate', date_create($date))
             ->orderBy('a.id', 'DESC')

@@ -19,6 +19,21 @@ class RolesRepository extends ServiceEntityRepository
         parent::__construct($registry, Roles::class);
     }
 
+    /**
+     * @return Roles[] Returns an array of Roles objects
+     */
+    public function rechercher($value)
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.role LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('r.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Roles[] Returns an array of Roles objects
     //  */

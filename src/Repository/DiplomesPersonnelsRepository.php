@@ -19,6 +19,28 @@ class DiplomesPersonnelsRepository extends ServiceEntityRepository
         parent::__construct($registry, DiplomesPersonnels::class);
     }
 
+    /**
+     * @return DiplomesPersonnels[] Returns an array of DiplomesPersonnels objects
+     */
+    public function rechercher($value)
+    {
+        $valuedate = explode("/", $value);
+        $date = '';
+        if(!empty($valuedate[2]) && empty($valuedate[3])){
+            $date = $valuedate[2]."-".$valuedate[1]."-".$valuedate[0];
+        } 
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.numero LIKE :val')
+            ->orWhere('d.date = :valdate')
+            ->setParameter('val', '%'.$value.'%')
+            ->setParameter('valdate', date_create($date))
+            ->orderBy('d.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return DiplomesPersonnels[] Returns an array of DiplomesPersonnels objects
     //  */

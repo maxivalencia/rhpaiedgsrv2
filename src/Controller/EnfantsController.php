@@ -30,6 +30,20 @@ class EnfantsController extends AbstractController
             'enfants' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="enfants_recherche", methods={"GET"})
+     */
+    public function recherche(EnfantsRepository $enfantsRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $enfantsRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        return $this->render('enfants/index.html.twig', [
+            'enfants' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="enfants_new", methods={"GET","POST"})

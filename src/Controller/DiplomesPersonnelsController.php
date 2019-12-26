@@ -30,6 +30,20 @@ class DiplomesPersonnelsController extends AbstractController
             'diplomes_personnels' => $pagination,
         ]);
     }
+    /**
+     * @Route("/index/recherche", name="diplomes_personnels_recherche", methods={"GET"})
+     */
+    public function recherche(DiplomesPersonnelsRepository $diplomesPersonnelsRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $diplomesPersonnelsRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        return $this->render('diplomes_personnels/index.html.twig', [
+            'diplomes_personnels' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="diplomes_personnels_new", methods={"GET","POST"})

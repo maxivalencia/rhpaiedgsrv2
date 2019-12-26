@@ -30,6 +30,20 @@ class DecisionsPromotionsController extends AbstractController
             'decisions_promotions' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="decisions_promotions_recherche", methods={"GET"})
+     */
+    public function recherche(DecisionsPromotionsRepository $decisionsPromotionsRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $decisionsPromotionsRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        ); 
+        return $this->render('decisions_promotions/index.html.twig', [
+            'decisions_promotions' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="decisions_promotions_new", methods={"GET","POST"})

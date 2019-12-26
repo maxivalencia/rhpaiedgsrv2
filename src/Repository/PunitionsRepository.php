@@ -19,6 +19,31 @@ class PunitionsRepository extends ServiceEntityRepository
         parent::__construct($registry, Punitions::class);
     }
 
+    /**
+     * @return Punitions[] Returns an array of Punitions objects
+     */
+    public function rechercher($value)
+    {
+        $valuedate = explode("/", $value);
+        $date = '';
+        if(!empty($valuedate[2]) && empty($valuedate[3])){
+            $date = $valuedate[2]."-".$valuedate[1]."-".$valuedate[0];
+        }    
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.libelle LIKE :val')
+            ->orWhere('p.reference LIKE :val')
+            ->orWhere('p.date_reference = :valdate')
+            ->orWhere('p.date_effet = :valdate')
+            ->orWhere('p.sanction LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->setParameter('valdate', date_create($date))
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Punitions[] Returns an array of Punitions objects
     //  */

@@ -19,6 +19,23 @@ class GradesRepository extends ServiceEntityRepository
         parent::__construct($registry, Grades::class);
     }
 
+    /**
+     * @return Grades[] Returns an array of Grades objects
+     */
+    public function rechercher($value)
+    {
+        return $this->createQueryBuilder('g')
+            ->andWhere('g.grade LIKE :val')
+            ->orWhere('g.abbreviation LIKE :val')
+            ->orWhere('g.rang LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('g.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Grades[] Returns an array of Grades objects
     //  */

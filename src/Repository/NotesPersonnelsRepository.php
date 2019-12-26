@@ -19,6 +19,31 @@ class NotesPersonnelsRepository extends ServiceEntityRepository
         parent::__construct($registry, NotesPersonnels::class);
     }
 
+    /**
+     * @return NotesPersonnels[] Returns an array of NotesPersonnels objects
+     */
+    public function rechercher($value)
+    {
+        $valuedate = explode("/", $value);
+        $date = '';
+        if(!empty($valuedate[2]) && empty($valuedate[3])){
+            $date = $valuedate[2]."-".$valuedate[1]."-".$valuedate[0];
+        }  
+        return $this->createQueryBuilder('n')
+            ->andWhere('n.date_note = :valdate')
+            ->orWhere('n.note LIKE :val')
+            ->orWhere('n.appreciation_global LIKE :val')
+            ->orWhere('n.reference_note LIKE :val')
+            ->orWhere('n.date_reference = :valdate')
+            ->setParameter('val', '%'.$value.'%')
+            ->setParameter('valdate', date_create($date))
+            ->orderBy('n.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return NotesPersonnels[] Returns an array of NotesPersonnels objects
     //  */

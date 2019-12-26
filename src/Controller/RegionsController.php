@@ -30,6 +30,20 @@ class RegionsController extends AbstractController
             'regions' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="regions_recherche", methods={"GET"})
+     */
+    public function recherche(RegionsRepository $regionsRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $regionsRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        return $this->render('regions/index.html.twig', [
+            'regions' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="regions_new", methods={"GET","POST"})

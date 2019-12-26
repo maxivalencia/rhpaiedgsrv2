@@ -30,6 +30,20 @@ class PunitionsController extends AbstractController
             'punitions' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="punitions_recherche", methods={"GET"})
+     */
+    public function recherche(PunitionsRepository $punitionsRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $punitionsRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        return $this->render('punitions/index.html.twig', [
+            'punitions' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="punitions_new", methods={"GET","POST"})

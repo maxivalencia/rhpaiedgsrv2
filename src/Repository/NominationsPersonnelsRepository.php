@@ -19,6 +19,31 @@ class NominationsPersonnelsRepository extends ServiceEntityRepository
         parent::__construct($registry, NominationsPersonnels::class);
     }
 
+    /**
+     * @return NominationsPersonnels[] Returns an array of NominationsPersonnels objects
+     */
+    public function rechercher($value)
+    {
+        $valuedate = explode("/", $value);
+        $date = '';
+        if(!empty($valuedate[2]) && empty($valuedate[3])){
+            $date = $valuedate[2]."-".$valuedate[1]."-".$valuedate[0];
+        }  
+        return $this->createQueryBuilder('n')
+            ->andWhere('n.date_nomination = :valdate')
+            ->orWhere('n.rang LIKE :val')
+            ->orWhere('n.echelon LIKE :val')
+            ->orWhere('n.class LIKE :val')
+            ->orWhere('n.indice LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->setParameter('valdate', date_create($date))
+            ->orderBy('n.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return NominationsPersonnels[] Returns an array of NominationsPersonnels objects
     //  */

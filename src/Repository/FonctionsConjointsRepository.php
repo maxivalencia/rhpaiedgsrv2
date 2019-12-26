@@ -19,6 +19,25 @@ class FonctionsConjointsRepository extends ServiceEntityRepository
         parent::__construct($registry, FonctionsConjoints::class);
     }
 
+    /**
+     * @return FonctionsConjoints[] Returns an array of FonctionsConjoints objects
+     */
+    public function rechercher($value)
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.libelle LIKE :val')
+            ->orWhere('f.abbreviation LIKE :val')
+            ->orWhere('f.lieu_travail LIKE :val')
+            ->orWhere('f.employeur LIKE :val')
+            ->orWhere('f.adresse_employeur LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('f.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return FonctionsConjoints[] Returns an array of FonctionsConjoints objects
     //  */

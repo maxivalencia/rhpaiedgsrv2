@@ -38,6 +38,21 @@ class UserController extends AbstractController
             'users' => $pagination,
         ]);
     }
+    
+    /**
+     * @Route("/recherche", name="user_recherche", methods={"GET"})
+     */
+    public function recherche(UserRepository $userRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $userRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        ); 
+        return $this->render('user/index.html.twig', [
+            'users' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})

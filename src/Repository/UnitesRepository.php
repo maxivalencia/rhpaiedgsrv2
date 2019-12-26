@@ -19,6 +19,25 @@ class UnitesRepository extends ServiceEntityRepository
         parent::__construct($registry, Unites::class);
     }
 
+    /**
+     * @return Unites[] Returns an array of Unites objects
+     */
+    public function rechercher($value)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.libelle LIKE :val')
+            ->orWhere('u.abbreviation LIKE :val')
+            ->orWhere('u.localite LIKE :val')
+            ->orWhere('u.email LIKE :val')
+            ->orWhere('u.phone LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('u.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Unites[] Returns an array of Unites objects
     //  */

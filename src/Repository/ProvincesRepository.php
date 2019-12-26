@@ -19,6 +19,21 @@ class ProvincesRepository extends ServiceEntityRepository
         parent::__construct($registry, Provinces::class);
     }
 
+    /**
+     * @return Provinces[] Returns an array of Provinces objects
+     */
+    public function rechercher($value)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.province LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Provinces[] Returns an array of Provinces objects
     //  */

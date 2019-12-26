@@ -30,6 +30,20 @@ class DistrictsController extends AbstractController
             'districts' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="districts_recherche", methods={"GET"})
+     */
+    public function recherche(DistrictsRepository $districtsRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $districtsRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        return $this->render('districts/index.html.twig', [
+            'districts' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="districts_new", methods={"GET","POST"})

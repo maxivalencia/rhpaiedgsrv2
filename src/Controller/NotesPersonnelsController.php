@@ -30,6 +30,21 @@ class NotesPersonnelsController extends AbstractController
             'notes_personnels' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="notes_personnels_recherche", methods={"GET"})
+     */
+    public function recherche(NotesPersonnelsRepository $notesPersonnelsRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $notesPersonnelsRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        return $this->render('notes_personnels/index.html.twig', [
+            'notes_personnels' => $pagination,
+        ]);
+    }
+
 
     /**
      * @Route("/new", name="notes_personnels_new", methods={"GET","POST"})

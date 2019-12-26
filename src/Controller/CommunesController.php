@@ -30,6 +30,20 @@ class CommunesController extends AbstractController
             'communes' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="communes_recherche", methods={"GET"})
+     */
+    public function recherche(CommunesRepository $communesRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $communesRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        ); 
+        return $this->render('communes/index.html.twig', [
+            'communes' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="communes_new", methods={"GET","POST"})

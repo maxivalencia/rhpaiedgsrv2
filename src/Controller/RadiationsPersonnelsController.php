@@ -30,6 +30,20 @@ class RadiationsPersonnelsController extends AbstractController
             'radiations_personnels' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="radiations_personnels_recherche", methods={"GET"})
+     */
+    public function recherche(RadiationsPersonnelsRepository $radiationsPersonnelsRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $radiationsPersonnelsRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        return $this->render('radiations_personnels/index.html.twig', [
+            'radiations_personnels' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="radiations_personnels_new", methods={"GET","POST"})

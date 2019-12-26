@@ -30,6 +30,20 @@ class DiplomesController extends AbstractController
             'diplomes' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="diplomes_recherche", methods={"GET"})
+     */
+    public function recherche(DiplomesRepository $diplomesRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $diplomesRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        return $this->render('diplomes/index.html.twig', [
+            'diplomes' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="diplomes_new", methods={"GET","POST"})

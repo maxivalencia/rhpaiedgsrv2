@@ -30,6 +30,20 @@ class ProvincesController extends AbstractController
             'provinces' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="provinces_recherche", methods={"GET"})
+     */
+    public function recherche(ProvincesRepository $provincesRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $provincesRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        return $this->render('provinces/index.html.twig', [
+            'provinces' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="provinces_new", methods={"GET","POST"})

@@ -19,6 +19,21 @@ class DistrictsRepository extends ServiceEntityRepository
         parent::__construct($registry, Districts::class);
     }
 
+    /**
+     * @return Districts[] Returns an array of Districts objects
+     */
+    public function rechercher($value)
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.district LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('d.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Districts[] Returns an array of Districts objects
     //  */

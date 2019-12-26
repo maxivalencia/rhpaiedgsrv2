@@ -19,6 +19,23 @@ class CommunesRepository extends ServiceEntityRepository
         parent::__construct($registry, Communes::class);
     }
 
+    /**
+     * @return Communes[] Returns an array of Communes objects
+     */    
+    public function rechercher($value)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.commune LIKE :val')
+            //->orWhere('c.type = :val')
+            //->orWhere('c.district = :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('c.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Communes[] Returns an array of Communes objects
     //  */

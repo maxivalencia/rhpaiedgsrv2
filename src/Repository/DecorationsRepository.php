@@ -19,6 +19,23 @@ class DecorationsRepository extends ServiceEntityRepository
         parent::__construct($registry, Decorations::class);
     }
 
+    /**
+     * @return Decorations[] Returns an array of Decorations objects
+     */
+    public function rechercher($value)
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.libelle LIKE :val')
+            ->orWhere('d.abbreviation LIKE :val')
+            ->orWhere('d.ordre LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('d.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Decorations[] Returns an array of Decorations objects
     //  */

@@ -19,6 +19,23 @@ class DiplomesRepository extends ServiceEntityRepository
         parent::__construct($registry, Diplomes::class);
     }
 
+    /**
+     * @return Diplomes[] Returns an array of Diplomes objects
+     */
+    public function rechercher($value)
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.libelle LIKE :val')
+            ->orWhere('d.abbreviation LIKE :val')
+            ->orWhere('d.type LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('d.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Diplomes[] Returns an array of Diplomes objects
     //  */

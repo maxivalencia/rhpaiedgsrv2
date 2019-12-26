@@ -30,6 +30,20 @@ class NiveauDiplomeController extends AbstractController
             'niveau_diplomes' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="niveau_diplome_recherche", methods={"GET"})
+     */
+    public function recherche(NiveauDiplomeRepository $niveauDiplomeRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $niveauDiplomeRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        return $this->render('niveau_diplome/index.html.twig', [
+            'niveau_diplomes' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="niveau_diplome_new", methods={"GET","POST"})

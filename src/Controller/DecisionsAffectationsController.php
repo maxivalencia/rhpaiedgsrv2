@@ -30,6 +30,20 @@ class DecisionsAffectationsController extends AbstractController
             'decisions_affectations' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="decisions_affectations_recherche", methods={"GET"})
+     */
+    public function recherche(DecisionsAffectationsRepository $decisionsAffectationsRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $decisionsAffectationsRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        ); 
+        return $this->render('decisions_affectations/index.html.twig', [
+            'decisions_affectations' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="decisions_affectations_new", methods={"GET","POST"})

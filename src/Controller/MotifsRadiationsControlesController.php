@@ -30,6 +30,20 @@ class MotifsRadiationsControlesController extends AbstractController
             'motifs_radiations_controles' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="motifs_radiations_controles_recherche", methods={"GET"})
+     */
+    public function recherche(MotifsRadiationsControlesRepository $motifsRadiationsControlesRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $motifsRadiationsControlesRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        return $this->render('motifs_radiations_controles/index.html.twig', [
+            'motifs_radiations_controles' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="motifs_radiations_controles_new", methods={"GET","POST"})

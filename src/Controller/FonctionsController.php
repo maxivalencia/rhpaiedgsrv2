@@ -30,6 +30,20 @@ class FonctionsController extends AbstractController
             'fonctions' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="fonctions_recherche", methods={"GET"})
+     */
+    public function recherche(FonctionsRepository $fonctionsRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $fonctionsRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        return $this->render('fonctions/index.html.twig', [
+            'fonctions' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="fonctions_new", methods={"GET","POST"})

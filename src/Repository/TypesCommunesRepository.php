@@ -19,6 +19,21 @@ class TypesCommunesRepository extends ServiceEntityRepository
         parent::__construct($registry, TypesCommunes::class);
     }
 
+    /**
+     * @return TypesCommunes[] Returns an array of TypesCommunes objects
+     */
+    public function rechercher($value)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.type LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('t.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return TypesCommunes[] Returns an array of TypesCommunes objects
     //  */

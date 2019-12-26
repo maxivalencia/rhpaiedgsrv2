@@ -19,6 +19,33 @@ class EnfantsRepository extends ServiceEntityRepository
         parent::__construct($registry, Enfants::class);
     }
 
+    /**
+     * @return Enfants[] Returns an array of Enfants objects
+     */
+    public function rechercher($value)
+    {
+        $valuedate = explode("/", $value);
+        $date = '';
+        if(!empty($valuedate[2]) && empty($valuedate[3])){
+            $date = $valuedate[2]."-".$valuedate[1]."-".$valuedate[0];
+        }
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.rang LIKE :val')
+            ->orWhere('e.nom LIKE :val')
+            ->orWhere('e.prenom LIKE :val')
+            ->orWhere('e.date_naissance = :valdate')
+            ->orWhere('e.lieu_naissance LIKE :val')
+            ->orWhere('e.qualite LIKE :val')
+            ->orWhere('e.date_dece = :valdate')
+            ->setParameter('val', '%'.$value.'%')
+            ->setParameter('valdate', date_create($date))
+            ->orderBy('e.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Enfants[] Returns an array of Enfants objects
     //  */

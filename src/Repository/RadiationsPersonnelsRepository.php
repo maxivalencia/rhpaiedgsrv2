@@ -19,6 +19,32 @@ class RadiationsPersonnelsRepository extends ServiceEntityRepository
         parent::__construct($registry, RadiationsPersonnels::class);
     }
 
+    /**
+     * @return RadiationsPersonnels[] Returns an array of RadiationsPersonnels objects
+     */
+    public function rechercher($value)
+    {
+        $valuedate = explode("/", $value);
+        $date = '';
+        if(!empty($valuedate[2]) && empty($valuedate[3])){
+            $date = $valuedate[2]."-".$valuedate[1]."-".$valuedate[0];
+        } 
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.date_notification = :valdate')
+            ->orWhere('r.lieu_repli LIKE :val')
+            ->orWhere('r.date_radiation = :valdate')
+            ->orWhere('r.date_prevu_radiation = :valdate')
+            ->orWhere('r.reference_mrc_radiation =LIKE :val')
+            ->orWhere('r.date_mrc_radiation = :valdate')
+            ->setParameter('val', '%'.$value.'%')
+            ->setParameter('valdate', date_create($date))
+            ->orderBy('r.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return RadiationsPersonnels[] Returns an array of RadiationsPersonnels objects
     //  */

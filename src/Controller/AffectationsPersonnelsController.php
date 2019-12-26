@@ -37,7 +37,7 @@ class AffectationsPersonnelsController extends AbstractController
     public function recherche(AffectationsPersonnelsRepository $affectationsPersonnelsRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $affectationsPersonnelsRepository->recherche($request->query->get('search')), /* query NOT result */
+            $affectationsPersonnelsRepository->rechercher($request->query->get('search')), /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/
         ); 

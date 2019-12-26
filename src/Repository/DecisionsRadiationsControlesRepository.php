@@ -19,6 +19,30 @@ class DecisionsRadiationsControlesRepository extends ServiceEntityRepository
         parent::__construct($registry, DecisionsRadiationsControles::class);
     }
 
+    /**
+     * @return DecisionsRadiationsControles[] Returns an array of DecisionsRadiationsControles objects
+     */
+    public function rechercher($value)
+    {
+        $valuedate = explode("/", $value);
+        $date = '';
+        if(!empty($valuedate[2]) && empty($valuedate[3])){
+            $date = $valuedate[2]."-".$valuedate[1]."-".$valuedate[0];
+        }
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.reference_decision LIKE :val')
+            ->orWhere('d.date_reference = :valdate')
+            ->orWhere('d.reference_journal_officiel LIKE :val')
+            ->orWhere('d.date_journal_officiel = :valdate')
+            ->setParameter('val', '%'.$value.'%')
+            ->setParameter('valdate', date_create($date))
+            ->orderBy('d.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return DecisionsRadiationsControles[] Returns an array of DecisionsRadiationsControles objects
     //  */

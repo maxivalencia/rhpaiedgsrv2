@@ -30,6 +30,20 @@ class TypesContratsController extends AbstractController
             'types_contrats' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="types_contrats_recherche", methods={"GET"})
+     */
+    public function recherche(TypesContratsRepository $typesContratsRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $typesContratsRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        ); 
+        return $this->render('types_contrats/index.html.twig', [
+            'types_contrats' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="types_contrats_new", methods={"GET","POST"})

@@ -19,6 +19,23 @@ class FonctionsRepository extends ServiceEntityRepository
         parent::__construct($registry, Fonctions::class);
     }
 
+    /**
+     * @return Fonctions[] Returns an array of Fonctions objects
+     */
+    public function rechercher($value)
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.libelle LIKE :val')
+            ->orWhere('f.abbreviation LIKE :val')
+            ->orWhere('f.hierarchie LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('f.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Fonctions[] Returns an array of Fonctions objects
     //  */

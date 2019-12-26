@@ -30,6 +30,20 @@ class DecorationsPersonnelsController extends AbstractController
             'decorations_personnels' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="decorations_personnels_recherche", methods={"GET"})
+     */
+    public function recherche(DecorationsPersonnelsRepository $decorationsPersonnelsRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $decorationsPersonnelsRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        return $this->render('decorations_personnels/index.html.twig', [
+            'decorations_personnels' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="decorations_personnels_new", methods={"GET","POST"})

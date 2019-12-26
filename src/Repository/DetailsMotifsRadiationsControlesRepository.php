@@ -19,6 +19,21 @@ class DetailsMotifsRadiationsControlesRepository extends ServiceEntityRepository
         parent::__construct($registry, DetailsMotifsRadiationsControles::class);
     }
 
+    /**
+     * @return DetailsMotifsRadiationsControles[] Returns an array of DetailsMotifsRadiationsControles objects
+     */
+    public function rechercher($value)
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.detail_motif_radiation LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('d.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return DetailsMotifsRadiationsControles[] Returns an array of DetailsMotifsRadiationsControles objects
     //  */

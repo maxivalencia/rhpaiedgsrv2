@@ -19,6 +19,21 @@ class PhotosRepository extends ServiceEntityRepository
         parent::__construct($registry, Photos::class);
     }
 
+    /**
+     * @return Photos[] Returns an array of Photos objects
+     */
+    public function rechercher($value)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.photo LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Photos[] Returns an array of Photos objects
     //  */

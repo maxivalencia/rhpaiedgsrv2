@@ -19,6 +19,21 @@ class DomaineDiplomeRepository extends ServiceEntityRepository
         parent::__construct($registry, DomaineDiplome::class);
     }
 
+    /**
+     * @return DomaineDiplome[] Returns an array of DomaineDiplome objects
+     */
+    public function rechercher($value)
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.libelle LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('d.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return DomaineDiplome[] Returns an array of DomaineDiplome objects
     //  */

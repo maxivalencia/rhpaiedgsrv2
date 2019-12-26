@@ -19,6 +19,21 @@ class TypesContratsRepository extends ServiceEntityRepository
         parent::__construct($registry, TypesContrats::class);
     }
 
+    /**
+     * @return TypesContrats[] Returns an array of TypesContrats objects
+     */
+    public function rechercher($value)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.type LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('t.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return TypesContrats[] Returns an array of TypesContrats objects
     //  */

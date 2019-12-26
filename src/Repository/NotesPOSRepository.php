@@ -19,6 +19,33 @@ class NotesPOSRepository extends ServiceEntityRepository
         parent::__construct($registry, NotesPOS::class);
     }
 
+    /**
+     * @return NotesPOS[] Returns an array of NotesPOS objects
+     */
+    public function rechercher($value)
+    {
+        $valuedate = explode("/", $value);
+        $date = '';
+        if(!empty($valuedate[2]) && empty($valuedate[3])){
+            $date = $valuedate[2]."-".$valuedate[1]."-".$valuedate[0];
+        } 
+        return $this->createQueryBuilder('n')
+            ->andWhere('n.annee = :valdate')
+            ->orWhere('n.qf LIKE :val')
+            ->orWhere('n.vet LIKE :val')
+            ->orWhere('n.ags LIKE :val')
+            ->orWhere('n.niveau LIKE :val')
+            ->orWhere('n.potentiel LIKE :val')
+            ->orWhere('n.appreciation_complet LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->setParameter('valdate', date_create($date))
+            ->orderBy('n.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return NotesPOS[] Returns an array of NotesPOS objects
     //  */

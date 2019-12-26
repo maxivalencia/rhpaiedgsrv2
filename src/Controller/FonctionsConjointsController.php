@@ -30,6 +30,20 @@ class FonctionsConjointsController extends AbstractController
             'fonctions_conjoints' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="fonctions_conjoints_recherche", methods={"GET"})
+     */
+    public function recherche(FonctionsConjointsRepository $fonctionsConjointsRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $fonctionsConjointsRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        return $this->render('fonctions_conjoints/index.html.twig', [
+            'fonctions_conjoints' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="fonctions_conjoints_new", methods={"GET","POST"})

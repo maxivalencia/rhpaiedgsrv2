@@ -30,6 +30,20 @@ class RolesController extends AbstractController
             'roles' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="roles_recherche", methods={"GET"})
+     */
+    public function recherche(RolesRepository $rolesRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $rolesRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        ); 
+        return $this->render('roles/index.html.twig', [
+            'roles' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="roles_new", methods={"GET","POST"})

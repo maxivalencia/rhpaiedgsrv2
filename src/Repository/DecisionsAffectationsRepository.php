@@ -19,6 +19,29 @@ class DecisionsAffectationsRepository extends ServiceEntityRepository
         parent::__construct($registry, DecisionsAffectations::class);
     }
 
+    /**
+     * @return DecisionsAffectations[] Returns an array of DecisionsAffectations objects
+     */
+    public function rechercher($value)
+    {
+        $valuedate = explode("/", $value);
+        $date = '';
+        if(!empty($valuedate[2]) && empty($valuedate[3])){
+            $date = $valuedate[2]."-".$valuedate[1]."-".$valuedate[0];
+        }
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.reference_decision LIKE :val')
+            ->orWhere('d.date_decision = :valdate')
+            ->orWhere('d.genre LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->setParameter('valdate', date_create($date))
+            ->orderBy('d.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return DecisionsAffectations[] Returns an array of DecisionsAffectations objects
     //  */

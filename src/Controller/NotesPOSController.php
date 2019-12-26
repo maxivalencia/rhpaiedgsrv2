@@ -30,6 +30,20 @@ class NotesPOSController extends AbstractController
             'notes_p_o_ss' => $pagination,
         ]);
     }
+    /**
+     * @Route("/recherche", name="notes_p_o_s_recherche", methods={"GET"})
+     */
+    public function recherche(NotesPOSRepository $notesPOSRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $notesPOSRepository->rechercher($request->query->get('search')), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        return $this->render('notes_pos/index.html.twig', [
+            'notes_p_o_ss' => $pagination,
+        ]);
+    }
 
     /**
      * @Route("/new", name="notes_p_o_s_new", methods={"GET","POST"})

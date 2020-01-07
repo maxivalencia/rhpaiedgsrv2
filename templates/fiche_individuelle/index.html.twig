@@ -52,9 +52,22 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </td>
                 <td width="200" align="center" valign="top">
-                    Antananarivo, le {{ "now"|date('d M Y') }}
-                    {# Antananarivo, le {{ "now"|localizeddate('none', 'none', 'fr', null, 'd MMMM Y') }} #}
-                    {# Antananarivo, le {{ "now"|format_datetime('full', 'full', locale='fr') }} #}
+                    {% set trans_day_hash = { 
+                            "January": "Janvier", 
+                            "February": "Février", 
+                            "March": "Mars", 
+                            "April": "Avril", 
+                            "May": "Mai", 
+                            "June": "Juin", 
+                            "July": "Juillet",
+                            "August": "Août",
+                            "September": "Septembre",
+                            "October": "Octobre",
+                            "November": "Novembre",
+                            "December": "Decembre" 
+                        } 
+                    %}
+                    Antananarivo, le {{ "now"|date('d') }} {{ trans_day_hash["now"|date('F')] }} {{ "now"|date('Y') }}
                     <br><br>--------------------------<br><br>
                     REPOBLIKAN’I MADAGASIKARA<br>
                     Fitiavana-Tanindrazana-Fandrosoana
@@ -377,8 +390,23 @@
         <table style="font-size:12px;">
             <tr>
                 <td width="400px"> </td>
-                <td align="center">
-                    A Antananarivo, le {{ "now"|date('d M Y') }}<br>
+                <td align="center">                    
+                    {% set trans_day_hash = { 
+                            "January": "Janvier", 
+                            "February": "Février", 
+                            "March": "Mars", 
+                            "April": "Avril", 
+                            "May": "Mai", 
+                            "June": "Juin", 
+                            "July": "Juillet",
+                            "August": "Août",
+                            "September": "Septembre",
+                            "October": "Octobre",
+                            "November": "Novembre",
+                            "December": "Decembre"
+                        } 
+                    %}
+                    A Antananarivo, le {{ "now"|date('d') }} {{ trans_day_hash["now"|date('F')] }} {{ "now"|date('Y') }}<br>
                     Service des ressources humaines
                 </td>
             </tr>

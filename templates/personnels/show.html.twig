@@ -132,7 +132,7 @@
             {% endfor %}
         {% else %}
             <tr>
-                <td colspan="19">Aucun enregistrement trouvé</td>
+                <td colspan="7">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -147,6 +147,7 @@
                 <th>Date de naissance</th>
                 <th>Lieu de naissance</th>
                 <th>Sexe</th>
+                <th>Observation</th>
             </tr>
         </thead>
         <tbody>
@@ -157,62 +158,69 @@
                 <td>{{ enfant.dateNaissance ? enfant.dateNaissance|date('d/m/Y') : '' }}</td>
                 <td>{{ enfant.lieuNaissance }}</td>
                 <td>{{ enfant.sexe ? 'Féminin' : 'Masculin' }}</td>
+                <td>{{ enfant.estDecede ? 'est décédé le ' ~ enfant.dateDece|date('d/m/Y') : 'Aucune observation' }}</td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="11">Aucun enregistrement trouvé</td>
+                <td colspan="6">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <h2>Affectation(s)</h2>
+    <h2>Affectation(s) successive</h2>
     <table class="table">
         <thead>
             <tr>
-                <th>Date d'affectation</th>
-                <th>Date de disponibilité</th>
-                <th>Reférence de disponibilité</th>
-                <th>Unité</th>
-                <th>Motif de l'affectation</th>
-                <th>Motif de l'annulation</th>
+                <th>Unité <br>d'affectation</th>
+                <th>Reférence <br>d'affectation</th>
+                <th>Date <br>d'affectation</th>
+                <th>Motif de <br>l'affectation</th>
+                <th>Date de <br>disponibilité</th>
+                <th>Reférence de <br>disponibilité</th>
+                <th>Motif de <br>l'annulation</th>
+                <th>Fonction</th>
             </tr>
         </thead>
         <tbody>
         {% for affectations_personnel in affectations %}
             <tr>
+                <td>{{ affectations_personnel.unite }}</td>
+                <td>{{ affectations_personnel.decisionAffectation }}</td>
                 <td>{{ affectations_personnel.dateAffectation ? affectations_personnel.dateAffectation|date('d/m/Y') : '' }}</td>
                 <td>{{ affectations_personnel.dateDisponibilite ? affectations_personnel.dateDisponibilite|date('d/m/Y') : '' }}</td>
                 <td>{{ affectations_personnel.referenceDisponibilite }}</td>
-                <td>{{ affectations_personnel.unite }}</td>
                 <td>{{ affectations_personnel.motifAffectation }}</td>
                 <td>{{ affectations_personnel.motifAnnulation }}</td>
+                <td>{{ affectations_personnel.fonction }}</td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">Aucun enregistrement trouvé</td>
+                <td colspan="8">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <h2>Nomination(s)</h2>
+    <h2>Nomination(s) successive</h2>
     <table class="table">
         <thead>
             <tr>
-                <th>Date de nomination</th>
                 <th>Grade</th>
+                <th>Reférence</th>
+                <th>Date de nomination</th>
             </tr>
         </thead>
         <tbody>
         {% for nominations_personnel in nominations %}
             <tr>
-                <td>{{ nominations_personnel.dateNomination ? nominations_personnel.dateNomination|date('d/m/Y') : '' }}</td>
                 <td>{{ nominations_personnel.grade }}</td>
+                <td>{{ nominations_personnel.decision }}</td>
+                <td>{{ nominations_personnel.dateNomination ? nominations_personnel.dateNomination|date('d/m/Y') : '' }}</td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">Aucun enregistrement trouvé</td>
+                <td colspan="3">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -222,45 +230,45 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Diplôme</th>
                 <th>Numéro</th>
                 <th>Date</th>
-                <th>Diplôme</th>
             </tr>
         </thead>
         <tbody>
         {% for diplomes_personnel in diplomes %}
             <tr>
+                <td>{{ diplomes_personnel.diplome }}</td>
                 <td>{{ diplomes_personnel.numero }}</td>
                 <td>{{ diplomes_personnel.date ? diplomes_personnel.date|date('d/m/Y') : '' }}</td>
-                <td>{{ diplomes_personnel.diplome }}</td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">Aucun enregistrement trouvé</td>
+                <td colspan="3">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <h2>Décoration(s)</h2>
+    <h2>Décoration(s) successive</h2>
     <table class="table">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Reférence</th>
                 <th>Décoration</th>
+                <th>Reférence</th>
+                <th>Date</th>
             </tr>
         </thead>
         <tbody>
         {% for decorations_personnel in decorations %}
             <tr>
-                <td>{{ decorations_personnel.date ? decorations_personnel.date|date('d/m/Y') : '' }}</td>
-                <td>{{ decorations_personnel.reference }}</td>
                 <td>{{ decorations_personnel.decoration }}</td>
+                <td>{{ decorations_personnel.reference }}</td>
+                <td>{{ decorations_personnel.date ? decorations_personnel.date|date('d/m/Y') : '' }}</td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">Aucun enregistrement trouvé</td>
+                <td colspan="3">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>

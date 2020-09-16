@@ -261,6 +261,7 @@
                             <th align="center" width="75px" style="border:1px solid black;border-collapse:collapse;">Date de naissance</th>
                             <th align="center" width="150px" style="border:1px solid black;border-collapse:collapse;">Lieu de naissance</th>
                             <th align="center" width="50px" style="border:1px solid black;border-collapse:collapse;">Sexe</th>
+                            <th align="center" width="50px" style="border:1px solid black;border-collapse:collapse;">Observation</th>
                         </tr>
                     </thead>
                     <tbody style="border:1px solid black;border-collapse:collapse;">
@@ -270,62 +271,69 @@
                             <td style="border:1px solid black;border-collapse:collapse;">{{ enfant.dateNaissance ? enfant.dateNaissance|date('d/m/Y') : '' }}</td>
                             <td style="border:1px solid black;border-collapse:collapse;">{{ enfant.lieuNaissance }}</td>
                             <td style="border:1px solid black;border-collapse:collapse;">{{ enfant.sexe ? 'Féminin' : 'Masculin' }}</td>
+                            <td style="border:1px solid black;border-collapse:collapse;">{{ enfant.estDecede ? 'est décédé le ' ~ enfant.dateDece|date('d/m/Y') : 'Aucune observation' }}</td>
                         </tr>
                     {% else %}
                         <tr style="border:1px solid black;border-collapse:collapse;">
-                            <td colspan="4" style="border:1px solid black;border-collapse:collapse;">Aucun enfant</td>
+                            <td colspan="5" style="border:1px solid black;border-collapse:collapse;">Aucun enfant</td>
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
             <br>
-            <div align="center"><strong><u>AFFECTATIONS</u></strong></div>
+            <div align="center"><strong><u>AFFECTATIONS SUCCESSIVES</u></strong></div>
                 <br>
                 <table class="table"  style="border:1px solid black;border-collapse:collapse;">
                     <thead style="border:1px solid black;border-collapse:collapse;">
                         <tr style="border:1px solid black;border-collapse:collapse;">
+                            <th align="center" width="75px" style="border:1px solid black;border-collapse:collapse;">Unité <br>d'affectation</th>
+                            <th align="center" width="75px" style="border:1px solid black;border-collapse:collapse;">Reférence <br>d'affectation</th>
                             <th align="center" width="75px" style="border:1px solid black;border-collapse:collapse;">Date <br>d'affectation</th>
+                            <th align="center" width="100px" style="border:1px solid black;border-collapse:collapse;">Motif de <br>l'affectation</th>
                             <th align="center" width="75px" style="border:1px solid black;border-collapse:collapse;">Date de <br>disponibilité</th>
-                            <th align="center" width="125px" style="border:1px solid black;border-collapse:collapse;">Reférence de <br>disponibilité</th>
-                            <th align="center" width="75px" style="border:1px solid black;border-collapse:collapse;">Unité</th>
-                            <th align="center" width="145px" style="border:1px solid black;border-collapse:collapse;">Motif de <br>l'affectation</th>
-                            <th align="center" width="145px" style="border:1px solid black;border-collapse:collapse;">Motif de <br>l'annulation</th>
+                            <th align="center" width="100px" style="border:1px solid black;border-collapse:collapse;">Reférence de <br>disponibilité</th>
+                            <th align="center" width="100px" style="border:1px solid black;border-collapse:collapse;">Motif de <br>l'annulation</th>
+                            <th align="center" width="75px" style="border:1px solid black;border-collapse:collapse;">Fonction</th>
                         </tr>
                     </thead>
                     <tbody style="border:1px solid black;border-collapse:collapse;">
                     {% for affectations_personnel in affectations %}
                         <tr style="border:1px solid black;border-collapse:collapse;">
+                            <td style="border:1px solid black;border-collapse:collapse;">{{ affectations_personnel.unite }}</td>
+                            <td style="border:1px solid black;border-collapse:collapse;">{{ affectations_personnel.decisionAffectation }}</td>
                             <td style="border:1px solid black;border-collapse:collapse;">{{ affectations_personnel.dateAffectation ? affectations_personnel.dateAffectation|date('d/m/Y') : '' }}</td>
                             <td style="border:1px solid black;border-collapse:collapse;">{{ affectations_personnel.dateDisponibilite ? affectations_personnel.dateDisponibilite|date('d/m/Y') : '' }}</td>
                             <td style="border:1px solid black;border-collapse:collapse;">{{ affectations_personnel.referenceDisponibilite }}</td>
-                            <td style="border:1px solid black;border-collapse:collapse;">{{ affectations_personnel.unite }}</td>
                             <td style="border:1px solid black;border-collapse:collapse;">{{ affectations_personnel.motifAffectation }}</td>
                             <td style="border:1px solid black;border-collapse:collapse;">{{ affectations_personnel.motifAnnulation }}</td>
+                            <td style="border:1px solid black;border-collapse:collapse;">{{ affectations_personnel.fonction }}</td>
                         </tr>
                     {% else %}
                         <tr style="border:1px solid black;border-collapse:collapse;">
-                            <td colspan="6" style="border:1px solid black;border-collapse:collapse;">Aucune affectation</td>
+                            <td colspan="8" style="border:1px solid black;border-collapse:collapse;">Aucune affectation</td>
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
             <br>
-            <div align="center"><strong><u>NOMINATIONS</u></strong></div>
+            <div align="center"><strong><u>NOMINATIONS SUCCESSIVES</u></strong></div>
                 <br>
                 <table class="table" style="border:1px solid black;border-collapse:collapse;">
                     <thead style="border:1px solid black;border-collapse:collapse;">
                         <tr style="border:1px solid black;border-collapse:collapse;">
-                            <th align="center" width="250px" style="border:1px solid black;border-collapse:collapse;">Date de nomination</th>
-                            <th align="center" width="300px" style="border:1px solid black;border-collapse:collapse;">Grade</th>
-                            <th align="center" width="100px" style="border:1px solid black;border-collapse:collapse;">Indice</th>
+                            <th align="center" width="275px" style="border:1px solid black;border-collapse:collapse;">Grade</th>
+                            <th align="center" width="300px" style="border:1px solid black;border-collapse:collapse;">Reférence</th>
+                            <th align="center" width="100px" style="border:1px solid black;border-collapse:collapse;">Date de nomination</th>
+                            {# <th align="center" width="100px" style="border:1px solid black;border-collapse:collapse;">Indice</th> #}
                         </tr>
                     </thead>
                     <tbody style="border:1px solid black;border-collapse:collapse;">
                     {% for nominations_personnel in nominations %}
                         <tr style="border:1px solid black;border-collapse:collapse;">
-                            <td style="border:1px solid black;border-collapse:collapse;">{{ nominations_personnel.dateNomination ? nominations_personnel.dateNomination|date('d/m/Y') : '' }}</td>
                             <td style="border:1px solid black;border-collapse:collapse;">{{ nominations_personnel.grade }}</td>
-                            <td style="border:1px solid black;border-collapse:collapse;">{{ nominations_personnel.indice }}</td>
+                            <td style="border:1px solid black;border-collapse:collapse;">{{ nominations_personnel.decision }}</td>
+                            <td style="border:1px solid black;border-collapse:collapse;">{{ nominations_personnel.dateNomination ? nominations_personnel.dateNomination|date('d/m/Y') : '' }}</td>
+                            {# <td style="border:1px solid black;border-collapse:collapse;">{{ nominations_personnel.indice }}</td> #}
                         </tr>
                     {% else %}
                         <tr>
@@ -335,22 +343,22 @@
                     </tbody>
                 </table>
             <br>
-            <div align="center"><strong><u>DECORATIONS</u></strong></div>
+            <div align="center"><strong><u>DECORATIONS SUCCESSIVES</u></strong></div>
                 <br>
                 <table class="table" style="border:1px solid black;border-collapse:collapse;">
                     <thead style="border:1px solid black;border-collapse:collapse;">
                         <tr style="border:1px solid black;border-collapse:collapse;">
-                            <th align="center" width="75px" style="border:1px solid black;border-collapse:collapse;">Date</th>
-                            <th align="center" width="300px" style="border:1px solid black;border-collapse:collapse;">Reférence</th>
                             <th align="center" width="275px" style="border:1px solid black;border-collapse:collapse;">Décoration</th>
+                            <th align="center" width="300px" style="border:1px solid black;border-collapse:collapse;">Reférence</th>
+                            <th align="center" width="100px" style="border:1px solid black;border-collapse:collapse;">Date</th>
                         </tr>
                     </thead>
                     <tbody style="border:1px solid black;border-collapse:collapse;">
                     {% for decorations_personnel in decorations %}
                         <tr style="border:1px solid black;border-collapse:collapse;">
-                            <td style="border:1px solid black;border-collapse:collapse;">{{ decorations_personnel.date ? decorations_personnel.date|date('d/m/Y') : '' }}</td>
-                            <td style="border:1px solid black;border-collapse:collapse;">{{ decorations_personnel.reference }}</td>
                             <td style="border:1px solid black;border-collapse:collapse;">{{ decorations_personnel.decoration }}</td>
+                            <td style="border:1px solid black;border-collapse:collapse;">{{ decorations_personnel.reference }}</td>
+                            <td style="border:1px solid black;border-collapse:collapse;">{{ decorations_personnel.date ? decorations_personnel.date|date('d/m/Y') : '' }}</td>
                         </tr>
                     {% else %}
                         <tr style="border:1px solid black;border-collapse:collapse;">
@@ -365,17 +373,17 @@
                 <table class="table" style="border:1px solid black;border-collapse:collapse;">
                     <thead style="border:1px solid black;border-collapse:collapse;">
                         <tr style="border:1px solid black;border-collapse:collapse;">
-                            <th align="center" width="300px" style="border:1px solid black;border-collapse:collapse;">Numéro</th>
-                            <th align="center" width="75px" style="border:1px solid black;border-collapse:collapse;">Date</th>
                             <th align="center" width="275px" style="border:1px solid black;border-collapse:collapse;">Diplôme</th>
+                            <th align="center" width="300px" style="border:1px solid black;border-collapse:collapse;">Numéro</th>
+                            <th align="center" width="100px" style="border:1px solid black;border-collapse:collapse;">Date</th>
                         </tr>
                     </thead>
                     <tbody style="border:1px solid black;border-collapse:collapse;">
                     {% for diplomes_personnel in diplomes %}
                         <tr style="border:1px solid black;border-collapse:collapse;">
+                            <td style="border:1px solid black;border-collapse:collapse;">{{ diplomes_personnel.diplome }}</td>
                             <td style="border:1px solid black;border-collapse:collapse;">{{ diplomes_personnel.numero }}</td>
                             <td style="border:1px solid black;border-collapse:collapse;">{{ diplomes_personnel.date ? diplomes_personnel.date|date('d/m/Y') : '' }}</td>
-                            <td style="border:1px solid black;border-collapse:collapse;">{{ diplomes_personnel.diplome }}</td>
                         </tr>
                     {% else %}
                         <tr style="border:1px solid black;border-collapse:collapse;">

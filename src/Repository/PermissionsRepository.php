@@ -56,7 +56,7 @@ class PermissionsRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->andWhere('p.date_fin >= :val')
             ->setParameter('val', $myDateTime)
-            ->groupBy('p.personnel')
+            //->groupBy('p.personnel')
             ->orderBy('p.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()

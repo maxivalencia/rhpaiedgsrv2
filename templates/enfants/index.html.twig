@@ -37,7 +37,7 @@
                 <td>{{ enfant.lieuNaissance }}</td>
                 <td>{{ enfant.sexe ? 'Féminin' : 'Masculin' }}</td>
                 <td>{{ enfant.personnel }}</td>
-                <td>{{ enfant.estDecede ? 'est décédé le ' enfant.dateDece|date('d/m/Y') : 'Aucune observation' }}</td>
+                <td>{{ enfant.estDecede ? 'est décédé le ' + enfant.dateDece|date('d/m/Y') : 'Aucune observation' }}</td>
                 {# <td>{{ enfant.dateDece ? enfant.dateDece|date('d/m/Y') : '' }}</td> #}
                 <td>
                     <a href="{{ path('enfants_show', {'id': enfant.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>

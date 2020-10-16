@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Personnels;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Validator\Constraints\DateTime;
 

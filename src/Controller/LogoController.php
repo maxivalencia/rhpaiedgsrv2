@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints\File;
 class LogoController extends AbstractController
 {
     /**
-     * @Route("/logo", name="logo")
+     * @Route("/slogo", name="logo")
      */
     public function index(Request $request)
     {

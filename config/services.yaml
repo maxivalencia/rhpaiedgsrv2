@@ -5,8 +5,10 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
-    photo: '%kernel.project_dir%/public/photos'
-    logo: '%kernel.project_dir%/public/dist/images'
+    photo: '%kernel.project_dir%/public/photos/'
+    logo: '%kernel.project_dir%/public/dist/images/'
+    photos: 'photos/'
+    logos: 'dist/images/'
 
 services:
     # default configuration for services in *this* file
@@ -28,3 +30,7 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # the `white_october.tcpdf` service will be injected when a
+    # `WhiteOctober\TCPDFBundle\Controller\TCPDFController` type-hint is detected
+    WhiteOctober\TCPDFBundle\Controller\TCPDFController: '@white_october.tcpdf'

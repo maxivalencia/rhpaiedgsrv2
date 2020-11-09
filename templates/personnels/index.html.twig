@@ -69,7 +69,7 @@
                 </td>
                 <td style="vertical-align:middle;">
                     <a href="{{ path('personnels_show', {'id': personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('personnels_edit', {'id': personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    {% if is_granted("ROLE_SUPERVISEUR") %}<a href="{{ path('personnels_edit', {'id': personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>{% endif %}
                 </td>
             </tr>
         {% else %}

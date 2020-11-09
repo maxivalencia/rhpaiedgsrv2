@@ -59,7 +59,7 @@
                 {# <td>{{ conjoint.dateReferenceOfficielMariage ? conjoint.dateReferenceOfficielMariage|date('d/m/Y') : '' }}</td> #}
                 <td>
                     <a href="{{ path('conjoints_show', {'id': conjoint.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('conjoints_edit', {'id': conjoint.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    {% if is_granted("ROLE_SUPERVISEUR") %}<a href="{{ path('conjoints_edit', {'id': conjoint.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>{% endif %}
                 </td>
             </tr>
         {% else %}

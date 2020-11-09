@@ -72,14 +72,11 @@
     "doctrine/persistence": {
         "version": "1.2.0"
     },
-    "doctrine/reflection": {
-        "version": "v1.0.0"
-    },
     "doctrine/sql-formatter": {
         "version": "1.1.1"
     },
     "dompdf/dompdf": {
-        "version": "v0.8.3"
+        "version": "v0.8.6"
     },
     "egulias/email-validator": {
         "version": "2.1.11"
@@ -89,6 +86,21 @@
     },
     "knplabs/knp-paginator-bundle": {
         "version": "v5.0.0"
+    },
+    "knplabs/knp-snappy": {
+        "version": "v1.2.1"
+    },
+    "knplabs/knp-snappy-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "c81bdcf4a9d4e7b1959071457f9608631865d381"
+        },
+        "files": [
+            "./config/packages/knp_snappy.yaml"
+        ]
     },
     "monolog/monolog": {
         "version": "1.25.2"
@@ -507,6 +519,9 @@
     "symfony/yaml": {
         "version": "v4.4.0"
     },
+    "tecnickcom/tcpdf": {
+        "version": "6.3.5"
+    },
     "twig/extensions": {
         "version": "1.0",
         "recipe": {
@@ -527,6 +542,9 @@
     },
     "webmozart/assert": {
         "version": "1.6.0"
+    },
+    "whiteoctober/tcpdf-bundle": {
+        "version": "1.1.2"
     },
     "zendframework/zend-code": {
         "version": "3.4.0"

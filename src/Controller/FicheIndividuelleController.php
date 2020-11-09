@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controller;
 
 use App\Entity\Personnels;
@@ -25,6 +24,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+
 
 class FicheIndividuelleController extends AbstractController
 {
@@ -34,6 +35,8 @@ class FicheIndividuelleController extends AbstractController
     public function index(int $id, PersonnelsRepository $personnelsRepository, Personnels $personnel, FonctionsConjointsRepository $fonctionsConjointsRepository, PhotosRepository $photosRepository, ConjointsRepository $conjointsRepository, EnfantsRepository $enfantsRepository, DiplomesPersonnelsRepository $diplomesPersonnelsRepository, DecorationsPersonnelsRepository $decorationsPersonnelsRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository, NominationsPersonnelsRepository $nominationsPersonnelsRepository)//: Response
     {
         $pdfOptions = new Options();
+        //$pdfOptions->set('isRemoteEnabled', TRUE);
+        $pdfOptions->setIsRemoteEnabled(true);
         $pdfOptions->set('defaultFont', 'Arial');
         $dompdf = new Dompdf($pdfOptions);
         $personnel = $personnelsRepository->findOneBy(['id' => $id]);
@@ -48,10 +51,16 @@ class FicheIndividuelleController extends AbstractController
         $affectations = $affectationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
         $nominations = $nominationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
 
-
         $date = new \DateTime();
-        $logo = $this->getParameter('logo').'/logo_dgsr.png';
-        $sary = $this->getParameter('photo').'/'.$photo;
+        $logo = $this->getParameter('logos').'logo_dgsr.png';
+        $sary = $this->getParameter('photos').$photo;
+
+        $logo_data = base64_encode(file_get_contents($logo));
+        $logo_src = 'data: '.mime_content_type($logo).';base64,'.$logo_data;
+        
+        $sary_data = base64_encode(file_get_contents($sary));
+        $sary_src = $src = 'data: '.mime_content_type($sary).';base64,'.$sary_data;
+
         $html = $this->renderView('fiche_individuelle/index.html.twig', [
             'logo' => $logo,
             'date' => $date,
@@ -70,7 +79,98 @@ class FicheIndividuelleController extends AbstractController
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
         $dompdf->stream("Fiche_Individuelle_".$personnel->getNom().'_'.$personnel->getPrenoms().".pdf", [
-            "Attachment" => true
+            "Attachment" => true,
         ]);
+    }
+    
+    /**
+     * @Route("/fiche/individues/{id}", name="individue")
+     */
+    public function individue(int $id, PersonnelsRepository $personnelsRepository, Personnels $personnel, FonctionsConjointsRepository $fonctionsConjointsRepository, PhotosRepository $photosRepository, ConjointsRepository $conjointsRepository, EnfantsRepository $enfantsRepository, DiplomesPersonnelsRepository $diplomesPersonnelsRepository, DecorationsPersonnelsRepository $decorationsPersonnelsRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository, NominationsPersonnelsRepository $nominationsPersonnelsRepository): Response
+    {
+        $personnel = $personnelsRepository->findOneBy(['id' => $id]);
+        $photo = $photosRepository->findOneBy(['personnel' => $personnel]);
+        $conjoints = $conjointsRepository->findOneBy(["personnel" => $personnel], ["id" => "DESC"]);
+        //$conjoint = $conjointsRepository->findOneBy(["personnel" => $personnel], ["id" => "DESC"]);
+        //$fonctionConjoint = $fonctionsConjointsRepository->findOneBy(["conjoint" => $conjoint], ["id" => "DESC"]);
+        $fonctionConjoint = $fonctionsConjointsRepository->findAll();
+        $enfants = $enfantsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $diplomes = $diplomesPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $decorations = $decorationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $affectations = $affectationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $nominations = $nominationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+
+        $date = new \DateTime();
+        $logo = $this->getParameter('logo').'logo_dgsr.png';
+        $sary = $this->getParameter('photo').$photo;
+
+        $logo_data = base64_encode(file_get_contents($logo));
+        $logo_src = 'data: '.mime_content_type($logo).';base64,'.$logo_data;
+        
+        $sary_data = base64_encode(file_get_contents($sary));
+        $sary_src = $src = 'data: '.mime_content_type($sary).';base64,'.$sary_data;
+
+        return $this->render('fiche_individuelle/index.html.twig', [
+            'logo' => $logo,
+            'date' => $date,
+            'personnel' => $personnel,
+            'photo' => $photo,
+            'sary' => $sary,
+            'conjoints' => $conjoints,
+            'enfants' => $enfants,
+            'diplomes' => $diplomes,
+            'decorations' => $decorations,
+            'affectations' => $affectations,
+            'nominations' => $nominations,
+            'fonctionConjoints' => $fonctionConjoint,
+        ]);
+    }
+    
+    /**
+     * @Route("/fiche/snappypdf/{id}", name="snappypdf")
+     */
+    public function snappypdf(int $id, PersonnelsRepository $personnelsRepository, Personnels $personnel, FonctionsConjointsRepository $fonctionsConjointsRepository, PhotosRepository $photosRepository, ConjointsRepository $conjointsRepository, EnfantsRepository $enfantsRepository, DiplomesPersonnelsRepository $diplomesPersonnelsRepository, DecorationsPersonnelsRepository $decorationsPersonnelsRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository, NominationsPersonnelsRepository $nominationsPersonnelsRepository)
+    {
+        $personnel = $personnelsRepository->findOneBy(['id' => $id]);
+        $photo = $photosRepository->findOneBy(['personnel' => $personnel]);
+        $conjoints = $conjointsRepository->findOneBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $fonctionConjoint = $fonctionsConjointsRepository->findAll();
+        $enfants = $enfantsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $diplomes = $diplomesPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $decorations = $decorationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $affectations = $affectationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $nominations = $nominationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+
+        $date = new \DateTime();
+        $logo = $this->getParameter('logo').'logo_dgsr.png';
+        $sary = $this->getParameter('photo').$photo;
+        $html = $this->render('fiche_individuelle/index.html.twig', [
+            'logo' => $logo,
+            'date' => $date,
+            'personnel' => $personnel,
+            'photo' => $photo,
+            'sary' => $sary,
+            'conjoints' => $conjoints,
+            'enfants' => $enfants,
+            'diplomes' => $diplomes,
+            'decorations' => $decorations,
+            'affectations' => $affectations,
+            'nominations' => $nominations,
+            'fonctionConjoints' => $fonctionConjoint,
+        ]);
+
+        /* return new PdfResponse(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            "Fiche_Individuelle_".$personnel->getNom().'_'.$personnel->getPrenoms().'.pdf'
+        ); */
+        $snappy = $this->get('knp_snappy.pdf');
+        return new PdfResponse(
+            $snappy->getOutputFromHtml($html),
+            200,
+            [ 
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'inline; filename="'."Fiche_Individuelle_".$personnel->getNom().'_'.$personnel->getPrenoms().'.pdf"'
+            ]
+        );
     }
 }

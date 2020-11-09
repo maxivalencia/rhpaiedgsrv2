@@ -94,5 +94,5 @@
     <br>
     <a href="{{ path('conjoints_edit', {'id': conjoint.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
 
-    {{ include('conjoints/_delete_form.html.twig') }}
+    {% if is_granted("ROLE_SUPERVISEUR") %}{{ include('conjoints/_delete_form.html.twig') }}{% endif %}
 {% endblock %}

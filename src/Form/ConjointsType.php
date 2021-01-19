@@ -87,6 +87,7 @@ class ConjointsType extends AbstractType
             ])
             ->add('reference_officiel_mariage', null, [
                 'label' => 'Reférence officiel du mariage',
+                'empty_data' => '',
             ])
             ->add('date_reference_officiel_mariage', null, [
                 'label' => 'Date de reférence officiel du mariage',

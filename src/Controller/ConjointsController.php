@@ -55,6 +55,12 @@ class ConjointsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if($conjoint->getReferenceAutorisationMariage() == null){
+                $conjoint->setReferenceAutorisationMariage("Non Assigné");
+            }
+            if($conjoint->getReferenceOfficielMariage() == null){
+                $conjoint->setReferenceOfficielMariage("Non Assigné");
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($conjoint);
             $entityManager->flush();

@@ -18,7 +18,7 @@ class NotesPersonnelsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('note', null, [
                 'label' => 'Note',
@@ -35,7 +35,7 @@ class NotesPersonnelsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('personnel', null, [
                 'label' => 'Personnel noté',

@@ -24,7 +24,7 @@ class PunitionsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('date_effet', null, [
                 'label' => 'Date de l\'effectivité',
@@ -32,7 +32,7 @@ class PunitionsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('sanction', null, [
                 'label' => 'Sanction',

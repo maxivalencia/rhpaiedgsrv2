@@ -29,7 +29,7 @@ class DecisionsAffectationsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('genre', ChoiceType::class, [
                 'choices' => $genres,

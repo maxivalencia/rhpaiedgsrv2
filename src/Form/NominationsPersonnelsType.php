@@ -18,7 +18,7 @@ class NominationsPersonnelsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('rang', null, [
                 'label' => 'Rang du personnel',

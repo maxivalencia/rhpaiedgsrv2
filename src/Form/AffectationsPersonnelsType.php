@@ -18,7 +18,7 @@ class AffectationsPersonnelsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('date_disponibilite', null, [
                 'label' => 'Date de disponibilité',
@@ -26,7 +26,7 @@ class AffectationsPersonnelsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('reference_disponibilite', null, [
                 'label' => 'Reférence de disponibilité',
@@ -37,7 +37,7 @@ class AffectationsPersonnelsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('motif_affectation', null, [
                 'label' => 'Motif de l\'affectation',

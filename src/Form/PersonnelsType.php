@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class PersonnelsType extends AbstractType
 {
@@ -24,13 +25,13 @@ class PersonnelsType extends AbstractType
             ->add('prenoms', null, [
                 'label' => 'Prénom',
             ])
-            ->add('date_naissance', null, [
+            ->add('date_naissance', DateType::class, [
                 'label' => 'Date de naissance',
                 'widget' => 'single_text',
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('lieu_naissance', null, [
                 'label' => 'Lieu de naissance',
@@ -50,7 +51,7 @@ class PersonnelsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('lieu_cin', null, [
                 'label' => 'Lieu de réalisation de la carte d\'identité national',
@@ -79,7 +80,7 @@ class PersonnelsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('matricule', null, [
                 'label' => 'Numéro de matricule',

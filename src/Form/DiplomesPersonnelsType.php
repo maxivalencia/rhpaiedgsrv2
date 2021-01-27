@@ -21,7 +21,7 @@ class DiplomesPersonnelsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('diplome', null, [
                 'label' => 'Diplôme',

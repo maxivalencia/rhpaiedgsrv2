@@ -18,7 +18,7 @@ class DecorationsPersonnelsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('reference', null, [
                 'label' => 'Reférence',
@@ -29,7 +29,7 @@ class DecorationsPersonnelsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('personnel', null, [
                 'label' => 'Personnel',

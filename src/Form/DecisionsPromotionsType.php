@@ -21,7 +21,7 @@ class DecisionsPromotionsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('genre_decision', null, [
                 'label' => 'Genre de la décision',

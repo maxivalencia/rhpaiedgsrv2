@@ -21,7 +21,7 @@ class DecisionsRadiationsControlesType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('reference_journal_officiel', null, [
                 'label' => 'Reférence dans le journal officiel',
@@ -32,7 +32,7 @@ class DecisionsRadiationsControlesType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
         ;
     }

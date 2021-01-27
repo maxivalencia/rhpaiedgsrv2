@@ -20,7 +20,7 @@ class PermissionsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
                 //'format' => 'MM/yyyy',
             ])
             ->add('date_depart', null, [
@@ -29,7 +29,7 @@ class PermissionsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('date_fin', null, [
                 'label' => 'Date de fin',
@@ -37,7 +37,7 @@ class PermissionsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('duree', null, [
                 'label' => 'Durée',

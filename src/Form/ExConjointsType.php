@@ -21,7 +21,7 @@ class ExConjointsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('reference_rupture', null, [
                 'label' => 'Reférence de la rupture',
@@ -32,7 +32,7 @@ class ExConjointsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('adresse_veuve', null, [
                 'label' => 'Adresse du/de la veuf(veuve)',

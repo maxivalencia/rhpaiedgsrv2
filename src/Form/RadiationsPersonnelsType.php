@@ -18,7 +18,7 @@ class RadiationsPersonnelsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('lieu_repli', null, [
                 'label' => 'Lieu de repli',
@@ -29,7 +29,7 @@ class RadiationsPersonnelsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('date_prevu_radiation', null, [
                 'label' => 'Date prévu de radiation',
@@ -37,7 +37,7 @@ class RadiationsPersonnelsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('reference_mrc_radiation', null, [
                 'label' => 'Reférence compte rendue de radiation',
@@ -48,7 +48,7 @@ class RadiationsPersonnelsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('personnel', null, [
                 'label' => 'Personnel',

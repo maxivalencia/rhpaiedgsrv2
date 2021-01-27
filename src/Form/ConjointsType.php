@@ -32,7 +32,7 @@ class ConjointsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('lieu_naissance', null, [
                 'label' => 'Lieu de naissance',
@@ -55,7 +55,7 @@ class ConjointsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('numero_cin', null, [
                 'label' => 'Numéro de la carte d\'identité national',
@@ -66,7 +66,7 @@ class ConjointsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('lieu_cin', null, [
                 'label' => 'Lieu de réalisation de la carte d\identité national',
@@ -80,7 +80,7 @@ class ConjointsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('lieu_mariage', null, [
                 'label' => 'Lieu de mariage',
@@ -95,7 +95,7 @@ class ConjointsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('commune', null, [
                 'label' => 'Commune du lieu de mariage',

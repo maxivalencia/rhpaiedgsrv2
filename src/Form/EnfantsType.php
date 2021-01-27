@@ -37,7 +37,7 @@ class EnfantsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('lieu_naissance', null, [
                 'label' => 'Lieu de naissance',
@@ -63,7 +63,7 @@ class EnfantsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('personnel', null, [
                 'label' => 'Personnel parent de l\'enfant',

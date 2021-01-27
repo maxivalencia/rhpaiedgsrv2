@@ -18,7 +18,7 @@ class NotesPOSType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                'data' => new \DateTime('now'),
+                //'data' => new \DateTime('now'),
             ])
             ->add('qf', null, [
                 'label' => 'QF',

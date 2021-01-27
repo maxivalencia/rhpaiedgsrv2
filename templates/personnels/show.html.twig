@@ -115,21 +115,21 @@
         </thead>
         <tbody>
         {% for conjoint in conjoints %}
-            {% for fonctionConjoint in fonctionConjoints %}
-                <tr>
-                    <td>{{ conjoint.nom }}</td>
-                    <td>{{ conjoint.prenom }}</td>
-                    <td>{{ conjoint.dateNaissance ? conjoint.dateNaissance|date('d/m/Y') : '' }}</td>
-                    <td>{{ conjoint.lieuNaissance }}</td>
-                    <td>{{ conjoint.sexe ? 'Féminin' : 'Masculin' }}</td>
-                    <td>{{ conjoint.numeroCin }}</td>
-                    <td>
+            <tr>
+                <td>{{ conjoint.nom }}</td>
+                <td>{{ conjoint.prenom }}</td>
+                <td>{{ conjoint.dateNaissance ? conjoint.dateNaissance|date('d/m/Y') : '' }}</td>
+                <td>{{ conjoint.lieuNaissance }}</td>
+                <td>{{ conjoint.sexe ? 'Féminin' : 'Masculin' }}</td>
+                <td>{{ conjoint.numeroCin }}</td>
+                <td>
+                    {% for fonctionConjoint in fonctionConjoints %}
                         {% if conjoint.id == fonctionConjoint.conjoint.id %}
                             {{ fonctionConjoint.abbreviation }}
                         {% endif %}                    
-                    </td>
-                </tr>                
-            {% endfor %}
+                    {% endfor %}                
+                </td>
+            </tr>
         {% else %}
             <tr>
                 <td colspan="7">Aucun enregistrement trouvé</td>
@@ -188,9 +188,9 @@
                 <td>{{ affectations_personnel.unite }}</td>
                 <td>{{ affectations_personnel.decisionAffectation }}</td>
                 <td>{{ affectations_personnel.dateAffectation ? affectations_personnel.dateAffectation|date('d/m/Y') : '' }}</td>
+                <td>{{ affectations_personnel.motifAffectation }}</td>
                 <td>{{ affectations_personnel.dateDisponibilite ? affectations_personnel.dateDisponibilite|date('d/m/Y') : '' }}</td>
                 <td>{{ affectations_personnel.referenceDisponibilite }}</td>
-                <td>{{ affectations_personnel.motifAffectation }}</td>
                 <td>{{ affectations_personnel.motifAnnulation }}</td>
                 <td>{{ affectations_personnel.fonction }}</td>
             </tr>

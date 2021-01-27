@@ -90,11 +90,11 @@ class PersonnelsController extends AbstractController
     public function show(Personnels $personnel, FonctionsConjointsRepository $fonctionsConjointsRepository, PhotosRepository $photosRepository, ConjointsRepository $conjointsRepository, EnfantsRepository $enfantsRepository, DiplomesPersonnelsRepository $diplomesPersonnelsRepository, DecorationsPersonnelsRepository $decorationsPersonnelsRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository, NominationsPersonnelsRepository $nominationsPersonnelsRepository): Response
     {
         $photo = $photosRepository->findOneBy(['personnel' => $personnel]);
-        $conjoints = $conjointsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $conjoints = $conjointsRepository->findBy(['personnel' => $personnel], ["id" => "DESC"]);
         //$conjoint = $conjointsRepository->findOneBy(["personnel" => $personnel], ["id" => "DESC"]);
         //$fonctionConjoint = $fonctionsConjointsRepository->findOneBy(["conjoint" => $conjoint], ["id" => "DESC"]);
         $fonctionConjoint = $fonctionsConjointsRepository->findAll();
-        $enfants = $enfantsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $enfants = $enfantsRepository->findBy(["personnel" => $personnel], ["date_naissance" => "DESC"]);
         $diplomes = $diplomesPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
         $decorations = $decorationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
         $affectations = $affectationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);

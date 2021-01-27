@@ -6,11 +6,19 @@ use App\Entity\DecisionsAffectations;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class DecisionsAffectationsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $genres = [
+            'Message porter' => 'MP',
+            'Mesage par radio' => 'RADIO',
+            'Decrets' => 'DECRET',
+            'Mail' => 'MAIL',
+            'Décision' => 'DECISION'
+        ];
         $builder
             ->add('reference_decision', null, [
                 'label' => 'Reférence de la décision',
@@ -23,8 +31,10 @@ class DecisionsAffectationsType extends AbstractType
                 ],
                 'data' => new \DateTime('now'),
             ])
-            ->add('genre', null, [
+            ->add('genre', ChoiceType::class, [
+                'choices' => $genres,
                 'label' => 'Genre de la décision',
+                'required' => true,
             ])
         ;
     }

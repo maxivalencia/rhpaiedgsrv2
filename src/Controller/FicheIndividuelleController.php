@@ -42,9 +42,9 @@ class FicheIndividuelleController extends AbstractController
         $personnel = $personnelsRepository->findOneBy(['id' => $id]);
         $photo = $photosRepository->findOneBy(['personnel' => $personnel]);
         $conjoints = $conjointsRepository->findOneBy(["personnel" => $personnel], ["id" => "DESC"]);
-        //$conjoint = $conjointsRepository->findOneBy(["personnel" => $personnel], ["id" => "DESC"]);
-        //$fonctionConjoint = $fonctionsConjointsRepository->findOneBy(["conjoint" => $conjoint], ["id" => "DESC"]);
-        $fonctionConjoint = $fonctionsConjointsRepository->findAll();
+        $conjoint = $conjointsRepository->findOneBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $fonctionConjoint = $fonctionsConjointsRepository->findOneBy(["conjoint" => $conjoint], ["id" => "DESC"]);
+        //$fonctionConjoint = $fonctionsConjointsRepository->findAll();
         $enfants = $enfantsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
         $diplomes = $diplomesPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
         $decorations = $decorationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
@@ -56,10 +56,10 @@ class FicheIndividuelleController extends AbstractController
         $sary = $this->getParameter('photos').$photo;
 
         $logo_data = base64_encode(file_get_contents($logo));
-        $logo_src = 'data: '.mime_content_type($logo).';base64,'.$logo_data;
+        //$logo_src = 'data: '.mime_content_type($logo).';base64,'.$logo_data;
         
         $sary_data = base64_encode(file_get_contents($sary));
-        $sary_src = $src = 'data: '.mime_content_type($sary).';base64,'.$sary_data;
+        //$sary_src = $src = 'data: '.mime_content_type($sary).';base64,'.$sary_data;
 
         $html = $this->renderView('fiche_individuelle/index.html.twig', [
             'logo' => $logo,

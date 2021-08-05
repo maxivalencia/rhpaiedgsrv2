@@ -163,9 +163,9 @@
                 {% for conjoint in conjoints %}
                     {% if conj == '' %}
                         {% set conj = conjoint.nom + conjoint.prenom %}
-                        {% set datemariage = conjoint.date_mariage %}
+                        {% set datemariage = conjoint.date_mariage ? conjoint.date_mariage|date('d/m/Y') : '' %}
                         {% set autorisationmariage = conjoint.reference_autorisation_mariage %}
-                        {% set dateautorisation = conjoint.date_reference_autorisation_mariage %}
+                        {% set dateautorisation = conjoint.date_reference_autorisation_mariage ? conjoint.date_reference_autorisation_mariage|date('d/m/Y') : '' %}
                     {% endif %}
                 {% endfor %}
                 <tr>
@@ -215,20 +215,20 @@
                 <tr>
                     <td width="75px" valign="top"><u>Fonction</u></td>
                     <td width="150px" valign="top">:
-                        {% if conjoints is not null and conjoints.id == fonctionConjoint.conjoint.id %}
-                            {{ fonctionConjoint.abbreviation }}
+                        {% if conjoints is not null and conjoints.id == fonctionConjoints.conjoint.id %}
+                            {{ fonctionConjoints.abbreviation }}
                         {% endif %}
                     </td>
                     <td width="75px" valign="top"><u>Employeur</u></td>
                     <td width="150px" valign="top">:
-                        {% if conjoints is not null and conjoints.id == fonctionConjoint.conjoint.id %}
-                            {{ fonctionConjoint.employeur }}
+                        {% if conjoints is not null and conjoints.id == fonctionConjoints.conjoint.id %}
+                            {{ fonctionConjoints.employeur }}
                         {% endif %}
                     </td>
                     <td width="75px" valign="top"><u>Lieu de travail</u></td>
                     <td width="150px" valign="top">:
-                        {% if conjoints is not null and conjoints.id == fonctionConjoint.conjoint.id %}
-                            {{ fonctionConjoint.lieu_travail }}
+                        {% if conjoints is not null and conjoints.id == fonctionConjoints.conjoint.id %}
+                            {{ fonctionConjoints.lieuTravail }}
                         {% endif %}
                     </td>
                 </tr>
@@ -236,19 +236,19 @@
                     <td valign="top"><u>CIN</u></td>
                     <td valign="top">: 
                         {% if conjoints is not null %}
-                            {{ conjoints.numero_cin }}
+                            {{ conjoints.numeroCin }}
                         {% endif %}
                     </td>
                     <td valign="top"><u>Délivré le</u></td>
                     <td valign="top">: 
                         {% if conjoints is not null %}
-                            {{ conjoints.date_cin }}
+                            {{ conjoints.dateCin ? conjoints.dateCin|date('d/m/Y') : '' }}
                         {% endif %}
                     </td>
                     <td valign="top"><u>à</u></td>
                     <td valign="top">: 
                         {% if conjoints is not null %}
-                            {{ conjoints.lieu_cin }}
+                            {{ conjoints.lieuCin }}
                         {% endif %}
                     </td>
                 </tr>

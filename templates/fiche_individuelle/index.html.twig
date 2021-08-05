@@ -41,10 +41,10 @@
                     SERVICE DES RESSOURCES HUMAINES
                     <br>-----------------------------<br>
                     ALAROBIA - BP 784<br><br><br>
-                    {# <img src="/dist/images/logo_dgsr.png" alt="logo" width=50px height=50px type="images/png"> #}
+                    {# <img src="E:\\symfony\\rhpaiedgsrv2\\public\\logo_dgsr.png" alt="logo" width=50px height=50px type="images/png"> #}
                     <!-- fixer l'adresse du logo après déploiment -->
                     <img src="{{ logo }}" alt="logo" width="50px" height="50px" type="images/png">
-                    <br>« LAHITOKANA NY AINA »
+                    <br>« LAHITOKANA NY AINA » 
                 </td>
                 <td width="30">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -109,8 +109,8 @@
             <tr>
                 <td align="center" colspan="4"><strong><u>POSITION EFFECTIVE</u></strong></td>
                 <td style="width:150px;" rowspan="7" align="center">
-                    {# <img src="{{ sary }}" alt="{{ photo.personnel }}" style="width:125px;"> #}
-                    <img src="/photos/{{ photo }}" alt="{{ photo.personnel }}" style="width:125px;">
+                    <img src="{{ sary }}" alt="{{ photo.personnel }}" style="width:125px;">
+                    {# <img src="/photos/{{ photo }}" alt="{{ photo.personnel }}" style="width:125px;"> #}
                     <br><br><br><br><br>
                 </td>
             </tr>
@@ -160,14 +160,14 @@
                 {% set datemariage = '' %}
                 {% set autorisationmariage = '' %}
                 {% set dateautorisation = '' %}
-                {% for conjoint in conjoints %}
+                {# {% for conjoint in conjoints %} #}
                     {% if conj == '' %}
-                        {% set conj = conjoint.nom + conjoint.prenom %}
-                        {% set datemariage = conjoint.date_mariage ? conjoint.date_mariage|date('d/m/Y') : '' %}
-                        {% set autorisationmariage = conjoint.reference_autorisation_mariage %}
-                        {% set dateautorisation = conjoint.date_reference_autorisation_mariage ? conjoint.date_reference_autorisation_mariage|date('d/m/Y') : '' %}
+                        {% set conj = conjoints.nom ~ ' ' ~ conjoints.prenom %}
+                        {% set datemariage = conjoints.dateMariage ? conjoints.dateMariage|date('d/m/Y') : '' %}
+                        {% set autorisationmariage = conjoints.referenceAutorisationMariage %}
+                        {% set dateautorisation = conjoints.dateReferenceAutorisationMariage ? conjoints.dateReferenceAutorisationMariage|date('d/m/Y') : '' %}
                     {% endif %}
-                {% endfor %}
+                {# {% endfor %} #}
                 <tr>
                     <td valign="top"><u>Née le</u></td>
                     <td valign="top">: {{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }}</td>

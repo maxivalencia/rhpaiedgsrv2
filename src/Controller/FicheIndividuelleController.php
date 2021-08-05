@@ -35,7 +35,7 @@ class FicheIndividuelleController extends AbstractController
     public function index(int $id, PersonnelsRepository $personnelsRepository, Personnels $personnel, FonctionsConjointsRepository $fonctionsConjointsRepository, PhotosRepository $photosRepository, ConjointsRepository $conjointsRepository, EnfantsRepository $enfantsRepository, DiplomesPersonnelsRepository $diplomesPersonnelsRepository, DecorationsPersonnelsRepository $decorationsPersonnelsRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository, NominationsPersonnelsRepository $nominationsPersonnelsRepository)//: Response
     {
         $pdfOptions = new Options();
-        //$pdfOptions->set('isRemoteEnabled', TRUE);
+        $pdfOptions->set('isRemoteEnabled', true);
         $pdfOptions->setIsRemoteEnabled(true);
         $pdfOptions->set('defaultFont', 'Arial');
         $dompdf = new Dompdf($pdfOptions);
@@ -52,8 +52,8 @@ class FicheIndividuelleController extends AbstractController
         $nominations = $nominationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
 
         $date = new \DateTime();
-        $logo = $this->getParameter('logos').'logo_dgsr.png';
-        $sary = $this->getParameter('photos').$photo;
+        $logo = $this->getParameter('logo').'logo_dgsr.png';
+        $sary = $this->getParameter('photo').$photo;
 
         $logo_data = base64_encode(file_get_contents($logo));
         //$logo_src = 'data: '.mime_content_type($logo).';base64,'.$logo_data;
@@ -74,6 +74,7 @@ class FicheIndividuelleController extends AbstractController
             'affectations' => $affectations,
             'nominations' => $nominations,
             'fonctionConjoints' => $fonctionConjoint,
+            'logos' => $logo_data,
         ]);
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
@@ -93,7 +94,7 @@ class FicheIndividuelleController extends AbstractController
         $conjoints = $conjointsRepository->findOneBy(["personnel" => $personnel], ["id" => "DESC"]);
         //$conjoint = $conjointsRepository->findOneBy(["personnel" => $personnel], ["id" => "DESC"]);
         //$fonctionConjoint = $fonctionsConjointsRepository->findOneBy(["conjoint" => $conjoint], ["id" => "DESC"]);
-        $fonctionConjoint = $fonctionsConjointsRepository->findAll();
+        $fonctionConjoint = $fonctionsConjointsRepository->findOneBy(["conjoint" => $conjoints], ["id" => "DESC"]);
         $enfants = $enfantsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
         $diplomes = $diplomesPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
         $decorations = $decorationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
@@ -105,10 +106,10 @@ class FicheIndividuelleController extends AbstractController
         $sary = $this->getParameter('photo').$photo;
 
         $logo_data = base64_encode(file_get_contents($logo));
-        $logo_src = 'data: '.mime_content_type($logo).';base64,'.$logo_data;
+        //$logo_src = 'data: '.mime_content_type($logo).';base64,'.$logo_data;
         
         $sary_data = base64_encode(file_get_contents($sary));
-        $sary_src = $src = 'data: '.mime_content_type($sary).';base64,'.$sary_data;
+        //$sary_src = $src = 'data: '.mime_content_type($sary).';base64,'.$sary_data;
 
         return $this->render('fiche_individuelle/index.html.twig', [
             'logo' => $logo,

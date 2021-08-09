@@ -43,7 +43,7 @@
                     ALAROBIA - BP 784<br><br><br>
                     {# <img src="<?php echo {{ logos }} ?>" alt="logo" width=50px height=50px type="images/png"> #}
                     <!-- fixer l'adresse du logo après déploiment -->
-                    <img src="{{ logo }}" alt="logo" width="50px" height="50px" type="images/png">
+                    <img src="{{ logos }}" alt="logo" width="50px" height="50px" type="images/png">
                     <br>« LAHITOKANA NY AINA » 
                 </td>
                 <td width="30">
@@ -109,7 +109,7 @@
             <tr>
                 <td align="center" colspan="4"><strong><u>POSITION EFFECTIVE</u></strong></td>
                 <td style="width:150px;" rowspan="7" align="center">
-                    <img src="{{ sary }}" alt="{{ photo.personnel }}" style="width:125px;">
+                    <img src="{{ sarypersonnel }}" alt="{{ photo.personnel }}" style="width:125px;">
                     {# <img src="/photos/{{ photo }}" alt="{{ photo.personnel }}" style="width:125px;"> #}
                     <br><br><br><br><br>
                 </td>
@@ -161,12 +161,14 @@
                 {% set autorisationmariage = '' %}
                 {% set dateautorisation = '' %}
                 {# {% for conjoint in conjoints %} #}
+                {% if conjoints != null %}
                     {% if conj == '' %}
                         {% set conj = conjoints.nom ~ ' ' ~ conjoints.prenom %}
                         {% set datemariage = conjoints.dateMariage ? conjoints.dateMariage|date('d/m/Y') : '' %}
                         {% set autorisationmariage = conjoints.referenceAutorisationMariage %}
                         {% set dateautorisation = conjoints.dateReferenceAutorisationMariage ? conjoints.dateReferenceAutorisationMariage|date('d/m/Y') : '' %}
-                    {% endif %}
+                    {% endif %}                    
+                {% endif %}
                 {# {% endfor %} #}
                 <tr>
                     <td valign="top"><u>Née le</u></td>

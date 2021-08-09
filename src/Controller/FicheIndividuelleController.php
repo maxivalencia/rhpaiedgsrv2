@@ -55,11 +55,18 @@ class FicheIndividuelleController extends AbstractController
         $logo = $this->getParameter('logo').'logo_dgsr.png';
         $sary = $this->getParameter('photo').$photo;
 
-        //$logo_data = base64_encode(file_get_contents($logo));
-        //$logo_src = 'data:'.mime_content_type($logo).';base64,'.$logo_data;
+        $logo_data = base64_encode(file_get_contents($logo));
+        $logo_src = 'data:image/png;base64,'.$logo_data;
         //$logo_src = 'data:'.fileMimeType($logo).';base64,'.$logo_data;
-        // $sary_data = base64_encode(file_get_contents($sary));
-        // $sary_src = 'data:'.mime_content_type($sary).';base64,'.$sary_data;
+        $sary_data = base64_encode(file_get_contents($sary));
+        $saryexplodes = explode('.', $sary);
+        $saryextension = '';
+        foreach($saryexplodes as $saryexplode){
+            $saryextension = $saryexplode;
+        }
+        //$sary_src = 'data:image/jpeg;base64,'.$sary_data;
+        $sary_src = 'data:image/'.$saryextension.';base64,'.$sary_data;
+        //$sary_src = 'data:image/'.mime_content_type($sary).';base64,'.$sary_data;
 
         $html = $this->renderView('fiche_individuelle/index.html.twig', [
             'logo' => $logo,
@@ -74,7 +81,8 @@ class FicheIndividuelleController extends AbstractController
             'affectations' => $affectations,
             'nominations' => $nominations,
             'fonctionConjoints' => $fonctionConjoint,
-            //'logos' => $logo_src,
+            'logos' => $logo_src,
+            'sarypersonnel' => $sary_src,
         ]);
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');

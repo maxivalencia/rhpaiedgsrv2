@@ -85,6 +85,14 @@ class PersonnelsType extends AbstractType
                 ],
                 //'data' => new \DateTime('now'),
             ])
+            ->add('dateDepartRetraite', null, [
+                'label' => 'Date de départ à la retraite',
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'datetimepicker',
+                ],
+                //'data' => new \DateTime('now'),
+            ])
             ->add('matricule', null, [
                 'label' => 'Numéro de matricule',
             ])

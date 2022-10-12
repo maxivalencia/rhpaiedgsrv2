@@ -45,11 +45,11 @@ class FicheIndividuelleController extends AbstractController
         $conjoint = $conjointsRepository->findOneBy(["personnel" => $personnel], ["id" => "DESC"]);
         $fonctionConjoint = $fonctionsConjointsRepository->findOneBy(["conjoint" => $conjoint], ["id" => "DESC"]);
         //$fonctionConjoint = $fonctionsConjointsRepository->findAll();
-        $enfants = $enfantsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
-        $diplomes = $diplomesPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
-        $decorations = $decorationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
-        $affectations = $affectationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
-        $nominations = $nominationsPersonnelsRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $enfants = $enfantsRepository->findBy(["personnel" => $personnel], ["date_naissance" => "DESC"]);
+        $diplomes = $diplomesPersonnelsRepository->findBy(["personnel" => $personnel], ["date" => "DESC"]);
+        $decorations = $decorationsPersonnelsRepository->findBy(["personnel" => $personnel], ["date" => "DESC"]);
+        $affectations = $affectationsPersonnelsRepository->findBy(["personnel" => $personnel], ["date_affectation" => "DESC"]);
+        $nominations = $nominationsPersonnelsRepository->findBy(["personnel" => $personnel], ["date_nomination" => "DESC"]);
 
         $date = new \DateTime();
         $logo = $this->getParameter('logo').'logo_dgsr.png';

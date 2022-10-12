@@ -189,6 +189,11 @@ class Personnels
      */
     private $grade;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $dateDepartRetraite;
+
     public function __construct()
     {
         $this->nominationsPersonnels = new ArrayCollection();
@@ -871,6 +876,18 @@ class Personnels
     public function setGrade(?Grades $grade): self
     {
         $this->grade = $grade;
+
+        return $this;
+    }
+
+    public function getDateDepartRetraite(): ?\DateTimeInterface
+    {
+        return $this->dateDepartRetraite;
+    }
+
+    public function setDateDepartRetraite(?\DateTimeInterface $dateDepartRetraite): self
+    {
+        $this->dateDepartRetraite = $dateDepartRetraite;
 
         return $this;
     }

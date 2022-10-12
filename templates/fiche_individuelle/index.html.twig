@@ -86,11 +86,23 @@
                     {% endif %}
                 {% endfor %}
                 <td width="100px"><u>Nom et Prénom</u></td>
-                <td>: {{ grade_actuel }} {{ personnel.nom }} {{ personnel.prenoms }}</td>
+                <td>: {{ personnel.grade }} {{ personnel.nom }} {{ personnel.prenoms }}</td>
             </tr>
             <tr>
                 <td><u>Matricule</u></td>
                 <td>: {{ personnel.matricule }}</td>
+            </tr>
+            <tr>
+                <td><u>CNaPS</u></td>
+                <td>: {{ personnel.numeroCnaps }}</td>
+            </tr>
+            <tr>
+                <td><u>Date d'embauche</u></td>
+                <td>: {{ personnel.dateEmbauche ? personnel.dateEmbauche|date('d/m/Y') : '' }}</td>
+            </tr>
+            <tr>
+                <td><u>Date de départ à la retraite</u></td>
+                <td>: {{ personnel.dateDepartRetraite ? personnel.dateDepartRetraite|date('d/m/Y') : '' }}</td>
             </tr>
         </table>
         <table style="font-size:12px;">

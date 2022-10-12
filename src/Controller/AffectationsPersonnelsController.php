@@ -26,8 +26,12 @@ class AffectationsPersonnelsController extends AbstractController
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/
         ); 
-        return $this->render('affectations_personnels/index.html.twig', [
+        /* return $this->render('affectations_personnels/index.html.twig', [
             'affectations_personnels' => $pagination,
+        ]); */
+         
+        return $this->render('affectations_personnels/index.html.twig', [
+            'affectations_personnels' => $affectationsPersonnelsRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     

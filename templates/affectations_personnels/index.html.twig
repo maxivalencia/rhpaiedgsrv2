@@ -15,10 +15,10 @@
         <thead>
             <tr>
                 <th>Personnel</th>
-                <th>Date d'affectation</th>
-                <th>Date de disponibilité</th>
-                <th>Reférence de disponibilité</th>
                 <th>Unité</th>
+                <th>Décision d'affectation</th>
+                {# <th>Reférence de disponibilité</th> #}
+                <th>Disponibilité</th>
                 <th>Fonction</th>
                 <th>Motif de l'affectation</th>
                 <th>Motif de l'annulation</th>
@@ -30,10 +30,9 @@
             <tr>
                 {# <td>{{ affectations_personnel.id }}</td> #}
                 <td>{{ affectations_personnel.personnel }}</td>
-                <td>{{ affectations_personnel.dateAffectation ? affectations_personnel.dateAffectation|date('d/m/Y') : '' }}</td>
-                <td>{{ affectations_personnel.dateDisponibilite ? affectations_personnel.dateDisponibilite|date('d/m/Y') : '' }}</td>
-                <td>{{ affectations_personnel.referenceDisponibilite }}</td>
                 <td>{{ affectations_personnel.unite }}</td>
+                <td>{{ affectations_personnel.decisionAffectation }}</td> {# du {{ affectations_personnel.dateAffectation ? affectations_personnel.dateAffectation|date('d/m/Y') : '' }}</td>#}
+                <td>{{ affectations_personnel.referenceDisponibilite }} du {{ affectations_personnel.dateDisponibilite ? affectations_personnel.dateDisponibilite|date('d/m/Y') : '' }}</td>
                 <td>{{ affectations_personnel.fonction }}</td>
                 {# <td>{{ affectations_personnel.dateReferenceDisponibilite ? affectations_personnel.dateReferenceDisponibilite|date('d/m/Y') : '' }}</td> #}
                 <td>{{ affectations_personnel.motifAffectation }}</td>

@@ -15,13 +15,13 @@
         <thead>
             <tr>
                 {# <th>Id</th> #}
-                <th>Date de nomination</th>
+                <th>Personnel</th>
                 {# <th>Rang</{#> #}
                 {# <th>Echélon</th> #}
                 {# <th>Classe</th> #}
                 {# <th>Indice</th> #}
                 <th>Grade</th>
-                <th>Personnel</th>
+                <th>Date de nomination</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -29,13 +29,13 @@
         {% for nominations_personnel in nominations_personnels %}
             <tr>
                 {# <td>{{ nominations_personnel.id }}</td> #}
-                <td>{{ nominations_personnel.dateNomination ? nominations_personnel.dateNomination|date('d/m/Y') : '' }}</td>
                 {# <td>{{ nominations_personnel.rang }}</td> #}
                 {# <td>{{ nominations_personnel.echelon }}</td> #}
                 {# <td>{{ nominations_personnel.class }}</td> #}
                 {# <td>{{ nominations_personnel.indice }}</td> #}
-                <td>{{ nominations_personnel.grade }}</td>
                 <td>{{ nominations_personnel.personnel }}</td>
+                <td>{{ nominations_personnel.grade }}</td>
+                <td>{{ nominations_personnel.dateNomination ? nominations_personnel.dateNomination|date('d/m/Y') : '' }}</td>
                 <td>
                     <a href="{{ path('nominations_personnels_show', {'id': nominations_personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
                     <a href="{{ path('nominations_personnels_edit', {'id': nominations_personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>

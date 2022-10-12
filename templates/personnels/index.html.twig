@@ -42,7 +42,7 @@
         {% for personnel in personnels %}            
             <tr>
                 {# <td valign="center">{{ personnel.id }}</td> #}
-                <td style="vertical-align:middle;">{{ personnel.nom }}</td>
+                <td style="vertical-align:middle;">{{ personnel.grade }} {{ personnel.nom }}</td>
                 <td style="vertical-align:middle;">{{ personnel.prenoms }}</td>
                 <td style="vertical-align:middle;">{{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }}</td>
                 <td style="vertical-align:middle;">{{ personnel.lieuNaissance }}</td>

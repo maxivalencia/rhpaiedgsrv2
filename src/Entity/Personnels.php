@@ -184,6 +184,11 @@ class Personnels
      */
     private $users;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Grades::class, inversedBy="personnel")
+     */
+    private $grade;
+
     public function __construct()
     {
         $this->nominationsPersonnels = new ArrayCollection();
@@ -440,7 +445,7 @@ class Personnels
     */
     public function __toString()
     {
-        return $this->getNom().' '.$this->getPrenoms();
+        return $this->getGrade().' '.$this->getNom().' '.$this->getPrenoms();
     }
 
     public function getContrat(): ?TypesContrats
@@ -854,6 +859,18 @@ class Personnels
                 $user->setUtilisateur(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getGrade(): ?Grades
+    {
+        return $this->grade;
+    }
+
+    public function setGrade(?Grades $grade): self
+    {
+        $this->grade = $grade;
 
         return $this;
     }

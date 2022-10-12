@@ -12,6 +12,12 @@ class NominationsPersonnelsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('personnel', null, [
+                'label' => 'Personnel',
+            ])
+            ->add('decision', null, [
+                'label' => 'Décision de nomination du personnel',
+            ])
             ->add('date_nomination', null, [
                 'label' => 'Date de nomination du personnel',
                 'widget' => 'single_text',
@@ -27,19 +33,13 @@ class NominationsPersonnelsType extends AbstractType
                 'label' => 'Echélon du personnel',
             ])
             ->add('class', null, [
-                'label' => 'Class du personnel',
+                'label' => 'Classe du personnel',
             ])
             ->add('indice', null, [
                 'label' => 'Indice du personnel',
             ])
             ->add('grade', null, [
                 'label' => 'Grade du personnel',
-            ])
-            ->add('personnel', null, [
-                'label' => 'Personnel',
-            ])
-            ->add('decision', null, [
-                'label' => 'Décision de nomination du personnel',
             ])
         ;
     }

@@ -38,9 +38,15 @@ class Grades
      */
     private $nominationsPersonnels;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Personnels::class, mappedBy="grade")
+     */
+    private $personnel;
+
     public function __construct()
     {
         $this->nominationsPersonnels = new ArrayCollection();
+        $this->personnel = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -118,6 +124,36 @@ class Grades
             // set the owning side to null (unless already changed)
             if ($nominationsPersonnel->getGrade() === $this) {
                 $nominationsPersonnel->setGrade(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Personnels[]
+     */
+    public function getPersonnel(): Collection
+    {
+        return $this->personnel;
+    }
+
+    public function addPersonnel(Personnels $personnel): self
+    {
+        if (!$this->personnel->contains($personnel)) {
+            $this->personnel[] = $personnel;
+            $personnel->setGrade($this);
+        }
+
+        return $this;
+    }
+
+    public function removePersonnel(Personnels $personnel): self
+    {
+        if ($this->personnel->removeElement($personnel)) {
+            // set the owning side to null (unless already changed)
+            if ($personnel->getGrade() === $this) {
+                $personnel->setGrade(null);
             }
         }
 

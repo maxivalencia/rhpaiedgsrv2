@@ -58,10 +58,10 @@ class ConjointsType extends AbstractType
                 //'data' => new \DateTime('now'),
             ])
             ->add('numero_cin', null, [
-                'label' => 'Numéro de la carte d\'identité national',
+                'label' => 'Numéro de la carte d\'identité nationale',
             ])
             ->add('date_cin', null, [
-                'label' => 'Date de réalisation de la carte d\identité national',
+                'label' => 'Date de réalisation de la carte d\identité nationale',
                 'widget' => 'single_text',
                 'attr' => [
                     'class' => 'datetimepicker',
@@ -69,7 +69,7 @@ class ConjointsType extends AbstractType
                 //'data' => new \DateTime('now'),
             ])
             ->add('lieu_cin', null, [
-                'label' => 'Lieu de réalisation de la carte d\identité national',
+                'label' => 'Lieu de réalisation de la carte d\identité nationale',
             ])
             ->add('reference_autorisation_mariage', null, [
                 'label' => 'Reférence de l\'autorisation de mariage',

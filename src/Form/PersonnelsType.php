@@ -57,7 +57,7 @@ class PersonnelsType extends AbstractType
                 //'data' => new \DateTime('now'),
             ])
             ->add('lieu_cin', null, [
-                'label' => 'Lieu de réalisation de la carte d\'identité national',
+                'label' => 'Lieu de réalisation de la carte d\'identité nationale',
             ])
             ->add('sexe', ChoiceType::class, [
                 //'value' => false,

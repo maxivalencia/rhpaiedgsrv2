@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Recompenses{% endblock %}
+
+{% block body %}
+    <h1>Liste des recompenses</h1>
+
+    <a href="{{ path('recompense_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+    <table id="user_liste" class="table">
+        <thead>
+            <tr>
+                <th>Nature</th>
+                <th>Reférence</th>
+                <th>Date</th>
+                <th>Libellé</th>
+                <th>Autorité délivrant</th>
+                <th>Personnel bénéficiaire</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for recompense in recompenses %}
+            <tr>
+                <td>{{ recompense.nature }}</td>
+                <td>{{ recompense.reference }}</td>
+                <td>{{ recompense.date ? recompense.date|date('Y-m-d') : '' }}</td>
+                <td>{{ recompense.libelle }}</td>
+                <td>{{ recompense.autorite }}</td>
+                <td>{{ recompense.personnel }}</td>
+                <td>
+                    <a href="{{ path('recompense_show', {'id': recompense.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('recompense_edit', {'id': recompense.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('recompense_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>    
+
+    {% block javascripts %}
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#user_liste').DataTable();
+            } );
+        </script>
+    {% endblock %}
+{% endblock %}

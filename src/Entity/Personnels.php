@@ -194,6 +194,11 @@ class Personnels
      */
     private $dateDepartRetraite;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Recompense::class, mappedBy="personnel")
+     */
+    private $recompenses;
+
     public function __construct()
     {
         $this->nominationsPersonnels = new ArrayCollection();
@@ -209,6 +214,7 @@ class Personnels
         $this->affectationsPersonnels = new ArrayCollection();
         $this->radiationsPersonnels = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->recompenses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -888,6 +894,36 @@ class Personnels
     public function setDateDepartRetraite(?\DateTimeInterface $dateDepartRetraite): self
     {
         $this->dateDepartRetraite = $dateDepartRetraite;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Recompense[]
+     */
+    public function getRecompenses(): Collection
+    {
+        return $this->recompenses;
+    }
+
+    public function addRecompense(Recompense $recompense): self
+    {
+        if (!$this->recompenses->contains($recompense)) {
+            $this->recompenses[] = $recompense;
+            $recompense->setPersonnel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecompense(Recompense $recompense): self
+    {
+        if ($this->recompenses->removeElement($recompense)) {
+            // set the owning side to null (unless already changed)
+            if ($recompense->getPersonnel() === $this) {
+                $recompense->setPersonnel(null);
+            }
+        }
 
         return $this;
     }

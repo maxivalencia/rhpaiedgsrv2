@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Recompense{% endblock %}
+
+{% block body %}
+    <h1>Ajout nouvelle Recompense</h1>
+
+    {{ include('recompense/_form.html.twig') }}
+
+    <a href="{{ path('recompense_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+{% endblock %}

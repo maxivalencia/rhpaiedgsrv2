@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Natures{% endblock %}
+
+{% block body %}
+    <h1>Liste des natures</h1>
+
+    <a href="{{ path('nature_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+    <table id="user_liste" class="table">
+        <thead>
+            <tr>
+                <th>Libellé</th>
+                <th>Abréviation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for nature in natures %}
+            <tr>
+                <td>{{ nature.libelle }}</td>
+                <td>{{ nature.abreviation }}</td>
+                <td>
+                    <a href="{{ path('nature_show', {'id': nature.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('nature_edit', {'id': nature.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('nature_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>    
+
+    {% block javascripts %}
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#user_liste').DataTable();
+            } );
+        </script>
+    {% endblock %}
+{% endblock %}

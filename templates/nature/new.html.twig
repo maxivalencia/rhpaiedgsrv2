@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Nature{% endblock %}
+
+{% block body %}
+    <h1>Ajout nouvelle Nature</h1>
+
+    {{ include('nature/_form.html.twig') }}
+
+    <a href="{{ path('nature_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+{% endblock %}

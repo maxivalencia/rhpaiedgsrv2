@@ -46,6 +46,8 @@ security:
         - { path: ^/communes, roles: ROLE_USER }
         - { path: ^/conjoints, roles: ROLE_USER }
         - { path: ^/decisions/affectations, roles: ROLE_USER }
+        - { path: ^/nature, roles: ROLE_USER }
+        - { path: ^/recompense, roles: ROLE_USER }
         - { path: ^/decisions/promotions, roles: ROLE_USER }
         - { path: ^/decisions/radiations/controles, roles: ROLE_USER }
         - { path: ^/sdecorations, roles: ROLE_ADMIN }

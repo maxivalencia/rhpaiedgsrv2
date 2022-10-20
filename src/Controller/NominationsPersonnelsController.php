@@ -21,13 +21,8 @@ class NominationsPersonnelsController extends AbstractController
      */
     public function index(NominationsPersonnelsRepository $nominationsPersonnelsRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $nominationsPersonnelsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
         return $this->render('nominations_personnels/index.html.twig', [
-            'nominations_personnels' => $pagination,
+            'nominations_personnels' => $nominationsPersonnelsRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

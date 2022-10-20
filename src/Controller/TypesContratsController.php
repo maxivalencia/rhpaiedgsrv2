@@ -21,13 +21,8 @@ class TypesContratsController extends AbstractController
      */
     public function index(TypesContratsRepository $typesContratsRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $typesContratsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        ); 
         return $this->render('types_contrats/index.html.twig', [
-            'types_contrats' => $pagination,
+            'types_contrats' => $typesContratsRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

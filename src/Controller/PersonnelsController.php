@@ -33,14 +33,9 @@ class PersonnelsController extends AbstractController
      * @Route("/", name="personnels_index", methods={"GET"})
      */
     public function index(PersonnelsRepository $personnelsRepository, PhotosRepository $photosRepository, Request $request, PaginatorInterface $paginator): Response
-    {
-        $pagination = $paginator->paginate(
-            $personnelsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );        
+    {       
         return $this->render('personnels/index.html.twig', [
-            'personnels' => $pagination,
+            'personnels' => $personnelsRepository->findBy([], ["id" => "DESC"]),
             'photos' => $photosRepository->findAll(),
         ]);
     }

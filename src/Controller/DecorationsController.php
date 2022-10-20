@@ -21,13 +21,8 @@ class DecorationsController extends AbstractController
      */
     public function index(DecorationsRepository $decorationsRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $decorationsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
         return $this->render('decorations/index.html.twig', [
-            'decorations' => $pagination,
+            'decorations' => $decorationsRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

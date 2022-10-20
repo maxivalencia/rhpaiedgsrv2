@@ -20,14 +20,9 @@ class RolesController extends AbstractController
      * @Route("/", name="roles_index", methods={"GET"})
      */
     public function index(RolesRepository $rolesRepository, Request $request, PaginatorInterface $paginator): Response
-    {
-        $pagination = $paginator->paginate(
-            $rolesRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        ); 
+    { 
         return $this->render('roles/index.html.twig', [
-            'roles' => $pagination,
+            'roles' => $rolesRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

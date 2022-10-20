@@ -24,13 +24,8 @@ class PhotosController extends AbstractController
      */
     public function index(PhotosRepository $photosRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $photosRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
         return $this->render('photos/index.html.twig', [
-            'photos' => $pagination,
+            'photos' => $photosRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

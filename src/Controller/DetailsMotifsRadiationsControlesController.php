@@ -21,13 +21,8 @@ class DetailsMotifsRadiationsControlesController extends AbstractController
      */
     public function index(DetailsMotifsRadiationsControlesRepository $detailsMotifsRadiationsControlesRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $detailsMotifsRadiationsControlesRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
         return $this->render('details_motifs_radiations_controles/index.html.twig', [
-            'details_motifs_radiations_controles' => $pagination,
+            'details_motifs_radiations_controles' => $detailsMotifsRadiationsControlesRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

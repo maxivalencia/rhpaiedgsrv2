@@ -21,13 +21,8 @@ class ExConjointsController extends AbstractController
      */
     public function index(ExConjointsRepository $exConjointsRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $exConjointsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
         return $this->render('ex_conjoints/index.html.twig', [
-            'ex_conjoints' => $pagination,
+            'ex_conjoints' => $exConjointsRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

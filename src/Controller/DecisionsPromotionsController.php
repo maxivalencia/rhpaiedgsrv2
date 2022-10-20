@@ -21,13 +21,8 @@ class DecisionsPromotionsController extends AbstractController
      */
     public function index(DecisionsPromotionsRepository $decisionsPromotionsRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $decisionsPromotionsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        ); 
         return $this->render('decisions_promotions/index.html.twig', [
-            'decisions_promotions' => $pagination,
+            'decisions_promotions' => $decisionsPromotionsRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

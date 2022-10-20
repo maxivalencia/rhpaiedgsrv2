@@ -21,13 +21,8 @@ class DecisionsRadiationsControlesController extends AbstractController
      */
     public function index(DecisionsRadiationsControlesRepository $decisionsRadiationsControlesRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $decisionsRadiationsControlesRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        ); 
         return $this->render('decisions_radiations_controles/index.html.twig', [
-            'decisions_radiations_controles' => $pagination,
+            'decisions_radiations_controles' => $decisionsRadiationsControlesRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

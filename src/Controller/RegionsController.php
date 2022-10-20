@@ -21,13 +21,8 @@ class RegionsController extends AbstractController
      */
     public function index(RegionsRepository $regionsRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $regionsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
         return $this->render('regions/index.html.twig', [
-            'regions' => $pagination,
+            'regions' => $regionsRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

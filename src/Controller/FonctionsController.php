@@ -21,13 +21,8 @@ class FonctionsController extends AbstractController
      */
     public function index(FonctionsRepository $fonctionsRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $fonctionsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
         return $this->render('fonctions/index.html.twig', [
-            'fonctions' => $pagination,
+            'fonctions' => $fonctionsRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

@@ -21,13 +21,8 @@ class PunitionsController extends AbstractController
      */
     public function index(PunitionsRepository $punitionsRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $punitionsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
         return $this->render('punitions/index.html.twig', [
-            'punitions' => $pagination,
+            'punitions' => $punitionsRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

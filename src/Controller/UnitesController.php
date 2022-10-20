@@ -21,13 +21,8 @@ class UnitesController extends AbstractController
      */
     public function index(UnitesRepository $unitesRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $unitesRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        ); 
         return $this->render('unites/index.html.twig', [
-            'unites' => $pagination,
+            'unites' => $unitesRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

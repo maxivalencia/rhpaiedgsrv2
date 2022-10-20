@@ -21,13 +21,8 @@ class DroitsPensionsController extends AbstractController
      */
     public function index(DroitsPensionsRepository $droitsPensionsRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $droitsPensionsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
         return $this->render('droits_pensions/index.html.twig', [
-            'droits_pensions' => $pagination,
+            'droits_pensions' => $droitsPensionsRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

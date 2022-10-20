@@ -21,13 +21,8 @@ class TypesCommunesController extends AbstractController
      */
     public function index(TypesCommunesRepository $typesCommunesRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $typesCommunesRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
         return $this->render('types_communes/index.html.twig', [
-            'types_communes' => $pagination,
+            'types_communes' => $typesCommunesRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

@@ -21,13 +21,8 @@ class NiveauDiplomeController extends AbstractController
      */
     public function index(NiveauDiplomeRepository $niveauDiplomeRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $niveauDiplomeRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
         return $this->render('niveau_diplome/index.html.twig', [
-            'niveau_diplomes' => $pagination,
+            'niveau_diplomes' => $niveauDiplomeRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

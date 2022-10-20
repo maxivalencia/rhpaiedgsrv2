@@ -21,13 +21,8 @@ class NotesPOSController extends AbstractController
      */
     public function index(NotesPOSRepository $notesPOSRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $notesPOSRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
         return $this->render('notes_pos/index.html.twig', [
-            'notes_p_o_ss' => $pagination,
+            'notes_p_o_ss' => $notesPOSRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

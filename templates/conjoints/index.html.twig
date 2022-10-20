@@ -11,7 +11,7 @@
         </div>
     </form>
     <a href="{{ path('conjoints_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
-    <table class="table">
+    <table id="user_liste" class="table">
         <thead>
             <tr>
                 {# <th>Id</th> #}
@@ -71,9 +71,18 @@
         </tbody>
     </table>
 
-    <div class="navigation">
+    {# <div class="navigation">
         {{ knp_pagination_render(conjoints) }}
-    </div>
+    </div> #}
 
     <a href="{{ path('conjoints_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+
+    {% block javascripts %}
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#user_liste').DataTable();
+            } );
+        </script>
+    {% endblock %}
 {% endblock %}

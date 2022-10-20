@@ -21,13 +21,8 @@ class NotesPersonnelsController extends AbstractController
      */
     public function index(NotesPersonnelsRepository $notesPersonnelsRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $notesPersonnelsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
         return $this->render('notes_personnels/index.html.twig', [
-            'notes_personnels' => $pagination,
+            'notes_personnels' => $notesPersonnelsRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

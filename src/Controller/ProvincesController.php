@@ -21,13 +21,8 @@ class ProvincesController extends AbstractController
      */
     public function index(ProvincesRepository $provincesRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $provincesRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
         return $this->render('provinces/index.html.twig', [
-            'provinces' => $pagination,
+            'provinces' => $provincesRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

@@ -21,13 +21,8 @@ class DomaineDiplomeController extends AbstractController
      */
     public function index(DomaineDiplomeRepository $domaineDiplomeRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $pagination = $paginator->paginate(
-            $domaineDiplomeRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
         return $this->render('domaine_diplome/index.html.twig', [
-            'domaine_diplomes' => $pagination,
+            'domaine_diplomes' => $domaineDiplomeRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
     /**

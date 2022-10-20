@@ -20,16 +20,7 @@ class AffectationsPersonnelsController extends AbstractController
      * @Route("/", name="affectations_personnels_index", methods={"GET"})
      */
     public function index(AffectationsPersonnelsRepository $affectationsPersonnelsRepository, Request $request, PaginatorInterface $paginator): Response
-    {
-        $pagination = $paginator->paginate(
-            $affectationsPersonnelsRepository->findBy([], ["id" => "DESC"]), /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        ); 
-        /* return $this->render('affectations_personnels/index.html.twig', [
-            'affectations_personnels' => $pagination,
-        ]); */
-         
+    {         
         return $this->render('affectations_personnels/index.html.twig', [
             'affectations_personnels' => $affectationsPersonnelsRepository->findBy([], ["id" => "DESC"]),
         ]);

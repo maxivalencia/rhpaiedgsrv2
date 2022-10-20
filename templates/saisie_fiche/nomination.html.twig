@@ -3,5 +3,11 @@
 {% block title %}Saisie Fiche Nomination{% endblock %}
 
 {% block body %}
+    <h1>Saisie fiche individuelle</h1>
+    <h2>Nomination(s) Personnels</h2>
+
+    {{ include('nominations_personnels/_form.html.twig') }}
+
+    <a href="{{ path('saisie_fiche_recompense') }}" class="btn btn-primary">Recompense <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
 
 {% endblock %}

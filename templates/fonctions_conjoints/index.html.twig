@@ -4,12 +4,12 @@
 
 {% block body %}
     <h1>Liste Fonctions Conjoints</h1>
-    <form class="mt-2 mt-md-0 d-none d-lg-block search-input" action="{{ path('fonctions_conjoints_recherche') }}">
+    {# <form class="mt-2 mt-md-0 d-none d-lg-block search-input" action="{{ path('fonctions_conjoints_recherche') }}">
         <div class="input-group">
             <span class="input-group-addon d-flex align-items-center"><i class="icon-magnifier icons"></i></span>
             <input type="text" name="search" class="form-control" placeholder="Search...">
         </div>
-    </form>
+    </form> #}
     <a href="{{ path('fonctions_conjoints_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
     <table id="user_liste" class="table">
         <thead>

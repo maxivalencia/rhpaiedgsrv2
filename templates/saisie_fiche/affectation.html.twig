@@ -3,5 +3,11 @@
 {% block title %}Saisie Fiche Affectation{% endblock %}
 
 {% block body %}
+    <h1>Saisie fiche individuelle</h1>
+    <h2>Affectation(s) Personnels</h2>
+
+    {{ include('affectations_personnels/_form.html.twig') }}
+
+    <a href="{{ path('saisie_fiche_nomination') }}" class="btn btn-primary">Nomination <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
 
 {% endblock %}

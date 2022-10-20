@@ -3,5 +3,11 @@
 {% block title %}Saisie Fiche Decoration{% endblock %}
 
 {% block body %}
+    <h1>Saisie fiche individuelle</h1>
+    <h2>Decoration(s) Personnels</h2>
+
+    {{ include('recompense/_form.html.twig') }}
+
+    <a href="{{ path('saisie_fiche_diplome') }}" class="btn btn-primary">Diplôme <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
 
 {% endblock %}

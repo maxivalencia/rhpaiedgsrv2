@@ -3,5 +3,11 @@
 {% block title %}Saisie Fiche Enfant{% endblock %}
 
 {% block body %}
+    <h1>Saisie fiche individuelle</h1>
+    <h2>Enfant(s) Personnels</h2>
+
+    {{ include('enfants/_form.html.twig') }}
+
+    <a href="{{ path('saisie_fiche_affectation') }}" class="btn btn-primary">Affectation <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
 
 {% endblock %}

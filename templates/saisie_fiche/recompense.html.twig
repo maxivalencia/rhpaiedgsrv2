@@ -3,5 +3,11 @@
 {% block title %}Saisie Fiche Recompense{% endblock %}
 
 {% block body %}
+    <h1>Saisie fiche individuelle</h1>
+    <h2>Recompense(s) Personnels</h2>
+
+    {{ include('recompense/_form.html.twig') }}
+
+    <a href="{{ path('saisie_fiche_punition') }}" class="btn btn-primary">Punitions <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
 
 {% endblock %}

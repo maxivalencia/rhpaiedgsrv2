@@ -3,5 +3,11 @@
 {% block title %}Saisie Fiche Diplome{% endblock %}
 
 {% block body %}
+    <h1>Saisie fiche individuelle</h1>
+    <h2>Diplôme(s) Personnels</h2>
+
+    {{ include('recompense/_form.html.twig') }}
+
+    <a href="{{ path('saisie_fiche_etat_civil') }}" class="btn btn-primary">Terminer <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
 
 {% endblock %}

@@ -86,8 +86,10 @@ class PersonnelsController extends AbstractController
     {
         $photo = $photosRepository->findOneBy(['personnel' => $personnel]);
         $conjoints = $conjointsRepository->findBy(['personnel' => $personnel], ["id" => "DESC"]);
+        //$conjoints = $conjointsRepository->findOneBy(['personnel' => $personnel], ["id" => "DESC"]);
         //$conjoint = $conjointsRepository->findOneBy(["personnel" => $personnel], ["id" => "DESC"]);
-        //$fonctionConjoint = $fonctionsConjointsRepository->findOneBy(["conjoint" => $conjoint], ["id" => "DESC"]);
+        //$fonctionConjoint = $fonctionsConjointsRepository->findOneBy(["conjoint" => $personnel], ["id" => "DESC"]);
+        //$fonctionConjoint = $fonctionsConjointsRepository->findOneBy(["conjoint" => $conjoints]);
         $fonctionConjoint = $fonctionsConjointsRepository->findAll();
         $enfants = $enfantsRepository->findBy(["personnel" => $personnel], ["date_naissance" => "DESC"]);
         $diplomes = $diplomesPersonnelsRepository->findBy(["personnel" => $personnel], ["date" => "DESC"]);

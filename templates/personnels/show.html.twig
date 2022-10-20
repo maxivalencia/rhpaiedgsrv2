@@ -128,10 +128,12 @@
                 <td>{{ conjoint.numeroCin }}</td>
                 <td>
                     {% for fonctionConjoint in fonctionConjoints %}
-                        {% if conjoint.id == fonctionConjoint.conjoint.id %}
-                            {{ fonctionConjoint.abbreviation }}
-                        {% endif %}                    
-                    {% endfor %}                
+                        {% if fonctionConjoint.conjoint.id != NULL %}
+                            {% if conjoint.id == fonctionConjoint.conjoint.id %}
+                                {{ fonctionConjoint.abbreviation }}
+                            {% endif %}    
+                        {% endif %}                
+                    {% endfor %}             
                 </td>
             </tr>
         {% else %}

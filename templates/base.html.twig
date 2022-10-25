@@ -253,7 +253,15 @@
                                         <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
-                                <ul class="nav nav-treeview">
+                                <ul class="nav nav-treeview">                                    
+                                    <li class="nav-item">
+                                        <a href="{{ path('saisie_fiche_etat_civil') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Saisie fiche
+                                            </p>
+                                        </a>
+                                    </li>
                                     {% if is_granted("ROLE_MILITAIRE") %}
                                         <li class="nav-item">
                                             <a href="{{ path('nominations_personnels_index') }}" class="nav-link">

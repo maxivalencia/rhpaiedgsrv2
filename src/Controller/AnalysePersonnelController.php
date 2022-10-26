@@ -2,10 +2,21 @@
 
 namespace App\Controller;
 
+use App\Entity\AffectationsPersonnels;
+use App\Entity\Conjoints;
+use App\Entity\FonctionsConjoints;
 use App\Entity\Personnels;
 use App\Form\PersonnelsType;
 use App\Form\AnalyseType;
 use App\Repository\PersonnelsRepository;
+use App\Repository\PhotosRepository;
+use App\Repository\NominationsPersonnelsRepository;
+use App\Repository\FonctionsConjointsRepository;
+use App\Repository\EnfantsRepository;
+use App\Repository\DiplomesPersonnelsRepository;
+use App\Repository\DecorationsPersonnelsRepository;
+use App\Repository\AffectationsPersonnelsRepository;
+use App\Repository\ConjointsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,20 +30,8 @@ class AnalysePersonnelController extends AbstractController
     /**
      * @Route("/analyse/personnel", name="analyse_personnel", methods={"GET","POST"})
      */
-    public function index(Request $request, PersonnelsRepository $personnelsRepository/* , Personnels $personnel */): Response
+    public function index(Request $request, FonctionsConjointsRepository $fonctionsConjointsRepository, ConjointsRepository $conjointsRepository, PersonnelsRepository $personnelsRepository, PhotosRepository $photosRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository): Response
     {
-        //$form = $this->createForm(AnalyseType::class);  
-        /* $form = $this->createFormBuilder($ticket)
-        ->add('category', ChoiceType::class, array(
-            'choices' => array(
-                'ROMAC eHR' => 1,
-                'ROMAC Website' => 2,
-                'ROMAC Guide' => 3,
-            )
-        ))
-        ->add('comment', TextareaType::class)
-        ->add('save', SubmitType::class, array('label' => 'Submit Ticket'))
-        ->getForm(); */
         $personnelsListe = $personnelsRepository->findBy(["actif" => 1], ["id" => "DESC"]);
         $personnels = new ArrayCollection();
         foreach($personnelsListe as $pers){
@@ -46,6 +45,10 @@ class AnalysePersonnelController extends AbstractController
             'choices' => $personnels,
             'required' => false,
             'empty_data' => '',
+            'attr' => [
+                'id' => 'Personnels',
+                'name' => 'Personnels',
+            ],
         ])
         ->add('Afficher', SubmitType::class, array('label' => 'Afficher les données des personnels'))
         ->getForm();
@@ -53,12 +56,27 @@ class AnalysePersonnelController extends AbstractController
         $form->handleRequest($request);
 
         $liste_personnels = new ArrayCollection();
+        $liste_affectations = new ArrayCollection();
+        //$liste_conjoints = new ArrayCollection();
+        //$liste_fonction_conjoints = new ArrayCollection();
+        $liste_conjoints[] = new Conjoints();
+        $liste_fonction_conjoints[] = new FonctionsConjoints();
+        $liste_affectations[] = new AffectationsPersonnels();
         if ($form->isSubmitted() && $form->isValid()) {
-            $listes[] = $request->request->get("personnels");
-            foreach($listes as $lst){
-                $pers = $personnelsRepository->findOneBy(["id" => $lst]);
+            $liste[] = $request->request->get("form");
+            $listes[] = $liste[0]["Personnels"];
+            foreach($listes[0] as $lst){
+                $pers = $personnelsRepository->findOneBy(["id" =>  $lst]);
                 if($pers != NULL){ 
                     $liste_personnels->add($pers);
+                    // $liste_affectations->add($affectationsPersonnelsRepository->findBy([], ["date_affectation" => "DESC"]));
+                    $conjoint = $conjointsRepository->findBy(['personnel' => $pers], ["id" => "DESC"]);
+                    //var_dump($conjoint);
+                    /* $liste_fonction_conjoints->add($fonctionsConjointsRepository->findBy(['conjoint' => $conjoint], ["id" => "DESC"]));
+                    $liste_conjoints->add($conjoint); */
+                    $liste_fonction_conjoints = $fonctionsConjointsRepository->findBy(['conjoint' => $conjointsRepository->findOneBy(['personnel' => $pers], ["id" => "DESC"])], ["id" => "DESC"]);
+                    $liste_conjoints = $conjoint;
+                    $liste_affectations = $affectationsPersonnelsRepository->findBy([], ["date_affectation" => "DESC"]);
                 }
             }
         }
@@ -67,6 +85,10 @@ class AnalysePersonnelController extends AbstractController
             'controller_name' => 'AnalysePersonnelController',
             'form' => $form->createView(),
             'personnels' => $liste_personnels,
+            'photos' => $photosRepository->findAll(),
+            'affectations' => $liste_affectations,
+            'fonctionConjoints' => $liste_fonction_conjoints,
+            'conjoints' => $liste_conjoints,
         ]);
     }
 }

@@ -42,6 +42,7 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/analyse, roles: ROLE_USER }
         - { path: ^/saisie/personnels, roles: ROLE_USER }
         - { path: ^/affectations/personnels, roles: ROLE_USER }
         - { path: ^/communes, roles: ROLE_USER }

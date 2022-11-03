@@ -28,7 +28,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class AnalysePersonnelController extends AbstractController
 {
     /**
-     * @Route("/analyse/personnel", name="analyse_personnel", methods={"GET","POST"})
+     * @Route("/analyse", name="analyse_personnel", methods={"GET","POST"})
      */
     public function index(Request $request, FonctionsConjointsRepository $fonctionsConjointsRepository, ConjointsRepository $conjointsRepository, PersonnelsRepository $personnelsRepository, PhotosRepository $photosRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository): Response
     {

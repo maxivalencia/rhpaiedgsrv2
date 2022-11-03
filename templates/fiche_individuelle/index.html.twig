@@ -247,6 +247,26 @@
                     </td>
                 </tr>
                 <tr>
+                    <td valign="top"><u>Date de naissance</u></td>
+                    <td valign="top">: 
+                        {% if conjoints is not null %}
+                            {{ conjoints.dateNaissance }}
+                        {% endif %}
+                    </td>
+                    <td valign="top"><u>Lieu de naissance</u></td>
+                    <td valign="top">:  
+                        {% if conjoints is not null %}
+                            {{ conjoints.lieuNaissance }}
+                        {% endif %}
+                    </td>
+                    <td valign="top"><u></u></td>
+                    <td valign="top">: 
+                        {# {% if conjoints is not null %}
+                            {{ conjoints.lieuCin }}
+                        {% endif %} #}
+                    </td>
+                </tr>
+                <tr>
                     <td valign="top"><u>CIN</u></td>
                     <td valign="top">: 
                         {% if conjoints is not null %}

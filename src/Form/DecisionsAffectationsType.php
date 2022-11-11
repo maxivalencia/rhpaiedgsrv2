@@ -13,6 +13,7 @@ class DecisionsAffectationsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $genres = [
+            '' => '',
             'Message porter' => 'MP',
             'Mesage par radio' => 'RADIO',
             'Decrets' => 'DECRET',

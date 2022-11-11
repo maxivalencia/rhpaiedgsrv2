@@ -13,9 +13,9 @@
     <table id="user_liste" class="table">
         <thead>
             <tr>
-                <th style="width:125px;">Photos</th>
-                <th style="width:750px;">Information personnels</th>
-                <th style="width:750px;">Information Conjoint</th>
+                <th style="width:125px;">Photos du personnel</th>
+                <th style="width:750px;">Information sur le personnels</th>
+                <th style="width:750px;">Information sur le conjoint</th>
             </tr>
         </thead>
         <tbody>
@@ -44,18 +44,22 @@
                 </td>
                 <td style="vertical-align:middle;">
                     {% for conjoint in conjoints %}
-                        {% if conjoint.personnel.id == personnel.id %}
-                            {{ conjoint.nom }} {{ conjoint.prenom }}<br>
-                            Numéro CIN : {{ conjoint.numeroCin }}<br>
-                            {% for fonctionConjoint in fonctionConjoints %}
-                                {% if fonctionConjoint.conjoint.id == conjoint.id %}
-                                    {{ fonctionConjoint.libelle }}<br>
-                                    {{ fonctionConjoint.employeur }}<br>
-                                    {{ fonctionConjoint.adresseEmployeur }}<br>
-                                {% endif %}                            
-                            {% else %}
-                                Aucune fonction trouvé
-                            {% endfor %}
+                        {% if conjoint.personnel is not null and personnel is not null %}  
+                            {% if conjoint.personnel.id == personnel.id %}
+                                {{ conjoint.nom }} {{ conjoint.prenom }}<br>
+                                Numéro CIN : {{ conjoint.numeroCin }}<br>
+                                {% for fonctionConjoint in fonctionConjoints %}
+                                    {% if fonctionConjoint.conjoint is not null and conjoint is not null %}
+                                        {% if fonctionConjoint.conjoint.id == conjoint.id %}
+                                            Fonction : {{ fonctionConjoint.libelle }}<br>
+                                            Employeur : {{ fonctionConjoint.employeur }}<br>
+                                            Adresse de l'employeur : {{ fonctionConjoint.adresseEmployeur }}<br>
+                                        {% endif %}   
+                                    {% endif %}                         
+                                {% else %}
+                                    Aucune fonction trouvé
+                                {% endfor %}
+                            {% endif %}
                         {% endif %}
                     {% else %}
                         Aucun partenaire trouvé

@@ -74,8 +74,10 @@ class AnalysePersonnelController extends AbstractController
                     //var_dump($conjoint);
                     /* $liste_fonction_conjoints->add($fonctionsConjointsRepository->findBy(['conjoint' => $conjoint], ["id" => "DESC"]));
                     $liste_conjoints->add($conjoint); */
-                    $liste_fonction_conjoints = $fonctionsConjointsRepository->findBy(['conjoint' => $conjointsRepository->findOneBy(['personnel' => $pers], ["id" => "DESC"])], ["id" => "DESC"]);
-                    $liste_conjoints = $conjoint;
+                    // $liste_fonction_conjoints = $fonctionsConjointsRepository->findBy(['conjoint' => $conjointsRepository->findOneBy(['personnel' => $pers], ["id" => "DESC"])], ["id" => "DESC"]);
+                    $liste_fonction_conjoints = $fonctionsConjointsRepository->findBy([], ["id" => "DESC"]);
+                    // $liste_conjoints = $conjoint;
+                    $liste_conjoints = $conjointsRepository->findBy([], ["id" => "DESC"]);
                     $liste_affectations = $affectationsPersonnelsRepository->findBy([], ["date_affectation" => "DESC"]);
                 }
             }

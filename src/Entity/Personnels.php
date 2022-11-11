@@ -2,9 +2,12 @@
 
 namespace App\Entity;
 
+use App\Entity\NominationsPersonnels;
+use App\Entity\Grades;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Length;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PersonnelsRepository")
@@ -457,6 +460,13 @@ class Personnels
     public function __toString()
     {
         return $this->getGrade().' '.$this->getNom().' '.$this->getPrenoms();
+        /* $grd = "";
+        if($this->getNominationsPersonnels() != NULL){
+            $grd = $this->getNominationsPersonnels()[-1];
+        }else{
+            $grd = "PC";
+        }
+        return $grd.' '.$this->getNom().' '.$this->getPrenoms(); */
     }
 
     public function getContrat(): ?TypesContrats

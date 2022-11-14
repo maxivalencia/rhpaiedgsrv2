@@ -13,9 +13,10 @@
     <table id="user_liste" class="table">
         <thead>
             <tr>
-                <th style="width:125px;">Photos du personnel</th>
-                <th style="width:750px;">Information sur le personnels</th>
-                <th style="width:750px;">Information sur le conjoint</th>
+                <th style="width:125px; text-align:center;">PHOTOS DU PERSONNEL</th>
+                <th style="width:500px; text-align:center;">INFORMATION SUR LE PERSONNEL</th>
+                <th style="width:500px; text-align:center;">INFORMATION SUR LE(LA) CONJOINT(E)</th>
+                <th style="width:500px; text-align:center;">AUTRE INFORMATION</th>
             </tr>
         </thead>
         <tbody>
@@ -29,31 +30,40 @@
                     {% endfor %}
                 </td>
                 <td style="vertical-align:middle;">
-                {{ personnel.grade }} {{ personnel.nom }} {{ personnel.prenoms }}<br>
-                Née le : {{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }} à {{ personnel.lieuNaissance }}<br>
-                Numéro CIN : {{ personnel.numCin }}<br>
-                sexe : {{ personnel.sexe ? 'Féminin' : 'Masculin' }}<br>
-                Téléphone : {{ personnel.telephone }}<br>
-                Adresse : {{ personnel.adresse }}<br>
-                Affectation : <br>
-                {% for affectations_personnel in affectations %}
-                    {% if affectations_personnel.personnel != null and affectations_personnel.personnel.id == personnel.id %}
-                        {{ affectations_personnel.unite }},&nbsp;
-                    {% endif %} 
-                {% endfor %}
+                    <strong>{{ personnel.grade }} {{ personnel.nom }} {{ personnel.prenoms }}</strong><br>
+                    <strong>Née le : </strong>{{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }} <strong>à</strong> {{ personnel.lieuNaissance }}<br>
+                    <strong>Numéro CIN : </strong>{{ personnel.numCin }}<br>
+                    <strong>sexe : </strong>{{ personnel.sexe ? 'Féminin' : 'Masculin' }}<br>
+                    <strong>Téléphone : </strong>{{ personnel.telephone }}<br>
+                    <strong>Adresse : </strong>{{ personnel.adresse }}<br>
+                    <strong>Affectation : </strong><br>
+                    {% for affectations_personnel in affectations %}
+                        {% if affectations_personnel.personnel != null and affectations_personnel.personnel.id == personnel.id %}
+                            {{ affectations_personnel.unite }},&nbsp;
+                        {% endif %} 
+                    {% endfor %}
+                    <br>
+                    <p style="text-align:right;"><a href="{{ path('personnels_show', {'id': personnel.id}) }}" class="btn btn-success" style="align:rigth;"><i class="fa fa-book" aria-hidden="true"></i> Consulter la fiche individuelle</a></p>
                 </td>
                 <td style="vertical-align:middle;">
                     {% for conjoint in conjoints %}
                         {% if conjoint.personnel is not null and personnel is not null %}  
                             {% if conjoint.personnel.id == personnel.id %}
-                                {{ conjoint.nom }} {{ conjoint.prenom }}<br>
-                                Numéro CIN : {{ conjoint.numeroCin }}<br>
+                                <strong>{{ conjoint.nom }} {{ conjoint.prenom }}</strong><br>
+                                <strong>Numéro CIN : </strong>{{ conjoint.numeroCin }}<br>
                                 {% for fonctionConjoint in fonctionConjoints %}
                                     {% if fonctionConjoint.conjoint is not null and conjoint is not null %}
                                         {% if fonctionConjoint.conjoint.id == conjoint.id %}
-                                            Fonction : {{ fonctionConjoint.libelle }}<br>
-                                            Employeur : {{ fonctionConjoint.employeur }}<br>
-                                            Adresse de l'employeur : {{ fonctionConjoint.adresseEmployeur }}<br>
+                                            <span style="color:red;"><strong>Fonction : </strong>{{ fonctionConjoint.libelle }}</span><br>
+                                            <strong>Employeur : </strong>{{ fonctionConjoint.employeur }}<br>
+                                            <strong>Adresse de l'employeur : </strong>{{ fonctionConjoint.adresseEmployeur }}<br>                                            
+                                            {% if fonctionConjoint.estFonctionnaire == true %}
+                                                <p style="color:red;"><strong>{{ fonctionConjoint.estFonctionnaire ? 'Fonctionnaire' : '' }}</strong></p>
+                                            {% else %}
+                                                <p><strong>{{ fonctionConjoint.estFonctionnaire ? 'Fonctionnaire' : '' }}</strong></p>
+                                            {% endif %}                                            
+                                        {% else %}
+                                            <strong>Fonction : </strong>Ménagère
                                         {% endif %}   
                                     {% endif %}                         
                                 {% else %}
@@ -62,9 +72,22 @@
                             {% endif %}
                         {% endif %}
                     {% else %}
-                        Aucun partenaire trouvé
+                        Célibataire
                     {% endfor %}
                     
+                </td>
+                <td style="vertical-align:middle;"> 
+                    {% set count = 0 %}
+                    {% for enfant in enfants %}
+                        {% if enfant.personnel == personnel %}
+                            {% set count = count + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                    <strong>Nombre d'enfant à charge : <strong>{{ count }}
+
+                    {# {% if count > 0 %}
+                    ---  build the toc here --
+                    {% endif %} #}
                 </td>
             </tr>
         {% else %}

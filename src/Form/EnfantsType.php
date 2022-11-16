@@ -13,10 +13,12 @@ class EnfantsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $sexe = [
+            '' => '',
             'Féminin' => true,
             'Masculin' => false
         ];
         $qualite = [
+            '' => '',
             'Légitime' => 'L',
             'Réconnu' => 'R',
             'Adopté' => 'A'

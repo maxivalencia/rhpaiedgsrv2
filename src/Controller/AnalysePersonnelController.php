@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\AffectationsPersonnels;
 use App\Entity\Conjoints;
+use App\Entity\Enfants;
 use App\Entity\FonctionsConjoints;
 use App\Entity\Personnels;
 use App\Form\PersonnelsType;
@@ -28,9 +29,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 class AnalysePersonnelController extends AbstractController
 {
     /**
-     * @Route("/analyse/personnel", name="analyse_personnel", methods={"GET","POST"})
+     * @Route("/analyse", name="analyse_personnel", methods={"GET","POST"})
      */
-    public function index(Request $request, FonctionsConjointsRepository $fonctionsConjointsRepository, ConjointsRepository $conjointsRepository, PersonnelsRepository $personnelsRepository, PhotosRepository $photosRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository): Response
+    public function index(Request $request, EnfantsRepository $enfantsRepository, FonctionsConjointsRepository $fonctionsConjointsRepository, ConjointsRepository $conjointsRepository, PersonnelsRepository $personnelsRepository, PhotosRepository $photosRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository): Response
     {
         $personnelsListe = $personnelsRepository->findBy(["actif" => 1], ["id" => "DESC"]);
         $personnels = new ArrayCollection();
@@ -50,7 +51,7 @@ class AnalysePersonnelController extends AbstractController
                 'name' => 'Personnels',
             ],
         ])
-        ->add('Afficher', SubmitType::class, array('label' => 'Afficher les données des personnels'))
+        ->add('Afficher', SubmitType::class, array('label' => 'Afficher les données'))
         ->getForm();
         
         $form->handleRequest($request);
@@ -62,6 +63,7 @@ class AnalysePersonnelController extends AbstractController
         $liste_conjoints[] = new Conjoints();
         $liste_fonction_conjoints[] = new FonctionsConjoints();
         $liste_affectations[] = new AffectationsPersonnels();
+        $liste_enfants[] = new Enfants();
         if ($form->isSubmitted() && $form->isValid()) {
             $liste[] = $request->request->get("form");
             $listes[] = $liste[0]["Personnels"];
@@ -74,9 +76,12 @@ class AnalysePersonnelController extends AbstractController
                     //var_dump($conjoint);
                     /* $liste_fonction_conjoints->add($fonctionsConjointsRepository->findBy(['conjoint' => $conjoint], ["id" => "DESC"]));
                     $liste_conjoints->add($conjoint); */
-                    $liste_fonction_conjoints = $fonctionsConjointsRepository->findBy(['conjoint' => $conjointsRepository->findOneBy(['personnel' => $pers], ["id" => "DESC"])], ["id" => "DESC"]);
-                    $liste_conjoints = $conjoint;
+                    // $liste_fonction_conjoints = $fonctionsConjointsRepository->findBy(['conjoint' => $conjointsRepository->findOneBy(['personnel' => $pers], ["id" => "DESC"])], ["id" => "DESC"]);
+                    $liste_fonction_conjoints = $fonctionsConjointsRepository->findBy([], ["id" => "DESC"]);
+                    // $liste_conjoints = $conjoint;
+                    $liste_conjoints = $conjointsRepository->findBy([], ["id" => "DESC"]);
                     $liste_affectations = $affectationsPersonnelsRepository->findBy([], ["date_affectation" => "DESC"]);
+                    $liste_enfants = $enfantsRepository->findAll();
                 }
             }
         }
@@ -89,6 +94,7 @@ class AnalysePersonnelController extends AbstractController
             'affectations' => $liste_affectations,
             'fonctionConjoints' => $liste_fonction_conjoints,
             'conjoints' => $liste_conjoints,
+            'enfants' => $liste_enfants,
         ]);
     }
 }

@@ -17,10 +17,11 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $roles = [
+            '' => '',
             'Administrateur' => 'ADMIN',
-            'Superviseur' => 'SUPERVISEUR',
+            'Civil' => 'CIVIL',
             'Militaire' => 'MILITAIRE',
-            'Civil' => 'CIVIL'
+            'Superviseur' => 'SUPERVISEUR',
         ];
         $builder
             ->add('username', null, [

@@ -15,6 +15,7 @@ class PersonnelsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $sexe = [
+            '' => '',
             'Féminin' => true,
             'Masculin' => false
         ];

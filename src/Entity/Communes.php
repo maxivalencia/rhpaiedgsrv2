@@ -98,7 +98,7 @@ class Communes
     */
     public function __toString()
     {
-        return $this->getCommune();
+        return $this->getCommune().', District : '.$this->getDistrict();
     }
 
     /**

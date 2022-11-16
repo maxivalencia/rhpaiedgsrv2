@@ -147,26 +147,18 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
+                                        <a href="{{ path('details_motifs_radiations_controles_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Détail motif radiation
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a href="{{ path('domaine_diplome_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
                                                 Domaine diplôme
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('niveau_diplome_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Niveau diplôme
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('grades_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Grade
                                             </p>
                                         </a>
                                     </li>
@@ -187,26 +179,10 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ path('motifs_radiations_controles_index') }}" class="nav-link">
+                                        <a href="{{ path('grades_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
-                                                Motif radiation
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('details_motifs_radiations_controles_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Détail motif radiation
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('user_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-image"></i>
-                                            <p>
-                                                Utilisateurs
+                                                Grade
                                             </p>
                                         </a>
                                     </li>
@@ -215,6 +191,22 @@
                                             <i class="nav-icon far fa-image"></i>
                                             <p>
                                                 Logo
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path('motifs_radiations_controles_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Motif radiation
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path('niveau_diplome_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Niveau diplôme
                                             </p>
                                         </a>
                                     </li>
@@ -227,10 +219,10 @@
                                         </a>
                                     </li> #}
                                     <li class="nav-item">
-                                        <a href="{{ path('unites_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                        <a href="{{ path('provinces_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-image"></i>
                                             <p>
-                                                Unité
+                                                Province
                                             </p>
                                         </a>
                                     </li>
@@ -243,10 +235,18 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ path('provinces_index') }}" class="nav-link">
+                                        <a href="{{ path('unites_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Unité
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path('user_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-image"></i>
                                             <p>
-                                                Province
+                                                Utilisateurs
                                             </p>
                                         </a>
                                     </li>
@@ -262,25 +262,39 @@
                                         <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
-                                <ul class="nav nav-treeview">                                    
+                                <ul class="nav nav-treeview"> 
+                                    <li class="nav-item">
+                                        <a href="{{ path('affectations_personnels_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Affectation personnel
+                                            </p>
+                                        </a>
+                                    </li>                                   
                                     <li class="nav-item">
                                         <a href="{{ path('saisie_fiche_etat_civil') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
-                                                Saisie fiche
+                                                Ajout personnel
+                                            </p>
+                                        </a>
+                                    </li> 
+                                    <li class="nav-item">
+                                        <a href="{{ path('communes_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Commune
                                             </p>
                                         </a>
                                     </li>
-                                    {% if is_granted("ROLE_MILITAIRE") %}
-                                        <li class="nav-item">
-                                            <a href="{{ path('nominations_personnels_index') }}" class="nav-link">
-                                                <i class="nav-icon far fa-calendar-alt"></i>
-                                                <p>
-                                                    Nomination personnel
-                                                </p>
-                                            </a>
-                                        </li>
-                                    {% endif %}                                    
+                                    <li class="nav-item">
+                                        <a href="{{ path('conjoints_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Conjoint
+                                            </p>
+                                        </a>
+                                    </li>                                  
                                     <li class="nav-item">
                                         <a href="{{ path('decisions_affectations_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
@@ -293,7 +307,7 @@
                                         <a href="{{ path('decisions_promotions_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
-                                                Décision promotion
+                                                Décision nomination
                                             </p>
                                         </a>
                                     </li>
@@ -306,34 +320,34 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ path('affectations_personnels_index') }}" class="nav-link">
+                                        <a href="{{ path('decorations_personnels_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
-                                                Affectation personnel
+                                                Décoration personnel
                                             </p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ path('radiations_personnels_index') }}" class="nav-link">
+                                        <a href="{{ path('diplomes_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
-                                                Radiation personnel
+                                                Diplôme
                                             </p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ path('personnels_index') }}" class="nav-link">
+                                        <a href="{{ path('diplomes_personnels_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
-                                                Personnel
+                                                Diplôme personnel
                                             </p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ path('conjoints_index') }}" class="nav-link">
+                                        <a href="{{ path('districts_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
-                                                Conjoint
+                                                District
                                             </p>
                                         </a>
                                     </li>
@@ -354,29 +368,23 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ path('diplomes_personnels_index') }}" class="nav-link">
+                                        <a href="{{ path('fonctions_conjoints_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
-                                                Diplôme personnel
+                                                Fonction conjoint
                                             </p>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('decorations_personnels_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Décoration personnel
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('recompense_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Recompense personnel
-                                            </p>
-                                        </a>
-                                    </li>
+                                    {% if is_granted("ROLE_MILITAIRE") %}
+                                        <li class="nav-item">
+                                            <a href="{{ path('nominations_personnels_index') }}" class="nav-link">
+                                                <i class="nav-icon far fa-calendar-alt"></i>
+                                                <p>
+                                                    Nomination personnel
+                                                </p>
+                                            </a>
+                                        </li>
+                                    {% endif %} 
                                     <li class="nav-item">
                                         <a href="{{ path('notes_personnels_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
@@ -394,28 +402,28 @@
                                                 </p>
                                             </a>
                                         </li>
-                                    {% endif %}                                    
+                                    {% endif %} 
+                                    <li class="nav-item">
+                                        <a href="{{ path('nature_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Nature des recompense
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path('personnels_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Personnel
+                                            </p>
+                                        </a>
+                                    </li>                                  
                                     <li class="nav-item">
                                         <a href="{{ path('permissions_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
                                                 Permission
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('punitions_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Punition
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('fonctions_conjoints_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Fonction conjoint
                                             </p>
                                         </a>
                                     </li>
@@ -428,21 +436,29 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ path('diplomes_index') }}" class="nav-link">
+                                        <a href="{{ path('punitions_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
-                                                Diplôme
+                                                Punition
                                             </p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ path('nature_index') }}" class="nav-link">
+                                        <a href="{{ path('radiations_personnels_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
-                                                Nature des recompense
+                                                Radiation personnel
                                             </p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path('recompense_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Recompense personnel
+                                            </p>
+                                        </a>
+                                    </li> 
                                     <li class="nav-item">
                                         <a href="{{ path('types_contrats_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
@@ -452,26 +468,10 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ path('communes_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Commune
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
                                         <a href="{{ path('types_communes_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
                                                 Type de Commune
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('districts_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                District
                                             </p>
                                         </a>
                                     </li>

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Réintegrations{% endblock %}
+
+{% block body %}
+    <h1>Liste des Réintegrations</h1>
+    <a href="{{ path('reintegration_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+    <table id="user_liste" class="table">
+        <thead>
+            <tr>
+                {# <th>Id</th> #}
+                <th>Personnel</th>
+                <th>Date de notification</th>
+                <th>Date de réintegration</th>
+                <th>Référence rc réintegration</th>
+                <th>Date rc réintegration</th>
+                <th>Date prévu de réintegration</th>
+                <th>Décision de radiation concerné</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reintegration in reintegrations %}
+            <tr>
+                {# <td>{{ reintegration.id }}</td> #}
+                <td>{{ reintegration.personnel }}</td>
+                <td>{{ reintegration.dateNotification ? reintegration.dateNotification|date('d/m/Y') : '' }}</td>
+                <td>{{ reintegration.dateReintegration ? reintegration.dateReintegration|date('d/m/Y') : '' }}</td>
+                <td>{{ reintegration.referenceRcReintegration }}</td>
+                <td>{{ reintegration.dateRcReintegration ? reintegration.dateRcReintegration|date('d/m/Y') : '' }}</td>
+                <td>{{ reintegration.datePrevuReintegration ? reintegration.datePrevuReintegration|date('d/m/Y') : '' }}</td>
+                <td>{{ reintegration.radiation }}</td>
+                <td>
+                    <a href="{{ path('reintegration_show', {'id': reintegration.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('reintegration_edit', {'id': reintegration.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('reintegration_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+
+    {% block javascripts %}
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#user_liste').DataTable();
+            } );
+        </script>
+    {% endblock %}
+{% endblock %}

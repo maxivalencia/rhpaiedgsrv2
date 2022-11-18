@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition Situation Sanitaire{% endblock %}
+
+{% block body %}
+    <h1>Edition Situation Sanitaire</h1>
+
+    {{ include('situation_sanitaire/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('situation_sanitaire_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+
+    {{ include('situation_sanitaire/_delete_form.html.twig') }}
+{% endblock %}

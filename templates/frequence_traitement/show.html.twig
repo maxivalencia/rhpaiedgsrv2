@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fréquence de Traitement{% endblock %}
+
+{% block body %}
+    <h1>Fréquence de Traitement</h1>
+
+    <table class="table">
+        <tbody>
+            {# <tr>
+                <th>Id</th>
+                <td>{{ frequence_traitement.id }}</td>
+            </tr> #}
+            <tr>
+                <th>Fréquence de Traitement</th>
+                <td>{{ frequence_traitement.libelle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('frequence_traitement_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+
+    <a href="{{ path('frequence_traitement_edit', {'id': frequence_traitement.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+
+    {{ include('frequence_traitement/_delete_form.html.twig') }}
+{% endblock %}

@@ -37,6 +37,8 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
         
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
         
         {% block stylesheets %}{% endblock %}
     </head>
@@ -155,6 +157,14 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
+                                        <a href="{{ path('details_motifs_reintegration_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Détail motif réintegration
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a href="{{ path('domaine_diplome_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
@@ -199,6 +209,14 @@
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
                                                 Motif radiation
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path('motif_reintegration_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Motif réintegration
                                             </p>
                                         </a>
                                     </li>
@@ -320,6 +338,14 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
+                                        <a href="{{ path('decision_reintegration_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Décision réintegration
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a href="{{ path('decorations_personnels_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
@@ -372,6 +398,14 @@
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
                                                 Fonction conjoint
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path('frequence_traitement_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Fréquence traitement
                                             </p>
                                         </a>
                                     </li>
@@ -460,6 +494,30 @@
                                         </a>
                                     </li> 
                                     <li class="nav-item">
+                                        <a href="{{ path('reintegration_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Réintegration personnel
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path('situation_sanitaire_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Situation sanitaire
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path('suivie_apres_traitement_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Suivie après traitement
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a href="{{ path('types_contrats_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
@@ -472,6 +530,22 @@
                                             <i class="nav-icon far fa-calendar-alt"></i>
                                             <p>
                                                 Type de Commune
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path('type_maladie_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Type de Maladie
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path('type_traitement_index') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Type de Traitement
                                             </p>
                                         </a>
                                     </li>
@@ -541,6 +615,12 @@
         <script src="/dist/js/demo.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#user_liste').DataTable();
+            } );
+        </script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

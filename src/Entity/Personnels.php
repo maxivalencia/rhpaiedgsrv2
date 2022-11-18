@@ -202,6 +202,16 @@ class Personnels
      */
     private $recompenses;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Reintegration::class, mappedBy="personnel")
+     */
+    private $reintegrations;
+
+    /**
+     * @ORM\OneToMany(targetEntity=SituationSanitaire::class, mappedBy="personnel")
+     */
+    private $situationSanitaires;
+
     public function __construct()
     {
         $this->nominationsPersonnels = new ArrayCollection();
@@ -218,6 +228,8 @@ class Personnels
         $this->radiationsPersonnels = new ArrayCollection();
         $this->users = new ArrayCollection();
         $this->recompenses = new ArrayCollection();
+        $this->reintegrations = new ArrayCollection();
+        $this->situationSanitaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -932,6 +944,66 @@ class Personnels
             // set the owning side to null (unless already changed)
             if ($recompense->getPersonnel() === $this) {
                 $recompense->setPersonnel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reintegration[]
+     */
+    public function getReintegrations(): Collection
+    {
+        return $this->reintegrations;
+    }
+
+    public function addReintegration(Reintegration $reintegration): self
+    {
+        if (!$this->reintegrations->contains($reintegration)) {
+            $this->reintegrations[] = $reintegration;
+            $reintegration->setPersonnel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReintegration(Reintegration $reintegration): self
+    {
+        if ($this->reintegrations->removeElement($reintegration)) {
+            // set the owning side to null (unless already changed)
+            if ($reintegration->getPersonnel() === $this) {
+                $reintegration->setPersonnel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SituationSanitaire[]
+     */
+    public function getSituationSanitaires(): Collection
+    {
+        return $this->situationSanitaires;
+    }
+
+    public function addSituationSanitaire(SituationSanitaire $situationSanitaire): self
+    {
+        if (!$this->situationSanitaires->contains($situationSanitaire)) {
+            $this->situationSanitaires[] = $situationSanitaire;
+            $situationSanitaire->setPersonnel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSituationSanitaire(SituationSanitaire $situationSanitaire): self
+    {
+        if ($this->situationSanitaires->removeElement($situationSanitaire)) {
+            // set the owning side to null (unless already changed)
+            if ($situationSanitaire->getPersonnel() === $this) {
+                $situationSanitaire->setPersonnel(null);
             }
         }
 

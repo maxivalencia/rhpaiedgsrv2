@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition Motif Réintegration{% endblock %}
+
+{% block body %}
+    <h1>Edition Motif Réintegration</h1>
+
+    {{ include('motif_reintegration/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('motif_reintegration_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+
+    {{ include('motif_reintegration/_delete_form.html.twig') }}
+{% endblock %}

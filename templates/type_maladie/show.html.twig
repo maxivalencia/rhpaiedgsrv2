@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Type de Maladie{% endblock %}
+
+{% block body %}
+    <h1>Type de Maladie</h1>
+
+    <table class="table">
+        <tbody>
+            {# <tr>
+                <th>Id</th>
+                <td>{{ type_maladie.id }}</td>
+            </tr> #}
+            <tr>
+                <th>Type de maladie</th>
+                <td>{{ type_maladie.libelle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('type_maladie_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+
+    <a href="{{ path('type_maladie_edit', {'id': type_maladie.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+
+    {{ include('type_maladie/_delete_form.html.twig') }}
+{% endblock %}

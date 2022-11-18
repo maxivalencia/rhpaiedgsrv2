@@ -22,7 +22,7 @@ class NatureController extends AbstractController
     public function index(NatureRepository $natureRepository, Request $request, PaginatorInterface $paginator): Response
     {
         return $this->render('nature/index.html.twig', [
-            'natures' => $natureRepository->findAll(),
+            'natures' => $natureRepository->findBy([], ["id" => "DESC"]),
         ]);
     }
 

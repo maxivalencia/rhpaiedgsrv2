@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Détails Motifs Réintegration{% endblock %}
+
+{% block body %}
+    <h1>Liste Détails des Motifs Réintegration</h1>
+
+    <a href="{{ path('details_motifs_reintegration_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+    <table id="user_liste" class="table">
+        <thead>
+            <tr>
+                {# <th>Id</th> #}
+                <th>Détails Motifs Réintegration</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for details_motifs_reintegration in details_motifs_reintegrations %}
+            <tr>
+                {# <td>{{ details_motifs_reintegration.id }}</td> #}
+                <td>{{ details_motifs_reintegration.libelle }}</td>
+                <td>
+                    <a href="{{ path('details_motifs_reintegration_show', {'id': details_motifs_reintegration.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('details_motifs_reintegration_edit', {'id': details_motifs_reintegration.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('details_motifs_reintegration_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+
+    {% block javascripts %}
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#user_liste').DataTable();
+            } );
+        </script>
+    {% endblock %}
+{% endblock %}

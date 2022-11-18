@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -71,6 +73,16 @@ class RadiationsPersonnels
      * @ORM\ManyToOne(targetEntity="App\Entity\DroitsPensions", inversedBy="radiationsPersonnels")
      */
     private $droit_pension;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Reintegration::class, mappedBy="radiation")
+     */
+    private $reintegrations;
+
+    public function __construct()
+    {
+        $this->reintegrations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -216,5 +228,35 @@ class RadiationsPersonnels
     public function __toString()
     {
         return $this->getPersonnel();
+    }
+
+    /**
+     * @return Collection|Reintegration[]
+     */
+    public function getReintegrations(): Collection
+    {
+        return $this->reintegrations;
+    }
+
+    public function addReintegration(Reintegration $reintegration): self
+    {
+        if (!$this->reintegrations->contains($reintegration)) {
+            $this->reintegrations[] = $reintegration;
+            $reintegration->setRadiation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReintegration(Reintegration $reintegration): self
+    {
+        if ($this->reintegrations->removeElement($reintegration)) {
+            // set the owning side to null (unless already changed)
+            if ($reintegration->getRadiation() === $this) {
+                $reintegration->setRadiation(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -471,14 +471,18 @@ class Personnels
     */
     public function __toString()
     {
-        return $this->getGrade().' '.$this->getNom().' '.$this->getPrenoms();
-        /* $grd = "";
+        // return $this->getGrade().' '.$this->getNom().' '.$this->getPrenoms();
+        $grd = "";
         if($this->getNominationsPersonnels() != NULL){
-            $grd = $this->getNominationsPersonnels()[-1];
-        }else{
+            foreach($this->getNominationsPersonnels() as $gd){
+                $grd = $gd->getGrade();
+            }
+            // $grd = $this->getNominationsPersonnels()[$this->getNominationsPersonnels()->count()-1]->getGrade();
+        }
+        if($grd == "" || $grd == " "){
             $grd = "PC";
         }
-        return $grd.' '.$this->getNom().' '.$this->getPrenoms(); */
+        return $grd.' '.$this->getNom().' '.$this->getPrenoms();
     }
 
     public function getContrat(): ?TypesContrats

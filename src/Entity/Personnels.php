@@ -1013,4 +1013,18 @@ class Personnels
 
         return $this;
     }
+
+    private $grad;
+    public function getGrad(): ?string
+    {
+        if($this->getNominationsPersonnels() != NULL){
+            foreach($this->getNominationsPersonnels() as $gd){
+                $this->grad = $gd->getGrade();
+            }
+        }
+        if($this->grad == "" || $this->grad == " "){
+            $this->grad = "PC";
+        }
+        return $this->grad;
+    }
 }

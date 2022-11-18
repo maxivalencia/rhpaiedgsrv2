@@ -88,6 +88,11 @@ class SituationSanitaire
      */
     private $niveau_danger;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Proche::class, inversedBy="situationSanitaires")
+     */
+    private $personne_concerner;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -268,5 +273,17 @@ class SituationSanitaire
     public function __toString()
     {
         return $this->getMaladie();
+    }
+
+    public function getPersonneConcerner(): ?Proche
+    {
+        return $this->personne_concerner;
+    }
+
+    public function setPersonneConcerner(?Proche $personne_concerner): self
+    {
+        $this->personne_concerner = $personne_concerner;
+
+        return $this;
     }
 }

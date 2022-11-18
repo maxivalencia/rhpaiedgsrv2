@@ -54,6 +54,9 @@ class SituationSanitaireType extends AbstractType
             ->add('controleur_periodique', null, [
                 'label' => 'Controleur périodique',
             ])
+            ->add('personne_concerner', null, [
+                'label' => 'Personne concerner',
+            ])
         ;
     }
 

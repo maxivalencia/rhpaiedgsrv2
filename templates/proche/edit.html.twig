@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition Proche famille{% endblock %}
+
+{% block body %}
+    <h1>Edition Proche famille</h1>
+
+    {{ include('proche/_form.html.twig', {'button_label': 'Modifer'}) }}
+
+    <a href="{{ path('proche_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+
+    {{ include('proche/_delete_form.html.twig') }}
+{% endblock %}

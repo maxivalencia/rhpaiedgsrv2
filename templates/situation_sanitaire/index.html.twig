@@ -9,6 +9,8 @@
         <thead>
             <tr>
                 {# <th>Id</th> #}
+                <th>Personnel</th>
+                <th>Personne malade</th>
                 <th>Hopital ou médecin traitant</th>
                 <th>Date de début du traitement</th>
                 <th>Date de fin du traitement</th>
@@ -25,6 +27,8 @@
         {% for situation_sanitaire in situation_sanitaires %}
             <tr>
                 {# <td>{{ situation_sanitaire.id }}</td> #}
+                <td>{{ situation_sanitaire.personnel }}</td>
+                <td>{{ situation_sanitaire.personne_concerner }}</td>
                 <td>{{ situation_sanitaire.hopitalMedecinTraitant }}</td>
                 <td>{{ situation_sanitaire.dateDebutTraitement ? situation_sanitaire.dateDebutTraitement|date('d/m/Y') : '' }}</td>
                 <td>{{ situation_sanitaire.dateFinTraitement ? situation_sanitaire.dateFinTraitement|date('d/m/Y') : '' }}</td>

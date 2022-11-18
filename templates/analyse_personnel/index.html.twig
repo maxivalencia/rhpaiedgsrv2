@@ -30,7 +30,7 @@
                     {% endfor %}
                 </td>
                 <td style="vertical-align:middle;">
-                    <strong>{{ personnel.grade }} {{ personnel.nom }} {{ personnel.prenoms }}</strong><br>
+                    <strong>{{ personnel.grad }} {{ personnel.nom }} {{ personnel.prenoms }}</strong><br>
                     <strong>Née le : </strong>{{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }} <strong>à</strong> {{ personnel.lieuNaissance }}<br>
                     <strong>Numéro CIN : </strong>{{ personnel.numCin }}<br>
                     <strong>sexe : </strong>{{ personnel.sexe ? 'Féminin' : 'Masculin' }}<br>
@@ -83,7 +83,19 @@
                             {% set count = count + 1 %}
                         {% endif %}
                     {% endfor %}
-                    <strong>Nombre d'enfant à charge : <strong>{{ count }}
+                    <strong>Nombre d'enfant à charge : <strong>{{ count }}<br>
+                    <strong>Situation sanitaire : <strong>
+                    {% for situation in situationsSanitaires %}
+                        {% if situation.personnel == personnel %}
+                            Maladie : {{ situation.maladie }} de type {{ situation.type_maladie }}
+                            Traitement : {{ situation.type_traitement }}
+                            Fréquence de traitement : {{ situation.frequence_traitement }}
+                            Traitant : {{ situation.hopital_medecin_traitant }}
+                            Personne malade : {{ situation.personne_concerner }}
+                        {% endif %}
+                    {% else %}
+                        rien à signaler
+                    {% endfor %}
 
                     {# {% if count > 0 %}
                     ---  build the toc here --

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Reintegration{% endblock %}
+
+{% block body %}
+    <h1>Ajout nouvelle Réintegration</h1>
+
+    {{ include('reintegration/_form.html.twig') }}
+
+    <a href="{{ path('reintegration_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+{% endblock %}

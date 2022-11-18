@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Décision de Reintegration{% endblock %}
+
+{% block body %}
+    <h1>Décision de Reintegration</h1>
+
+    <table class="table">
+        <tbody>
+            {# <tr>
+                <th>Id</th>
+                <td>{{ decision_reintegration.id }}</td>
+            </tr> #}
+            <tr>
+                <th>Décision de réintegration</th>
+                <td>{{ decision_reintegration.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Date de la décision de réintegration</th>
+                <td>{{ decision_reintegration.date_reference }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('decision_reintegration_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+
+    <a href="{{ path('decision_reintegration_edit', {'id': decision_reintegration.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+
+    {{ include('decision_reintegration/_delete_form.html.twig') }}
+{% endblock %}

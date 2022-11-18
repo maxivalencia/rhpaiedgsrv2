@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition Réintegration{% endblock %}
+
+{% block body %}
+    <h1>Edition Réintegration</h1>
+
+    {{ include('reintegration/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('reintegration_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+
+    {{ include('reintegration/_delete_form.html.twig') }}
+{% endblock %}

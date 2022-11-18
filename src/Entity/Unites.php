@@ -64,10 +64,16 @@ class Unites
      */
     private $affectationsPersonnels;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Reintegration::class, mappedBy="unite")
+     */
+    private $reintegrations;
+
     public function __construct()
     {
         $this->unites = new ArrayCollection();
         $this->affectationsPersonnels = new ArrayCollection();
+        $this->reintegrations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -224,6 +230,36 @@ class Unites
             // set the owning side to null (unless already changed)
             if ($affectationsPersonnel->getUnite() === $this) {
                 $affectationsPersonnel->setUnite(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reintegration[]
+     */
+    public function getReintegrations(): Collection
+    {
+        return $this->reintegrations;
+    }
+
+    public function addReintegration(Reintegration $reintegration): self
+    {
+        if (!$this->reintegrations->contains($reintegration)) {
+            $this->reintegrations[] = $reintegration;
+            $reintegration->setUnite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReintegration(Reintegration $reintegration): self
+    {
+        if ($this->reintegrations->removeElement($reintegration)) {
+            // set the owning side to null (unless already changed)
+            if ($reintegration->getUnite() === $this) {
+                $reintegration->setUnite(null);
             }
         }
 

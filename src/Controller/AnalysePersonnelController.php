@@ -9,8 +9,10 @@ use App\Entity\FonctionsConjoints;
 use App\Entity\Personnels;
 use App\Form\PersonnelsType;
 use App\Form\AnalyseType;
+use App\Entity\SituationSanitaire;
 use App\Repository\PersonnelsRepository;
 use App\Repository\PhotosRepository;
+use App\Repository\SituationSanitaireRepository;
 use App\Repository\NominationsPersonnelsRepository;
 use App\Repository\FonctionsConjointsRepository;
 use App\Repository\EnfantsRepository;
@@ -31,7 +33,7 @@ class AnalysePersonnelController extends AbstractController
     /**
      * @Route("/analyse", name="analyse_personnel", methods={"GET","POST"})
      */
-    public function index(Request $request, EnfantsRepository $enfantsRepository, FonctionsConjointsRepository $fonctionsConjointsRepository, ConjointsRepository $conjointsRepository, PersonnelsRepository $personnelsRepository, PhotosRepository $photosRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository): Response
+    public function index(Request $request, SituationSanitaireRepository $situationSanitaireRepository, EnfantsRepository $enfantsRepository, FonctionsConjointsRepository $fonctionsConjointsRepository, ConjointsRepository $conjointsRepository, PersonnelsRepository $personnelsRepository, PhotosRepository $photosRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository): Response
     {
         $personnelsListe = $personnelsRepository->findBy(["actif" => 1], ["id" => "DESC"]);
         $personnels = new ArrayCollection();
@@ -64,6 +66,7 @@ class AnalysePersonnelController extends AbstractController
         $liste_fonction_conjoints[] = new FonctionsConjoints();
         $liste_affectations[] = new AffectationsPersonnels();
         $liste_enfants[] = new Enfants();
+        $liste_situations_sanitaires[] = new SituationSanitaire();
         if ($form->isSubmitted() && $form->isValid()) {
             $liste[] = $request->request->get("form");
             $listes[] = $liste[0]["Personnels"];
@@ -82,6 +85,7 @@ class AnalysePersonnelController extends AbstractController
                     $liste_conjoints = $conjointsRepository->findBy([], ["id" => "DESC"]);
                     $liste_affectations = $affectationsPersonnelsRepository->findBy([], ["date_affectation" => "DESC"]);
                     $liste_enfants = $enfantsRepository->findAll();
+                    $liste_situations_sanitaires = $situationSanitaireRepository->findAll();
                 }
             }
         }
@@ -95,6 +99,7 @@ class AnalysePersonnelController extends AbstractController
             'fonctionConjoints' => $liste_fonction_conjoints,
             'conjoints' => $liste_conjoints,
             'enfants' => $liste_enfants,
+            'situationsSanitaires' => $liste_situations_sanitaires,
         ]);
     }
 }

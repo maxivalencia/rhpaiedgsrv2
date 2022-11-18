@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Motifs Réintegration{% endblock %}
+
+{% block body %}
+    <h1>Liste des Motifs Réintegration</h1>
+    <a href="{{ path('motif_reintegration_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+    <table id="user_liste" class="table">
+        <thead>
+            <tr>
+                {# <th>Id</th> #}
+                <th>Motif réintegration</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for motif_reintegration in motif_reintegrations %}
+            <tr>
+                {# <td>{{ motif_reintegration.id }}</td> #}
+                <td>{{ motif_reintegration.libelle }}</td>
+                <td>
+                    <a href="{{ path('motif_reintegration_show', {'id': motif_reintegration.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('motif_reintegration_edit', {'id': motif_reintegration.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('motif_reintegration_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+
+    {% block javascripts %}
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#user_liste').DataTable();
+            } );
+        </script>
+    {% endblock %}
+{% endblock %}

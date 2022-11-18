@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Décision Réintegration{% endblock %}
+
+{% block body %}
+    <h1>Liste des Décisions Réintegration</h1>
+
+    <a href="{{ path('decision_reintegration_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+    <table id="user_liste" class="table">
+        <thead>
+            <tr>
+                {# <th>Id</th> #}
+                <th>Décision réintegration</th>
+                <th>Date de la décision</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for decision_reintegration in decision_reintegrations %}
+            <tr>
+               {#  <td>{{ decision_reintegration.id }}</td> #}
+                <td>{{ decision_reintegration.libelle }}</td>
+                <td>{{ decision_reintegration.date_reference }}</td>
+                <td>
+                    <a href="{{ path('decision_reintegration_show', {'id': decision_reintegration.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('decision_reintegration_edit', {'id': decision_reintegration.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('decision_reintegration_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+
+    {% block javascripts %}
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#user_liste').DataTable();
+            } );
+        </script>
+    {% endblock %}
+{% endblock %}

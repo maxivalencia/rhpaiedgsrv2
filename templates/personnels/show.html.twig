@@ -280,6 +280,44 @@
         </tbody>
     </table>
 
+    <h2>Situation(s) Sanitaire</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Personne malade</th>
+                <th>Hopital ou médecin traitant</th>
+                <th>Date de début du traitement</th>
+                <th>Date de fin du traitement</th>
+                <th>Maladie</th>
+                <th>Lieu du traitement</th>
+                <th>Disponibilité du traitement</th>
+                <th>Adresse du traitant</th>
+                <th>Nécessité contrôle périodique</th>
+                <th>Niveau de danger</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for situation_sanitaire in situationSanitaires %}
+            <tr>                
+                <td>{{ situation_sanitaire.personne_concerner }}</td>
+                <td>{{ situation_sanitaire.hopitalMedecinTraitant }}</td>
+                <td>{{ situation_sanitaire.dateDebutTraitement ? situation_sanitaire.dateDebutTraitement|date('d/m/Y') : '' }}</td>
+                <td>{{ situation_sanitaire.dateFinTraitement ? situation_sanitaire.dateFinTraitement|date('d/m/Y') : '' }}</td>
+                <td>{{ situation_sanitaire.maladie }}</td>
+                <td>{{ situation_sanitaire.lieuTraitement }}</td>
+                <td>{{ situation_sanitaire.disponibiliteTraitement }}</td>
+                <td>{{ situation_sanitaire.adresseTraitant }}</td>
+                <td>{{ situation_sanitaire.controlePeriodique ? 'Oui' : 'Non' }}</td>
+                <td>{{ situation_sanitaire.niveauDanger }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
 
     <a href="{{ path('personnels_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
     <br>

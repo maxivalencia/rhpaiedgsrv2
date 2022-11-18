@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Proche famille{% endblock %}
+
+{% block body %}
+    <h1>Nouvelle Proche famille</h1>
+
+    {{ include('proche/_form.html.twig') }}
+
+    <a href="{{ path('proche_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+{% endblock %}

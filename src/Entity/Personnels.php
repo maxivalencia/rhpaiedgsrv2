@@ -202,6 +202,16 @@ class Personnels
      */
     private $recompenses;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Reintegration::class, mappedBy="personnel")
+     */
+    private $reintegrations;
+
+    /**
+     * @ORM\OneToMany(targetEntity=SituationSanitaire::class, mappedBy="personnel")
+     */
+    private $situationSanitaires;
+
     public function __construct()
     {
         $this->nominationsPersonnels = new ArrayCollection();
@@ -218,6 +228,8 @@ class Personnels
         $this->radiationsPersonnels = new ArrayCollection();
         $this->users = new ArrayCollection();
         $this->recompenses = new ArrayCollection();
+        $this->reintegrations = new ArrayCollection();
+        $this->situationSanitaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -459,14 +471,18 @@ class Personnels
     */
     public function __toString()
     {
-        return $this->getGrade().' '.$this->getNom().' '.$this->getPrenoms();
-        /* $grd = "";
+        // return $this->getGrade().' '.$this->getNom().' '.$this->getPrenoms();
+        $grd = "";
         if($this->getNominationsPersonnels() != NULL){
-            $grd = $this->getNominationsPersonnels()[-1];
-        }else{
+            foreach($this->getNominationsPersonnels() as $gd){
+                $grd = $gd->getGrade();
+            }
+            // $grd = $this->getNominationsPersonnels()[$this->getNominationsPersonnels()->count()-1]->getGrade();
+        }
+        if($grd == "" || $grd == " "){
             $grd = "PC";
         }
-        return $grd.' '.$this->getNom().' '.$this->getPrenoms(); */
+        return $grd.' '.$this->getNom().' '.$this->getPrenoms();
     }
 
     public function getContrat(): ?TypesContrats
@@ -936,5 +952,79 @@ class Personnels
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Reintegration[]
+     */
+    public function getReintegrations(): Collection
+    {
+        return $this->reintegrations;
+    }
+
+    public function addReintegration(Reintegration $reintegration): self
+    {
+        if (!$this->reintegrations->contains($reintegration)) {
+            $this->reintegrations[] = $reintegration;
+            $reintegration->setPersonnel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReintegration(Reintegration $reintegration): self
+    {
+        if ($this->reintegrations->removeElement($reintegration)) {
+            // set the owning side to null (unless already changed)
+            if ($reintegration->getPersonnel() === $this) {
+                $reintegration->setPersonnel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SituationSanitaire[]
+     */
+    public function getSituationSanitaires(): Collection
+    {
+        return $this->situationSanitaires;
+    }
+
+    public function addSituationSanitaire(SituationSanitaire $situationSanitaire): self
+    {
+        if (!$this->situationSanitaires->contains($situationSanitaire)) {
+            $this->situationSanitaires[] = $situationSanitaire;
+            $situationSanitaire->setPersonnel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSituationSanitaire(SituationSanitaire $situationSanitaire): self
+    {
+        if ($this->situationSanitaires->removeElement($situationSanitaire)) {
+            // set the owning side to null (unless already changed)
+            if ($situationSanitaire->getPersonnel() === $this) {
+                $situationSanitaire->setPersonnel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    private $grad;
+    public function getGrad(): ?string
+    {
+        if($this->getNominationsPersonnels() != NULL){
+            foreach($this->getNominationsPersonnels() as $gd){
+                $this->grad = $gd->getGrade();
+            }
+        }
+        if($this->grad == "" || $this->grad == " "){
+            $this->grad = "PC";
+        }
+        return $this->grad;
     }
 }

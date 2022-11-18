@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Situations Sanitaire{% endblock %}
+
+{% block body %}
+    <h1>Liste des Situations Sanitaire</h1>
+    <a href="{{ path('situation_sanitaire_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+    <table id="user_liste" class="table">
+        <thead>
+            <tr>
+                {# <th>Id</th> #}
+                <th>Personnel</th>
+                <th>Personne malade</th>
+                <th>Hopital ou médecin traitant</th>
+                <th>Date de début du traitement</th>
+                <th>Date de fin du traitement</th>
+                <th>Maladie</th>
+                <th>Lieu du traitement</th>
+                <th>Disponibilité du traitement</th>
+                <th>Adresse du traitant</th>
+                <th>Nécessité contrôle périodique</th>
+                <th>Niveau de danger</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for situation_sanitaire in situation_sanitaires %}
+            <tr>
+                {# <td>{{ situation_sanitaire.id }}</td> #}
+                <td>{{ situation_sanitaire.personnel }}</td>
+                <td>{{ situation_sanitaire.personne_concerner }}</td>
+                <td>{{ situation_sanitaire.hopitalMedecinTraitant }}</td>
+                <td>{{ situation_sanitaire.dateDebutTraitement ? situation_sanitaire.dateDebutTraitement|date('d/m/Y') : '' }}</td>
+                <td>{{ situation_sanitaire.dateFinTraitement ? situation_sanitaire.dateFinTraitement|date('d/m/Y') : '' }}</td>
+                <td>{{ situation_sanitaire.maladie }}</td>
+                <td>{{ situation_sanitaire.lieuTraitement }}</td>
+                <td>{{ situation_sanitaire.disponibiliteTraitement }}</td>
+                <td>{{ situation_sanitaire.adresseTraitant }}</td>
+                <td>{{ situation_sanitaire.controlePeriodique ? 'Oui' : 'Non' }}</td>
+                <td>{{ situation_sanitaire.niveauDanger }}</td>
+                <td>
+                    <a href="{{ path('situation_sanitaire_show', {'id': situation_sanitaire.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('situation_sanitaire_edit', {'id': situation_sanitaire.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('situation_sanitaire_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+
+    {% block javascripts %}
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#user_liste').DataTable();
+            } );
+        </script>
+    {% endblock %}
+{% endblock %}

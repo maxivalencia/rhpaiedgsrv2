@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Fréquences de Traitement{% endblock %}
+
+{% block body %}
+    <h1>Liste des Fréquences de Traitement</h1>
+    <a href="{{ path('frequence_traitement_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+    <table id="user_liste" class="table">
+        <thead>
+            <tr>
+                {# <th>Id</th> #}
+                <th>Fréquence traitement</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for frequence_traitement in frequence_traitements %}
+            <tr>
+                {# <td>{{ frequence_traitement.id }}</td> #}
+                <td>{{ frequence_traitement.libelle }}</td>
+                <td>
+                    <a href="{{ path('frequence_traitement_show', {'id': frequence_traitement.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ path('frequence_traitement_edit', {'id': frequence_traitement.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('frequence_traitement_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+
+    {% block javascripts %}
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#user_liste').DataTable();
+            } );
+        </script>
+    {% endblock %}
+{% endblock %}

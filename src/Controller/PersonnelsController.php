@@ -20,6 +20,7 @@ use App\Repository\PersonnelsRepository;
 use App\Repository\PhotosRepository;
 use App\Repository\PunitionsRepository;
 use App\Repository\SituationSanitaireRepository;
+use App\Repository\RecompenseRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -83,7 +84,7 @@ class PersonnelsController extends AbstractController
     /**
      * @Route("/{id}", name="personnels_show", methods={"GET"})
      */
-    public function show(Personnels $personnel, SituationSanitaireRepository $situationSanitaireRepository, FonctionsConjointsRepository $fonctionsConjointsRepository, PhotosRepository $photosRepository, ConjointsRepository $conjointsRepository, EnfantsRepository $enfantsRepository, DiplomesPersonnelsRepository $diplomesPersonnelsRepository, DecorationsPersonnelsRepository $decorationsPersonnelsRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository, NominationsPersonnelsRepository $nominationsPersonnelsRepository): Response
+    public function show(Personnels $personnel, RecompenseRepository $recompenseRepository, SituationSanitaireRepository $situationSanitaireRepository, FonctionsConjointsRepository $fonctionsConjointsRepository, PhotosRepository $photosRepository, ConjointsRepository $conjointsRepository, EnfantsRepository $enfantsRepository, DiplomesPersonnelsRepository $diplomesPersonnelsRepository, DecorationsPersonnelsRepository $decorationsPersonnelsRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository, NominationsPersonnelsRepository $nominationsPersonnelsRepository): Response
     {
         $photo = $photosRepository->findOneBy(['personnel' => $personnel]);
         $conjoints = $conjointsRepository->findBy(['personnel' => $personnel], ["id" => "DESC"]);
@@ -98,6 +99,7 @@ class PersonnelsController extends AbstractController
         $affectations = $affectationsPersonnelsRepository->findBy(["personnel" => $personnel], ["date_affectation" => "DESC"]);
         $nominations = $nominationsPersonnelsRepository->findBy(["personnel" => $personnel], ["date_nomination" => "DESC"]);
         $situationSanitaires = $situationSanitaireRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $recompenses = $recompenseRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
         return $this->render('personnels/show.html.twig', [
             'personnel' => $personnel,
             'photo' => $photo,
@@ -109,6 +111,7 @@ class PersonnelsController extends AbstractController
             'nominations' => $nominations,
             'fonctionConjoints' => $fonctionConjoint,
             'situationSanitaires' => $situationSanitaires,
+            'recompenses' => $recompenses,
         ]);
     }
 

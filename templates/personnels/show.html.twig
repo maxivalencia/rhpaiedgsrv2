@@ -280,6 +280,34 @@
         </tbody>
     </table>
 
+    <h2>Récompense(s) obtenue</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nature</th>
+                <th>Reférence</th>
+                <th>Date</th>
+                <th>Libellé</th>
+                <th>Autorité délivrant</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for recompense in recompenses %}
+            <tr>
+                <td>{{ recompense.nature }}</td>
+                <td>{{ recompense.reference }}</td>
+                <td>{{ recompense.date ? recompense.date|date('d/m/Y') : '' }}</td>
+                <td>{{ recompense.libelle }}</td>
+                <td>{{ recompense.autorite }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
     <h2>Situation(s) Sanitaire</h2>
     <table class="table">
         <thead>

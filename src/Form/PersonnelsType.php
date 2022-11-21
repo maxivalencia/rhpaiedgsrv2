@@ -20,9 +20,9 @@ class PersonnelsType extends AbstractType
             'Masculin' => false
         ];
         $builder
-            ->add('grade', null, [
+            /* ->add('grade', null, [
                 'label' => 'Grade',
-            ])
+            ]) */
             ->add('nom', null, [
                 'label' => 'Nom',
             ])

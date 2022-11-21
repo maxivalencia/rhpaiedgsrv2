@@ -1026,9 +1026,9 @@ class Personnels
                 }                
             }
         }
-        if($this->grad == "" || $this->grad == " "){
+        /* if($this->grad == "" || $this->grad == " "){
             $this->grad = "PC";
-        }
+        } */
         return $this->grad;
     }
 }

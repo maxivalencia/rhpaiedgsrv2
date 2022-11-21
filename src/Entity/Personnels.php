@@ -471,8 +471,8 @@ class Personnels
     */
     public function __toString()
     {
-        // return $this->getGrade().' '.$this->getNom().' '.$this->getPrenoms();
-        $grd = "";
+        return $this->getGrad().' '.$this->getNom().' '.$this->getPrenoms();
+        /* $grd = "";
         if($this->getNominationsPersonnels() != NULL){
             foreach($this->getNominationsPersonnels() as $gd){
                 $grd = $gd->getGrade();
@@ -482,7 +482,7 @@ class Personnels
         if($grd == "" || $grd == " "){
             $grd = "PC";
         }
-        return $grd.' '.$this->getNom().' '.$this->getPrenoms();
+        return $grd.' '.$this->getNom().' '.$this->getPrenoms(); */
     }
 
     public function getContrat(): ?TypesContrats
@@ -1018,8 +1018,12 @@ class Personnels
     public function getGrad(): ?string
     {
         if($this->getNominationsPersonnels() != NULL){
+            $datenom = date("1990-01-01");;
             foreach($this->getNominationsPersonnels() as $gd){
-                $this->grad = $gd->getGrade();
+                if ($gd->getDateNomination() > $datenom) {
+                    $this->grad = $gd->getGrade();
+                    $datenom = $gd->getDateNomination();
+                }                
             }
         }
         if($this->grad == "" || $this->grad == " "){

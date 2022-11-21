@@ -22,9 +22,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('nature_index') }}">back to list</a>
+    <a href="{{ path('nature_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 
-    <a href="{{ path('nature_edit', {'id': nature.id}) }}">edit</a>
+    <a href="{{ path('nature_edit', {'id': nature.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
 
     {{ include('nature/_delete_form.html.twig') }}
 {% endblock %}

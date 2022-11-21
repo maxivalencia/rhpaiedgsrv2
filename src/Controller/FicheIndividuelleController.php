@@ -18,6 +18,8 @@ use App\Repository\PermissionsRepository;
 use App\Repository\PersonnelsRepository;
 use App\Repository\PhotosRepository;
 use App\Repository\PunitionsRepository;
+use App\Repository\SituationSanitaireRepository;
+use App\Repository\RecompenseRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,7 +34,7 @@ class FicheIndividuelleController extends AbstractController
     /**
      * @Route("/fiche/individuelle/{id}", name="fiche_individuelle")
      */
-    public function index(int $id, PersonnelsRepository $personnelsRepository, Personnels $personnel, FonctionsConjointsRepository $fonctionsConjointsRepository, PhotosRepository $photosRepository, ConjointsRepository $conjointsRepository, EnfantsRepository $enfantsRepository, DiplomesPersonnelsRepository $diplomesPersonnelsRepository, DecorationsPersonnelsRepository $decorationsPersonnelsRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository, NominationsPersonnelsRepository $nominationsPersonnelsRepository)//: Response
+    public function index(int $id, RecompenseRepository $recompenseRepository, SituationSanitaireRepository $situationSanitaireRepository, PersonnelsRepository $personnelsRepository, Personnels $personnel, FonctionsConjointsRepository $fonctionsConjointsRepository, PhotosRepository $photosRepository, ConjointsRepository $conjointsRepository, EnfantsRepository $enfantsRepository, DiplomesPersonnelsRepository $diplomesPersonnelsRepository, DecorationsPersonnelsRepository $decorationsPersonnelsRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository, NominationsPersonnelsRepository $nominationsPersonnelsRepository)//: Response
     {
         $pdfOptions = new Options();
         $pdfOptions->set('isRemoteEnabled', true);
@@ -50,6 +52,8 @@ class FicheIndividuelleController extends AbstractController
         $decorations = $decorationsPersonnelsRepository->findBy(["personnel" => $personnel], ["date" => "DESC"]);
         $affectations = $affectationsPersonnelsRepository->findBy(["personnel" => $personnel], ["date_affectation" => "DESC"]);
         $nominations = $nominationsPersonnelsRepository->findBy(["personnel" => $personnel], ["date_nomination" => "DESC"]);
+        $situationSanitaires = $situationSanitaireRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
+        $recompenses = $recompenseRepository->findBy(["personnel" => $personnel], ["id" => "DESC"]);
 
         $date = new \DateTime();
         $logo = $this->getParameter('logo').'logo_dgsr.png';
@@ -83,6 +87,8 @@ class FicheIndividuelleController extends AbstractController
             'fonctionConjoints' => $fonctionConjoint,
             'logos' => $logo_src,
             'sarypersonnel' => $sary_src,
+            'situationSanitaires' => $situationSanitaires,
+            'recompenses' => $recompenses,
         ]);
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');

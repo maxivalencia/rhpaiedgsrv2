@@ -229,19 +229,19 @@
                 <tr>
                     <td width="75px" valign="top"><u>Fonction</u></td>
                     <td width="150px" valign="top">:
-                        {% if conjoints is not null and conjoints.id == fonctionConjoints.conjoint.id %}
+                        {% if conjoints is not null and fonctionConjoints is not null and conjoints.id == fonctionConjoints.conjoint.id %}
                             {{ fonctionConjoints.abbreviation }}
                         {% endif %}
                     </td>
                     <td width="75px" valign="top"><u>Employeur</u></td>
                     <td width="150px" valign="top">:
-                        {% if conjoints is not null and conjoints.id == fonctionConjoints.conjoint.id %}
+                        {% if conjoints is not null and fonctionConjoints is not null and conjoints.id == fonctionConjoints.conjoint.id %}
                             {{ fonctionConjoints.employeur }}
                         {% endif %}
                     </td>
                     <td width="75px" valign="top"><u>Lieu de travail</u></td>
                     <td width="150px" valign="top">:
-                        {% if conjoints is not null and conjoints.id == fonctionConjoints.conjoint.id %}
+                        {% if conjoints is not null and fonctionConjoints is not null and conjoints.id == fonctionConjoints.conjoint.id %}
                             {{ fonctionConjoints.lieuTravail }}
                         {% endif %}
                     </td>
@@ -250,7 +250,7 @@
                     <td valign="top"><u>Date de naissance</u></td>
                     <td valign="top">: 
                         {% if conjoints is not null %}
-                            {{ conjoints.dateNaissance }}
+                            {{ conjoints.dateNaissance ? conjoints.dateNaissance|date('d/m/Y') : '' }}
                         {% endif %}
                     </td>
                     <td valign="top"><u>Lieu de naissance</u></td>
@@ -428,7 +428,73 @@
                     {% endfor %}
                     </tbody>
                 </table>
-            {# <div align="center"><strong><u>PUNITIONS</u></strong></div> #}
+            {# <div align="center"><strong><u>PUNITIONS</u></strong></div> #}            
+            {# <br>
+            <div align="center"><strong><u>RECOMPENSE</u></strong></div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nature</th>
+                            <th>Reférence</th>
+                            <th>Date</th>
+                            <th>Libellé</th>
+                            <th>Autorité délivrant</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for recompense in recompenses %}
+                        <tr>
+                            <td>{{ recompense.nature }}</td>
+                            <td>{{ recompense.reference }}</td>
+                            <td>{{ recompense.date ? recompense.date|date('d/m/Y') : '' }}</td>
+                            <td>{{ recompense.libelle }}</td>
+                            <td>{{ recompense.autorite }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">Aucune récompense</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            <br>
+            <div align="center"><strong><u>Situation(s) Sanitaire</u></strong></div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Personne malade</th>
+                            <th>Hopital ou médecin traitant</th>
+                            <th>Date de début du traitement</th>
+                            <th>Date de fin du traitement</th>
+                            <th>Maladie</th>
+                            <th>Lieu du traitement</th>
+                            <th>Disponibilité du traitement</th>
+                            <th>Adresse du traitant</th>
+                            <th>Nécessité contrôle périodique</th>
+                            <th>Niveau de danger</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for situation_sanitaire in situationSanitaires %}
+                        <tr>                
+                            <td>{{ situation_sanitaire.personne_concerner }}</td>
+                            <td>{{ situation_sanitaire.hopitalMedecinTraitant }}</td>
+                            <td>{{ situation_sanitaire.dateDebutTraitement ? situation_sanitaire.dateDebutTraitement|date('d/m/Y') : '' }}</td>
+                            <td>{{ situation_sanitaire.dateFinTraitement ? situation_sanitaire.dateFinTraitement|date('d/m/Y') : '' }}</td>
+                            <td>{{ situation_sanitaire.maladie }}</td>
+                            <td>{{ situation_sanitaire.lieuTraitement }}</td>
+                            <td>{{ situation_sanitaire.disponibiliteTraitement }}</td>
+                            <td>{{ situation_sanitaire.adresseTraitant }}</td>
+                            <td>{{ situation_sanitaire.controlePeriodique ? 'Oui' : 'Non' }}</td>
+                            <td>{{ situation_sanitaire.niveauDanger }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table> #}
         </div>
         <br><br>
         <table style="font-size:12px;">

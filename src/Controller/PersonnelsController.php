@@ -87,6 +87,15 @@ class PersonnelsController extends AbstractController
     public function show(Personnels $personnel, RecompenseRepository $recompenseRepository, SituationSanitaireRepository $situationSanitaireRepository, FonctionsConjointsRepository $fonctionsConjointsRepository, PhotosRepository $photosRepository, ConjointsRepository $conjointsRepository, EnfantsRepository $enfantsRepository, DiplomesPersonnelsRepository $diplomesPersonnelsRepository, DecorationsPersonnelsRepository $decorationsPersonnelsRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository, NominationsPersonnelsRepository $nominationsPersonnelsRepository): Response
     {
         $photo = $photosRepository->findOneBy(['personnel' => $personnel]);
+        $sary = $this->getParameter('photo').$photo;
+        // Ouvrir le fichier
+        $check = @fopen($sary, 'r');
+        // Vérifier si le fichier existe
+        if(!$check){
+            $sary = "default.png";
+        }else{
+            $sary = $photo->getPhoto();
+        }
         $conjoints = $conjointsRepository->findBy(['personnel' => $personnel], ["id" => "DESC"]);
         //$conjoints = $conjointsRepository->findOneBy(['personnel' => $personnel], ["id" => "DESC"]);
         //$conjoint = $conjointsRepository->findOneBy(["personnel" => $personnel], ["id" => "DESC"]);
@@ -103,6 +112,7 @@ class PersonnelsController extends AbstractController
         return $this->render('personnels/show.html.twig', [
             'personnel' => $personnel,
             'photo' => $photo,
+            'sary' => $sary,
             'conjoints' => $conjoints,
             'enfants' => $enfants,
             'diplomes' => $diplomes,

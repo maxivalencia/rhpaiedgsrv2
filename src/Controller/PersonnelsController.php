@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Personnels;
+use App\Entity\Photos;
 use App\Form\PersonnelsType;
 use App\Repository\AffectationsPersonnelsRepository;
 use App\Repository\ConjointsRepository;
@@ -87,6 +88,10 @@ class PersonnelsController extends AbstractController
     public function show(Personnels $personnel, RecompenseRepository $recompenseRepository, SituationSanitaireRepository $situationSanitaireRepository, FonctionsConjointsRepository $fonctionsConjointsRepository, PhotosRepository $photosRepository, ConjointsRepository $conjointsRepository, EnfantsRepository $enfantsRepository, DiplomesPersonnelsRepository $diplomesPersonnelsRepository, DecorationsPersonnelsRepository $decorationsPersonnelsRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository, NominationsPersonnelsRepository $nominationsPersonnelsRepository): Response
     {
         $photo = $photosRepository->findOneBy(['personnel' => $personnel]);
+        if($photo == null){
+            $photo = new Photos();
+            $photo->setPhoto("default.png");
+        }
         $sary = $this->getParameter('photo').$photo;
         // Ouvrir le fichier
         $check = @fopen($sary, 'r');

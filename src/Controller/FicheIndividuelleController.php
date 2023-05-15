@@ -58,6 +58,12 @@ class FicheIndividuelleController extends AbstractController
         $date = new \DateTime();
         $logo = $this->getParameter('logo').'logo_dgsr.png';
         $sary = $this->getParameter('photo').$photo;
+        // Ouvrir le fichier
+        $check = @fopen($sary, 'r');
+        // Vérifier si le fichier existe
+        if(!$check){
+            $sary = $this->getParameter('photo')."default.png";
+        }
 
         $logo_data = base64_encode(file_get_contents($logo));
         $logo_src = 'data:image/png;base64,'.$logo_data;
@@ -118,6 +124,14 @@ class FicheIndividuelleController extends AbstractController
         $date = new \DateTime();
         $logo = $this->getParameter('logo').'logo_dgsr.png';
         $sary = $this->getParameter('photo').$photo;
+        // Ouvrir le fichier
+        $check = @fopen($sary, 'r');
+        // Vérifier si le fichier existe
+        if(!$check){
+            $sary = "default.png";
+        }else{
+            $sary = $photo->getPhoto();
+        }
 
         $logo_data = base64_encode(file_get_contents($logo));
         //$logo_src = 'data: '.mime_content_type($logo).';base64,'.$logo_data;

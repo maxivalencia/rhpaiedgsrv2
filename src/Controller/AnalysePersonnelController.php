@@ -53,7 +53,7 @@ class AnalysePersonnelController extends AbstractController
                 'name' => 'Personnels',
             ],
         ])
-        ->add('Afficher', SubmitType::class, array('label' => 'Afficher les données'))
+        ->add('Afficher', SubmitType::class, array('label' => 'Afficher les personnels'))
         ->getForm();
         
         $form->handleRequest($request);

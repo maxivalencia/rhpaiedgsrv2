@@ -8,6 +8,7 @@ use App\Entity\Enfants;
 use App\Entity\FonctionsConjoints;
 use App\Entity\Personnels;
 use App\Entity\Photos;
+use App\Entity\Unites;
 use App\Entity\SituationSanitaire;
 use App\Form\PersonnelsType;
 use App\Form\ConsultationCentreType;
@@ -45,7 +46,7 @@ class ConsultationCentreController extends AbstractController
      */
     public function index(Request $request, SituationSanitaireRepository $situationSanitaireRepository, EnfantsRepository $enfantsRepository, FonctionsConjointsRepository $fonctionsConjointsRepository, ConjointsRepository $conjointsRepository, PersonnelsRepository $personnelsRepository, PhotosRepository $photosRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository, UnitesRepository $unitesRepository): Response
     {      
-        $unitesListe = $unitesRepository->findAll([], ["id" => "DESC"]);  
+        $unitesListe = $unitesRepository->findAll(["actif" => 1], ["id" => "DESC"]);  
         $unites = new ArrayCollection();      
         foreach($unitesListe as $unit){
             $unites->add([$unit->__toString() => $unit->getId()]);
@@ -66,8 +67,14 @@ class ConsultationCentreController extends AbstractController
         ->add('Afficher', SubmitType::class, array('label' => 'Afficher les personnels'))
         ->getForm();
 
+        $form->handleRequest($request);
+        /* $unites = new Unites();
+        $form = $this->createForm(ConsultationCentreType::class, $unites);
+        $form->handleRequest($request); */
+
         //$liste_unites = new ArrayCollection();
         $liste_personnels = new ArrayCollection();
+        $liste_non_personnels = new ArrayCollection();
         $liste_affectations = new ArrayCollection();
 
         $liste_conjoints[] = new Conjoints();
@@ -80,55 +87,75 @@ class ConsultationCentreController extends AbstractController
             $liste[] = $request->request->get("form");
             $listes[] = $liste[0]["Unites"];
             ////
-            return $this->render('consultation_personnel_civil/index.html.twig', [
+            /* return $this->render('consultation_personnel_civil/index.html.twig', [
                 'controller_name' => 'ConsultationCentreController',
-            ]);
+            ]); */
             ////
             foreach($listes[0] as $lst){    
                 $liste_unite = $unitesRepository->findOneBy(["id" => $lst]);
                 $liste_affectation = $affectationsPersonnelsRepository->findBy(["unite" => $liste_unite->getId()], ["date_disponibilite" => "DESC"]);
+                $affectation = $affectationsPersonnelsRepository->findAll([], ["date_disponibilite" => "DESC"]);
                 if($liste_affectation != null) {
                     foreach($liste_affectation as $la) {
-                        $pers = $personnelsRepository->findOneBy(["id" =>  $la->getPersonnel()->getId()]);
-                        if($pers != null) {
-                            $liste_personnels->add($pers);
-                            // $liste_affectations->add($affectationsPersonnelsRepository->findBy([], ["date_affectation" => "DESC"]));
-                            $conjoint = $conjointsRepository->findBy(['personnel' => $pers], ["id" => "DESC"]);
-                            //var_dump($conjoint);
-                            /* $liste_fonction_conjoints->add($fonctionsConjointsRepository->findBy(['conjoint' => $conjoint], ["id" => "DESC"]));
-                            $liste_conjoints->add($conjoint); */
-                            // $liste_fonction_conjoints = $fonctionsConjointsRepository->findBy(['conjoint' => $conjointsRepository->findOneBy(['personnel' => $pers], ["id" => "DESC"])], ["id" => "DESC"]);
-                            $liste_fonction_conjoints = $fonctionsConjointsRepository->findBy([], ["id" => "DESC"]);
-                            // $liste_conjoints = $conjoint;
-                            $liste_conjoints = $conjointsRepository->findBy([], ["id" => "DESC"]);
-                            $liste_affectations = $affectationsPersonnelsRepository->findBy([], ["date_affectation" => "DESC"]);
-                            $liste_enfants = $enfantsRepository->findAll();
-                            $liste_situations_sanitaires = $situationSanitaireRepository->findAll();
+                        if($la != null) {
+                            $pers = $personnelsRepository->findOneBy(["id" =>  $la->getPersonnel()]);
+                            $pers_pos = $affectationsPersonnelsRepository->findOneBy(["personnel" => $pers], ["date_disponibilite" => "DESC"]);
+                            if($pers != null /* && $pers_pos != null && $pers_pos->getUnite() == $lst */) {
+                                $existe = false;
+                                $non_pers = false;
+                                foreach ($liste_personnels as $lp){
+                                    /* foreach($affectation as $aff){
+                                        if($aff->getPersonnel() == $lp){
+                                            $derniere_position = true;
+                                            break;
+                                        }
+                                    } */
+                                    if($lp == $pers /* && $pers_pos != null */ /* && $pers_pos->getUnite() == $lst */ /* && $derniere_position == true && $la->getUnite() == $lst */){
+                                        $existe = true;
+                                    }/* else{
+                                        $liste_non_personnels->add($pers);
+                                        foreach($liste_non_personnels as $lnp){
+                                            if($pers == $lnp || $pers_pos->getUnite() != $lst){
+                                                $non_pers = true;
+                                            }
+                                        }
+                                    } */
+                                }
+                                if($existe == false && $non_pers == false){
+                                    $liste_personnels->add($pers);
+                                }
+                                
+                                // $liste_affectations->add($affectationsPersonnelsRepository->findBy([], ["date_affectation" => "DESC"]));
+                                $conjoint = $conjointsRepository->findBy(['personnel' => $pers], ["id" => "DESC"]);
+                                //var_dump($conjoint);
+                                /* $liste_fonction_conjoints->add($fonctionsConjointsRepository->findBy(['conjoint' => $conjoint], ["id" => "DESC"]));
+                                $liste_conjoints->add($conjoint); */
+                                // $liste_fonction_conjoints = $fonctionsConjointsRepository->findBy(['conjoint' => $conjointsRepository->findOneBy(['personnel' => $pers], ["id" => "DESC"])], ["id" => "DESC"]);
+                                $liste_fonction_conjoints = $fonctionsConjointsRepository->findBy([], ["id" => "DESC"]);
+                                // $liste_conjoints = $conjoint;
+                                $liste_conjoints = $conjointsRepository->findBy([], ["id" => "DESC"]);
+                                $liste_affectations = $affectationsPersonnelsRepository->findBy([], ["date_affectation" => "DESC"]);
+                                $liste_enfants = $enfantsRepository->findAll();
+                                $liste_situations_sanitaires = $situationSanitaireRepository->findAll();
+                            }
                         }
                     }
                 }
             }
-        }else{
+        }/* else{
             $listes = $personnelsRepository->findAll();
             foreach($listes as $lst){
-                //$pers = $personnelsRepository->findBy(["id" =>  $lst->getId()]);
                 if($lst != NULL){ 
                     $liste_personnels->add($lst);
-                    // $liste_affectations->add($affectationsPersonnelsRepository->findBy([], ["date_affectation" => "DESC"]));
                     $conjoint = $conjointsRepository->findBy(['personnel' => $lst], ["id" => "DESC"]);
-                    //var_dump($conjoint);
-                    /* $liste_fonction_conjoints->add($fonctionsConjointsRepository->findBy(['conjoint' => $conjoint], ["id" => "DESC"]));
-                    $liste_conjoints->add($conjoint); */
-                    // $liste_fonction_conjoints = $fonctionsConjointsRepository->findBy(['conjoint' => $conjointsRepository->findOneBy(['personnel' => $pers], ["id" => "DESC"])], ["id" => "DESC"]);
                     $liste_fonction_conjoints = $fonctionsConjointsRepository->findBy([], ["id" => "DESC"]);
-                    // $liste_conjoints = $conjoint;
                     $liste_conjoints = $conjointsRepository->findBy([], ["id" => "DESC"]);
                     $liste_affectations = $affectationsPersonnelsRepository->findBy([], ["date_affectation" => "DESC"]);
                     $liste_enfants = $enfantsRepository->findAll();
                     $liste_situations_sanitaires = $situationSanitaireRepository->findAll();
                 }
             }
-        }
+        } */
 
         return $this->render('consultation_centre/index.html.twig', [
             'controller_name' => 'ConsultationCentreController',

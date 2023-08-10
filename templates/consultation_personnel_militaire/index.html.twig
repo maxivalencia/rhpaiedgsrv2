@@ -1,20 +1,112 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ConsultationPersonnelMilitaireController!{% endblock %}
+{% block title %}Consultation des Personnels Militaires{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>Visionnage des personnels Militaires</h1>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        {# <input type="submit"/> #}
+    {{ form_end(form) }}
+    <hr>
+    <table id="user_liste" class="table">
+        <thead>
+            <tr>
+                <th style="width:125px; text-align:center;">PHOTOS DU PERSONNEL</th>
+                <th style="width:500px; text-align:center;">INFORMATION SUR LE PERSONNEL</th>
+                <th style="width:500px; text-align:center;">INFORMATION SUR LE(LA) CONJOINT(E)</th>
+                <th style="width:500px; text-align:center;">AUTRE INFORMATION</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for personnel in personnels %}            
+            <tr>
+                <td style="vertical-align:middle;">
+                    {% for photo in photos %}
+                        {% if photo.personnel.id == personnel.id %}
+                            <img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:100px;height:120px">
+                        {% endif %}                
+                    {% endfor %}
+                </td>
+                <td style="vertical-align:middle;">
+                    <strong>{{ personnel.grad }} {{ personnel.nom }} {{ personnel.prenoms }}</strong><br>
+                    <strong>Née le : </strong>{{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }} <strong>à</strong> {{ personnel.lieuNaissance }}<br>
+                    <strong>Numéro CIN : </strong>{{ personnel.numCin }}<br>
+                    <strong>sexe : </strong>{{ personnel.sexe ? 'Féminin' : 'Masculin' }}<br>
+                    <strong>Téléphone : </strong>{{ personnel.telephone }}<br>
+                    <strong>Adresse : </strong>{{ personnel.adresse }}<br>
+                    <strong>Affectation : </strong><br>
+                    {% for affectations_personnel in affectations %}
+                        {% if affectations_personnel.personnel != null and affectations_personnel.personnel.id == personnel.id %}
+                            {{ affectations_personnel.unite }},&nbsp;
+                        {% endif %} 
+                    {% endfor %}
+                    <br>
+                    <p style="text-align:right;"><a href="{{ path('personnels_show', {'id': personnel.id}) }}" class="btn btn-success" style="align:rigth;"><i class="fa fa-book" aria-hidden="true"></i> Consulter la fiche individuelle</a></p>
+                </td>
+                <td style="vertical-align:middle;">
+                    {% for conjoint in conjoints %}
+                        {% if conjoint.personnel is not null and personnel is not null %}  
+                            {% if conjoint.personnel.id == personnel.id %}
+                                <strong>{{ conjoint.nom }} {{ conjoint.prenom }}</strong><br>
+                                <strong>Numéro CIN : </strong>{{ conjoint.numeroCin }}<br>
+                                {% for fonctionConjoint in fonctionConjoints %}
+                                    {% if fonctionConjoint.conjoint is not null and conjoint is not null %}
+                                        {% if fonctionConjoint.conjoint.id == conjoint.id %}
+                                            <span style="color:red;"><strong>Fonction : </strong>{{ fonctionConjoint.libelle }}</span><br>
+                                            <strong>Employeur : </strong>{{ fonctionConjoint.employeur }}<br>
+                                            <strong>Adresse de l'employeur : </strong>{{ fonctionConjoint.adresseEmployeur }}<br>                                            
+                                            {% if fonctionConjoint.estFonctionnaire == true %}
+                                                <p style="color:red;"><strong>{{ fonctionConjoint.estFonctionnaire ? 'Fonctionnaire' : '' }}</strong></p>
+                                            {% else %}
+                                                <p><strong>{{ fonctionConjoint.estFonctionnaire ? 'Fonctionnaire' : '' }}</strong></p>
+                                            {% endif %}                                            
+                                        {% else %}
+                                            <strong>Fonction : </strong>Ménagère
+                                        {% endif %}   
+                                    {% endif %}                         
+                                {% else %}
+                                    Aucune fonction trouvé
+                                {% endfor %}
+                            {% endif %}
+                        {% endif %}
+                    {% else %}
+                        Célibataire
+                    {% endfor %}
+                    
+                </td>
+                <td style="vertical-align:middle;"> 
+                    {% set count = 0 %}
+                    {% for enfant in enfants %}
+                        {% if enfant.personnel == personnel %}
+                            {% set count = count + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                    <strong>Nombre d'enfant à charge : <strong>{{ count }}<br>
+                    <strong>Situation sanitaire : <strong>
+                    {% for situation in situationsSanitaires %}
+                        {% if situation.personnel == personnel %}
+                            Maladie : {{ situation.maladie }} de type {{ situation.type_maladie }}
+                            Traitement : {{ situation.type_traitement }}
+                            Fréquence de traitement : {{ situation.frequence_traitement }}
+                            Traitant : {{ situation.hopital_medecin_traitant }}
+                            Personne malade : {{ situation.personne_concerner }}
+                        {% endif %}
+                    {% else %}
+                        rien à signaler
+                    {% endfor %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'E:/symfony/rhpaiedgsrv2/src/Controller/ConsultationPersonnelMilitaireController.php'|file_link(0) }}">src/Controller/ConsultationPersonnelMilitaireController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'E:/symfony/rhpaiedgsrv2/templates/consultation_personnel_militaire/index.html.twig'|file_link(0) }}">templates/consultation_personnel_militaire/index.html.twig</a></code></li>
-    </ul>
-</div>
+                    {# {% if count > 0 %}
+                    ---  build the toc here --
+                    {% endif %} #}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="21">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

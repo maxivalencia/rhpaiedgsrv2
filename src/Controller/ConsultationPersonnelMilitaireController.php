@@ -2,40 +2,48 @@
 
 namespace App\Controller;
 
+use App\Entity\SituationSanitaire;
 use App\Entity\AffectationsPersonnels;
 use App\Entity\Conjoints;
 use App\Entity\Enfants;
 use App\Entity\FonctionsConjoints;
 use App\Entity\Personnels;
+use App\Entity\Photos;
 use App\Form\PersonnelsType;
-use App\Form\AnalyseType;
-use App\Entity\SituationSanitaire;
-use App\Repository\PersonnelsRepository;
-use App\Repository\PhotosRepository;
-use App\Repository\SituationSanitaireRepository;
-use App\Repository\NominationsPersonnelsRepository;
-use App\Repository\FonctionsConjointsRepository;
-use App\Repository\EnfantsRepository;
-use App\Repository\DiplomesPersonnelsRepository;
-use App\Repository\DecorationsPersonnelsRepository;
 use App\Repository\AffectationsPersonnelsRepository;
 use App\Repository\ConjointsRepository;
+use App\Repository\DecorationsPersonnelsRepository;
+use App\Repository\DecorationsRepository;
+use App\Repository\DiplomesPersonnelsRepository;
+use App\Repository\DiplomesRepository;
+use App\Repository\EnfantsRepository;
+use App\Repository\ExConjointsRepository;
+use App\Repository\FonctionsConjointsRepository;
+use App\Repository\GradesRepository;
+use App\Repository\NominationsPersonnelsRepository;
+use App\Repository\PermissionsRepository;
+use App\Repository\PersonnelsRepository;
+use App\Repository\PhotosRepository;
+use App\Repository\PunitionsRepository;
+use App\Repository\SituationSanitaireRepository;
+use App\Repository\RecompenseRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Doctrine\Common\Collections\ArrayCollection;
 
-class AnalysePersonnelController extends AbstractController
+class ConsultationPersonnelMilitaireController extends AbstractController
 {
     /**
-     * @Route("/analyse", name="analyse_personnel", methods={"GET","POST"})
+     * @Route("/consultation/personnel/militaire", name="consultation_personnel_militaire")
      */
     public function index(Request $request, SituationSanitaireRepository $situationSanitaireRepository, EnfantsRepository $enfantsRepository, FonctionsConjointsRepository $fonctionsConjointsRepository, ConjointsRepository $conjointsRepository, PersonnelsRepository $personnelsRepository, PhotosRepository $photosRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository): Response
-    {
-        $personnelsListe = $personnelsRepository->findBy(["actif" => 1], ["id" => "DESC"]);
+    {  
+        $personnelsListe = $personnelsRepository->findBy(["est_militaire" => 1, "actif" => 1], ["id" => "DESC"]);
         $personnels = new ArrayCollection();
         foreach($personnelsListe as $pers){
             $personnels->add([$pers->__toString() => $pers->getId()]);
@@ -90,7 +98,7 @@ class AnalysePersonnelController extends AbstractController
             }
         }
 
-        return $this->render('analyse_personnel/index.html.twig', [
+        return $this->render('consultation_personnel_militaire/index.html.twig', [
             'controller_name' => 'AnalysePersonnelController',
             'form' => $form->createView(),
             'personnels' => $liste_personnels,
@@ -100,6 +108,13 @@ class AnalysePersonnelController extends AbstractController
             'conjoints' => $liste_conjoints,
             'enfants' => $liste_enfants,
             'situationsSanitaires' => $liste_situations_sanitaires,
-        ]);
+        ]);             
+        /* return $this->render('personnels/index.html.twig', [
+            'personnels' => $personnelsRepository->findBy([], ["id" => "DESC"]),
+            'photos' => $photosRepository->findAll(),
+        ]); */
+        /* return $this->render('consultation_personnel_militaire/index.html.twig', [
+            'controller_name' => 'ConsultationPersonnelMilitaireController',
+        ]); */
     }
 }

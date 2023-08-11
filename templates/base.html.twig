@@ -120,14 +120,71 @@
                                 </p>
                                 </a>                        
                             </li>
-                            <li class="nav-item has-treeview menu-open">
-                                <a href="{{ path('analyse_personnel') }}" class="nav-link active">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Verification personnel
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                                </a>                        
+                        {% endif %}
+                        {% if is_granted("ROLE_STAFF") %}
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>
+                                        Outils Staff
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ path('consultation_centre') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Consultation par centre
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path('consultation_personnel_militaire') }}" class="nav-link">
+                                            <i class="nav-icon far fa-image"></i>
+                                            <p>
+                                                Consultation personnel Militaire
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path('consultation_personnel_civil') }}" class="nav-link">
+                                            <i class="nav-icon far fa-image"></i>
+                                            <p>
+                                                Consultation personnel Civil
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path('analyse_personnel') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Consultation tout personnel
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        {% endif %}
+                        {% if is_granted("ROLE_PERSONNEL") %}
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>
+                                        Outils RH
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">                                   
+                                    <li class="nav-item">
+                                        <a href="{{ path('saisie_fiche_etat_civil') }}" class="nav-link">
+                                            <i class="nav-icon far fa-calendar-alt"></i>
+                                            <p>
+                                                Ajout personnel
+                                            </p>
+                                        </a>
+                                    </li> 
+                                </ul>
                             </li>
                         {% endif %}
                         {% if is_granted('ROLE_ADMIN') %}
@@ -271,7 +328,7 @@
                                 </ul>
                             </li>
                         {% endif %}
-                        {% if is_granted('ROLE_USER') %}
+                        {% if is_granted('ROLE_PERSONNEL') %}
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-th"></i>
@@ -288,15 +345,7 @@
                                                 Affectation personnel
                                             </p>
                                         </a>
-                                    </li>                                   
-                                    <li class="nav-item">
-                                        <a href="{{ path('saisie_fiche_etat_civil') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Ajout personnel
-                                            </p>
-                                        </a>
-                                    </li> 
+                                    </li>
                                     <li class="nav-item">
                                         <a href="{{ path('communes_index') }}" class="nav-link">
                                             <i class="nav-icon far fa-calendar-alt"></i>

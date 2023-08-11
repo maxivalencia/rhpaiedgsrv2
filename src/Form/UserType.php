@@ -21,6 +21,8 @@ class UserType extends AbstractType
             'Administrateur' => 'ADMIN',
             'Civil' => 'CIVIL',
             'Militaire' => 'MILITAIRE',
+            'Personnel' => 'PERSONNEL',
+            'Staff' => 'STAFF',
             'Superviseur' => 'SUPERVISEUR',
         ];
         $builder
@@ -32,7 +34,7 @@ class UserType extends AbstractType
             ]) */
             ->add('rolesimple', ChoiceType::class, [
                 'choices' => $roles,
-                'label' => "Rôle de l\'utilisateur",
+                'label' => 'Rôle de l\'utilisateur',
                 'required' => true,
             ])
             ->add('password', RepeatedType::class, [

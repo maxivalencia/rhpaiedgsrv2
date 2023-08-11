@@ -63,6 +63,8 @@ class FicheIndividuelleController extends AbstractController
         // Vérifier si le fichier existe
         if(!$check){
             $sary = $this->getParameter('photo')."default.png";
+        }else{
+            $sary = $photo->getPhoto();
         }
 
         $logo_data = base64_encode(file_get_contents($logo));

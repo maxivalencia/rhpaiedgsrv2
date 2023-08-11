@@ -62,11 +62,17 @@
                 {# <td valign="center">{{ personnel.estMilitaire ? 'Oui' : 'Non' }}</td> #}
                 {# <td valign="center">{{ personnel.actif ? 'Oui' : 'Non' }}</td> #}
                 <td style="vertical-align:middle;">
+                    {% set sary = 'default.png' %}
+                    {% set nompersonnel = 'personnel dgsr' %}
                     {% for photo in photos %}
-                        {% if photo.personnel.id == personnel.id %}
-                            <img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:50px;height:60px">
-                        {% endif %}                
+                        {% if photo.personnel.id == personnel.id and photo.photo is not null %}
+                            {% set sary = photo.photo %}
+                            {% set nompersonnel = photo.personnel %}
+                            {# <img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:50px;height:60px"> #}
+                        {% endif %}
                     {% endfor %}
+                    <img src="/photos/{{ sary }}" alt="{{ nompersonnel }}" style="width:50px;height:60px">      
+                    
                 </td>
                 <td style="vertical-align:middle;">
                     <a href="{{ path('personnels_show', {'id': personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>

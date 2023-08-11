@@ -43,7 +43,7 @@ class ConsultationPersonnelMilitaireController extends AbstractController
      */
     public function index(Request $request, SituationSanitaireRepository $situationSanitaireRepository, EnfantsRepository $enfantsRepository, FonctionsConjointsRepository $fonctionsConjointsRepository, ConjointsRepository $conjointsRepository, PersonnelsRepository $personnelsRepository, PhotosRepository $photosRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository): Response
     {  
-        $personnelsListe = $personnelsRepository->findBy(["est_militaire" => 1], ["id" => "DESC"]);
+        $personnelsListe = $personnelsRepository->findBy(["est_militaire" => 1, "actif" => 1], ["id" => "DESC"]);
         $personnels = new ArrayCollection();
         foreach($personnelsListe as $pers){
             $personnels->add([$pers->__toString() => $pers->getId()]);

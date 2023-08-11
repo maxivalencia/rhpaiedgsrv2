@@ -66,12 +66,13 @@
                                             {% else %}
                                                 <p><strong>{{ fonctionConjoint.estFonctionnaire ? 'Fonctionnaire' : '' }}</strong></p>
                                             {% endif %}                                            
-                                        {% else %}
-                                            <strong>Fonction : </strong>Ménagère
+                                        {# {% else %}
+                                            <strong>Fonction : </strong>Ménagère #}
                                         {% endif %}   
                                     {% endif %}                         
                                 {% else %}
-                                    Aucune fonction trouvé
+                                    {# Aucune fonction trouvé #}
+                                    <strong>Fonction : </strong>Ménagère
                                 {% endfor %}
                             {% endif %}
                         {% endif %}

@@ -120,6 +120,8 @@
                                 </p>
                                 </a>                        
                             </li>
+                        {% endif %}
+                        {% if is_granted("ROLE_STAFF") %}
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-th"></i>
@@ -163,6 +165,8 @@
                                     </li>
                                 </ul>
                             </li>
+                        {% endif %}
+                        {% if is_granted("ROLE_PERSONNEL") %}
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-th"></i>
@@ -324,7 +328,7 @@
                                 </ul>
                             </li>
                         {% endif %}
-                        {% if is_granted('ROLE_USER') %}
+                        {% if is_granted('ROLE_PERSONNEL') %}
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-th"></i>

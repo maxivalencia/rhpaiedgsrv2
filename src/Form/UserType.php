@@ -21,6 +21,7 @@ class UserType extends AbstractType
             'Administrateur' => 'ADMIN',
             'Civil' => 'CIVIL',
             'Militaire' => 'MILITAIRE',
+            'Personnel' => 'PERSONNEL',
             'Staff' => 'STAFF',
             'Superviseur' => 'SUPERVISEUR',
         ];

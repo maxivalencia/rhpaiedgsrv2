@@ -23,11 +23,15 @@
         {% for personnel in personnels %}            
             <tr>
                 <td style="vertical-align:middle;">
+                    {% set sary = 'default.png' %}
+                    {% set nompersonnel = 'personnel dgsr' %}
                     {% for photo in photos %}
                         {% if photo.personnel.id == personnel.id %}
-                            <img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:100px;height:120px">
+                            {% set sary = photo.photo %}
+                            {% set nompersonnel = photo.personnel %}
                         {% endif %}                
                     {% endfor %}
+                    <img src="/photos/{{ sary }}" alt="{{ nompersonnel }}" style="width:100px;height:120px">
                 </td>
                 <td style="vertical-align:middle;">
                     <strong>{{ personnel.grad }} {{ personnel.nom }} {{ personnel.prenoms }}</strong><br>

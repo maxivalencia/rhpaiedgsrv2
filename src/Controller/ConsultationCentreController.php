@@ -98,6 +98,7 @@ class ConsultationCentreController extends AbstractController
                 if($liste_affectation != null) {
                     foreach($liste_affectation as $la) {
                         if($la != null) {
+                            $affectation_effectif = $affectationsPersonnelsRepository->findOneBy(["personnel" => $la->getPersonnel()], ["date_disponibilite" => "DESC"]); // maka dernière position
                             $pers = $personnelsRepository->findOneBy(["id" =>  $la->getPersonnel()]);
                             $pers_pos = $affectationsPersonnelsRepository->findOneBy(["personnel" => $pers], ["date_disponibilite" => "DESC"]);
                             if($pers != null /* && $pers_pos != null && $pers_pos->getUnite() == $lst */) {
@@ -105,23 +106,24 @@ class ConsultationCentreController extends AbstractController
                                 $non_pers = false;
                                 foreach ($liste_personnels as $lp){
                                     /* foreach($affectation as $aff){
-                                        if($aff->getPersonnel() == $lp){
-                                            $derniere_position = true;
-                                            break;
+                                        if($aff->getUnite() != $lst && $aff->getPersonnel() == $pers){
+                                            $liste_non_personnels->add($pers);
                                         }
                                     } */
                                     if($lp == $pers /* && $pers_pos != null */ /* && $pers_pos->getUnite() == $lst */ /* && $derniere_position == true && $la->getUnite() == $lst */){
                                         $existe = true;
-                                    }/* else{
-                                        $liste_non_personnels->add($pers);
-                                        foreach($liste_non_personnels as $lnp){
-                                            if($pers == $lnp || $pers_pos->getUnite() != $lst){
-                                                $non_pers = true;
-                                            }
+                                    }
+                                    //$liste_non_personnels->add($pers);
+                                    /* foreach($liste_non_personnels as $lnp){
+                                        if($pers == $lnp || $pers_pos->getUnite() != $lst){
+                                            $non_pers = true;
                                         }
                                     } */
                                 }
-                                if($existe == false && $non_pers == false){
+                                /* foreach($affectation as $aff){
+                                    if()
+                                } */
+                                if($existe == false && $non_pers == false && $affectation_effectif->getUnite() == $liste_unite){
                                     $liste_personnels->add($pers);
                                 }
                                 

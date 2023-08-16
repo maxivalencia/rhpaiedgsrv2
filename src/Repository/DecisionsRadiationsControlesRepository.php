@@ -36,7 +36,7 @@ class DecisionsRadiationsControlesRepository extends ServiceEntityRepository
             ->orWhere('d.date_journal_officiel = :valdate')
             ->setParameter('val', '%'.$value.'%')
             ->setParameter('valdate', date_create($date))
-            ->orderBy('d.id', 'ASC')
+            ->orderBy('d.date_reference', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()

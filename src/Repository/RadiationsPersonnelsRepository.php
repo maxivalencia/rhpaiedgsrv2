@@ -38,7 +38,7 @@ class RadiationsPersonnelsRepository extends ServiceEntityRepository
             ->orWhere('r.date_mrc_radiation = :valdate')
             ->setParameter('val', '%'.$value.'%')
             ->setParameter('valdate', date_create($date))
-            ->orderBy('r.id', 'ASC')
+            ->orderBy('r.date_notification', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()

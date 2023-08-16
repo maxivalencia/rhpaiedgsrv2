@@ -37,7 +37,7 @@ class ExConjointsRepository extends ServiceEntityRepository
             ->orWhere('e.adresse_veuve LIKE :val')
             ->setParameter('val', '%'.$value.'%')
             ->setParameter('valdate', date_create($date))
-            ->orderBy('e.id', 'ASC')
+            ->orderBy('e.date_rupture', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()

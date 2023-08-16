@@ -40,7 +40,7 @@ class AffectationsPersonnelsRepository extends ServiceEntityRepository
             //->orWhere('a.personnel LIKE :val')
             ->setParameter('val', '%'.$value.'%')
             ->setParameter('valdate', date_create($date))
-            ->orderBy('a.id', 'DESC')
+            ->orderBy('a.date_affectation', 'DESC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()

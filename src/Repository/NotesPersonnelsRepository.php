@@ -37,7 +37,7 @@ class NotesPersonnelsRepository extends ServiceEntityRepository
             ->orWhere('n.date_reference = :valdate')
             ->setParameter('val', '%'.$value.'%')
             ->setParameter('valdate', date_create($date))
-            ->orderBy('n.id', 'ASC')
+            ->orderBy('n.date_note', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()

@@ -39,7 +39,7 @@ class NotesPOSRepository extends ServiceEntityRepository
             ->orWhere('n.appreciation_complet LIKE :val')
             ->setParameter('val', '%'.$value.'%')
             ->setParameter('valdate', date_create($date))
-            ->orderBy('n.id', 'ASC')
+            ->orderBy('n.annee', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()

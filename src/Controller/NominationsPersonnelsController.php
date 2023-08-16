@@ -22,7 +22,7 @@ class NominationsPersonnelsController extends AbstractController
     public function index(NominationsPersonnelsRepository $nominationsPersonnelsRepository, Request $request, PaginatorInterface $paginator): Response
     {
         return $this->render('nominations_personnels/index.html.twig', [
-            'nominations_personnels' => $nominationsPersonnelsRepository->findBy([], ["id" => "DESC"]),
+            'nominations_personnels' => $nominationsPersonnelsRepository->findBy([], ["date_nomination" => "DESC"]),
         ]);
     }
     /**

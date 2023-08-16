@@ -35,7 +35,7 @@ class DecisionsPromotionsRepository extends ServiceEntityRepository
             ->orWhere('d.genre_decision LIKE :val')
             ->setParameter('val', '%'.$value.'%')
             ->setParameter('valdate', date_create($date))
-            ->orderBy('d.id', 'ASC')
+            ->orderBy('d.date_decision', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()

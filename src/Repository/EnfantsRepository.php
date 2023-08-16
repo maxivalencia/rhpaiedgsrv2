@@ -39,7 +39,7 @@ class EnfantsRepository extends ServiceEntityRepository
             ->orWhere('e.date_dece = :valdate')
             ->setParameter('val', '%'.$value.'%')
             ->setParameter('valdate', date_create($date))
-            ->orderBy('e.id', 'ASC')
+            ->orderBy('e.rang', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()

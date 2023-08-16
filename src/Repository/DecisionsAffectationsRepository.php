@@ -35,7 +35,7 @@ class DecisionsAffectationsRepository extends ServiceEntityRepository
             ->orWhere('d.genre LIKE :val')
             ->setParameter('val', '%'.$value.'%')
             ->setParameter('valdate', date_create($date))
-            ->orderBy('d.id', 'ASC')
+            ->orderBy('d.date_decision', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()

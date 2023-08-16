@@ -40,7 +40,7 @@ class PermissionsRepository extends ServiceEntityRepository
             ->orWhere('p.lieu_jouissance LIKE :val')
             ->setParameter('val', '%'.$value.'%')
             ->setParameter('valdate', date_create($date))
-            ->orderBy('p.id', 'ASC')
+            ->orderBy('p.annee', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()

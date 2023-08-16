@@ -38,7 +38,7 @@ class NominationsPersonnelsRepository extends ServiceEntityRepository
             ->orWhere('n.indice LIKE :val')
             ->setParameter('val', '%'.$value.'%')
             ->setParameter('valdate', date_create($date))
-            ->orderBy('n.id', 'ASC')
+            ->orderBy('n.date_nomination', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()

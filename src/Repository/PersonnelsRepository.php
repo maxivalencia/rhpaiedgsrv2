@@ -46,7 +46,7 @@ class PersonnelsRepository extends ServiceEntityRepository
             ->orWhere('p.numero_cnaps LIKE :val')
             ->setParameter('val', '%'.$value.'%')
             ->setParameter('valdate', date_create($date))
-            ->orderBy('p.id', 'DESC')
+            ->orderBy('p.nom', 'DESC')
             //->setMaxResults(10)
             ->getQuery()
             ->getResult()

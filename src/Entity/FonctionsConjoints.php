@@ -27,17 +27,17 @@ class FonctionsConjoints
     private $abbreviation;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
     private $lieu_travail;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $employeur;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
     private $adresse_employeur;
 

@@ -17,7 +17,7 @@ class Photos
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
     private $photo;
 
@@ -54,7 +54,7 @@ class Photos
         return $this;
     }
 
-    public function getType(): ?string
+    /* public function getType(): ?string
     {
         return $this->type;
     }
@@ -64,9 +64,9 @@ class Photos
         $this->type = $type;
 
         return $this;
-    }
+    } */
 
-    public function getTaille(): ?int
+    /* public function getTaille(): ?int
     {
         return $this->taille;
     }
@@ -76,7 +76,7 @@ class Photos
         $this->taille = $taille;
 
         return $this;
-    }
+    } */
 
     public function getPersonnel(): ?Personnels
     {

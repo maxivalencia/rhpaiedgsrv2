@@ -19,12 +19,12 @@ class DiplomesPersonnels
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
     private $numero;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="date", nullable=true, nullable=true)
      */
     private $date;
 

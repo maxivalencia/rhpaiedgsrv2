@@ -24,7 +24,7 @@ class Conjoints
     private $rang;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
     private $nom;
 

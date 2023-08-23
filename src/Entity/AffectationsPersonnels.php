@@ -17,7 +17,7 @@ class AffectationsPersonnels
     private $id;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $date_affectation;
 
@@ -37,7 +37,7 @@ class AffectationsPersonnels
     private $date_reference_disponibilite;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $motif_affectation;
 
@@ -52,7 +52,7 @@ class AffectationsPersonnels
     private $annulation;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
     private $motif_annulation;
 

@@ -17,12 +17,12 @@ class ExConjoints
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $motif_rupture;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $date_rupture;
 
@@ -32,7 +32,7 @@ class ExConjoints
     private $reference_rupture;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $date_reference_rupture;
 

@@ -19,7 +19,7 @@ class Provinces
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=24)
+     * @ORM\Column(type="string", length=24, nullable=true)
      */
     private $province;
 

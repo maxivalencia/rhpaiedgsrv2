@@ -27,6 +27,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use Exception;
 
 
 class FicheIndividuelleController extends AbstractController
@@ -61,12 +62,17 @@ class FicheIndividuelleController extends AbstractController
         // Ouvrir le fichier
         $check = @fopen($sary, 'r');
         // Vérifier si le fichier existe
-        if(!$check){
+        if(!$check || $photo == null){
             $sary = $this->getParameter('photo')."default.png";
             //$sary = "default.png";
         }else{
             //$sary = $photo->getPhoto();
-            $sary = $this->getParameter('photo').$photo->getPhoto();
+            try{
+                $sary = $this->getParameter('photo').$photo->getPhoto();
+            }
+            catch(Exception $e) {
+                $sary = $this->getParameter('photo')."default.png";
+            }
         }
 
         $logo_data = base64_encode(file_get_contents($logo));

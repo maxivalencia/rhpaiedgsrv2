@@ -38,7 +38,7 @@ class PersonnelsController extends AbstractController
     public function index(PersonnelsRepository $personnelsRepository, PhotosRepository $photosRepository, Request $request, PaginatorInterface $paginator): Response
     {       
         return $this->render('personnels/index.html.twig', [
-            'personnels' => $personnelsRepository->findBy([], ["id" => "DESC"]),
+            'personnels' => $personnelsRepository->findBy(["actif" => 1], ["id" => "DESC"]),
             'photos' => $photosRepository->findAll(),
         ]);
     }
@@ -156,8 +156,9 @@ class PersonnelsController extends AbstractController
     public function delete(Request $request, Personnels $personnel): Response
     {
         if ($this->isCsrfTokenValid('delete'.$personnel->getId(), $request->request->get('_token'))) {
+            $personnel->setActif(false);
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($personnel);
+            //$entityManager->remove($personnel);
             $entityManager->flush();
         }
 

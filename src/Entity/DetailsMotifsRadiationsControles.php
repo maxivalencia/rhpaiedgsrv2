@@ -19,7 +19,7 @@ class DetailsMotifsRadiationsControles
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $detail_motif_radiation;
 

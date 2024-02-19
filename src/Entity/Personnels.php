@@ -22,7 +22,7 @@ class Personnels
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
     private $nom;
 
@@ -32,7 +32,7 @@ class Personnels
     private $prenoms;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $date_naissance;
 
@@ -47,22 +47,22 @@ class Personnels
     private $nom_pere;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $nom_mere;
 
     /**
-     * @ORM\Column(type="string", length=12)
+     * @ORM\Column(type="string", length=12, nullable=true)
      */
     private $num_cin;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $date_cin;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=64, nullable=true)
      */
     private $lieu_cin;
 
@@ -77,7 +77,7 @@ class Personnels
     private $est_marie;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $adresse;
 
@@ -92,7 +92,7 @@ class Personnels
     private $telephone_ice;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $date_embauche;
 
@@ -118,12 +118,13 @@ class Personnels
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\TypesContrats", inversedBy="personnels")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $contrat;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\NominationsPersonnels", mappedBy="personnel")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $nominationsPersonnels;
 

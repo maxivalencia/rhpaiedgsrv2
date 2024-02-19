@@ -32,7 +32,7 @@
                 {# <th>Date d'embauche</th> #}
                 {# <th>Matricule</th> #}
                 {# <th>Numéro CNAPS</th> #}
-                {# <th>Est militaire</th> #}
+                <th>Militaire</th>
                 {# <th>Actif</th> #}
                 <th>Photo</th>
                 <th>actions</th>
@@ -59,7 +59,7 @@
                 {# <td valign="center">{{ personnel.dateEmbauche ? personnel.dateEmbauche|date('d/m/Y') : '' }}</td> #}
                 {# <td valign="center">{{ personnel.matricule }}</td> #}
                 {# <td valign="center">{{ personnel.numeroCnaps }}</td> #}
-                {# <td valign="center">{{ personnel.estMilitaire ? 'Oui' : 'Non' }}</td> #}
+                <td valign="center">{{ personnel.estMilitaire ? 'Militaire' : 'Civil' }}</td>
                 {# <td valign="center">{{ personnel.actif ? 'Oui' : 'Non' }}</td> #}
                 <td style="vertical-align:middle;">
                     {% set sary = 'default.png' %}

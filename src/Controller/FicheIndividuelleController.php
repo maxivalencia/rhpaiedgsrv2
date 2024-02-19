@@ -210,4 +210,6 @@ class FicheIndividuelleController extends AbstractController
                 'Content-Type'          => 'application/pdf',
                 'Content-Disposition'   => 'inline; filename="'."Fiche_Individuelle_".$personnel->getNom().'_'.$personnel->getPrenoms().'.pdf"'
             ]
- 
+        );
+    }
+}

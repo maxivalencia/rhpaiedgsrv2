@@ -118,12 +118,13 @@ class Personnels
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\TypesContrats", inversedBy="personnels")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $contrat;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\NominationsPersonnels", mappedBy="personnel")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $nominationsPersonnels;
 

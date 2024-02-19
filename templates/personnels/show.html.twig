@@ -129,12 +129,13 @@
                 <td>{{ conjoint.numeroCin }}</td>
                 <td>
                     {% for fonctionConjoint in fonctionConjoints %}
-                        {% if fonctionConjoint.conjoint.id != NULL %}
+                        {# {% if fonctionConjoint.conjoint.id != NULL %} #}
+                        {% if fonctionConjoint.conjoint != NULL %}
                             {% if conjoint.id == fonctionConjoint.conjoint.id %}
                                 {{ fonctionConjoint.abbreviation }}
-                            {% endif %}    
-                        {% endif %}                
-                    {% endfor %}             
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
                 </td>
             </tr>
         {% else %}
@@ -327,7 +328,7 @@
         </thead>
         <tbody>
         {% for situation_sanitaire in situationSanitaires %}
-            <tr>                
+            <tr>
                 <td>{{ situation_sanitaire.personne_concerner }}</td>
                 <td>{{ situation_sanitaire.hopitalMedecinTraitant }}</td>
                 <td>{{ situation_sanitaire.dateDebutTraitement ? situation_sanitaire.dateDebutTraitement|date('d/m/Y') : '' }}</td>

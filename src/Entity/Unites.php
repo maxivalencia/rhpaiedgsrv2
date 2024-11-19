@@ -45,12 +45,13 @@ class Unites
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Communes", inversedBy="unites")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $commune;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Unites", inversedBy="unites")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $unite_superieur;
 

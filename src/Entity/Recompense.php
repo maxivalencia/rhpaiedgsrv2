@@ -19,7 +19,7 @@ class Recompense
 
     /**
      * @ORM\ManyToOne(targetEntity=Nature::class, inversedBy="recompenses")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $nature;
 
@@ -45,7 +45,7 @@ class Recompense
 
     /**
      * @ORM\ManyToOne(targetEntity=Personnels::class, inversedBy="recompenses")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $personnel;
 

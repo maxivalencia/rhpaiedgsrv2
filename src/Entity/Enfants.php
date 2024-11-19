@@ -63,6 +63,7 @@ class Enfants
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Personnels", inversedBy="enfants")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $personnel;
 

@@ -58,6 +58,7 @@ class NotesPOS
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Personnels", inversedBy="notesPOS")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $personnels;
 

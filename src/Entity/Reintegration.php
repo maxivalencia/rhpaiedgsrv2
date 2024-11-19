@@ -19,22 +19,25 @@ class Reintegration
 
     /**
      * @ORM\ManyToOne(targetEntity=Personnels::class, inversedBy="reintegrations")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $personnel;
 
     /**
      * @ORM\ManyToOne(targetEntity=MotifReintegration::class, inversedBy="reintegrations")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $motif_reintegration;
 
     /**
      * @ORM\ManyToOne(targetEntity=DetailsMotifsReintegration::class, inversedBy="reintegrations")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $detail_motif_reintegration;
 
     /**
      * @ORM\ManyToOne(targetEntity=DecisionReintegration::class, inversedBy="reintegrations")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $decision_reintegration;
 
@@ -50,6 +53,7 @@ class Reintegration
 
     /**
      * @ORM\ManyToOne(targetEntity=Unites::class, inversedBy="reintegrations")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $unite;
 
@@ -70,6 +74,7 @@ class Reintegration
 
     /**
      * @ORM\ManyToOne(targetEntity=RadiationsPersonnels::class, inversedBy="reintegrations")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $radiation;
 

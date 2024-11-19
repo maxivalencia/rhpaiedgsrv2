@@ -33,11 +33,13 @@ class DecorationsPersonnels
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Personnels", inversedBy="decorationsPersonnels")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $personnel;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Decorations", inversedBy="decorationsPersonnels")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $decoration;
 

@@ -19,19 +19,19 @@ class Communes
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=64, nullable=true)
      */
     private $commune;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\TypesCommunes", inversedBy="communes")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $type;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Districts", inversedBy="communes")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $district;
 

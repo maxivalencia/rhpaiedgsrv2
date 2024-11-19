@@ -118,7 +118,7 @@ class Personnels
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\TypesContrats", inversedBy="personnels")
-     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     * @ORM\JoinColumn(nullable=true, onDelete="CASCADE")
      */
     private $contrat;
 
@@ -190,6 +190,7 @@ class Personnels
 
     /**
      * @ORM\ManyToOne(targetEntity=Grades::class, inversedBy="personnel")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $grade;
 

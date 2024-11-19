@@ -43,19 +43,19 @@ class NominationsPersonnels
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Grades", inversedBy="nominationsPersonnels")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $grade;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Personnels", inversedBy="nominationsPersonnels")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $personnel;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\DecisionsPromotions", inversedBy="nominationsPersonnels")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $decision;
 

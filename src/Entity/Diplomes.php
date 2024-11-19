@@ -19,17 +19,17 @@ class Diplomes
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $libelle;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
     private $abbreviation;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
     private $type;
 
@@ -40,12 +40,13 @@ class Diplomes
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\DomaineDiplome", inversedBy="diplomes")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $domaine;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\NiveauDiplome", inversedBy="diplomes")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $niveau;
 

@@ -30,13 +30,13 @@ class DiplomesPersonnels
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Diplomes", inversedBy="diplomesPersonnels")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $diplome;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Personnels", inversedBy="diplomesPersonnels")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $personnel;
 

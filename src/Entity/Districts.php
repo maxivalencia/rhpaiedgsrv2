@@ -19,13 +19,13 @@ class Districts
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=64, nullable=true)
      */
     private $district;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Regions", inversedBy="districts")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $region;
 

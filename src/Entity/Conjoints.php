@@ -19,7 +19,7 @@ class Conjoints
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $rang;
 
@@ -105,11 +105,13 @@ class Conjoints
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Communes", inversedBy="conjoints")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $commune;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Personnels", inversedBy="conjoints")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $personnel;
 

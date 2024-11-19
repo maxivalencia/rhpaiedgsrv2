@@ -50,27 +50,31 @@ class RadiationsPersonnels
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Personnels", inversedBy="radiationsPersonnels")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $personnel;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\MotifsRadiationsControles", inversedBy="radiationsPersonnels")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $motif_radiation;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\DetailsMotifsRadiationsControles", inversedBy="radiationsPersonnels")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $detail_motif_radiation;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\DecisionsRadiationsControles", inversedBy="radiationsPersonnels")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $decision_radiation;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\DroitsPensions", inversedBy="radiationsPersonnels")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $droit_pension;
 

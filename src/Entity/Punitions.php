@@ -43,7 +43,7 @@ class Punitions
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Personnels", inversedBy="punitions")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $personnel;
 

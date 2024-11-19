@@ -43,7 +43,7 @@ class NotesPersonnels
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Personnels", inversedBy="notesPersonnels")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $personnel;
 

@@ -48,6 +48,7 @@ class AffectationsPersonnels
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\DecisionsAffectations", inversedBy="affectationsPersonnels")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $annulation;
 
@@ -58,21 +59,25 @@ class AffectationsPersonnels
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Fonctions", inversedBy="affectationsPersonnels")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $fonction;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Personnels", inversedBy="affectationsPersonnels")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $personnel;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\DecisionsAffectations", inversedBy="affectationsPersonnels")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $decision_affectation;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Unites", inversedBy="affectationsPersonnels")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $unite;
 

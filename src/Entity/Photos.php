@@ -33,7 +33,7 @@ class Photos
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Personnels", inversedBy="photos")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $personnel;
 

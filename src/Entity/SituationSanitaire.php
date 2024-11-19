@@ -19,12 +19,13 @@ class SituationSanitaire
 
     /**
      * @ORM\ManyToOne(targetEntity=Personnels::class, inversedBy="situationSanitaires")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $personnel;
 
     /**
      * @ORM\ManyToOne(targetEntity=TypeMaladie::class, inversedBy="situationSanitaires")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $type_maladie;
 
@@ -45,6 +46,7 @@ class SituationSanitaire
 
     /**
      * @ORM\ManyToOne(targetEntity=TypeTraitement::class, inversedBy="situationSanitaires")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $type_traitement;
 
@@ -60,6 +62,7 @@ class SituationSanitaire
 
     /**
      * @ORM\ManyToOne(targetEntity=FrequenceTraitement::class, inversedBy="situationSanitaires")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $frequence_traitement;
 
@@ -80,6 +83,7 @@ class SituationSanitaire
 
     /**
      * @ORM\ManyToOne(targetEntity=SuivieApresTraitement::class, inversedBy="situationSanitaires")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $controleur_periodique;
 
@@ -90,6 +94,7 @@ class SituationSanitaire
 
     /**
      * @ORM\ManyToOne(targetEntity=Proche::class, inversedBy="situationSanitaires")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $personne_concerner;
 

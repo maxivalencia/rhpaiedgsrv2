@@ -17,7 +17,7 @@ class FonctionsConjoints
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $libelle;
 
@@ -48,11 +48,13 @@ class FonctionsConjoints
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\TypesContrats", inversedBy="fonctionsConjoints")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $type_contrat;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Conjoints", inversedBy="fonctionsConjoints")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $conjoint;
 

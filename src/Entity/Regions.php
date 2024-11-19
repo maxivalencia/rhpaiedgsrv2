@@ -25,7 +25,7 @@ class Regions
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Provinces", inversedBy="regions")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $province;
 

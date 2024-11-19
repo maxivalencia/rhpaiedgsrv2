@@ -43,7 +43,7 @@ class ExConjoints
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Conjoints", inversedBy="exConjoints")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $conjoint;
 

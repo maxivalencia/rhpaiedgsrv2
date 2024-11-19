@@ -39,7 +39,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for personnel in personnels %}            
+        {% for personnel in personnels %}
             <tr>
                 {# <td valign="center">{{ personnel.id }}</td> #}
                 <td style="vertical-align:middle;">{{ personnel.grad }} {{ personnel.nom }}</td>
@@ -52,7 +52,7 @@
                 {# <td valign="center">{{ personnel.dateCin ? personnel.dateCin|date('d/m/Y') : '' }}</td> #}
                 {# <td valign="center">{{ personnel.lieuCin }}</td> #}
                 <td style="vertical-align:middle;">{{ personnel.sexe ? 'Féminin' : 'Masculin' }}</td>
-                <td style="vertical-align:middle;">{{ personnel.estMarie ? 'Oui' : 'Non' }}</td>
+                <td style="vertical-align:middle;">{{ personnel.estMarie ? 'Marié' : 'Célibataire' }}</td>
                 {# <td valign="center">{{ personnel.adresse }}</td> #}
                 <td style="vertical-align:middle;">{{ personnel.telephone }}</td>
                 <td style="vertical-align:middle;">{{ personnel.telephoneIce }}</td>
@@ -71,8 +71,8 @@
                             {# <img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:50px;height:60px"> #}
                         {% endif %}
                     {% endfor %}
-                    <img src="/photos/{{ sary }}" alt="{{ nompersonnel }}" style="width:50px;height:60px">      
-                    
+                    <img src="/photos/{{ sary }}" alt="{{ nompersonnel }}" style="width:50px;height:60px">
+
                 </td>
                 <td style="vertical-align:middle;">
                     <a href="{{ path('personnels_show', {'id': personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>

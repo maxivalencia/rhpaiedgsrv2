@@ -1,13 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edition Province{% endblock %}
+{% block title %}Modifier province{% endblock %}
 
 {% block body %}
-    <h1>Edition Province</h1>
-
-    {{ include('provinces/_form.html.twig', {'button_label': 'Modifier'}) }}
-
-    <a href="{{ path('provinces_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
-
-    {{ include('provinces/_delete_form.html.twig') }}
+    <div class="card">
+        <div class="card-header bg-gradient-primary">
+            <h4 class="card-title justify-content-between font-weight-bold">Modifier province</h4>
+        </div>
+        <div class="card-comments m-2">
+            {% for message in app.flashes('error') %}
+            <div class="alert alert-danger text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8 m-1">
+                    {{ include('provinces/_form.html.twig', {'button_label': 'Modifier'}) }}
+                </div>
+                <div class="col-2"></div>
+            </div>
+        </div>
+        <div class="card-footer bg-gradient-white">
+            <div class="row">
+                <div class="col-1">
+                    <a href="{{ path('provinces_index') }}" class="btn btn-sm bg-gradient-primary m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+                </div>
+                <div class="col-1">{{ include('provinces/_delete_form.html.twig') }}</div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

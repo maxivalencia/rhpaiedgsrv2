@@ -1,5 +1,60 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Détail d'un diplôme personnel{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header bg-gradient-primary">
+        <h4 class="card-title justify-content-between font-weight-bold">Détail d'un diplôme personnel</h4>
+    </div>
+    <div class="card-comments justify-content-center m-2">
+        <div class="row justify-content-center">
+            <div class="col-auto justify-content-center">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr>
+                            <th>Personnel</th>
+                            <td>{{ diplomes_personnel.personnel }}</td>
+                        </tr>
+                        <tr>
+                            <th>Diplôme</th>
+                            <td>
+                                Intitulé du diplôme : {{ diplomes_personnel.diplome }}<br>
+                                Dans le domaine de :{{ diplomes_personnel.diplome.domaine }}<br>
+                                Au niveau de : {{ diplomes_personnel.diplome.niveau }}<br>
+                                Diplôme militaire : {{ diplomes_personnel.diplome.estDiplomeMilitaire ? 'Oui' : 'Non' }}
+                            </td>
+                        </tr>
+                        <tr class="col-auto">
+                            <th class="col-auto">Numéro</th>
+                            <td>{{ diplomes_personnel.numero }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date</th>
+                            <td>{{ diplomes_personnel.date ? diplomes_personnel.date|date('d/m/Y') : '' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-gradient-white">
+        <div class="row">
+            <div class="col-1">
+                <a href="{{ path('diplomes_personnels_index') }}" class="btn btn-sm bg-gradient-primary m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+            </div>
+            <div class="col-1">
+                <a href="{{ path('diplomes_personnels_edit', {'id': diplomes_personnel.id}) }}" class="btn btn-sm bg-gradient-success m-2"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+            </div>
+            <div class="col-1 ml-2">
+                {{ include('diplomes_personnels/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{# {% extends 'base.html.twig' %}
+
 {% block title %}Diplômes Personnels{% endblock %}
 
 {% block body %}
@@ -7,10 +62,6 @@
 
     <table class="table">
         <tbody>
-            {# <tr>
-                <th>Id</th>
-                <td>{{ diplomes_personnel.id }}</td>
-            </tr> #}
             <tr>
                 <th>Numéro</th>
                 <td>{{ diplomes_personnel.numero }}</td>
@@ -38,4 +89,4 @@
     <a href="{{ path('diplomes_personnels_edit', {'id': diplomes_personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
 
     {{ include('diplomes_personnels/_delete_form.html.twig') }}
-{% endblock %}
+{% endblock %} #}

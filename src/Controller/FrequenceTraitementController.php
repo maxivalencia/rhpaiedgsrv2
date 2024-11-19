@@ -38,6 +38,7 @@ class FrequenceTraitementController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($frequenceTraitement);
             $entityManager->flush();
+            $this->addFlash('success', 'L\'ajout a été effectué avec succès.');
 
             return $this->redirectToRoute('frequence_traitement_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -68,6 +69,7 @@ class FrequenceTraitementController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'La modification a été effectuée avec succès.');
 
             return $this->redirectToRoute('frequence_traitement_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -87,6 +89,7 @@ class FrequenceTraitementController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($frequenceTraitement);
             $entityManager->flush();
+            $this->addFlash('success', 'La suppression a été effectuée avec succès.');
         }
 
         return $this->redirectToRoute('frequence_traitement_index', [], Response::HTTP_SEE_OTHER);

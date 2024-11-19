@@ -12,6 +12,9 @@ class NotesPersonnelsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('personnel', null, [
+                'label' => 'Personnel à noter',
+            ])            
             ->add('date_note', null, [
                 'label' => 'Date de notation',
                 'widget' => 'single_text',
@@ -37,9 +40,7 @@ class NotesPersonnelsType extends AbstractType
                 ],
                 //'data' => new \DateTime('now'),
             ])
-            ->add('personnel', null, [
-                'label' => 'Personnel noté',
-            ])
+
         ;
     }
 

@@ -1,81 +1,68 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste Conjoints{% endblock %}
+{% block title %}Liste conjoint(e)(s){% endblock %}
 
 {% block body %}
-    <h1>Liste Conjoints</h1>
-    {# <form class="mt-2 mt-md-0 d-none d-lg-block search-input" action="{{ path('conjoints_recherche') }}">
-        <div class="input-group">
-            <span class="input-group-addon d-flex align-items-center"><i class="icon-magnifier icons"></i></span>
-            <input type="text" name="search" class="form-control" placeholder="Search...">
+<div class="card">
+        <div class="card-header bg-gradient-primary">
+            <h4 class="card-title justify-content-between font-weight-bold">Liste conjoint(e)(s)</h4>
         </div>
-    </form> #}
-    <a href="{{ path('conjoints_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
-    <table id="user_liste" class="table">
-        <thead>
-            <tr>
-                {# <th>Id</th> #}
-                {# <th>Rang</th> #}
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Conjoint</th>
-                <th>Date de naissance</th>
-                <th>Lieu de naissance</th>
-                {# <th>Nom du père</th> #}
-                {# <th>Nom de la mère</th> #}
-                <th>Sexe</th>
-                {# <th>Date de mariage</th> #}
-                <th>Numéro CIN</th>
-                {# <th>Date CIN</th> #}
-                {# <th>Lieu CIN</th> #}
-                {# <th>Reférence de l'autorisation de mariage</th> #}
-                {# <th>Date reférence de l'autorisation de mariage</th> #}
-                {# <th>Lieu de mariage</th> #}
-                {# <th>Reférence officiel du mariage</th> #}
-                {# <th>Date reférence officiel du mariage</th> #}
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for conjoint in conjoints %}
-            <tr>
-                {# <td>{{ conjoint.id }}</td> #}
-                {# <td>{{ conjoint.rang }}</td> #}
-                <td>{{ conjoint.nom }}</td>
-                <td>{{ conjoint.prenom }}</td>
-                <td>{{ conjoint.personnel }}</td>
-                <td>{{ conjoint.dateNaissance ? conjoint.dateNaissance|date('d/m/Y') : '' }}</td>
-                <td>{{ conjoint.lieuNaissance }}</td>
-                {# <td>{{ conjoint.nomPere }}</td> #}
-                {# <td>{{ conjoint.nomMere }}</td> #}
-                <td>{{ conjoint.sexe ? 'Féminin' : 'Masculin' }}</td>
-                {# <td>{{ conjoint.dateMariage ? conjoint.dateMariage|date('d/m/Y') : '' }}</td> #}
-                <td>{{ conjoint.numeroCin }}</td>
-                {# <td>{{ conjoint.dateCin ? conjoint.dateCin|date('d/m/Y') : '' }}</td> #}
-                {# <td>{{ conjoint.lieuCin }}</td> #}
-                {# <td>{{ conjoint.referenceAutorisationMariage }}</td> #}
-                {# <td>{{ conjoint.dateReferenceAutorisationMariage ? conjoint.dateReferenceAutorisationMariage|date('d/m/Y') : '' }}</td> #}
-                {# <td>{{ conjoint.lieuMariage }}</td> #}
-                {# <td>{{ conjoint.referenceOfficielMariage }}</td> #}
-                {# <td>{{ conjoint.dateReferenceOfficielMariage ? conjoint.dateReferenceOfficielMariage|date('d/m/Y') : '' }}</td> #}
-                <td>
-                    <a href="{{ path('conjoints_show', {'id': conjoint.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    {% if is_granted("ROLE_SUPERVISEUR") %}<a href="{{ path('conjoints_edit', {'id': conjoint.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>{% endif %}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="19">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    {# <div class="navigation">
-        {{ knp_pagination_render(conjoints) }}
-    </div> #}
-
-    <a href="{{ path('conjoints_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+        <div class="card-comments m-2">
+            <div class="block-grid col-12 mb-2">
+                <a href="{{ path('conjoints_new') }}" class="btn btn-sm bg-gradient-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+            </div>
+            {% for message in app.flashes('success') %}
+            <div class="alert alert-success text-white m-2">
+                {{ message }}  
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+            <div class="alert alert-danger text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            <div class="table-responsive table-condensed table-responsive-sm table-striped">
+                <table id="user_liste" style="width:100%" class="table table-sm table-bordered">
+                    <thead class="text-center">
+                        <tr class="text-center text-dark">
+                            <th>Nom du personnel de la DGSR</th>
+                            <th>Nom et prénoms conjoint(e)</th>
+                            <th>Date et lieu de naissance</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for conjoint in conjoints %}
+                        <tr>
+                            <td>{{ conjoint.personnel }}</td>
+                            <td>{{ conjoint.nom ? conjoint.nom : '' }} {{ conjoint.prenom ? conjoint.prenom : '' }}</td>
+                            <td>{{ conjoint.dateNaissance ? conjoint.dateNaissance|date('d/m/Y') : '' }} {{ conjoint.lieuNaissance ? ' à ' ~ conjoint.lieuNaissance : '' }}</td>
+                            <td class="text-center col-2">
+                                <a href="{{ path('conjoints_show', {'id': conjoint.id}) }}" title="Voir" class="btn btn-sm bg-gradient-info icon-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                {% if is_granted("ROLE_SUPERVISEUR") %}
+                                    <a href="{{ path('conjoints_edit', {'id': conjoint.id}) }}" title="Modifier" class="btn btn-sm bg-gradient-yellow"><i class="fa fa-edit icon-sm" aria-hidden="true"></i></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td class="text-center text-danger" colspan="4">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        
+        </div>
+        <div class="card-footer bg-gradient-white">
+            <a href="{{ path('conjoints_new') }}" class="btn btn-sm bg-gradient-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+        </div>
+    </div>
 
     {% block javascripts %}
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>

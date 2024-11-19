@@ -1,66 +1,78 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Situation Sanitaire{% endblock %}
+{% block title %}Détail situation sanitaire{% endblock %}
 
 {% block body %}
-    <h1>Situation Sanitaire</h1>
-
-    <table class="table">
-        <tbody>
-            {# <tr>
-                <th>Id</th>
-                <td>{{ situation_sanitaire.id }}</td>
-            </tr> #}
-            <tr>
-                <th>Personnel</th>
-                <td>{{ situation_sanitaire.personnel }}</td>
-            </tr>
-            <tr>
-                <th>Personne malade</th>
-                <td>{{ situation_sanitaire.personne_concerner }}</td>
-            </tr>
-            <tr>
-                <th>Hopital ou médecin traitant</th>
-                <td>{{ situation_sanitaire.hopitalMedecinTraitant }}</td>
-            </tr>
-            <tr>
-                <th>Date de début du traitement</th>
-                <td>{{ situation_sanitaire.dateDebutTraitement ? situation_sanitaire.dateDebutTraitement|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date de fin du traitement</th>
-                <td>{{ situation_sanitaire.dateFinTraitement ? situation_sanitaire.dateFinTraitement|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Maladie</th>
-                <td>{{ situation_sanitaire.maladie }}</td>
-            </tr>
-            <tr>
-                <th>Lieu du traitement</th>
-                <td>{{ situation_sanitaire.lieuTraitement }}</td>
-            </tr>
-            <tr>
-                <th>Disponibilité du traitement</th>
-                <td>{{ situation_sanitaire.disponibiliteTraitement }}</td>
-            </tr>
-            <tr>
-                <th>Adresse du traitant</th>
-                <td>{{ situation_sanitaire.adresseTraitant }}</td>
-            </tr>
-            <tr>
-                <th>Nécessité contrôle périodique</th>
-                <td>{{ situation_sanitaire.controlePeriodique ? 'Oui' : 'Non' }}</td>
-            </tr>
-            <tr>
-                <th>Niveau de danger</th>
-                <td>{{ situation_sanitaire.niveauDanger }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('situation_sanitaire_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
-
-    <a href="{{ path('situation_sanitaire_edit', {'id': situation_sanitaire.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
-
-    {{ include('situation_sanitaire/_delete_form.html.twig') }}
+<div class="card">
+    <div class="card-header bg-gradient-primary">
+        <h4 class="card-title justify-content-between font-weight-bold">Détail situation sanitaire</h4>
+    </div>
+    <div class="card-comments justify-content-center m-2">
+        <div class="row justify-content-center">
+            <div class="col-auto justify-content-center">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr class="col-auto">
+                            <th class="col-auto">Personnel</th>
+                            <td class="col-auto">{{ situation_sanitaire.personnel }}</td>
+                        </tr>
+                        <tr>
+                            <th>Personne malade</th>
+                            <td>{{ situation_sanitaire.personneConcerner.libelle }}</td>
+                        </tr>
+                        <tr>
+                            <th>Hopital ou médecin traitant</th>
+                            <td>{{ situation_sanitaire.hopitalMedecinTraitant }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date de début du traitement</th>
+                            <td>{{ situation_sanitaire.dateDebutTraitement ? situation_sanitaire.dateDebutTraitement|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date de fin du traitement</th>
+                            <td>{{ situation_sanitaire.dateFinTraitement ? situation_sanitaire.dateFinTraitement|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Maladie</th>
+                            <td>{{ situation_sanitaire.maladie }}</td>
+                        </tr>
+                        <tr>
+                            <th>Lieu du traitement</th>
+                            <td>{{ situation_sanitaire.lieuTraitement }}</td>
+                        </tr>
+                        <tr>
+                            <th>Disponibilité du traitement</th>
+                            <td>{{ situation_sanitaire.disponibiliteTraitement }}</td>
+                        </tr>
+                        <tr>
+                            <th>Adresse du traitant</th>
+                            <td>{{ situation_sanitaire.adresseTraitant }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nécessité contrôle périodique</th>
+                            <td>{{ situation_sanitaire.controlePeriodique ? 'Oui' : 'Non' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Niveau de danger</th>
+                            <td>{{ situation_sanitaire.niveauDanger }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-gradient-white">
+        <div class="row">
+            <div class="col-1">
+                <a href="{{ path('situation_sanitaire_index') }}" class="btn btn-sm bg-gradient-primary m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+            </div>
+            <div class="col-1">
+                <a href="{{ path('situation_sanitaire_edit', {'id': situation_sanitaire.id}) }}" class="btn btn-sm bg-gradient-success m-2"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+            </div>
+            <div class="col-1 ml-2">
+                {{ include('situation_sanitaire/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

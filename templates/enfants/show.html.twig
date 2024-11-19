@@ -1,62 +1,74 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Enfants{% endblock %}
+{% block title %}Renseignements enfant{% endblock %}
 
 {% block body %}
-    <h1>Enfants</h1>
-
-    <table class="table">
-        <tbody>
-            {# <tr>
-                <th>Id</th>
-                <td>{{ enfant.id }}</td>
-            </tr> #}
-            <tr>
-                <th>Rang</th>
-                <td>{{ enfant.rang }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ enfant.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prénom</th>
-                <td>{{ enfant.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Date de naissance</th>
-                <td>{{ enfant.dateNaissance ? enfant.dateNaissance|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Lieu de naissance</th>
-                <td>{{ enfant.lieuNaissance }}</td>
-            </tr>
-            <tr>
-                <th>Sexe</th>
-                <td>{{ enfant.sexe ? 'Féminin' : 'Masculin' }}</td>
-            </tr>
-            <tr>
-                <th>Qualité</th>
-                <td>{{ enfant.qualite }}</td>
-            </tr>
-            <tr>
-                <th>Est decedé</th>
-                <td>{{ enfant.estDecede ? 'Oui' : 'Non' }}</td>
-            </tr>
-            <tr>
-                <th>Date de decé</th>
-                <td>{{ enfant.dateDece ? enfant.dateDece|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Parent</th>
-                <td>{{ enfant.personnel }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('enfants_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
-    <br>
-    <a href="{{ path('enfants_edit', {'id': enfant.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
-
-    {% if is_granted("ROLE_SUPERVISEUR") %}{{ include('enfants/_delete_form.html.twig') }}{% endif %}
+<div class="card">
+    <div class="card-header bg-gradient-primary">
+        <h4 class="card-title justify-content-between font-weight-bold">Renseignements enfant</h4>
+    </div>
+    <div class="card-comments justify-content-center m-2">
+        <div class="row justify-content-center">
+            <div class="col-auto justify-content-center">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr>
+                            <th>Parent</th>
+                            <td>{{ enfant.personnel }}</td>
+                        </tr>
+                        <tr class="col-auto">
+                            <th class="col-auto">Rang</th>
+                            <td class="col-auto">{{ enfant.rang }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nom</th>
+                            <td>{{ enfant.nom }}</td>
+                        </tr>
+                        <tr>
+                            <th>Prénom</th>
+                            <td>{{ enfant.prenom }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date de naissance</th>
+                            <td>{{ enfant.dateNaissance ? enfant.dateNaissance|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Lieu de naissance</th>
+                            <td>{{ enfant.lieuNaissance }}</td>
+                        </tr>
+                        <tr>
+                            <th>Sexe</th>
+                            <td>{{ enfant.sexe ? 'Féminin' : 'Masculin' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Qualité</th>
+                            <td>{{ enfant.qualite }}</td>
+                        </tr>
+                        <tr>
+                            <th>Est decedé</th>
+                            <td>{{ enfant.estDecede ? 'Oui' : 'Non' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date de decé</th>
+                            <td>{{ enfant.dateDece ? enfant.dateDece|date('d/m/Y') : '' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-gradient-white">
+        <div class="row">
+            <div class="col-1">
+                <a href="{{ path('enfants_index') }}" class="btn btn-sm bg-gradient-primary m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+            </div>
+            <div class="col-1">
+                <a href="{{ path('enfants_edit', {'id': enfant.id}) }}" class="btn btn-sm bg-gradient-success m-2"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+            </div>
+            <div class="col-1 ml-2">
+                {{ include('enfants/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

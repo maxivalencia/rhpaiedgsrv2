@@ -1,37 +1,64 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des Types de Maladie{% endblock %}
+{% block title %}Liste des types maladies{% endblock %}
 
 {% block body %}
-    <h1>Liste des Type de Maladie</h1>
-    <a href="{{ path('type_maladie_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
-    <table id="user_liste" class="table">
-        <thead>
-            <tr>
-                {# <th>Id</th> #}
-                <th>Type maladie</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for type_maladie in type_maladies %}
-            <tr>
-                {# <td>{{ type_maladie.id }}</td> #}
-                <td>{{ type_maladie.libelle }}</td>
-                <td>
-                    <a href="{{ path('type_maladie_show', {'id': type_maladie.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('type_maladie_edit', {'id': type_maladie.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('type_maladie_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+<div class="card">
+        <div class="card-header bg-gradient-primary">
+            <h4 class="card-title justify-content-between font-weight-bold">Liste des types maladies</h4>
+        </div>
+        <div class="card-comments m-2">
+            {% for message in app.flashes('success') %}
+            <div class="alert alert-success text-white m-2">
+                {{ message }}  
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+            <div class="alert alert-danger text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            <div class="block-grid col-12 mb-2">
+                <a href="{{ path('type_maladie_new') }}" class="btn btn-sm bg-gradient-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+            </div>
+            <div class="table-responsive table-condensed table-responsive-sm table-striped">
+                <table id="user_liste" class="table table-sm table-bordered">
+                    <thead class="text-center">
+                        <tr class="text-center text-dark">
+                            <th class="col-auto text-center">Type maladie</th>
+                            <th class="col-auto text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for type_maladie in type_maladies %}
+                        <tr>
+                            <td>{{ type_maladie.libelle }}</td>
+                            <td class="text-center col-2">
+                                <a href="{{ path('type_maladie_show', {'id': type_maladie.id}) }}" class="btn btn-sm bg-gradient-info icon-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                {% if is_granted("ROLE_SUPERVISEUR") %}
+                                    <a href="{{ path('type_maladie_edit', {'id': type_maladie.id}) }}" class="btn btn-sm bg-gradient-yellow"><i class="fa fa-edit icon-sm" aria-hidden="true"></i></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td class="text-center text-danger" colspan="2">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        
+        </div>
+        <div class="card-footer bg-gradient-white">
+            <a href="{{ path('type_maladie_new') }}" class="btn btn-sm bg-gradient-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+        </div>
+    </div>
 
     {% block javascripts %}
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>

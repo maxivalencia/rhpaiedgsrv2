@@ -60,6 +60,8 @@ class ConjointsController extends AbstractController
             $entityManager->persist($conjoint);
             $entityManager->flush();
 
+            $this->addFlash('success', 'L\'ajout a été effectué avec succès.');
+
             return $this->redirectToRoute('conjoints_index');
         }
 
@@ -90,6 +92,8 @@ class ConjointsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'La modification a été effectuée avec succès.');
+
             return $this->redirectToRoute('conjoints_index');
         }
 
@@ -108,6 +112,8 @@ class ConjointsController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($conjoint);
             $entityManager->flush();
+
+            $this->addFlash('success', 'La suppression a été effectuée avec succès.');
         }
 
         return $this->redirectToRoute('conjoints_index');

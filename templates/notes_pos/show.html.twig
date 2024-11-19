@@ -1,5 +1,67 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Note officier{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header bg-gradient-primary">
+        <h4 class="card-title justify-content-between font-weight-bold">Note officier</h4>
+    </div>
+    <div class="card-comments justify-content-center m-2">
+        <div class="row justify-content-center">
+            <div class="col-auto justify-content-center">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr class="col-auto">
+                            <th class="col-auto">Personnel à noter</th>
+                            <td class="col-auto">{{ notes_p_o.personnels }}</td>
+                        </tr>
+                        <tr>
+                            <th>Qf</th>
+                            <td class="text-center">{{ notes_p_o.qf }}</td>
+                        </tr>
+                        <tr>
+                            <th>Vet</th>
+                            <td class="text-center">{{ notes_p_o.vet }}</td>
+                        </tr>
+                        <tr>
+                            <th>Ags</th>
+                            <td class="text-center">{{ notes_p_o.ags }}</td>
+                        </tr>
+                        <tr>
+                            <th>Niveau</th>
+                            <td class="text-center">{{ notes_p_o.niveau }}</td>
+                        </tr>
+                        <tr>
+                            <th>Potentiel</th>
+                            <td class="text-center">{{ notes_p_o.potentiel }}</td>
+                        </tr>
+                        <tr>
+                            <th>Appréciation complète</th>
+                            <td class="text-justify">{{ notes_p_o.appreciationComplet }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-gradient-white">
+        <div class="row">
+            <div class="col-1">
+                <a href="{{ path('notes_p_o_s_index') }}" class="btn btn-sm bg-gradient-primary m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+            </div>
+            <div class="col-1">
+                <a href="{{ path('notes_p_o_s_edit', {'id': notes_p_o.id}) }}" class="btn btn-sm bg-gradient-success m-2"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+            </div>
+            <div class="col-1 ml-2">
+                {{ include('notes_pos/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{# {% extends 'base.html.twig' %}
+
 {% block title %}Notes POS{% endblock %}
 
 {% block body %}
@@ -7,10 +69,6 @@
 
     <table class="table">
         <tbody>
-            {# <tr>
-                <th>Id</th>
-                <td>{{ notes_p_o.id }}</td>
-            </tr> #}
             <tr>
                 <th>Année</th>
                 <td>{{ notes_p_o.annee ? notes_p_o.annee|date('Y') : '' }}</td>
@@ -51,4 +109,4 @@
     <a href="{{ path('notes_p_o_s_edit', {'id': notes_p_o.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
 
     {{ include('notes_pos/_delete_form.html.twig') }}
-{% endblock %}
+{% endblock %} #}

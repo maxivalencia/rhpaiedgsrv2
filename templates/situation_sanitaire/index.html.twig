@@ -1,5 +1,96 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Liste des situations sanitaires{% endblock %}
+
+{% block body %}
+<div class="card">
+        <div class="card-header bg-gradient-primary">
+            <h4 class="card-title justify-content-between font-weight-bold">Liste des situations sanitaires</h4>
+        </div>
+        <div class="card-comments m-2">
+            {% for message in app.flashes('success') %}
+            <div class="alert alert-success text-white m-2">
+                {{ message }}  
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+            <div class="alert alert-danger text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            <div class="block-grid col-12 mb-2">
+                <a href="{{ path('situation_sanitaire_new') }}" class="btn btn-sm bg-gradient-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+            </div>
+            <div class="table-responsive table-condensed table-responsive-sm table-striped">
+                <table id="user_liste" class="table table-sm table-bordered">
+                    <thead class="text-center">
+                        <tr class="text-center text-dark">
+                            <th class="col-auto text-center">Personnel</th>
+                            <th class="col-auto text-center">Personne malade</th>
+                            <th class="col-auto text-center">Hopital ou médecin traitant</th>
+                            <th class="col-auto text-center">Date de début du traitement</th>
+                            <th class="col-auto text-center">Date de fin du traitement</th>
+                            <th class="col-auto text-center">Maladie</th>
+                            <th class="col-auto text-center">Lieu du traitement</th>
+                            {# <th class="col-auto text-center">Disponibilité du traitement</th> #}
+                            {# <th class="col-auto text-center">Adresse du traitant</th> #}
+                            {# <th class="col-auto text-center">Nécessité contrôle périodique</th> #}
+                            {# <th class="col-auto text-center">Niveau de danger</th> #}
+                            <th class="col-auto text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for situation_sanitaire in situation_sanitaires %}
+                        <tr>
+                            <td>{{ situation_sanitaire.personnel }}</td>
+                            <td>{{ situation_sanitaire.personneConcerner.libelle }}</td>
+                            <td>{{ situation_sanitaire.hopitalMedecinTraitant }}</td>
+                            <td class="text-center">{{ situation_sanitaire.dateDebutTraitement ? situation_sanitaire.dateDebutTraitement|date('d/m/Y') : '' }}</td>
+                            <td class="text-center">{{ situation_sanitaire.dateFinTraitement ? situation_sanitaire.dateFinTraitement|date('d/m/Y') : '' }}</td>
+                            <td>{{ situation_sanitaire.maladie }}</td>
+                            <td>{{ situation_sanitaire.lieuTraitement }}</td>
+                            {# <td>{{ situation_sanitaire.disponibiliteTraitement }}</td> #}
+                            {# <td>{{ situation_sanitaire.adresseTraitant }}</td> #}
+                            {# <td class="text-center">{{ situation_sanitaire.controlePeriodique ? 'Oui' : 'Non' }}</td> #}
+                            {# <td>{{ situation_sanitaire.niveauDanger }}</td> #}
+                            <td class="text-center col-2">
+                                <a href="{{ path('situation_sanitaire_show', {'id': situation_sanitaire.id}) }}" class="btn btn-sm bg-gradient-info icon-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                {% if is_granted("ROLE_SUPERVISEUR") %}
+                                    <a href="{{ path('situation_sanitaire_edit', {'id': situation_sanitaire.id}) }}" class="btn btn-sm bg-gradient-yellow"><i class="fa fa-edit icon-sm" aria-hidden="true"></i></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td class="text-center text-danger" colspan="8">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        
+        </div>
+        <div class="card-footer bg-gradient-white">
+            <a href="{{ path('situation_sanitaire_new') }}" class="btn btn-sm bg-gradient-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+        </div>
+    </div>
+
+    {% block javascripts %}
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#user_liste').DataTable();
+            } );
+        </script>
+    {% endblock %}
+{% endblock %}
+{# {% extends 'base.html.twig' %}
+
 {% block title %}Liste des Situations Sanitaire{% endblock %}
 
 {% block body %}
@@ -8,7 +99,6 @@
     <table id="user_liste" class="table">
         <thead>
             <tr>
-                {# <th>Id</th> #}
                 <th>Personnel</th>
                 <th>Personne malade</th>
                 <th>Hopital ou médecin traitant</th>
@@ -26,7 +116,6 @@
         <tbody>
         {% for situation_sanitaire in situation_sanitaires %}
             <tr>
-                {# <td>{{ situation_sanitaire.id }}</td> #}
                 <td>{{ situation_sanitaire.personnel }}</td>
                 <td>{{ situation_sanitaire.personne_concerner }}</td>
                 <td>{{ situation_sanitaire.hopitalMedecinTraitant }}</td>
@@ -61,4 +150,4 @@
             } );
         </script>
     {% endblock %}
-{% endblock %}
+{% endblock %} #}

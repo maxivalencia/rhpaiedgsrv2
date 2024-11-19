@@ -1,98 +1,78 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Conjoints{% endblock %}
+{% block title %}Renseignements conjoint(e){% endblock %}
 
 {% block body %}
-    <h1>Conjoints</h1>
-
-    <table class="table">
-        <tbody>
-            {# <tr>
-                <th>Id</th>
-                <td>{{ conjoint.id }}</td>
-            </tr> #}
-            <tr>
-                <th>Rang</th>
-                <td>{{ conjoint.rang }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ conjoint.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prénom</th>
-                <td>{{ conjoint.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Date de naissance</th>
-                <td>{{ conjoint.dateNaissance ? conjoint.dateNaissance|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Lieu de naissance</th>
-                <td>{{ conjoint.lieuNaissance }}</td>
-            </tr>
-            <tr>
-                <th>Nom du père</th>
-                <td>{{ conjoint.nomPere }}</td>
-            </tr>
-            <tr>
-                <th>Nom de la mère</th>
-                <td>{{ conjoint.nomMere }}</td>
-            </tr>
-            <tr>
-                <th>Sexe</th>
-                <td>{{ conjoint.sexe ? 'Féminin' : 'Masculin' }}</td>
-            </tr>
-            <tr>
-                <th>Date de mariage</th>
-                <td>{{ conjoint.dateMariage ? conjoint.dateMariage|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Numero CIN</th>
-                <td>{{ conjoint.numeroCin }}</td>
-            </tr>
-            <tr>
-                <th>Date CIN</th>
-                <td>{{ conjoint.dateCin ? conjoint.dateCin|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Lieu CIN</th>
-                <td>{{ conjoint.lieuCin }}</td>
-            </tr>
-            <tr>
-                <th>Reférence de l'autorisation de mariage</th>
-                <td>{{ conjoint.referenceAutorisationMariage }}</td>
-            </tr>
-            <tr>
-                <th>Date de reférence de l'autorisation de mariage</th>
-                <td>{{ conjoint.dateReferenceAutorisationMariage ? conjoint.dateReferenceAutorisationMariage|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Lieu de mariage</th>
-                <td>{{ conjoint.lieuMariage }}</td>
-            </tr>
-            <tr>
-                <th>Reférence officiel du mariage</th>
-                <td>{{ conjoint.referenceOfficielMariage }}</td>
-            </tr>
-            <tr>
-                <th>Date de reférence officiel du mariage</th>
-                <td>{{ conjoint.dateReferenceOfficielMariage ? conjoint.dateReferenceOfficielMariage|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Commune</th>
-                <td>{{ conjoint.commune }}</td>
-            </tr>
-            <tr>
-                <th>Conjoint</th>
-                <td>{{ conjoint.personnel }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('conjoints_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
-    <br>
-    <a href="{{ path('conjoints_edit', {'id': conjoint.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
-
-    {% if is_granted("ROLE_SUPERVISEUR") %}{{ include('conjoints/_delete_form.html.twig') }}{% endif %}
+<div class="card">
+    <div class="card-header bg-gradient-primary">
+        <h4 class="card-title justify-content-between font-weight-bold">Renseignements conjoint(e)</h4>
+    </div>
+    <div class="card-comments justify-content-center m-2">
+        <div class="row justify-content-center">
+            <div class="col-auto justify-content-center">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr>
+                            <th class="col-auto">Rang</th>
+                            <td class="col-auto">{{ conjoint.rang }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nom et prénoms </th>
+                            <td>{{ conjoint.nom }} {{ conjoint.prenom ? conjoint.prenom : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date et lieu de naissance</th>
+                            <td>{{ conjoint.dateNaissance ? conjoint.dateNaissance|date('d/m/Y') : '' }} {{ conjoint.lieuNaissance ? ' à ' ~ conjoint.lieuNaissance : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Fils/Fille de</th>
+                            <td>{{ conjoint.nomPere ? conjoint.nomPere ~ ' et de ': '' }}{{ conjoint.nomMere ? conjoint.nomMere : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Numero - date et lieu CIN</th>
+                            <td>{{ conjoint.numeroCin ? conjoint.numeroCin ~ ' du ': '' }}{{ conjoint.dateCin ? conjoint.dateCin|date('d/m/Y') : '' }}{{ conjoint.lieuCin ? ' à ' ~ conjoint.lieuCin : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Sexe</th>
+                            <td>{{ conjoint.sexe ? 'Féminin' : 'Masculin' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date de mariage</th>
+                            <td>{{ conjoint.dateMariage ? conjoint.dateMariage|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Ref. et date autorisation de mariage</th>
+                            <td>{{ conjoint.referenceAutorisationMariage ? conjoint.referenceAutorisationMariage ~ ' du ': '' }}{{ conjoint.dateReferenceAutorisationMariage ? conjoint.dateReferenceAutorisationMariage|date('d/m/Y') : '' }}{{ conjoint.lieuMariage ? ' à ' ~ conjoint.lieuMariage : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Ref. et date officiel du mariage</th>
+                            <td>{{ conjoint.referenceOfficielMariage ? conjoint.referenceOfficielMariage : '' }}{{ conjoint.dateReferenceOfficielMariage ? ' du ' ~  conjoint.dateReferenceOfficielMariage|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Commune</th>
+                            <td>{{ conjoint.commune }}</td>
+                        </tr>
+                        <tr>
+                            <th>Conjoint</th>
+                            <td>{{ conjoint.personnel }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-gradient-white">
+        <div class="row">
+            <div class="col-1">
+                <a href="{{ path('conjoints_index') }}" class="btn btn-sm bg-gradient-primary m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+            </div>
+            <div class="col-1">
+                <a href="{{ path('conjoints_edit', {'id': conjoint.id}) }}" class="btn btn-sm bg-gradient-success m-2"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+            </div>
+            <div class="col-1 ml-2">
+                {{ include('conjoints/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

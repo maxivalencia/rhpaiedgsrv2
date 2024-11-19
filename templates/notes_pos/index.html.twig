@@ -1,61 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste Notes POS{% endblock %}
+{% block title %}Liste notes officiers{% endblock %}
 
 {% block body %}
-    <h1>Liste Notes POS</h1>
-    {# <form class="mt-2 mt-md-0 d-none d-lg-block search-input" action="{{ path('notes_p_o_s_recherche') }}">
-        <div class="input-group">
-            <span class="input-group-addon d-flex align-items-center"><i class="icon-magnifier icons"></i></span>
-            <input type="text" name="search" class="form-control" placeholder="Search...">
+<div class="card">
+        <div class="card-header bg-gradient-primary">
+            <h4 class="card-title justify-content-between font-weight-bold">Liste notes officiers</h4>
         </div>
-    </form> #}
-    <a href="{{ path('notes_p_o_s_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
-    <table id="user_liste" class="table">
-        <thead>
-            <tr>
-                {# <th>Id</th> #}
-                <th>Année</th>
-                {# <th>Qf</th> #}
-                {# <th>Vet</th> #}
-                {# <th>Ags</th> #}
-                {# <th>Niveau</th> #}
-                <th>Potentiel</th>
-                <th>Appréciation complet</th>
-                <th>Personnel</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for notes_p_o in notes_p_o_ss %}
-            <tr>
-                {# <td>{{ notes_p_o.id }}</td> #}
-                <td>{{ notes_p_o.annee ? notes_p_o.annee|date('Y') : '' }}</td>
-                {# <td>{{ notes_p_o.qf }}</td> #}
-                {# <td>{{ notes_p_o.vet }}</td> #}
-                {# <td>{{ notes_p_o.ags }}</td> #}
-                {# <td>{{ notes_p_o.niveau }}</td> #}
-                <td>{{ notes_p_o.potentiel }}</td>
-                <td>{{ notes_p_o.appreciationComplet }}</td>
-                <td>{{ notes_p_o.personnels }}</td>
-                <td>
-                    <a href="{{ path('notes_p_o_s_show', {'id': notes_p_o.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('notes_p_o_s_edit', {'id': notes_p_o.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    {# <div class="navigation">
-        {{ knp_pagination_render(notes_p_o_ss) }}
-    </div> #}
-
-    <a href="{{ path('notes_p_o_s_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+        <div class="card-comments m-2">
+            {% for message in app.flashes('success') %}
+            <div class="alert alert-success text-white m-2">
+                {{ message }}  
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+            <div class="alert alert-danger text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            <div class="block-grid col-12 mb-2">
+                <a href="{{ path('notes_p_o_s_new') }}" class="btn btn-sm bg-gradient-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+            </div>
+            <div class="table-responsive table-condensed table-responsive-sm table-striped col-auto">
+                <table id="user_liste" class="table table-sm table-bordered col-auto">
+                    <thead class="text-center col-auto">
+                        <tr class="text-center text-dark">
+                            <th class="col-auto text-center">Année</th>
+                            <th class="col-auto text-center">Personnel</th>
+                            <th class="col-auto text-center">Note</th>
+                            <th class="col-auto text-center">Appréciation global</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for notes_p_o in notes_p_o_ss %}
+                        <tr>
+                            <td class="text-center">{{ notes_p_o.annee ? notes_p_o.annee|date('Y') : '' }}</td>
+                            <td>{{ notes_p_o.personnels }}</td>
+                            <td class="text-center">{{ notes_p_o.potentiel }}</td>
+                            <td>{{ notes_p_o.appreciationComplet }}</td>
+                            <td class="text-center col-2">
+                                <a href="{{ path('notes_p_o_s_show', {'id': notes_p_o.id}) }}" class="btn btn-sm bg-gradient-info icon-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                {% if is_granted("ROLE_SUPERVISEUR") %}
+                                    <a href="{{ path('notes_p_o_s_edit', {'id': notes_p_o.id}) }}" class="btn btn-sm bg-gradient-yellow"><i class="fa fa-edit icon-sm" aria-hidden="true"></i></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td class="text-center text-danger" colspan="5">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        
+        </div>
+        <div class="card-footer bg-gradient-white">
+            <a href="{{ path('notes_p_o_s_new') }}" class="btn btn-sm bg-gradient-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+        </div>
+    </div>
 
     {% block javascripts %}
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>

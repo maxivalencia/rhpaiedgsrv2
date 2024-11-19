@@ -54,6 +54,8 @@ class DecisionsPromotionsController extends AbstractController
             $entityManager->persist($decisionsPromotion);
             $entityManager->flush();
 
+            $this->addFlash('success', 'L\'ajout a été effectué avec succès.');
+
             return $this->redirectToRoute('decisions_promotions_index');
         }
 
@@ -83,6 +85,8 @@ class DecisionsPromotionsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            
+            $this->addFlash('success', 'La modification a été effectuée avec succès.');
 
             return $this->redirectToRoute('decisions_promotions_index');
         }
@@ -102,6 +106,9 @@ class DecisionsPromotionsController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($decisionsPromotion);
             $entityManager->flush();
+            
+            $this->addFlash('success', 'La suppression a été effectuée avec succès.');
+
         }
 
         return $this->redirectToRoute('decisions_promotions_index');

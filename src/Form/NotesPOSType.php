@@ -12,13 +12,15 @@ class NotesPOSType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('personnels', null, [
+                'label' => 'Personnel Officier Supérieur',
+            ])
             ->add('annee', null, [
                 'label' => 'Année',
                 'widget' => 'single_text',
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                //'data' => new \DateTime('now'),
             ])
             ->add('qf', null, [
                 'label' => 'QF',
@@ -37,10 +39,6 @@ class NotesPOSType extends AbstractType
             ])
             ->add('appreciation_complet', null, [
                 'label' => 'Appréciation global',
-            ])
-            //->add('personnel')
-            ->add('personnels', null, [
-                'label' => 'Personnel Officier Supérieur',
             ])
         ;
     }

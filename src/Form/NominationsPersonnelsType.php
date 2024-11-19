@@ -26,6 +26,9 @@ class NominationsPersonnelsType extends AbstractType
                 ],
                 //'data' => new \DateTime('now'),
             ])
+            ->add('grade', null, [
+                'label' => 'Grade du personnel',
+            ])
             ->add('rang', null, [
                 'label' => 'Rang du personnel',
             ])
@@ -37,9 +40,6 @@ class NominationsPersonnelsType extends AbstractType
             ])
             ->add('indice', null, [
                 'label' => 'Indice du personnel',
-            ])
-            ->add('grade', null, [
-                'label' => 'Grade du personnel',
             ])
         ;
     }

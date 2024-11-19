@@ -6,16 +6,13 @@ use App\Entity\Photos;
 use App\Form\PhotosType;
 use App\Repository\PhotosRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Component\Validator\Constraints\File;
 
 /**
- * @Route("/photos")
+ * @Route("/photo")
  */
 class PhotosController extends AbstractController
 {
@@ -69,6 +66,7 @@ class PhotosController extends AbstractController
                 //$photo->setType();
                 $entityManager->persist($photo);
                 $entityManager->flush();
+                $this->addFlash('success', 'L\'ajout a été effectué avec succès.');
             }
 
             return $this->redirectToRoute('photos_index');
@@ -115,6 +113,7 @@ class PhotosController extends AbstractController
                 //$photo->setType();
                 $entityManager->persist($photo);
                 $entityManager->flush();
+                $this->addFlash('success', 'La modification a été effectuée avec succès.');
             }
             //$this->getDoctrine()->getManager()->flush();
 
@@ -136,6 +135,7 @@ class PhotosController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($photo);
             $entityManager->flush();
+            $this->addFlash('success', 'La suppression a été effectuée avec succès.');
         }
 
         return $this->redirectToRoute('photos_index');

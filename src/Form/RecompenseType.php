@@ -12,6 +12,15 @@ class RecompenseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('personnel', null, [
+                'label' => 'Personnel',
+            ])
+            ->add('nature', null, [
+                'label' => 'Nature',
+            ])
+            ->add('autorite', null, [
+                'label' => 'Autorité délivrant',
+            ])
             ->add('reference', null, [
                 'label' => 'Reférence',
             ])
@@ -23,16 +32,7 @@ class RecompenseType extends AbstractType
                 ],
             ])
             ->add('libelle', null, [
-                'label' => 'Recompense',
-            ])
-            ->add('autorite', null, [
-                'label' => 'Autorité délivrant',
-            ])
-            ->add('nature', null, [
-                'label' => 'Nature',
-            ])
-            ->add('personnel', null, [
-                'label' => 'Personnel',
+                'label' => 'Libellé recompense',
             ])
         ;
     }

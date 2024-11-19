@@ -53,7 +53,7 @@ class TypesContratsController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($typesContrat);
             $entityManager->flush();
-
+            $this->addFlash('success', 'L\'ajout a été effectué avec succès.');
             return $this->redirectToRoute('types_contrats_index');
         }
 
@@ -83,7 +83,7 @@ class TypesContratsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'La modification a été effectuée avec succès.');
             return $this->redirectToRoute('types_contrats_index');
         }
 
@@ -102,6 +102,7 @@ class TypesContratsController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($typesContrat);
             $entityManager->flush();
+            $this->addFlash('success', 'La suppression a été effectuée avec succès.');
         }
 
         return $this->redirectToRoute('types_contrats_index');

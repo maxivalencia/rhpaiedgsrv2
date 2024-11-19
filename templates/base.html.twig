@@ -31,6 +31,7 @@
         <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
         <!-- summernote -->
         <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.css">
+
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.min.css" rel="stylesheet">
@@ -49,7 +50,7 @@
             <nav class="main-header navbar navbar-expand navbar-white navbar-light">
                  <!-- Left navbar links -->
                 <ul class="navbar-nav">
-                    <li class="nav-item">
+                    <li  class="nav-item">
                         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i> RESSOURCE HUMAINE - PAIE - DIRECTION GENERAL DE LA SECURITE ROUTIERE</a>
                     </li>                    
                 </ul>
@@ -60,8 +61,8 @@
                             {% for photo in app.user.utilisateur.photos %}  
                                 {% set pht = photo %}
                             {% endfor %}                                
-                                <img src="/photos/{{ pht }}" width="45px" height="45px" alt="{{ app.user.utilisateur }}" class="brand-image img-circle elevation-3" style="opacity: .8">
-                            {# {{ app.user.utilisateur.photos.photo }} #} {{ app.user.utilisateur }} &nbsp;
+                                <img src="/photos/{{ pht }}" alt="{{ app.user.utilisateur }}" class="brand-image img-circle elevation-3" style="opacity: .8; width: 10%;">
+                                {{ app.user.utilisateur }} &nbsp;
                         </li>
                         <li>
                             <a href="{{ path('app_logout') }}" class="btn btn-light"> <i class="fas fa-sign-out-alt"></i> Déconnexion</a>
@@ -69,33 +70,33 @@
                     </ul>
                 {% endif %}                
             </nav>
+            
             <!-- /.navbar -->
             <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
                 <a href="#" class="brand-link">
-                <img src="/dist/images/logo_dgsr.png" alt="DGSR Logo" class="brand-image img-circle elevation-3"
-                    style="opacity: .8">
+                <img src="/dist/images/logo_dgsr.png" alt="DGSR Logo" class="brand-image img-circle elevation-3" style="opacity: .8;">
                 <span class="brand-text font-weight-light">RH-PAIE-DGSR</span>
                 </a>
 
                 <!-- Sidebar -->
                 <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="user-panel mt-1 pb-1 mb-1">
                     <div class="image">
                         {% if is_granted("ROLE_USER") %}
                             {% set pht = '' %}
                             {% for photo in app.user.utilisateur.photos %}  
                                 {% set pht = photo %}
                             {% endfor %}                              
-                                <img src="/photos/{{ pht }}" width="40px" height="40px" alt="{{ app.user.utilisateur }}" class="brand-image img-circle elevation-3" style="opacity: .8">
+                                <img src="/photos/{{ pht }}" alt="{{ app.user.utilisateur }}" class="brand-image img-circle elevation-2" style="opacity: .8; width: 22%">{#  class="" #}
                         {% else %}
-                            <img src="/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
+                            <img src="/dist/img/avatar5.png" alt="User Image">{#  class="img-circle elevation-2" #}
                         {% endif %} 
                     </div>
-                    <div class="info" width="250px">
-                        <a href="#" class="d-block">
+                    <div class="info text-left" style="vertical-align: middle; align: left;">{#  class="info" width="250px" #}
+                        <a href="#" class="">{#  class="d-block" #}
                             {% if is_granted("ROLE_USER") %}
                                 {{ app.user.getUsername() }}
                             {% else %}
@@ -105,516 +106,546 @@
                     </div>
                 </div>
 
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-                            with font-awesome or any other icon font library -->
-                        {% if is_granted("ROLE_USER") %}
-                            <li class="nav-item has-treeview menu-open">
-                                <a href="{{ path('dash_board') }}" class="nav-link active">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Dashboard
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                                </a>                        
-                            </li>
-                        {% endif %}
-                        {% if is_granted("ROLE_STAFF") %}
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
-                                    <p>
-                                        Outils Staff
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
+                <div class="sidebar d-flex">
+                <nav class="m-0">
+                    {% if is_granted("ROLE_USER") %}
+                    <ul class="nav nav-sidebar flex-column m-0" data-widget="treeview" role="menu" data-accordion="false">{#  nav-pills #}
+                        <li class="nav-item justify-content-center m-0">
+                            <a href="{{ path('dash_board') }}" class="nav-link bg-gradient-navy m-0">
+                            <i class="left nav-icon fas fa-desktop"></i>
+                                DASHBOARD
+                            </a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                    {% if is_granted("ROLE_STAFF") %}
+                    <nav class="m-0">
+                        <ul class="nav nav-sidebar flex-column m-0" data-widget="treeview" role="menu" data-accordion="false">{#  nav-pills #}
+                            <li class="nav-item m-0">
+                                <a href="#pers" class="nav-link bg-gradient-primary justify-content-center text-white m-0" data-accordion="false">
+                                    <i class="nav-icon icon-sm fa fa-search"></i>{# fa-users-cog #}
+                                    <p>CONSULTATIONS<i class="right fas fa-angle-double-down"></i></p>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ path('consultation_centre') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Consultation par centre
-                                            </p>
+                                <ul id="pers" class="nav nav-treeview m-0">
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('consultation_centre') }}" class="nav-link m-0">
+                                            <i class="nav-icon fa fa-search-location"></i>
+                                            <p> Par centre </p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ path('consultation_personnel_militaire') }}" class="nav-link">
-                                            <i class="nav-icon far fa-image"></i>
-                                            <p>
-                                                Consultation personnel Militaire
-                                            </p>
+                                            <i class="nav-icon fa fa-user-astronaut"></i>
+                                            <p> Personnel militaire</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ path('consultation_personnel_civil') }}" class="nav-link">
-                                            <i class="nav-icon far fa-image"></i>
-                                            <p>
-                                                Consultation personnel Civil
-                                            </p>
+                                            <i class="nav-icon fa fa-search-minus"></i>
+                                            <p> Personnel civil </p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ path('analyse_personnel') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Consultation tout personnel
-                                            </p>
+                                            <i class="nav-icon fa fa-search-plus"></i>
+                                            <p> Tout personnel </p>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
-                        {% endif %}
-                        {% if is_granted("ROLE_PERSONNEL") %}
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
-                                    <p>
-                                        Outils RH
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
+                        </ul>
+                    </nav>
+                    {% endif %}
+                    {% if is_granted('ROLE_PERSONNEL') %}
+                    <nav class="m-0">
+                        <ul class="nav nav-sidebar flex-column m-0" data-widget="treeview" role="menu" data-accordion="false">{#  nav-pills #}
+                            <li class="nav-item m-0">
+                                <a href="#pers" class="nav-link bg-gradient-info justify-content-center text-white m-0" data-accordion="false">
+                                    <i class="nav-icon icon-sm fa fa-pen-square"></i>
+                                    <p>MAJ FICHE INDIV.<i class="right fas fa-angle-double-down"></i></p>
                                 </a>
-                                <ul class="nav nav-treeview">                                   
-                                    <li class="nav-item">
-                                        <a href="{{ path('saisie_fiche_etat_civil') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Ajout personnel
-                                            </p>
+                                <ul id="pers" class="nav nav-treeview m-0">
+                                    <li class="nav-item m-0">
+                                        <a href="{{ path('saisie_fiche_etat_civil') }}" class="nav-link m-0">
+                                            <i class="nav-icon icon-sm fa fa-adjust"></i>
+                                            <p> Fiche individuelle </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    {% endif %}
+                    {% if is_granted('ROLE_PERSONNEL') %}
+                    <nav class="m-0">
+                        <ul class="nav nav-sidebar flex-column m-0" data-widget="treeview" role="menu" data-accordion="false">{#  nav-pills #}
+                            <li class="nav-item m-0">
+                                <a href="#pers" class="nav-link bg-gradient-white justify-content-center text-primary m-0" data-accordion="false">
+                                    <i class="nav-icon icon-sm fas fa-users"></i>{# fa-users-cog #}
+                                    <p>PERSONNELS<i class="right fas fa-angle-double-down"></i></p>
+                                </a>
+                                <ul id="pers" class="nav nav-treeview m-0">
+                                    <li class="nav-item m-0">
+                                        <a href="{{ path('personnels_index') }}" class="nav-link m-0">
+                                            <i class="nav-icon icon-sm fa fa-person-booth"></i>
+                                            <p> Etats civils personnel </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item m-0">
+                                        <a href="{{ path('photos_index') }}" class="nav-link m-0">
+                                            <i class="nav-icon fas fa-camera"></i>
+                                            <p> Photo </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item m-0">
+                                        <a href="{{ path('enfants_index') }}" class="nav-link m-0">
+                                            <i class="nav-icon icon-sm fa fa-child"></i>
+                                            <p> Enfant(s) </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item m-0">
+                                        <a href="{{ path('conjoints_index') }}" class="nav-link m-0">
+                                            <i class="nav-icon icon-sm fa fa-heart"></i>
+                                            <p> Conjoint(e)s </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item m-0">
+                                        <a href="{{ path('fonctions_conjoints_index') }}" class="nav-link m-0">
+                                            <i class="nav-icon icon-sm fa fa-business-time"></i>
+                                            <p> Fonctions conjoint(e)s </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item m-0">
+                                        <a href="{{ path('permissions_index') }}" class="nav-link m-0">
+                                            <i class="nav-icon fa fa-pause-circle"></i>
+                                            <p> Permissions </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item m-0">
+                                        <a href="{{ path('ex_conjoints_index') }}" class="nav-link m-0">
+                                            <i class="nav-icon fa fa-not-equal"></i>
+                                            <p> Ruptures conjugales </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    {% endif %}
+                    {% if is_granted("ROLE_PERSONNEL") %}
+                    <nav class="mt-0">
+                        <ul class="nav nav-sidebar flex-column m-0" data-widget="treeview" role="menu" data-accordion="false">{#  nav-pills #}
+                            <li  class="nav-item m-0">
+                                <a href="#affect" class="nav-link bg-gradient-white justify-content-center text-primary m-0" data-accordion="false">
+                                    <i class="nav-icon icon-sm fa fa-map-marked"></i>
+                                    <p>MUTATIONS<i class="right fas fa-angle-double-down"></i></p>
+                                </a>
+                                <ul id="affect" class="nav nav-treeview m-0">
+                                    <li class="nav-item m-0">
+                                        <a href="{{ path('affectations_personnels_index') }}" class="nav-link m-0">
+                                            <i class="nav-icon icon-sm fa fa-map"></i>
+                                            <p> Affectations </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item m-0">
+                                        <a href="{{ path('decisions_affectations_index') }}" class="nav-link m-0">
+                                            <i class="nav-icon icon-sm fa fa-calendar"></i>
+                                            <p> Décisions effectation </p>
+                                        </a>
+                                    </li>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                    <li class="nav-item m-0">
+                                        <a href="{{ path('fonctions_index') }}" class="nav-link m-0">
+                                            <i class="nav-icon icon-sm fa fa-box"></i>
+                                            <p> Fonctions </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item m-0">
+                                        <a href="{{ path('unites_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon icon-sm fa fa-school"></i>
+                                            <p> Unités </p>
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    {% endif %}
+                    {% if is_granted("ROLE_PERSONNEL") %}
+                    <nav class="mt-0">
+                        <ul class="nav nav-sidebar flex-column m-0" data-widget="treeview" role="menu" data-accordion="false">{#  nav-pills #}
+                            <li  class="nav-item m-0">
+                                <a href="#affect" class="nav-link bg-gradient-white justify-content-center text-primary m-0" data-accordion="false">
+                                    <i class="nav-icon icon-sm fa fa-book-reader"></i>
+                                    <p>FORMATIONS<i class="right fas fa-angle-double-down"></i></p>
+                                </a>
+                                <ul id="affect" class="nav nav-treeview m-0">
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('diplomes_personnels_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon icon-sm fa fa-file"></i>
+                                            <p> Diplômes du personnel </p>
+                                        </a>
+                                    </li>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('diplomes_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon icon-sm fa fa-certificate"></i>
+                                            <p> Diplôme </p>
+                                        </a>
+                                    </li>
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('domaine_diplome_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon icon-sm fa fa-calendar-check"></i>
+                                            <p> Domaine diplôme </p>
+                                        </a>
+                                    </li>
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('niveau_diplome_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon icon-sm fa fa-book-medical"></i>
+                                            <p> Niveau diplôme </p>
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    {% endif %}
+                    {% if is_granted("ROLE_MILITAIRE") %}
+                    <nav class="mt-0">
+                        <ul class="nav nav-sidebar flex-column m-0" data-widget="treeview" role="menu" data-accordion="false">{#  nav-pills #}
+                            <li  class="nav-item m-0">
+                                <a href="#affect" class="nav-link bg-gradient-white justify-content-center text-primary m-0" data-accordion="false">
+                                    <i class="nav-icon icon-sm fas fa-angle-double-up"></i>
+                                    <p>AVANCEMENTS<i class="right fas fa-angle-double-down"></i></p>
+                                </a>
+                                <ul id="affect" class="nav nav-treeview m-0">
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('nominations_personnels_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon icon-sm fa fa-medal"></i>
+                                            <p> Avancements pers. </p>
+                                        </a>
+                                    </li>
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('decisions_promotions_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon icon-sm fa fa-bookmark"></i>
+                                            <p> Déc. d'avancement </p>
+                                        </a>
+                                    </li>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('grades_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon icon-sm fa fa-graduation-cap"></i>
+                                            <p> Grades </p>
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="mt-0">
+                        <ul class="nav nav-sidebar flex-column m-0" data-widget="treeview" role="menu" data-accordion="false">{#  nav-pills #}
+                            <li  class="nav-item m-0">
+                                <a href="#affect" class="nav-link bg-gradient-white justify-content-center text-primary m-0" data-accordion="false">
+                                    <i class="nav-icon icon-sm fa fa-check-double"></i>
+                                    <p>NOTATIONS <i class="right fas fa-angle-double-down"></i></p>
+                                </a>
+                                <ul id="affect" class="nav nav-treeview m-0">
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('notes_personnels_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fa fa-clipboard-check"></i>
+                                            <p> Notes personnel </p>
+                                        </a>
+                                    </li>
+                                    {% if is_granted('ROLE_SUPERVISEUR') %}
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('notes_p_o_s_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fa fa-notes-medical"></i>
+                                            <p> Notes officiers </p>
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    {% endif %}
+                    {% if is_granted('ROLE_PERSONNEL') %}
+                    <nav class="mt-0">
+                        <ul class="nav nav-sidebar flex-column m-0" data-widget="treeview" role="menu" data-accordion="false">{#  nav-pills #}
+                            <li  class="nav-item m-0">
+                                <a href="#pers" class="nav-link bg-gradient-white justify-content-center text-primary m-0" data-accordion="false">
+                                    <i class="nav-icon icon-sm fa fa-award"></i>
+                                    <p>DECORATIONS<i class="right fas fa-angle-double-down"></i></p>
+                                </a>
+                                <ul id="pers" class="nav nav-treeview m-0">
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('decorations_personnels_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon icon-sm fa fa-meteor"></i>
+                                            <p> Décorations personnel </p>
+                                        </a>
+                                    </li>
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('decorations_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon icon-sm fa fa-table"></i>
+                                            <p> Types décoration(s) </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    {% endif %}
+                    {% if is_granted('ROLE_PERSONNEL') %}
+                    <nav class="mt-0">
+                        <ul class="nav nav-sidebar flex-column m-0" data-widget="treeview" role="menu" data-accordion="false">{#  nav-pills #}
+                            <li  class="nav-item m-0">
+                                <a href="#pers" class="nav-link bg-gradient-white justify-content-center text-primary m-0" data-accordion="false">
+                                    <i class="nav-icon icon-sm fa fa-eject"></i>
+                                    <p>RADIATIONS <i class="right fas fa-angle-double-down"></i></p>
+                                </a>
+                                <ul id="pers" class="nav nav-treeview m-0">
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('radiations_personnels_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fa fa-eraser"></i>
+                                            <p> Radiations personnel(s) </p>
+                                        </a>
+                                    </li>
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('decisions_radiations_controles_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fa fa-paragraph"></i>
+                                            <p> Déc. radiation </p>
+                                        </a>
+                                    </li>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('details_motifs_radiations_controles_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fa fa-angle-double-right"></i>
+                                            <p> Détail motif radiation </p>
+                                        </a>
+                                    </li>
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('motifs_radiations_controles_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fas fa-angle-double-left"></i>
+                                            <p> Motif radiation </p>
+                                        </a>
+                                    </li>
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('droits_pensions_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fas fa-money-bill-wave"></i>
+                                            <p> Droit pension </p>
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    {% endif %}
+                    {% if is_granted('ROLE_PERSONNEL') %}
+                    <nav class="mt-0">
+                        <ul class="nav nav-sidebar flex-column m-0" data-widget="treeview" role="menu" data-accordion="false">{#  nav-pills #}
+                            <li  class="nav-item m-0">
+                                <a href="#pers" class="nav-link bg-gradient-white justify-content-center text-primary m-0" data-accordion="false">
+                                    <i class="nav-icon icon-sm fa fa-recycle"></i>
+                                    <p>REINTEGRATIONS <i class="right fas fa-angle-double-down"></i></p>
+                                </a>
+                                <ul id="pers" class="nav nav-treeview m-0">
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('reintegration_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fa fa-passport"></i>
+                                            <p> Réintegration pers. </p>
+                                        </a>
+                                    </li>
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('decision_reintegration_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fa fa-arrow-up"></i>
+                                            <p> Déc. réintegration </p>
+                                        </a>
+                                    </li>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('motif_reintegration_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fa fa-link"></i>
+                                            <p> Motif réintegration </p>
+                                        </a>
+                                    </li>
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('details_motifs_reintegration_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fa fa-adjust"></i>
+                                            <p> Détail motif réintegrat° </p>
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    {% endif %}
+                    {% if is_granted('ROLE_PERSONNEL') %}
+                    <nav class="mt-0">
+                        <ul class="nav nav-sidebar flex-column m-0" data-widget="treeview" role="menu" data-accordion="false">{#  nav-pills #}
+                            <li  class="nav-item m-0">
+                                <a href="#pers" class="nav-link bg-gradient-white justify-content-center text-primary m-0" data-accordion="false">
+                                    <i class="nav-icon icon-sm fa fa-envelope-open-text"></i>
+                                    <p>L.F. & PUNITIONS <i class="right fas fa-angle-double-down"></i></p>
+                                </a>
+                                <ul id="pers" class="nav nav-treeview m-0">
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('recompense_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fa fa-layer-group"></i>{#  fa-file-archive #}
+                                            <p> Recompenses personnel </p>
                                         </a>
                                     </li> 
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('punitions_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fa fa-table"></i>
+                                            <p> Punitions personnel </p>
+                                        </a>
+                                    </li>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('nature_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fa fa-seedling"></i>
+                                            <p> Natures recompenses </p>
+                                        </a>
+                                    </li>
+                                    {% endif %}
                                 </ul>
                             </li>
-                        {% endif %}
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
-                                    <p>
-                                        ADMINISTRATEUR
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
+                        </ul>
+                    </nav>
+                    {% endif %}
+                    {% if is_granted('ROLE_PERSONNEL') %}
+                    <nav class="mt-0">
+                        <ul class="nav nav-sidebar flex-column m-0" data-widget="treeview" role="menu" data-accordion="false">{#  nav-pills #}
+                            <li  class="nav-item m-0">
+                                <a href="#pers" class="nav-link bg-gradient-white justify-content-center text-primary m-0" data-accordion="false">
+                                    <i class="nav-icon icon-sm fa fa-notes-medical"></i>
+                                    <p> SIT. SANITAIRES <i class="right fas fa-angle-double-down"></i></p>
                                 </a>
-                                <ul class="nav nav-treeview">
+                                <ul id="pers" class="nav nav-treeview m-0">
                                     <li class="nav-item">
-                                        <a href="{{ path('decorations_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Décoration
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('details_motifs_radiations_controles_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Détail motif radiation
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('details_motifs_reintegration_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Détail motif réintegration
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('domaine_diplome_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Domaine diplôme
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('droits_pensions_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Droit pension
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('fonctions_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Fonction
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('grades_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Grade
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('logo') }}" class="nav-link">
-                                            <i class="nav-icon far fa-image"></i>
-                                            <p>
-                                                Logo
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('motifs_radiations_controles_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Motif radiation
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('motif_reintegration_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Motif réintegration
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('niveau_diplome_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Niveau diplôme
-                                            </p>
-                                        </a>
-                                    </li>
-                                    {# <li class="nav-item">
-                                        <a href="{{ path('roles_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-image"></i>
-                                            <p>
-                                                Rôles
-                                            </p>
-                                        </a>
-                                    </li> #}
-                                    <li class="nav-item">
-                                        <a href="{{ path('provinces_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-image"></i>
-                                            <p>
-                                                Province
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('regions_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Region
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('unites_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Unité
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('user_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-image"></i>
-                                            <p>
-                                                Utilisateurs
-                                            </p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        {% endif %}
-                        {% if is_granted('ROLE_PERSONNEL') %}
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
-                                    <p>
-                                        GESTION RH
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview"> 
-                                    <li class="nav-item">
-                                        <a href="{{ path('affectations_personnels_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Affectation personnel
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('communes_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Commune
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('conjoints_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Conjoint
-                                            </p>
-                                        </a>
-                                    </li>                                  
-                                    <li class="nav-item">
-                                        <a href="{{ path('decisions_affectations_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Décision affectation
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('decisions_promotions_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Décision nomination
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('decisions_radiations_controles_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Décision radiation
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('decision_reintegration_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Décision réintegration
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('decorations_personnels_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Décoration personnel
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('diplomes_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Diplôme
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('diplomes_personnels_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Diplôme personnel
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('districts_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                District
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('enfants_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Enfant
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('ex_conjoints_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Ex-Conjoint
-                                            </p>
+                                        <a href="{{ path('situation_sanitaire_index') }}" class="nav-link">
+                                            <i class="nav-icon fa fa-clinic-medical"></i>
+                                            <p> Situation sanitaire </p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ path('proche_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Famille proche
-                                            </p>
+                                            <i class="nav-icon fa fa-user-friends"></i>
+                                            <p> Famille proche </p>
                                         </a>
                                     </li>
+                                    {% if is_granted('ROLE_ADMIN') %}
                                     <li class="nav-item">
-                                        <a href="{{ path('fonctions_conjoints_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Fonction conjoint
-                                            </p>
+                                        <a href="{{ path('suivie_apres_traitement_index') }}" class="nav-link">
+                                            <i class="nav-icon fa fa-briefcase-medical"></i>
+                                            <p> Suivie après traitement</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ path('frequence_traitement_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Fréquence traitement
-                                            </p>
-                                        </a>
-                                    </li>
-                                    {% if is_granted("ROLE_MILITAIRE") %}
-                                        <li class="nav-item">
-                                            <a href="{{ path('nominations_personnels_index') }}" class="nav-link">
-                                                <i class="nav-icon far fa-calendar-alt"></i>
-                                                <p>
-                                                    Nomination personnel
-                                                </p>
-                                            </a>
-                                        </li>
-                                    {% endif %} 
-                                    <li class="nav-item">
-                                        <a href="{{ path('notes_personnels_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Note personnel
-                                            </p>
-                                        </a>
-                                    </li>
-                                    {% if is_granted("ROLE_SUPERVISEUR") %}
-                                        <li class="nav-item">
-                                            <a href="{{ path('notes_p_o_s_index') }}" class="nav-link">
-                                                <i class="nav-icon far fa-calendar-alt"></i>
-                                                <p>
-                                                    Note P.O.S
-                                                </p>
-                                            </a>
-                                        </li>
-                                    {% endif %} 
-                                    <li class="nav-item">
-                                        <a href="{{ path('nature_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Nature des recompense
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('personnels_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Personnel
-                                            </p>
-                                        </a>
-                                    </li>                                  
-                                    <li class="nav-item">
-                                        <a href="{{ path('permissions_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Permission
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('photos_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Photo
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('punitions_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Punition
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('radiations_personnels_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Radiation personnel
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('recompense_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Recompense personnel
-                                            </p>
-                                        </a>
-                                    </li> 
-                                    <li class="nav-item">
-                                        <a href="{{ path('reintegration_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Réintegration personnel
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('situation_sanitaire_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Situation sanitaire
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('suivie_apres_traitement_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Suivie après traitement
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('types_contrats_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Type de contrat
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('types_communes_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Type de Commune
-                                            </p>
+                                            <i class="nav-icon fa fa-laptop-medical"></i>
+                                            <p> Fréquence traitement </p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ path('type_maladie_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Type de Maladie
-                                            </p>
+                                            <i class="nav-icon fa fa-file-medical"></i>
+                                            <p> Type de maladie </p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ path('type_traitement_index') }}" class="nav-link">
-                                            <i class="nav-icon far fa-calendar-alt"></i>
-                                            <p>
-                                                Type de Traitement
-                                            </p>
+                                            <i class="nav-icon fa fa-medkit"></i>
+                                            <p> Type de traitement </p>
                                         </a>
                                     </li>
+                                    {% endif %}
                                 </ul>
                             </li>
-                        {% endif %}                    
-                    </ul>
+                        </ul>
+                    </nav>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <nav class="mt-0">
+                        <ul class="nav nav-sidebar flex-column m-0" data-widget="treeview" role="menu" data-accordion="false">{#  nav-pills #}
+                            <li  class="nav-item m-0">
+                                <a href="#admin" class="nav-link bg-gradient-white justify-content-center text-warning m-0" data-accordion="false">
+                                    <i class="nav-icon icon-sm fa fa-lock"></i>
+                                    <p>ADMINISTRATEURS <i class="right fas fa-angle-double-down"></i></p>
+                                </a>
+                                <ul id="admin" class="nav nav-treeview m-0">
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('provinces_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fa fa-globe-americas"></i>
+                                            <p> Province </p>
+                                        </a>
+                                    </li>
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('regions_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fa fa-globe-africa"></i>
+                                            <p> Region </p>
+                                        </a>
+                                    </li>
+                                     <li  class="nav-item m-0">
+                                        <a href="{{ path('districts_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fa fa-globe-asia"></i>
+                                            <p> District </p>
+                                        </a>
+                                    </li>
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('communes_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fa fa-globe-europe"></i>
+                                            <p> Commune </p>
+                                        </a>
+                                    </li>
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('types_communes_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fa fa-location-arrow"></i>
+                                            <p> Type de commune </p>
+                                        </a>
+                                    </li>
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('types_contrats_index') }}"  class="nav-link m-0">
+                                            <i class="nav-icon fa fa-signature"></i>
+                                            <p> Type de contrat </p>
+                                        </a>
+                                    </li>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('user_index') }}"  class="nav-link m-0 bg-gradient-danger">
+                                            <i class="nav-icon fa fa-user"></i>
+                                            <p> Utilisateurs </p>
+                                        </a>
+                                    </li>
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('roles_new') }}"  class="nav-link m-0 bg-gradient-danger">
+                                            <i class="nav-icon fa fa-robot"></i>
+                                            <p> Rôles </p>
+                                        </a>
+                                    </li>
+                                    <li  class="nav-item m-0">
+                                        <a href="{{ path('logo') }}"  class="nav-link m-0 bg-gradient-danger">
+                                            <i class="nav-icon fa fa-id-badge"></i>
+                                            <p> Logo </p>
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    {% endif %}
                 </nav>
                 <!-- /.sidebar-menu -->
                 </div>
                 <!-- /.sidebar -->
             </aside>
+
             <div class="content-wrapper" style="padding:10px">{% block body %}{% endblock %}</div>
             <!-- /.content-wrapper -->
             <footer class="main-footer">

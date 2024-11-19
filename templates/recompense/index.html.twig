@@ -1,46 +1,74 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des Recompenses{% endblock %}
+{% block title %}Liste des récompenses{% endblock %}
 
 {% block body %}
-    <h1>Liste des recompenses</h1>
-
-    <a href="{{ path('recompense_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
-    <table id="user_liste" class="table">
-        <thead>
-            <tr>
-                <th>Nature</th>
-                <th>Reférence</th>
-                <th>Date</th>
-                <th>Libellé</th>
-                <th>Autorité délivrant</th>
-                <th>Personnel bénéficiaire</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for recompense in recompenses %}
-            <tr>
-                <td>{{ recompense.nature }}</td>
-                <td>{{ recompense.reference }}</td>
-                <td>{{ recompense.date ? recompense.date|date('d/m/Y') : '' }}</td>
-                <td>{{ recompense.libelle }}</td>
-                <td>{{ recompense.autorite }}</td>
-                <td>{{ recompense.personnel }}</td>
-                <td>
-                    <a href="{{ path('recompense_show', {'id': recompense.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('recompense_edit', {'id': recompense.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('recompense_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>    
+<div class="card">
+        <div class="card-header bg-gradient-primary">
+            <h4 class="card-title justify-content-between font-weight-bold">Liste  des récompenses</h4>
+        </div>
+        <div class="card-comments m-2">
+            {% for message in app.flashes('success') %}
+            <div class="alert alert-success text-white m-2">
+                {{ message }}  
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+            <div class="alert alert-danger text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            <div class="block-grid col-12 mb-2">
+                <a href="{{ path('recompense_new') }}" class="btn btn-sm bg-gradient-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+            </div>
+            <div class="table-responsive table-condensed table-responsive-sm table-striped">
+                <table id="user_liste" class="table table-sm table-bordered">
+                    <thead class="text-center">
+                        <tr class="text-center text-dark">
+                            <th class="col-auto text-center">Personnel bénéficiaire</th>
+                            <th class="col-auto text-center">Autorité délivrant</th>
+                            <th class="col-auto text-center">Nature</th>
+                            <th class="col-auto text-center">Reférence</th>
+                            <th class="col-auto text-center">Date</th>
+                            <th class="col-auto text-center">Libellé récompense</th>
+                            <th class="col-auto text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for recompense in recompenses %}
+                        <tr>
+                            <td>{{ recompense.personnel }}</td>
+                            <td>{{ recompense.autorite }}</td>
+                            <td>{{ recompense.nature }}</td>
+                            <td>{{ recompense.reference }}</td>
+                            <td>{{ recompense.date ? recompense.date|date('d/m/Y') : '' }}</td>
+                            <td>{{ recompense.libelle }}</td>
+                            <td class="text-center col-2">
+                                <a href="{{ path('recompense_show', {'id': recompense.id}) }}" class="btn btn-sm bg-gradient-info icon-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                {% if is_granted("ROLE_SUPERVISEUR") %}
+                                    <a href="{{ path('recompense_edit', {'id': recompense.id}) }}" class="btn btn-sm bg-gradient-yellow"><i class="fa fa-edit icon-sm" aria-hidden="true"></i></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td class="text-center text-danger" colspan="7">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        
+        </div>
+        <div class="card-footer bg-gradient-white">
+            <a href="{{ path('recompense_new') }}" class="btn btn-sm bg-gradient-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+        </div>
+    </div>
 
     {% block javascripts %}
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>

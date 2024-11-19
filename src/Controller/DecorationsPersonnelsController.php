@@ -54,6 +54,8 @@ class DecorationsPersonnelsController extends AbstractController
             $entityManager->persist($decorationsPersonnel);
             $entityManager->flush();
 
+            $this->addFlash('success', 'L\'ajout a été effectué avec succès.');
+
             return $this->redirectToRoute('decorations_personnels_index');
         }
 
@@ -84,6 +86,8 @@ class DecorationsPersonnelsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'La modification a été effectuée avec succès.');
+
             return $this->redirectToRoute('decorations_personnels_index');
         }
 
@@ -102,6 +106,9 @@ class DecorationsPersonnelsController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($decorationsPersonnel);
             $entityManager->flush();
+            
+            $this->addFlash('success', 'La suppression a été effectuée avec succès.');
+        
         }
 
         return $this->redirectToRoute('decorations_personnels_index');

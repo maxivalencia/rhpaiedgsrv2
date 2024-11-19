@@ -1,61 +1,74 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste Affectations Personnels{% endblock %}
+{% block title %}Liste des affectaions du personnel{% endblock %}
 
 {% block body %}
-    <h1>Liste Affectations Personnels</h1>
-    {# <form class="mt-2 mt-md-0 d-none d-lg-block search-input" action="{{ path('affectations_personnels_recherche') }}">
-        <div class="input-group">
-            <span class="input-group-addon d-flex align-items-center"><i class="icon-magnifier icons"></i></span>
-            <input type="text" name="search" class="form-control" placeholder="Search...">
+<div class="card">
+        <div class="card-header bg-gradient-primary">
+            <h4 class="card-title justify-content-between font-weight-bold">Listedes des affectaions du personnel</h4>
         </div>
-    </form> #}
-    <a href="{{ path('affectations_personnels_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
-    <table id="user_liste" class="table">
-        <thead>
-            <tr>
-                <th>Personnel</th>
-                <th>Unité</th>
-                <th>Décision d'affectation</th>
-                {# <th>Reférence de disponibilité</th> #}
-                <th>Disponibilité</th>
-                <th>Fonction</th>
-                <th>Motif de l'affectation</th>
-                <th>Motif de l'annulation</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for affectations_personnel in affectations_personnels %}
-            <tr>
-                {# <td>{{ affectations_personnel.id }}</td> #}
-                <td>{{ affectations_personnel.personnel }}</td>
-                <td>{{ affectations_personnel.unite }}</td>
-                <td>{{ affectations_personnel.decisionAffectation }}</td> {# du {{ affectations_personnel.dateAffectation ? affectations_personnel.dateAffectation|date('d/m/Y') : '' }}</td>#}
-                <td>{{ affectations_personnel.referenceDisponibilite }} du {{ affectations_personnel.dateDisponibilite ? affectations_personnel.dateDisponibilite|date('d/m/Y') : '' }}</td>
-                <td>{{ affectations_personnel.fonction }}</td>
-                {# <td>{{ affectations_personnel.dateReferenceDisponibilite ? affectations_personnel.dateReferenceDisponibilite|date('d/m/Y') : '' }}</td> #}
-                <td>{{ affectations_personnel.motifAffectation }}</td>
-                {# <td>{{ affectations_personnel.situation }}</td> #}
-                <td>{{ affectations_personnel.motifAnnulation }}</td>
-                <td>
-                    <a href="{{ path('affectations_personnels_show', {'id': affectations_personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i></a>
-                    <a href="{{ path('affectations_personnels_edit', {'id': affectations_personnel.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    {# <div class="navigation">
-        {{ knp_pagination_render(affectations_personnels) }}
-    </div> #}
-
-    <a href="{{ path('affectations_personnels_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+        <div class="card-comments m-2">
+            <div class="block-grid col-12 mb-2">
+                <a href="{{ path('affectations_personnels_new') }}" class="btn btn-sm bg-gradient-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+            </div>
+            {% for message in app.flashes('success') %}
+            <div class="alert alert-success text-white m-2">
+                {{ message }}  
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+            <div class="alert alert-danger text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            <div class="table-responsive table-condensed table-responsive-sm table-striped">
+                <table id="user_liste" style="width:100%" class="table table-sm table-bordered">
+                    <thead class="text-center col-auto">
+                        <tr class="text-center text-dark col-auto">
+                            <th class="col-auto">Personnel</th>
+                            <th class="col-auto">Unité</th>
+                            <th class="col-auto">Décision d'affectation</th>
+                            <th class="col-auto">Disponibilité</th>
+                            <th class="col-auto">Fonction</th>
+                            <th class="col-auto">Motif</th>
+                            <th class="col-auto">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for affectations_personnel in affectations_personnels %}
+                        <tr>
+                            <td>{{ affectations_personnel.personnel }}</td>
+                            <td>{{ affectations_personnel.unite }}</td>
+                            <td>{{ affectations_personnel.decisionAffectation }}</td>
+                            <td>{{ affectations_personnel.referenceDisponibilite }} du {{ affectations_personnel.dateDisponibilite ? affectations_personnel.dateDisponibilite|date('d/m/Y') : '' }}</td>
+                            <td>{{ affectations_personnel.fonction }}</td>
+                            <td class="text-center">{{ affectations_personnel.motifAffectation }}</td>
+                            <td class="text-center col-2">
+                                <a href="{{ path('affectations_personnels_show', {'id': affectations_personnel.id}) }}" title="Voir" class="btn btn-sm bg-gradient-info icon-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                {% if is_granted("ROLE_SUPERVISEUR") %}
+                                    <a href="{{ path('affectations_personnels_edit', {'id': affectations_personnel.id}) }}" title="Modifier" class="btn btn-sm bg-gradient-yellow"><i class="fa fa-edit icon-sm" aria-hidden="true"></i></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td class="text-center text-danger" colspan="7">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        
+        </div>
+        <div class="card-footer bg-gradient-white">
+            <a href="{{ path('affectations_personnels_new') }}" class="btn btn-sm bg-gradient-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+        </div>
+    </div>
 
     {% block javascripts %}
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>

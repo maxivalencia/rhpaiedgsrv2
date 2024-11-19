@@ -39,7 +39,7 @@ class NatureController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($nature);
             $entityManager->flush();
-
+            $this->addFlash('success', 'L\'ajout a été effectué avec succès.');
             return $this->redirectToRoute('nature_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -69,7 +69,7 @@ class NatureController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'La modification a été effectuée avec succès.');
             return $this->redirectToRoute('nature_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -80,7 +80,7 @@ class NatureController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="nature_delete", methods={"POST"})
+     * @Route("/{id}", name="nature_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Nature $nature): Response
     {
@@ -88,6 +88,7 @@ class NatureController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($nature);
             $entityManager->flush();
+            $this->addFlash('success', 'La suppression a été effectuée avec succès.');
         }
 
         return $this->redirectToRoute('nature_index', [], Response::HTTP_SEE_OTHER);

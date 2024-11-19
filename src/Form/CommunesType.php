@@ -12,14 +12,14 @@ class CommunesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('commune', null, [
-                'label' => 'Commune',
+            ->add('district', null, [
+                'label' => 'District',
             ])
             ->add('type', null, [
                 'label' => 'Type',
             ])
-            ->add('district', null, [
-                'label' => 'District',
+            ->add('commune', null, [
+                'label' => 'Commune',
             ])
         ;
     }

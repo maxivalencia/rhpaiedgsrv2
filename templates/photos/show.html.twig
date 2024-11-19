@@ -1,38 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Photos{% endblock %}
+{% block title %}Photo du personnel{% endblock %}
 
 {% block body %}
-    <h1>Photos</h1>
-
-    <table class="table">
-        <tbody>
-            {# <tr>
-                <th>Id</th>
-                <td>{{ photo.id }}</td>
-            </tr> #}
-            <tr>
-                <th>Photo</th>
-                <td><img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:250px;"></td>
-            </tr>
-            {# <tr>
-                <th>Type</th>
-                <td>{{ photo.type }}</td>
-            </tr> #}
-            {# <tr>
-                <th>Taille</th>
-                <td>{{ photo.taille }}</td>
-            </tr> #}
-            <tr>
-                <th>Personnel</th>
-                <td>{{ photo.personnel }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('photos_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
-    <br>
-    <a href="{{ path('photos_edit', {'id': photo.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
-
-    {{ include('photos/_delete_form.html.twig') }}
+<div class="card">
+    <div class="card-header bg-gradient-primary">
+        <h4 class="card-title justify-content-between font-weight-bold">Photo du personnel</h4>
+    </div>
+    <div class="card-comments justify-content-center m-2">
+        <div class="row justify-content-center">
+            <div class="col-auto justify-content-center">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr>
+                            <th class="col-auto">Grade - Nom et prénoms du personnel</th>
+                            <td class="col-auto">{{ photo.personnel }}</td>
+                        </tr>
+                        <tr>
+                            <th>Photo</th>
+                            <td class="text-center"><img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:150px;"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-gradient-white">
+        <div class="row">
+            <div class="col-1">
+                <a href="{{ path('photos_index') }}" class="btn btn-sm bg-gradient-primary m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+            </div>
+            <div class="col-1">
+                <a href="{{ path('photos_edit', {'id': photo.id}) }}" class="btn btn-sm bg-gradient-success m-2"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+            </div>
+            <div class="col-1 ml-2">
+                {{ include('photos/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

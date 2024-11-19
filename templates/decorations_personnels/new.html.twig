@@ -1,5 +1,42 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Créer décoration du personnel{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <div class="card-header bg-gradient-primary">
+            <h4 class="card-title justify-content-between font-weight-bold">Créer décoration du personnel</h4>
+        </div>
+        <div class="card-comments m-2">
+            {% for message in app.flashes('error') %}
+            <div class="alert alert-danger text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8 m-2">
+                    {{ include('decorations_personnels/_form.html.twig') }}
+                </div>
+                <div class="col-2"></div>
+            </div>
+        </div>
+        <div class="card-footer bg-gradient-white">
+            <div class="row">
+                <div class="col-1">
+                    <a href="{{ path('decorations_personnels_index') }}" class="btn btn-sm bg-gradient-primary m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{# {% extends 'base.html.twig' %}
+
 {% block title %}Nouvelle Décorations Personnels{% endblock %}
 
 {% block body %}
@@ -8,4 +45,4 @@
     {{ include('decorations_personnels/_form.html.twig') }}
 
     <a href="{{ path('decorations_personnels_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
-{% endblock %}
+{% endblock %} #}

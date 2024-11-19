@@ -1,46 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Diplômes{% endblock %}
+{% block title %}Détail diplôme{% endblock %}
 
 {% block body %}
-    <h1>Diplômes</h1>
-
-    <table class="table">
-        <tbody>
-            {# <tr>
-                <th>Id</th>
-                <td>{{ diplome.id }}</td>
-            </tr> #}
-            <tr>
-                <th>Libelle</th>
-                <td>{{ diplome.libelle }}</td>
-            </tr>
-            <tr>
-                <th>Abbréviation</th>
-                <td>{{ diplome.abbreviation }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ diplome.type }}</td>
-            </tr>
-            <tr>
-                <th>Est diplôme militaire</th>
-                <td>{{ diplome.estDiplomeMilitaire ? 'Oui' : 'Non' }}</td>
-            </tr>
-            <tr>
-                <th>Domaine</th>
-                <td>{{ diplome.domaine }}</td>
-            </tr>
-            <tr>
-                <th>Niveau</th>
-                <td>{{ diplome.niveau }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('diplomes_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
-    <br>
-    <a href="{{ path('diplomes_edit', {'id': diplome.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
-
-    {{ include('diplomes/_delete_form.html.twig') }}
+<div class="card">
+    <div class="card-header bg-gradient-primary">
+        <h4 class="card-title justify-content-between font-weight-bold">Détail diplôme</h4>
+    </div>
+    <div class="card-comments justify-content-center m-2">
+        <div class="row justify-content-center">
+            <div class="col-auto justify-content-center">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr>
+                            <th class="col-auto">Libelle</th>
+                            <td class="col-auto">{{ diplome.libelle }}</td>
+                        </tr>
+                        <tr>
+                            <th>Abbréviation</th>
+                            <td>{{ diplome.abbreviation }}</td>
+                        </tr>
+                        <tr>
+                            <th>Type</th>
+                            <td>{{ diplome.type }}</td>
+                        </tr>
+                        <tr>
+                            <th>Est diplôme militaire</th>
+                            <td>{{ diplome.estDiplomeMilitaire ? 'Oui' : 'Non' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Domaine</th>
+                            <td>{{ diplome.domaine }}</td>
+                        </tr>
+                        <tr>
+                            <th>Niveau</th>
+                            <td>{{ diplome.niveau }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-gradient-white">
+        <div class="row">
+            <div class="col-1">
+                <a href="{{ path('diplomes_index') }}" class="btn btn-sm bg-gradient-primary m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+            </div>
+            <div class="col-1">
+                <a href="{{ path('diplomes_edit', {'id': diplome.id}) }}" class="btn btn-sm bg-gradient-success m-2"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+            </div>
+            <div class="col-1 ml-2">
+                {{ include('diplomes/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

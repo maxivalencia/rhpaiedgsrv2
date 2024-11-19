@@ -12,6 +12,22 @@ class RadiationsPersonnelsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('personnel', null, [
+                'label' => 'Personnel',
+            ])
+            ->add('decision_radiation', null, [
+                'label' => 'Décision de radiation',
+            ])
+            ->add('motif_radiation', null, [
+                'label' => 'Motif de radiation',
+            ])
+            ->add('detail_motif_radiation', null, [
+                'label' => 'Détail du motif de radiation',
+            ])
+
+            ->add('droit_pension', null, [
+                'label' => 'Droit à la pension',
+            ])
             ->add('date_notification', null, [
                 'label' => 'Date de notification',
                 'widget' => 'single_text',
@@ -50,21 +66,7 @@ class RadiationsPersonnelsType extends AbstractType
                 ],
                 //'data' => new \DateTime('now'),
             ])
-            ->add('personnel', null, [
-                'label' => 'Personnel',
-            ])
-            ->add('motif_radiation', null, [
-                'label' => 'Motif de radiation',
-            ])
-            ->add('detail_motif_radiation', null, [
-                'label' => 'Détail du motif de radiation',
-            ])
-            ->add('decision_radiation', null, [
-                'label' => 'Décision de radiation',
-            ])
-            ->add('droit_pension', null, [
-                'label' => 'Droit à la pension',
-            ])
+
         ;
     }
 

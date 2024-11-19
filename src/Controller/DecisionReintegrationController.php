@@ -38,7 +38,7 @@ class DecisionReintegrationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($decisionReintegration);
             $entityManager->flush();
-
+            $this->addFlash('success', 'L\'ajout a été effectué avec succès.');
             return $this->redirectToRoute('decision_reintegration_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -68,7 +68,7 @@ class DecisionReintegrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'La modification a été effectuée avec succès.');
             return $this->redirectToRoute('decision_reintegration_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -87,6 +87,7 @@ class DecisionReintegrationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($decisionReintegration);
             $entityManager->flush();
+            $this->addFlash('success', 'La suppression a été effectuée avec succès.');
         }
 
         return $this->redirectToRoute('decision_reintegration_index', [], Response::HTTP_SEE_OTHER);

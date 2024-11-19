@@ -13,7 +13,7 @@ class RolesType extends AbstractType
     {
         $builder
             ->add('role', null, [
-                'label' => 'Nouveau Rôle',
+                'label' => 'Nouveau rôle',
             ])
         ;
     }

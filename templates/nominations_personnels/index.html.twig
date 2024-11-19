@@ -1,25 +1,89 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Liste des avancements{% endblock %}
+
+{% block body %}
+<div class="card">
+        <div class="card-header bg-gradient-primary">
+            <h4 class="card-title justify-content-between font-weight-bold">Liste des avancements</h4>
+        </div>
+        <div class="card-comments m-2">
+            {% for message in app.flashes('success') %}
+            <div class="alert alert-success text-white m-2">
+                {{ message }}  
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+            <div class="alert alert-danger text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            <div class="block-grid col-12 mb-2">
+                <a href="{{ path('nominations_personnels_new') }}" class="btn btn-sm bg-gradient-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+            </div>
+            <div class="table-responsive table-condensed table-responsive-sm table-striped">
+                <table id="user_liste" class="table table-sm table-bordered">
+                    <thead class="text-center">
+                        <tr class="text-center text-dark">
+                            <th class="col-auto">Personnel</th>
+                            <th class="col-auto">Grade</th>
+                            <th class="col-auto">Date de nomination</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for nominations_personnel in nominations_personnels %}
+                        <tr>
+                            <td>{{ nominations_personnel.personnel }}</td>
+                            <td>{{ nominations_personnel.grade }}</td>
+                            <td>{{ nominations_personnel.dateNomination ? nominations_personnel.dateNomination|date('d/m/Y') : '' }}</td>
+                            <td class="text-center col-2">
+                                <a href="{{ path('nominations_personnels_show', {'id': nominations_personnel.id}) }}" class="btn btn-sm bg-gradient-info icon-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                {% if is_granted("ROLE_SUPERVISEUR") %}
+                                    <a href="{{ path('nominations_personnels_edit', {'id': nominations_personnel.id}) }}" class="btn btn-sm bg-gradient-yellow"><i class="fa fa-edit icon-sm" aria-hidden="true"></i></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td class="text-center text-danger" colspan="4">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        
+        </div>
+        <div class="card-footer bg-gradient-white">
+            <a href="{{ path('nominations_personnels_new') }}" class="btn btn-sm bg-gradient-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+        </div>
+    </div>
+
+    {% block javascripts %}
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#user_liste').DataTable();
+            } );
+        </script>
+    {% endblock %}
+{% endblock %}
+{# {% extends 'base.html.twig' %}
+
 {% block title %}Liste Nominations Personnels{% endblock %}
 
 {% block body %}
     <h1>Liste Nominations Personnels</h1>
-    {# <form class="mt-2 mt-md-0 d-none d-lg-block search-input" action="{{ path('nominations_personnels_recherche') }}">
-        <div class="input-group">
-            <span class="input-group-addon d-flex align-items-center"><i class="icon-magnifier icons"></i></span>
-            <input type="text" name="search" class="form-control" placeholder="Search...">
-        </div>
-    </form> #}
     <a href="{{ path('nominations_personnels_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
     <table id="user_liste" class="table">
         <thead>
             <tr>
-                {# <th>Id</th> #}
                 <th>Personnel</th>
-                {# <th>Rang</{#> #}
-                {# <th>Echélon</th> #}
-                {# <th>Classe</th> #}
-                {# <th>Indice</th> #}
                 <th>Grade</th>
                 <th>Date de nomination</th>
                 <th>actions</th>
@@ -28,11 +92,6 @@
         <tbody>
         {% for nominations_personnel in nominations_personnels %}
             <tr>
-                {# <td>{{ nominations_personnel.id }}</td> #}
-                {# <td>{{ nominations_personnel.rang }}</td> #}
-                {# <td>{{ nominations_personnel.echelon }}</td> #}
-                {# <td>{{ nominations_personnel.class }}</td> #}
-                {# <td>{{ nominations_personnel.indice }}</td> #}
                 <td>{{ nominations_personnel.personnel }}</td>
                 <td>{{ nominations_personnel.grade }}</td>
                 <td>{{ nominations_personnel.dateNomination ? nominations_personnel.dateNomination|date('d/m/Y') : '' }}</td>
@@ -49,10 +108,6 @@
         </tbody>
     </table>
 
-    {# <div class="navigation">
-        {{ knp_pagination_render(nominations_personnels) }}
-    </div> #}
-
     <a href="{{ path('nominations_personnels_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
 
     {% block javascripts %}
@@ -63,4 +118,4 @@
             } );
         </script>
     {% endblock %}
-{% endblock %}
+{% endblock %} #}

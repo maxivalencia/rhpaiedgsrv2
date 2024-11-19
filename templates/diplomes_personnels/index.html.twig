@@ -1,20 +1,90 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Liste diplômes du personnel{% endblock %}
+
+{% block body %}
+<div class="card">
+        <div class="card-header bg-gradient-primary">
+            <h4 class="card-title justify-content-between font-weight-bold">Liste diplômes du personnel</h4>
+        </div>
+        <div class="card-comments m-2">
+            {% for message in app.flashes('success') %}
+            <div class="alert alert-success text-white m-2">
+                {{ message }}  
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+            <div class="alert alert-danger text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            <div class="block-grid col-12 mb-2">
+                <a href="{{ path('diplomes_personnels_new') }}" class="btn btn-sm bg-gradient-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+            </div>
+            <div class="table-responsive table-condensed table-responsive-sm table-striped">
+                <table id="user_liste" class="table table-sm table-bordered">
+                    <thead class="text-center">
+                        <tr class="text-center text-dark">
+                            <th class="col-auto">Personnel</th>
+                            <th class="col-auto">Diplôme</th>
+                            <th class="col-auto">Numéro</th>
+                            <th class="col-auto">Date</th>
+                            <th class="col-auto">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for diplomes_personnel in diplomes_personnels %}
+                        <tr>
+                            <td>{{ diplomes_personnel.personnel }}</td>
+                            <td>{{ diplomes_personnel.diplome }}</td>
+                            <td>{{ diplomes_personnel.numero }}</td>
+                            <td>{{ diplomes_personnel.date ? diplomes_personnel.date|date('d/m/Y') : '' }}</td>
+                            <td class="text-center col-2">
+                                <a href="{{ path('diplomes_personnels_show', {'id': diplomes_personnel.id}) }}" class="btn btn-sm bg-gradient-info icon-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                {% if is_granted("ROLE_SUPERVISEUR") %}
+                                    <a href="{{ path('diplomes_personnels_edit', {'id': diplomes_personnel.id}) }}" class="btn btn-sm bg-gradient-yellow"><i class="fa fa-edit icon-sm" aria-hidden="true"></i></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        
+        </div>
+        <div class="card-footer bg-gradient-white">
+            <a href="{{ path('diplomes_personnels_new') }}" class="btn btn-sm bg-gradient-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
+        </div>
+    </div>
+
+    {% block javascripts %}
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#user_liste').DataTable();
+            } );
+        </script>
+    {% endblock %}
+{% endblock %}
+{# {% extends 'base.html.twig' %}
+
 {% block title %}Liste Diplômes Personnels{% endblock %}
 
 {% block body %}
     <h1>Liste Diplômes Personnels</h1>
-   {#  <form class="mt-2 mt-md-0 d-none d-lg-block search-input" action="{{ path('diplomes_personnels_recherche') }}">
-        <div class="input-group">
-            <span class="input-group-addon d-flex align-items-center"><i class="icon-magnifier icons"></i></span>
-            <input type="text" name="search" class="form-control" placeholder="Search...">
-        </div>
-    </form> #}
     <a href="{{ path('diplomes_personnels_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
     <table id="user_liste" class="table">
         <thead>
             <tr>
-                {# <th>Id</th> #}
                 <th>Numéro</th>
                 <th>Date</th>
                 <th>Diplôme</th>
@@ -25,7 +95,6 @@
         <tbody>
         {% for diplomes_personnel in diplomes_personnels %}
             <tr>
-                {# <td>{{ diplomes_personnel.id }}</td> #}
                 <td>{{ diplomes_personnel.numero }}</td>
                 <td>{{ diplomes_personnel.date ? diplomes_personnel.date|date('d/m/Y') : '' }}</td>
                 <td>{{ diplomes_personnel.diplome }}</td>
@@ -43,10 +112,6 @@
         </tbody>
     </table>
 
-    {# <div class="navigation">
-        {{ knp_pagination_render(diplomes_personnels) }}
-    </div> #}
-
     <a href="{{ path('diplomes_personnels_new') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Créer</a>
 
     {% block javascripts %}
@@ -57,4 +122,4 @@
             } );
         </script>
     {% endblock %}
-{% endblock %}
+{% endblock %} #}

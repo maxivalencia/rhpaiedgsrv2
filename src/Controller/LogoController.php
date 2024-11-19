@@ -35,7 +35,7 @@ class LogoController extends AbstractController
                 ],
             ])
             ->add('Ajouter', SubmitType::class, [
-                'label' => 'Ajouter',
+                'label' => 'Enregistrer',
             ])
             ->getForm();
         //$form = $this->createForm();
@@ -52,6 +52,8 @@ class LogoController extends AbstractController
                     'logo_dgsr.png'
                 );
             }
+            $this->addFlash('success', 'L\'ajout a été effectué avec succès.');
+
             return $this->redirectToRoute('logo');
         }
         return $this->render('logo/index.html.twig', [

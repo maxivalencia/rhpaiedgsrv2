@@ -67,7 +67,7 @@ class UserController extends AbstractController
             ));
             $entityManager->persist($user);
             $entityManager->flush();
-
+            $this->addFlash('success', 'L\'ajout a été effectué avec succès.');
             return $this->redirectToRoute('user_index');
         }
 
@@ -105,7 +105,7 @@ class UserController extends AbstractController
             ));
             $entityManager->persist($user);
             $entityManager->flush();
-
+            $this->addFlash('success', 'La modification a été effectuée avec succès.');
             return $this->redirectToRoute('user_index');
         }
 
@@ -124,6 +124,7 @@ class UserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($user);
             $entityManager->flush();
+            $this->addFlash('success', 'La suppression a été effectuée avec succès.');
         }
 
         return $this->redirectToRoute('user_index');

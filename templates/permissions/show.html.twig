@@ -1,54 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Permissions{% endblock %}
+{% block title %}Détail permission{% endblock %}
 
 {% block body %}
-    <h1>Permissions</h1>
-
-    <table class="table">
-        <tbody>
-            {# <tr>
-                <th>Id</th>
-                <td>{{ permission.id }}</td>
-            </tr> #}
-            <tr>
-                <th>Année</th>
-                <td>{{ permission.annee ? permission.annee|date('Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date départ</th>
-                <td>{{ permission.dateDepart ? permission.dateDepart|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date fin</th>
-                <td>{{ permission.dateFin ? permission.dateFin|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Durée</th>
-                <td>{{ permission.duree }}</td>
-            </tr>
-            <tr>
-                <th>Reliquat</th>
-                <td>{{ permission.reliquat }}</td>
-            </tr>
-            <tr>
-                <th>Type de permission</th>
-                <td>{{ permission.typePermission }}</td>
-            </tr>
-            <tr>
-                <th>Lieu de jouissance</th>
-                <td>{{ permission.lieuJouissance }}</td>
-            </tr>
-            <tr>
-                <th>Personnel</th>
-                <td>{{ permission.personnel }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('permissions_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
-    <br>
-    <a href="{{ path('permissions_edit', {'id': permission.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
-
-    {{ include('permissions/_delete_form.html.twig') }}
+<div class="card">
+    <div class="card-header bg-gradient-primary">
+        <h4 class="card-title justify-content-between font-weight-bold">Détail permission</h4>
+    </div>
+    <div class="card-comments justify-content-center m-2">
+        <div class="row justify-content-center">
+            <div class="col-auto justify-content-center">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr>
+                            <th>Personnel</th>
+                            <td>{{ permission.personnel }}</td>
+                        </tr>
+                        <tr>
+                            <th>Lieu de jouissance</th>
+                            <td>{{ permission.lieuJouissance }}</td>
+                        </tr>
+                        <tr class="col-auto">
+                            <th class="col-auto">Année</th>
+                            <td class="col-auto">{{ permission.annee ? permission.annee|date('Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date départ</th>
+                            <td>{{ permission.dateDepart ? permission.dateDepart|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date fin</th>
+                            <td>{{ permission.dateFin ? permission.dateFin|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Durée</th>
+                            <td>{{ permission.duree }}</td>
+                        </tr>
+                        <tr>
+                            <th>Reliquat</th>
+                            <td>{{ permission.reliquat }}</td>
+                        </tr>
+                        <tr>
+                            <th>Type de permission</th>
+                            <td>{{ permission.typePermission }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-gradient-white">
+        <div class="row">
+            <div class="col-1">
+                <a href="{{ path('permissions_index') }}" class="btn btn-sm bg-gradient-primary m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+            </div>
+            <div class="col-1">
+                <a href="{{ path('permissions_edit', {'id': permission.id}) }}" class="btn btn-sm bg-gradient-success m-2"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+            </div>
+            <div class="col-1 ml-2">
+                {{ include('permissions/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

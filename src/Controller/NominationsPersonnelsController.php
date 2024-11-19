@@ -54,6 +54,8 @@ class NominationsPersonnelsController extends AbstractController
             $entityManager->persist($nominationsPersonnel);
             $entityManager->flush();
 
+            $this->addFlash('success', 'L\'ajout a été effectué avec succès.');
+
             return $this->redirectToRoute('nominations_personnels_index');
         }
 
@@ -84,6 +86,8 @@ class NominationsPersonnelsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'La modification a été effectuée avec succès.');
+
             return $this->redirectToRoute('nominations_personnels_index');
         }
 
@@ -102,6 +106,9 @@ class NominationsPersonnelsController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($nominationsPersonnel);
             $entityManager->flush();
+            
+            $this->addFlash('success', 'La suppression a été effectuée avec succès.');
+
         }
 
         return $this->redirectToRoute('nominations_personnels_index');

@@ -12,6 +12,21 @@ class AffectationsPersonnelsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('personnel', null, [
+                'label' => 'Personnel à affecter',
+            ])
+            ->add('decision_affectation', null, [
+                'label' => 'Décision d\'affectation',
+            ])
+            ->add('unite', null, [
+                'label' => 'Unité d\'affectation',
+            ])
+            ->add('fonction', null, [
+                'label' => 'Fonction',
+            ])
+            ->add('motif_affectation', null, [
+                'label' => 'Motif de l\'affectation',
+            ])
             ->add('date_affectation', null, [
                 'label' => 'Date d\'affectation',
                 'widget' => 'single_text',
@@ -39,9 +54,6 @@ class AffectationsPersonnelsType extends AbstractType
                 ],
                 //'data' => new \DateTime('now'),
             ])
-            ->add('motif_affectation', null, [
-                'label' => 'Motif de l\'affectation',
-            ])
             ->add('situation', null, [
                 'label' => 'Situation du personnel',
             ])
@@ -50,20 +62,9 @@ class AffectationsPersonnelsType extends AbstractType
                 'data' => 'N/A',
             ])
             ->add('annulation', null, [
-                'label' => 'Annulation',
+                'label' => 'Réf décision annulation',
             ])
-            ->add('fonction', null, [
-                'label' => 'Fonction',
-            ])
-            ->add('personnel', null, [
-                'label' => 'Personnel',
-            ])
-            ->add('decision_affectation', null, [
-                'label' => 'Décision d\'affectation',
-            ])
-            ->add('unite', null, [
-                'label' => 'Unité d\'affectation',
-            ])
+
         ;
     }
 

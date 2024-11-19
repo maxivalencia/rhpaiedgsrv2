@@ -1,46 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Punitions{% endblock %}
+{% block title %}Punition d'un personnel{% endblock %}
 
 {% block body %}
-    <h1>Punitions</h1>
-
-    <table class="table">
-        <tbody>
-            {# <tr>
-                <th>Id</th>
-                <td>{{ punition.id }}</td>
-            </tr> #}
-            <tr>
-                <th>Personnel</th>
-                <td>{{ punition.personnel }} </td>
-            </tr>
-            <tr>
-                <th>Libelle</th>
-                <td>{{ punition.libelle }}</td>
-            </tr>
-            <tr>
-                <th>Reférence</th>
-                <td>{{ punition.reference }}</td>
-            </tr>
-            <tr>
-                <th>Date de reférence</th>
-                <td>{{ punition.dateReference ? punition.dateReference|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date de l'effet</th>
-                <td>{{ punition.dateEffet ? punition.dateEffet|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Sanction</th>
-                <td>{{ punition.sanction }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('punitions_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
-    <br>
-    <a href="{{ path('punitions_edit', {'id': punition.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
-
-    {{ include('punitions/_delete_form.html.twig') }}
+<div class="card">
+    <div class="card-header bg-gradient-primary">
+        <h4 class="card-title justify-content-between font-weight-bold">Punition d'un personnel</h4>
+    </div>
+    <div class="card-comments justify-content-center m-2">
+        <div class="row justify-content-center">
+            <div class="col-auto justify-content-center">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr class="col-auto">
+                            <th class="col-auto">Personnel</th>
+                            <td class="col-auto">{{ punition.personnel }} </td>
+                        </tr>
+                        <tr>
+                            <th>Type sanction</th>
+                            <td>{{ punition.sanction }}</td>
+                        </tr>
+                        <tr>
+                            <th>Libelle punition</th>
+                            <td>{{ punition.libelle }}</td>
+                        </tr>
+                        <tr>
+                            <th>Reférence</th>
+                            <td>{{ punition.reference }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date de reférence</th>
+                            <td>{{ punition.dateReference ? punition.dateReference|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date de l'effet</th>
+                            <td>{{ punition.dateEffet ? punition.dateEffet|date('d/m/Y') : '' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-gradient-white">
+        <div class="row">
+            <div class="col-1">
+                <a href="{{ path('punitions_index') }}" class="btn btn-sm bg-gradient-primary m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+            </div>
+            <div class="col-1">
+                <a href="{{ path('punitions_edit', {'id': punition.id}) }}" class="btn btn-sm bg-gradient-success m-2"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+            </div>
+            <div class="col-1 ml-2">
+                {{ include('punitions/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

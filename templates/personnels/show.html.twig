@@ -1,359 +1,400 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Personnels{% endblock %}
+{% block title %}Renseignements du personnel{% endblock %}
 
 {% block body %}
-    <h1>Personnels</h1>
-
-    <table class="table">
-        <tbody>
-            {# <tr>
-                <th>Id</th>
-                <td>{{ personnel.id }}</td>
-            </tr> #}
-            {% if photo %}
-                <tr>
-                    {# <th>Nom</th> #}
-                    {# <td style="width:260px;"><img src="/photos/{{ photo.photo }}" alt="{{ photo.personnel }}" style="width:250px;"></td> #}
-                    <td style="width:260px;"><img src="/photos/{{ sary }}" alt="{{ photo.personnel }}" style="width:250px;"></td>
-                </tr>
-            {% endif %}
-            <tr>
-                <th>Nom</th>
-                <td>{# mila asorina ilay grade eto rehefa milamina ny rehetra #}{{ personnel.grad }} {{ personnel.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prénom</th>
-                <td>{{ personnel.prenoms }}</td>
-            </tr>
-            <tr>
-                <th>Date de naissance</th>
-                <td>{{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Lieu de naissance</th>
-                <td>{{ personnel.lieuNaissance }}</td>
-            </tr>
-            <tr>
-                <th>Nom du père</th>
-                <td>{{ personnel.nomPere }}</td>
-            </tr>
-            <tr>
-                <th>Nom de la mère</th>
-                <td>{{ personnel.nomMere }}</td>
-            </tr>
-            <tr>
-                <th>Numéro CIN</th>
-                <td>{{ personnel.numCin }}</td>
-            </tr>
-            <tr>
-                <th>Date de la CIN</th>
-                <td>{{ personnel.dateCin ? personnel.dateCin|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Lieu de la CIN</th>
-                <td>{{ personnel.lieuCin }}</td>
-            </tr>
-            <tr>
-                <th>Sexe</th>
-                <td>{{ personnel.sexe ? 'Féminin' : 'Masculin' }}</td>
-            </tr>
-            <tr>
-                <th>Est marié(e)</th>
-                <td>{{ personnel.estMarie ? 'Oui' : 'Non' }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ personnel.adresse }}</td>
-            </tr>
-            <tr>
-                <th>Téléphone</th>
-                <td>{{ personnel.telephone }}</td>
-            </tr>
-            <tr>
-                <th>Téléphone ICE</th>
-                <td>{{ personnel.telephoneIce }}</td>
-            </tr>
-            <tr>
-                <th>Date embauche</th>
-                <td>{{ personnel.dateEmbauche ? personnel.dateEmbauche|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date de départ à la retraite</th>
-                <td>{{ personnel.dateDepartRetraite ? personnel.dateDepartRetraite|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Matricule</th>
-                <td>{{ personnel.matricule }}</td>
-            </tr>
-            <tr>
-                <th>Numéro CNAPS</th>
-                <td>{{ personnel.numeroCnaps }}</td>
-            </tr>
-            <tr>
-                <th>Est militaire</th>
-                <td>{{ personnel.estMilitaire ? 'Oui' : 'Non' }}</td>
-            </tr>
-            <tr>
-                <th>Actif</th>
-                <td>{{ personnel.actif ? 'Oui' : 'Non' }}</td>
-            </tr>
-            <tr>
-                <th>Type de contrat</th>
-                <td>{{ personnel.contrat }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h2>Conjoint(e)(s)</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Date de naissance</th>
-                <th>Lieu de naissance</th>
-                <th>Sexe</th>
-                <th>Numéro CIN</th>
-                <th>Fonction</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for conjoint in conjoints %}
-            <tr>
-                <td>{{ conjoint.nom }}</td>
-                <td>{{ conjoint.prenom }}</td>
-                <td>{{ conjoint.dateNaissance ? conjoint.dateNaissance|date('d/m/Y') : '' }}</td>
-                <td>{{ conjoint.lieuNaissance }}</td>
-                <td>{{ conjoint.sexe ? 'Féminin' : 'Masculin' }}</td>
-                <td>{{ conjoint.numeroCin }}</td>
-                <td>
-                    {% for fonctionConjoint in fonctionConjoints %}
-                        {# {% if fonctionConjoint.conjoint.id != NULL %} #}
-                        {% if fonctionConjoint.conjoint != NULL %}
-                            {% if conjoint.id == fonctionConjoint.conjoint.id %}
-                                {{ fonctionConjoint.abbreviation }}
-                            {% endif %}
-                        {% endif %}
-                    {% endfor %}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <h2>Enfant(s)</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Date de naissance</th>
-                <th>Lieu de naissance</th>
-                <th>Sexe</th>
-                <th>Observation</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for enfant in enfants %}
-            <tr>
-                <td>{{ enfant.nom }}</td>
-                <td>{{ enfant.prenom }}</td>
-                <td>{{ enfant.dateNaissance ? enfant.dateNaissance|date('d/m/Y') : '' }}</td>
-                <td>{{ enfant.lieuNaissance }}</td>
-                <td>{{ enfant.sexe ? 'Féminin' : 'Masculin' }}</td>
-                <td>{{ enfant.estDecede ? 'est décédé le ' ~ enfant.dateDece|date('d/m/Y') : 'Aucune observation' }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <h2>Affectation(s) successive</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Unité <br>d'affectation</th>
-                <th>Reférence <br>d'affectation</th>
-                <th>Date <br>d'affectation</th>
-                <th>Motif de <br>l'affectation</th>
-                <th>Date de <br>disponibilité</th>
-                <th>Reférence de <br>disponibilité</th>
-                <th>Motif de <br>l'annulation</th>
-                <th>Fonction</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for affectations_personnel in affectations %}
-            <tr>
-                <td>{{ affectations_personnel.unite }}</td>
-                <td>{{ affectations_personnel.decisionAffectation }}</td>
-                <td>{{ affectations_personnel.dateAffectation ? affectations_personnel.dateAffectation|date('d/m/Y') : '' }}</td>
-                <td>{{ affectations_personnel.motifAffectation }}</td>
-                <td>{{ affectations_personnel.dateDisponibilite ? affectations_personnel.dateDisponibilite|date('d/m/Y') : '' }}</td>
-                <td>{{ affectations_personnel.referenceDisponibilite }}</td>
-                <td>{{ affectations_personnel.motifAnnulation }}</td>
-                <td>{{ affectations_personnel.fonction }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <h2>Nomination(s) successive</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Grade</th>
-                <th>Reférence</th>
-                <th>Date de nomination</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for nominations_personnel in nominations %}
-            <tr>
-                <td>{{ nominations_personnel.grade }}</td>
-                <td>{{ nominations_personnel.decision }}</td>
-                <td>{{ nominations_personnel.dateNomination ? nominations_personnel.dateNomination|date('d/m/Y') : '' }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <h2>Diplômes(s)</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Diplôme</th>
-                <th>Numéro</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for diplomes_personnel in diplomes %}
-            <tr>
-                <td>{{ diplomes_personnel.diplome }}</td>
-                <td>{{ diplomes_personnel.numero }}</td>
-                <td>{{ diplomes_personnel.date ? diplomes_personnel.date|date('d/m/Y') : '' }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <h2>Décoration(s) successive</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Décoration</th>
-                <th>Reférence</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for decorations_personnel in decorations %}
-            <tr>
-                <td>{{ decorations_personnel.decoration }}</td>
-                <td>{{ decorations_personnel.reference }}</td>
-                <td>{{ decorations_personnel.date ? decorations_personnel.date|date('d/m/Y') : '' }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <h2>Récompense(s) obtenue</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nature</th>
-                <th>Reférence</th>
-                <th>Date</th>
-                <th>Libellé</th>
-                <th>Autorité délivrant</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for recompense in recompenses %}
-            <tr>
-                <td>{{ recompense.nature }}</td>
-                <td>{{ recompense.reference }}</td>
-                <td>{{ recompense.date ? recompense.date|date('d/m/Y') : '' }}</td>
-                <td>{{ recompense.libelle }}</td>
-                <td>{{ recompense.autorite }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <h2>Situation(s) Sanitaire</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Personne malade</th>
-                <th>Hopital ou médecin traitant</th>
-                <th>Date de début du traitement</th>
-                <th>Date de fin du traitement</th>
-                <th>Maladie</th>
-                <th>Lieu du traitement</th>
-                <th>Disponibilité du traitement</th>
-                <th>Adresse du traitant</th>
-                <th>Nécessité contrôle périodique</th>
-                <th>Niveau de danger</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for situation_sanitaire in situationSanitaires %}
-            <tr>
-                <td>{{ situation_sanitaire.personne_concerner }}</td>
-                <td>{{ situation_sanitaire.hopitalMedecinTraitant }}</td>
-                <td>{{ situation_sanitaire.dateDebutTraitement ? situation_sanitaire.dateDebutTraitement|date('d/m/Y') : '' }}</td>
-                <td>{{ situation_sanitaire.dateFinTraitement ? situation_sanitaire.dateFinTraitement|date('d/m/Y') : '' }}</td>
-                <td>{{ situation_sanitaire.maladie }}</td>
-                <td>{{ situation_sanitaire.lieuTraitement }}</td>
-                <td>{{ situation_sanitaire.disponibiliteTraitement }}</td>
-                <td>{{ situation_sanitaire.adresseTraitant }}</td>
-                <td>{{ situation_sanitaire.controlePeriodique ? 'Oui' : 'Non' }}</td>
-                <td>{{ situation_sanitaire.niveauDanger }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-
-    <a href="{{ path('personnels_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
-    <br>
-    <a href="{{ path('personnels_edit', {'id': personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
-    <br>
-    <a href="{{ path('fiche_individuelle', {'id': personnel.id}) }}" class="btn btn-info"><i class="fas fa-print" aria-hidden="true"></i> Imprimer</a>
-
-    {% if is_granted("ROLE_SUPERVISEUR") %}{{ include('personnels/_delete_form.html.twig') }}{% endif %}
+<div class="card">
+    <div class="card-header bg-gradient-primary">
+        <h4 class="card-title justify-content-between font-weight-bold">Renseignements du personnel</h4>
+    </div>
+    <div class="card-comments m-2">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr>
+                            <th class="col-2">Nom</th>
+                            <td class="col-3">{{ personnel.grad }} {{ personnel.nom }}</td>
+                            <th class="col-2">Prénom</th>
+                            <td class="col-3">{{ personnel.prenoms }}</td>
+                            <td class="col-2 text-center" style="vertical-align:middle;" rowspan="4">
+                                <img src="/photos/{{ sary }}" alt="{{ photo.personnel }}" style="width:75%;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Date de naissance</th>
+                            <td>{{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }}</td>
+                            <th>Lieu de naissance</th>
+                            <td>{{ personnel.lieuNaissance }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nom du père</th>
+                            <td>{{ personnel.nomPere }}</td>
+                            <th>Nom de la mère</th>
+                            <td>{{ personnel.nomMere }}</td>
+                        </tr>
+                        <tr>
+                            <th>Numéro CIN</th>
+                            <td>{{ personnel.numCin }}</td>
+                            <th>Date de la CIN</th>
+                            <td>{{ personnel.dateCin ? personnel.dateCin|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Lieu de la CIN</th>
+                            <td>{{ personnel.lieuCin }}</td>
+                            <th>Sexe</th>
+                            <td>{{ personnel.sexe ? 'Féminin' : 'Masculin' }}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Matricule</th>
+                            <td>{{ personnel.matricule }}</td>
+                            <th>Numéro CNAPS</th>
+                            <td>{{ personnel.numeroCnaps }}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Adresse</th>
+                            <td colspan="3">{{ personnel.adresse }}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Téléphone</th>
+                            <td>{{ personnel.telephone }}</td>
+                            <th>Téléphone ICE</th>
+                            <td>{{ personnel.telephoneIce }}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Date embauche</th>
+                            <td>{{ personnel.dateEmbauche ? personnel.dateEmbauche|date('d/m/Y') : '' }}</td>
+                            <th>Date mise à la retraite</th>
+                            <td>{{ personnel.dateDepartRetraite ? personnel.dateDepartRetraite|date('d/m/Y') : '' }}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Est marié(e)</th>
+                            <td>{{ personnel.estMarie ? 'Oui' : 'Non' }}</td>
+                            <th>Est militaire</th>
+                            <td>{{ personnel.estMilitaire ? 'Oui' : 'Non' }}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Type de contrat</th>
+                            <td>{{ personnel.contrat }}</td>
+                            <th>Actif</th>
+                            <td>{{ personnel.actif ? 'Oui' : 'Non' }}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-1">
+                    <div class="card-header justify-content-between font-weight-bold bg-gradient-navy"><h6>Conjoint(e)(s)</h6></div>
+                    <div class="card-body">
+                        <table class="table table-sm table-responsive-sm table-striped">
+                            <thead>
+                                <tr class="text-sm-center">
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
+                                    <th>Date de naissance</th>
+                                    <th>Lieu de naissance</th>
+                                    <th>Sexe</th>
+                                    <th>Numéro CIN</th>
+                                    <th>Fonction</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for conjoint in conjoints %}
+                                <tr>
+                                    <td>{{ conjoint.nom }}</td>
+                                    <td>{{ conjoint.prenom }}</td>
+                                    <td>{{ conjoint.dateNaissance ? conjoint.dateNaissance|date('d/m/Y') : '' }}</td>
+                                    <td>{{ conjoint.lieuNaissance }}</td>
+                                    <td>{{ conjoint.sexe ? 'Féminin' : 'Masculin' }}</td>
+                                    <td>{{ conjoint.numeroCin }}</td>
+                                    <td>
+                                        {% for fonctionConjoint in fonctionConjoints %}
+                                            {% if fonctionConjoint.conjoint != NULL %}
+                                                {% if conjoint.id == fonctionConjoint.conjoint.id %}
+                                                    {{ fonctionConjoint.abbreviation }}
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="7" class="text-center">Aucun enregistrement trouvé</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card m-0 mb-1">
+                    <div class="card-header justify-content-between font-weight-bold bg-gradient-navy"><h6>Enfant(s)</h6></div>
+                    <div class="card-body m-0">
+                        <table class="table table-sm table-responsive-sm table-striped">
+                            <thead>
+                                <tr class="text-sm-center">
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
+                                    <th>Date de naissance</th>
+                                    <th>Lieu de naissance</th>
+                                    <th>Sexe</th>
+                                    <th>Observation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for enfant in enfants %}
+                                <tr>
+                                    <td>{{ enfant.nom }}</td>
+                                    <td>{{ enfant.prenom }}</td>
+                                    <td>{{ enfant.dateNaissance ? enfant.dateNaissance|date('d/m/Y') : '' }}</td>
+                                    <td>{{ enfant.lieuNaissance }}</td>
+                                    <td>{{ enfant.sexe ? 'Féminin' : 'Masculin' }}</td>
+                                    <td>{{ enfant.estDecede ? 'est décédé le ' ~ enfant.dateDece|date('d/m/Y') : 'Aucune observation' }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="6" class="text-center">Aucun enregistrement trouvé</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-1">
+                    <div class="card-header justify-content-between font-weight-bold bg-gradient-navy"><h6>Affectation(s) successive(s)</h6></div>
+                    <div class="card-body">
+                        <table class="table table-sm table-responsive-sm table-striped">
+                            <thead>
+                                <tr class="text-sm-center">
+                                    <th>Unité <br>d'affectation</th>
+                                    <th>Reférence <br>d'affectation</th>
+                                    <th>Date <br>d'affectation</th>
+                                    <th>Motif de <br>l'affectation</th>
+                                    <th>Fonction</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for affectations_personnel in affectations %}
+                                <tr>
+                                    <td>{{ affectations_personnel.unite }}</td>
+                                    <td>{{ affectations_personnel.decisionAffectation }}</td>
+                                    <td>{{ affectations_personnel.dateAffectation ? affectations_personnel.dateAffectation|date('d/m/Y') : '' }}</td>
+                                    <td>{{ affectations_personnel.motifAffectation }}</td>
+                                    <td>{{ affectations_personnel.fonction }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="5" class="text-center">Aucun enregistrement trouvé</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-1">
+                    <div class="card-header justify-content-between font-weight-bold bg-gradient-navy"><h6>Nomination(s) successive(s)</h6></div>
+                    <div class="card-body">                
+                        <table class="table table-sm table-responsive-sm table-striped">
+                            <thead>
+                                <tr class="text-sm-center">
+                                    <th>Grade</th>
+                                    <th>Reférence</th>
+                                    <th>Date de nomination</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for nominations_personnel in nominations %}
+                                <tr>
+                                    <td>{{ nominations_personnel.grade }}</td>
+                                    <td>{{ nominations_personnel.decision }}</td>
+                                    <td>{{ nominations_personnel.dateNomination ? nominations_personnel.dateNomination|date('d/m/Y') : '' }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="3" class="text-center">Aucun enregistrement trouvé</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-1">
+                    <div class="card-header justify-content-between font-weight-bold bg-gradient-navy"><h6>Diplômes(s)</h6></div>
+                    <div class="card-body">   
+                        <table class="table table-sm table-responsive-sm table-striped">
+                            <thead>
+                                <tr class="text-sm-center">
+                                    <th>Diplôme</th>
+                                    <th>Numéro</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for diplomes_personnel in diplomes %}
+                                <tr>
+                                    <td>{{ diplomes_personnel.diplome }}</td>
+                                    <td>{{ diplomes_personnel.numero }}</td>
+                                    <td>{{ diplomes_personnel.date ? diplomes_personnel.date|date('d/m/Y') : '' }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="3">Aucun enregistrement trouvé</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-1">
+                    <div class="card-header justify-content-between font-weight-bold bg-gradient-navy"><h6>Décoration(s) successive(s)</h6></div>
+                    <div class="card-body">   
+                        <table class="table table-sm table-responsive-sm table-striped">
+                            <thead>
+                                <tr class="text-sm-center">
+                                    <th>Décoration</th>
+                                    <th>Reférence</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for decorations_personnel in decorations %}
+                                <tr>
+                                    <td>{{ decorations_personnel.decoration }}</td>
+                                    <td>{{ decorations_personnel.reference }}</td>
+                                    <td>{{ decorations_personnel.date ? decorations_personnel.date|date('d/m/Y') : '' }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="3">Aucun enregistrement trouvé</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-1">
+                    <div class="card-header justify-content-between font-weight-bold bg-gradient-navy"><h6>Récompense(s) obtenue(s)</h6></div>
+                    <div class="card-body">               
+                        <table class="table table-sm table-responsive-sm table-striped">
+                            <thead>
+                                <tr class="text-sm-center">
+                                    <th>Nature</th>
+                                    <th>Reférence</th>
+                                    <th>Date</th>
+                                    <th>Libellé</th>
+                                    <th>Autorité délivrant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for recompense in recompenses %}
+                                <tr>
+                                    <td>{{ recompense.nature }}</td>
+                                    <td>{{ recompense.reference }}</td>
+                                    <td>{{ recompense.date ? recompense.date|date('d/m/Y') : '' }}</td>
+                                    <td>{{ recompense.libelle }}</td>
+                                    <td>{{ recompense.autorite }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="6">Aucun enregistrement trouvé</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-1">
+                    <div class="card-header justify-content-between font-weight-bold bg-gradient-navy"><h6>Situation(s) sanitaire(s)</h6></div>
+                    <div class="card-body">      
+                        <table class="table table-sm table-responsive-sm table-striped">
+                            <thead>
+                                <tr class="text-sm-center">
+                                    <th>Personne malade</th>
+                                    <th>Hopital ou médecin traitant</th>
+                                    <th>Date de début du traitement</th>
+                                    <th>Date de fin du traitement</th>
+                                    <th>Maladie</th>
+                                    <th>Lieu du traitement</th>
+                                    <th>Disponibilité du traitement</th>
+                                    <th>Adresse du traitant</th>
+                                    <th>Nécessité contrôle périodique</th>
+                                    <th>Niveau de danger</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for situation_sanitaire in situationSanitaires %}
+                                <tr>
+                                    <td>{{ situation_sanitaire.personne_concerner }}</td>
+                                    <td>{{ situation_sanitaire.hopitalMedecinTraitant }}</td>
+                                    <td>{{ situation_sanitaire.dateDebutTraitement ? situation_sanitaire.dateDebutTraitement|date('d/m/Y') : '' }}</td>
+                                    <td>{{ situation_sanitaire.dateFinTraitement ? situation_sanitaire.dateFinTraitement|date('d/m/Y') : '' }}</td>
+                                    <td>{{ situation_sanitaire.maladie }}</td>
+                                    <td>{{ situation_sanitaire.lieuTraitement }}</td>
+                                    <td>{{ situation_sanitaire.disponibiliteTraitement }}</td>
+                                    <td>{{ situation_sanitaire.adresseTraitant }}</td>
+                                    <td>{{ situation_sanitaire.controlePeriodique ? 'Oui' : 'Non' }}</td>
+                                    <td>{{ situation_sanitaire.niveauDanger }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="10">Aucun enregistrement trouvé</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-gradient-white">
+        <div class="row">
+            <div class="col-1">
+                <a href="{{ path('personnels_index') }}" class="btn btn-sm bg-gradient-primary m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+            </div>
+            <div class="col-1">
+                <a href="{{ path('personnels_edit', {'id': personnel.id}) }}" class="btn btn-sm bg-gradient-success m-2"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+            </div>
+            <div class="col-1 ml-2">
+                {{ include('personnels/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

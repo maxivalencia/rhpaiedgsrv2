@@ -54,7 +54,7 @@ class ConsultationCentreController extends AbstractController
 
         $form = $this->createFormBuilder()
         ->add('Unites', ChoiceType::class, [
-            'label' => 'Sélection des Unités',
+            'label' => 'Sélection de l\'unité',
             'multiple' => true,
             'choices' => $unites,
             'required' => false,
@@ -64,7 +64,7 @@ class ConsultationCentreController extends AbstractController
                 'name' => 'Unites',
             ],
         ])
-        ->add('Afficher', SubmitType::class, array('label' => 'Afficher les personnels'))
+        ->add('Afficher', SubmitType::class, ['label' => 'Afficher les personnels'])
         ->getForm();
 
         $form->handleRequest($request);

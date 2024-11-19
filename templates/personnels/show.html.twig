@@ -392,6 +392,9 @@
                 <a href="{{ path('personnels_edit', {'id': personnel.id}) }}" class="btn btn-sm bg-gradient-success m-2"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
             </div>
             <div class="col-1 ml-2">
+                <a href="{{ path('fiche_individuelle', {'id': personnel.id}) }}" target="_blank" class="btn btn-sm bg-gradient-dark m-2"><i class="fa fa-print" aria-hidden="true"></i> Génerer</a>
+            </div>
+            <div class="col-1 ml-2">
                 {{ include('personnels/_delete_form.html.twig') }}
             </div>
         </div>

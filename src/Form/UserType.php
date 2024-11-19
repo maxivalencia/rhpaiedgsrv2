@@ -26,12 +26,12 @@ class UserType extends AbstractType
             'Superviseur' => 'SUPERVISEUR',
         ];
         $builder
-            ->add('username', null, [
-                'label' => 'Nom de l\'utilisateur',
+            ->add('utilisateur', null, [
+                'label' => 'Personnel utilisateur',
             ])
-            /* ->add('roles', null, [
-                'label' => 'Rôle de l\'utilisateur',
-            ]) */
+            ->add('username', null, [
+                    'label' => 'Nom de l\'utilisateur',
+            ])
             ->add('rolesimple', ChoiceType::class, [
                 'choices' => $roles,
                 'label' => 'Rôle de l\'utilisateur',
@@ -39,14 +39,11 @@ class UserType extends AbstractType
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'invalid_message' => 'Les mots de pass sont différent.',
+                'invalid_message' => 'Les mots de passe sont différent.',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'first_options'  => ['label' => 'Veuillez entrer le Mot de pass de l\'utilisateur'],
-                'second_options' => ['label' => 'Veuillez repeter le mot de pass de l\'utilisateur'],
-            ])
-            ->add('utilisateur', null, [
-                'label' => 'Personnel utilisateur',
+                'first_options'  => ['label' => 'Veuillez entrer le mot de passe de l\'utilisateur'],
+                'second_options' => ['label' => 'Veuillez repeter le mot de passe de l\'utilisateur'],
             ])
         ;
     }

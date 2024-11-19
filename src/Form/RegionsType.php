@@ -12,11 +12,11 @@ class RegionsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('region', null, [
-                'label' => 'Région',
-            ])
             ->add('province', null, [
                 'label' => 'Province',
+            ])
+            ->add('region', null, [
+                'label' => 'Région',
             ])
         ;
     }

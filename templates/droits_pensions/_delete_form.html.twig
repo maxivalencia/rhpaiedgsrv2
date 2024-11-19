@@ -1,5 +1,5 @@
 <form method="post" action="{{ path('droits_pensions_delete', {'id': droits_pension.id}) }}" onsubmit="return confirm('Êtes-vous sûre de vouloir supprimer ce donnée?');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ droits_pension.id) }}">
-    <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Supprimer</button>
+    <button class="btn btn-sm bg-gradient-danger m-2"><i class="fa fa-trash" aria-hidden="true"></i> Supprimer</button>
 </form>

@@ -13,7 +13,7 @@ class DetailsMotifsReintegrationType extends AbstractType
     {
         $builder
             ->add('libelle', null, [
-                'label' => 'Détails du motifs de réintegration',
+                'label' => 'Détail du motif de réintegration',
             ])
         ;
     }

@@ -18,6 +18,9 @@ class ConjointsType extends AbstractType
             'Masculin' => false
         ];
         $builder
+            ->add('personnel', null, [
+                'label' => 'Conjoint au sein de la DGSR',
+            ])
             ->add('rang', null, [
                 'label' => 'Rang par rapport au nombre d\'exconjoint du personnel',
             ])
@@ -100,9 +103,6 @@ class ConjointsType extends AbstractType
             ])
             ->add('commune', null, [
                 'label' => 'Commune du lieu de mariage',
-            ])
-            ->add('personnel', null, [
-                'label' => 'Conjoint au sein de la DGSR',
             ])
         ;
     }

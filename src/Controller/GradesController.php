@@ -54,6 +54,8 @@ class GradesController extends AbstractController
             $entityManager->persist($grade);
             $entityManager->flush();
 
+            $this->addFlash('success', 'L\'ajout a été effectué avec succès.');
+
             return $this->redirectToRoute('grades_index');
         }
 
@@ -84,6 +86,8 @@ class GradesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'La modification a été effectuée avec succès.');
+
             return $this->redirectToRoute('grades_index');
         }
 
@@ -102,6 +106,9 @@ class GradesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($grade);
             $entityManager->flush();
+            
+            $this->addFlash('success', 'La suppression a été effectuée avec succès.');
+
         }
 
         return $this->redirectToRoute('grades_index');

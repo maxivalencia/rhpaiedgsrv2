@@ -1,5 +1,59 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Logo de l'institution{% endblock %}
+
+{% block body %}
+<div class="card">
+        <div class="card-header bg-gradient-primary">
+            <h4 class="card-title justify-content-between font-weight-bold">Logo de l'institution</h4>
+        </div>
+        <div class="card-comments m-2">
+            {% for message in app.flashes('success') %}
+            <div class="alert alert-success text-white m-2">
+                {{ message }}  
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+            <div class="alert alert-danger text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning text-white m-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+            <div class="table-responsive table-condensed table-responsive-sm table-striped">
+                <table id="user_liste" class="table table-sm table-bordered">
+                    <tbody>
+                        <tr style="vertical-align: middle;">
+                            <td class="text-center" >
+                                <img src="/dist/images/logo_dgsr.png" width="400px" alt="Logo">
+                            </td>
+                        </tr>
+                        <tr style="vertical-align: middle;">
+                            <td class="text-left" >
+                                    {{ form(form) }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+        </div>
+    </div>
+
+    {% block javascripts %}
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#user_liste').DataTable();
+            } );
+        </script>
+    {% endblock %}
+{% endblock %}
+{# {% extends 'base.html.twig' %}
+
 {% block title %}Logo{% endblock %}
 
 {% block body %}
@@ -9,4 +63,4 @@
     </div>
     <br><br><br><br>
     {{ form(form) }}
-{% endblock %}
+{% endblock %} #}

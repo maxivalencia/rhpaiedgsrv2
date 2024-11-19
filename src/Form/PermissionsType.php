@@ -14,14 +14,18 @@ class PermissionsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('personnel', null, [
+                'label' => 'Persmission',
+            ])
             ->add('annee', DateType::class, [
                 'label' => 'Année',
                 'widget' => 'single_text',
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                //'data' => new \DateTime('now'),
-                //'format' => 'MM/yyyy',
+            ])
+            ->add('lieu_jouissance', null, [
+                'label' => 'Lieu de jouissance',
             ])
             ->add('date_depart', null, [
                 'label' => 'Date de départ',
@@ -29,7 +33,6 @@ class PermissionsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                //'data' => new \DateTime('now'),
             ])
             ->add('date_fin', null, [
                 'label' => 'Date de fin',
@@ -37,7 +40,6 @@ class PermissionsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                //'data' => new \DateTime('now'),
             ])
             ->add('duree', null, [
                 'label' => 'Durée',
@@ -48,12 +50,7 @@ class PermissionsType extends AbstractType
             ->add('type_permission', null, [
                 'label' => 'Type de permission',
             ])
-            ->add('lieu_jouissance', null, [
-                'label' => 'Lieu de jouissance',
-            ])
-            ->add('personnel', null, [
-                'label' => 'Persmission',
-            ])
+
         ;
     }
 

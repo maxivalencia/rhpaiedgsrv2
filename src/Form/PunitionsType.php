@@ -12,6 +12,12 @@ class PunitionsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('personnel', null, [
+                'label' => 'Personnel concerné',
+            ])
+            ->add('sanction', null, [
+                'label' => 'Sanction',
+            ])
             ->add('libelle', null, [
                 'label' => 'Punition',
             ])
@@ -24,7 +30,6 @@ class PunitionsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                //'data' => new \DateTime('now'),
             ])
             ->add('date_effet', null, [
                 'label' => 'Date de l\'effectivité',
@@ -32,13 +37,6 @@ class PunitionsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                //'data' => new \DateTime('now'),
-            ])
-            ->add('sanction', null, [
-                'label' => 'Sanction',
-            ])
-            ->add('personnel', null, [
-                'label' => 'Personnel',
             ])
         ;
     }

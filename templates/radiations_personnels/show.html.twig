@@ -1,66 +1,78 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Radiations Personnels{% endblock %}
+{% block title %}Renseignements radiation personnel{% endblock %}
 
 {% block body %}
-    <h1>Radiations Personnels</h1>
-
-    <table class="table">
-        <tbody>
-            {# <tr>
-                <th>Id</th>
-                <td>{{ radiations_personnel.id }}</td>
-            </tr> #}
-            <tr>
-                <th>Personnel</th>
-                <td>{{ radiations_personnel.personnel }}</td>
-            </tr>
-            <tr>
-                <th>Date de notification</th>
-                <td>{{ radiations_personnel.dateNotification ? radiations_personnel.dateNotification|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Lieu de repli</th>
-                <td>{{ radiations_personnel.lieuRepli }}</td>
-            </tr>
-            <tr>
-                <th>Date de radiation</th>
-                <td>{{ radiations_personnel.dateRadiation ? radiations_personnel.dateRadiation|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date prévu de radiation</th>
-                <td>{{ radiations_personnel.datePrevuRadiation ? radiations_personnel.datePrevuRadiation|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Reférence mrc de la radiation</th>
-                <td>{{ radiations_personnel.referenceMrcRadiation }}</td>
-            </tr>
-            <tr>
-                <th>Date mrc de la radiation</th>
-                <td>{{ radiations_personnel.dateMrcRadiation ? radiations_personnel.dateMrcRadiation|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Motif de radiation</th>
-                <td>{{ radiations_personnel.motifRadiation }}</td>
-            </tr>
-            <tr>
-                <th>Détails du motif de radiation</th>
-                <td>{{ radiations_personnel.detailMotifRadiation }}</td>
-            </tr>
-            <tr>
-                <th>Décision de radiation</th>
-                <td>{{ radiations_personnel.decisionRadiation }}</td>
-            </tr>
-            <tr>
-                <th>Droit au pension</th>
-                <td>{{ radiations_personnel.droitPension }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('radiations_personnels_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
-    <br>
-    <a href="{{ path('radiations_personnels_edit', {'id': radiations_personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
-
-    {{ include('radiations_personnels/_delete_form.html.twig') }}
+<div class="card">
+    <div class="card-header bg-gradient-primary">
+        <h4 class="card-title justify-content-between font-weight-bold">Renseignements radiation personnel</h4>
+    </div>
+    <div class="card-comments justify-content-center m-2">
+        <div class="row justify-content-center">
+            <div class="col-auto justify-content-center">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr class="col-auto">
+                            <th class="col-auto">Personnel</th>
+                            <td class="col-auto">{{ radiations_personnel.personnel }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date de notification</th>
+                            <td>{{ radiations_personnel.dateNotification ? radiations_personnel.dateNotification|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Lieu de repli</th>
+                            <td>{{ radiations_personnel.lieuRepli }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date de radiation</th>
+                            <td>{{ radiations_personnel.dateRadiation ? radiations_personnel.dateRadiation|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date prévu de radiation</th>
+                            <td>{{ radiations_personnel.datePrevuRadiation ? radiations_personnel.datePrevuRadiation|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Reférence mrc de la radiation</th>
+                            <td>{{ radiations_personnel.referenceMrcRadiation }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date mrc de la radiation</th>
+                            <td>{{ radiations_personnel.dateMrcRadiation ? radiations_personnel.dateMrcRadiation|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Motif de radiation</th>
+                            <td>{{ radiations_personnel.motifRadiation }}</td>
+                        </tr>
+                        <tr>
+                            <th>Détails du motif de radiation</th>
+                            <td>{{ radiations_personnel.detailMotifRadiation }}</td>
+                        </tr>
+                        <tr>
+                            <th>Décision de radiation</th>
+                            <td>{{ radiations_personnel.decisionRadiation }}</td>
+                        </tr>
+                        <tr>
+                            <th>Droit au pension</th>
+                            <td>{{ radiations_personnel.droitPension }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-gradient-white">
+        <div class="row">
+            <div class="col-1">
+                <a href="{{ path('radiations_personnels_index') }}" class="btn btn-sm bg-gradient-primary m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+            </div>
+            <div class="col-1">
+                <a href="{{ path('radiations_personnels_edit', {'id': radiations_personnel.id}) }}" class="btn btn-sm bg-gradient-success m-2"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+            </div>
+            <div class="col-1 ml-2">
+                {{ include('radiations_personnels/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

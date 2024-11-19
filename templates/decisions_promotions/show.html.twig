@@ -1,34 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Décisions Promotions{% endblock %}
+{% block title %}Détail déc. avancement{% endblock %}
 
 {% block body %}
-    <h1>Décisions Promotions</h1>
-
-    <table class="table">
-        <tbody>
-            {# <tr>
-                <th>Id</th>
-                <td>{{ decisions_promotion.id }}</td>
-            </tr> #}
-            <tr>
-                <th>Reférence de la décision</th>
-                <td>{{ decisions_promotion.referenceDecision }}</td>
-            </tr>
-            <tr>
-                <th>Date de la décision</th>
-                <td>{{ decisions_promotion.dateDecision ? decisions_promotion.dateDecision|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Genre de décision</th>
-                <td>{{ decisions_promotion.genreDecision }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('decisions_promotions_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
-    <br>
-    <a href="{{ path('decisions_promotions_edit', {'id': decisions_promotion.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
-
-    {{ include('decisions_promotions/_delete_form.html.twig') }}
+<div class="card">
+    <div class="card-header bg-gradient-primary">
+        <h4 class="card-title justify-content-between font-weight-bold">Détail déc. avancement</h4>
+    </div>
+    <div class="card-comments justify-content-center m-2">
+        <div class="row justify-content-center">
+            <div class="col-auto justify-content-center">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr class="col-auto">
+                            <th class="col-auto">Reférence de la décision</th>
+                            <td>{{ decisions_promotion.referenceDecision }}</td>
+                        </tr>
+                        <tr class="col-auto">
+                            <th class="col-auto">Date de la décision</th>
+                            <td>{{ decisions_promotion.dateDecision ? decisions_promotion.dateDecision|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr class="col-auto">
+                            <th class="col-auto">Genre de décision</th>
+                            <td>{{ decisions_promotion.genreDecision }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-gradient-white">
+        <div class="row">
+            <div class="col-1">
+                <a href="{{ path('decisions_promotions_index') }}" class="btn btn-sm bg-gradient-primary m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+            </div>
+            <div class="col-1">
+                <a href="{{ path('decisions_promotions_edit', {'id': decisions_promotion.id}) }}" class="btn btn-sm bg-gradient-success m-2"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+            </div>
+            <div class="col-1 ml-2">
+                {{ include('decisions_promotions/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

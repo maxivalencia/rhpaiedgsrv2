@@ -1,42 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Communes{% endblock %}
+{% block title %}Commune{% endblock %}
 
 {% block body %}
-    <h1>Communes</h1>
-
-    <table class="table">
-        <tbody>
-            {# <tr>
-                <th>Id</th>
-                <td>{{ commune.id }}</td>
-            </tr> #}
-            <tr>
-                <th>Commune</th>
-                <td>{{ commune.commune }}</td>
-            </tr>
-            <tr>
-                <th>Type Commune</th>
-                <td>{{ commune.type }}</td>
-            </tr>
-            <tr>
-                <th>District</th>
-                <td>{{ commune.district }}</td>
-            </tr>
-            <tr>
-                <th>Région</th>
-                <td>{{ commune.district.region }}</td>
-            </tr>
-            <tr>
-                <th>Province</th>
-                <td>{{ commune.district.region.province  }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('communes_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
-    <br>
-    <a href="{{ path('communes_edit', {'id': commune.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
-
-    {{ include('communes/_delete_form.html.twig') }}
+<div class="card">
+    <div class="card-header bg-gradient-primary">
+        <h4 class="card-title justify-content-between font-weight-bold">Commune</h4>
+    </div>
+    <div class="card-comments justify-content-center m-2">
+        <div class="row justify-content-center">
+            <div class="col-auto justify-content-center">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr class="col-auto">
+                            <th class="col-auto">Province</th>
+                            <td class="col-auto">{{ commune.district.region.province  }}</td>
+                        </tr>
+                        <tr class="col-auto">
+                            <th class="col-auto">Région</th>
+                            <td class="col-auto">{{ commune.district.region }}</td>
+                        </tr>
+                        <tr class="col-auto">
+                            <th class="col-auto">District</th>
+                            <td class="col-auto">{{ commune.district }}</td>
+                        </tr>
+                        <tr class="col-auto">
+                            <th class="col-auto">Commune</th>
+                            <td class="col-auto">{{ commune.commune }}</td>
+                        </tr>
+                        <tr class="col-auto">
+                            <th class="col-auto">Type Commune</th>
+                            <td class="col-auto">{{ commune.type }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-gradient-white">
+        <div class="row">
+            <div class="col-1">
+                <a href="{{ path('communes_index') }}" class="btn btn-sm bg-gradient-primary m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+            </div>
+            <div class="col-1">
+                <a href="{{ path('communes_edit', {'id': commune.id}) }}" class="btn btn-sm bg-gradient-success m-2"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+            </div>
+            <div class="col-1 ml-2">
+                {{ include('communes/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

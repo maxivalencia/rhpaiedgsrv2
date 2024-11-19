@@ -1,46 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ExConjoints{% endblock %}
+{% block title %}Renseignements rupture conjugale{% endblock %}
 
 {% block body %}
-    <h1>ExConjoints</h1>
-
-    <table class="table">
-        <tbody>
-            {# <tr>
-                <th>Id</th>
-                <td>{{ ex_conjoint.id }}</td>
-            </tr> #}
-            <tr>
-                <th>Motif de rupture</th>
-                <td>{{ ex_conjoint.motifRupture }}</td>
-            </tr>
-            <tr>
-                <th>Date de rupture</th>
-                <td>{{ ex_conjoint.dateRupture ? ex_conjoint.dateRupture|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Reférence de rupture</th>
-                <td>{{ ex_conjoint.referenceRupture }}</td>
-            </tr>
-            <tr>
-                <th>Date de reférence de rupture</th>
-                <td>{{ ex_conjoint.dateReferenceRupture ? ex_conjoint.dateReferenceRupture|date('d/m/Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Adresse du (ou de la) veuf/veuve</th>
-                <td>{{ ex_conjoint.adresseVeuve }}</td>
-            </tr>
-            <tr>
-                <th>Conjoint</th>
-                <td>{{ ex_conjoint.conjoint }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('ex_conjoints_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
-    <br>
-    <a href="{{ path('ex_conjoints_edit', {'id': ex_conjoint.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
-
-    {{ include('ex_conjoints/_delete_form.html.twig') }}
+<div class="card">
+    <div class="card-header bg-gradient-primary">
+        <h4 class="card-title justify-content-between font-weight-bold">Renseignements rupture conjugale</h4>
+    </div>
+    <div class="card-comments justify-content-center m-2">
+        <div class="row justify-content-center">
+            <div class="col-auto justify-content-center">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr class="col-auto">
+                            <th class="col-auto">Conjoint</th>
+                            <td class="col-auto">{{ ex_conjoint.conjoint }}</td>
+                        </tr>
+                        <tr>
+                            <th>Motif de rupture</th>
+                            <td>{{ ex_conjoint.motifRupture }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date de rupture</th>
+                            <td>{{ ex_conjoint.dateRupture ? ex_conjoint.dateRupture|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Reférence de rupture</th>
+                            <td>{{ ex_conjoint.referenceRupture }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date de reférence de rupture</th>
+                            <td>{{ ex_conjoint.dateReferenceRupture ? ex_conjoint.dateReferenceRupture|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Adresse du (ou de la) veuf/veuve</th>
+                            <td>{{ ex_conjoint.adresseVeuve }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-gradient-white">
+        <div class="row">
+            <div class="col-1">
+                <a href="{{ path('ex_conjoints_index') }}" class="btn btn-sm bg-gradient-primary m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+            </div>
+            <div class="col-1">
+                <a href="{{ path('ex_conjoints_edit', {'id': ex_conjoint.id}) }}" class="btn btn-sm bg-gradient-success m-2"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+            </div>
+            <div class="col-1 ml-2">
+                {{ include('ex_conjoints/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

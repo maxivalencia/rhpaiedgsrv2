@@ -12,6 +12,12 @@ class DecorationsPersonnelsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('personnel', null, [
+                'label' => 'Personnel',
+            ])
+            ->add('decoration', null, [
+                'label' => 'Décoration',
+            ])
             ->add('date', null, [
                 'label' => 'Date',
                 'widget' => 'single_text',
@@ -30,12 +36,6 @@ class DecorationsPersonnelsType extends AbstractType
                     'class' => 'datetimepicker',
                 ],
                 //'data' => new \DateTime('now'),
-            ])
-            ->add('personnel', null, [
-                'label' => 'Personnel',
-            ])
-            ->add('decoration', null, [
-                'label' => 'Décoration',
             ])
         ;
     }

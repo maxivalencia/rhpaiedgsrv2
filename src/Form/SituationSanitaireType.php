@@ -12,14 +12,28 @@ class SituationSanitaireType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('personnel', null, [
+                'label' => 'Personnel',
+            ])
+            ->add('personne_concerner', null, [
+                'label' => 'Personne concerner',
+            ])
             ->add('hopital_medecin_traitant', null, [
                 'label' => 'Hopital ou médecin traitant',
             ])
             ->add('date_debut_traitement', null, [
                 'label' => 'Date de début du traitement',
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'datetimepicker',
+                ],
             ])
             ->add('date_fin_traitement', null, [
                 'label' => 'Date de fin du traitement',
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'datetimepicker',
+                ],
             ])
             ->add('maladie', null, [
                 'label' => 'Maladie',
@@ -39,9 +53,6 @@ class SituationSanitaireType extends AbstractType
             ->add('niveau_danger', null, [
                 'label' => 'Niveau de danger',
             ])
-            ->add('personnel', null, [
-                'label' => 'Personnel',
-            ])
             ->add('type_maladie', null, [
                 'label' => 'Type de maladie',
             ])
@@ -53,9 +64,6 @@ class SituationSanitaireType extends AbstractType
             ])
             ->add('controleur_periodique', null, [
                 'label' => 'Controleur périodique',
-            ])
-            ->add('personne_concerner', null, [
-                'label' => 'Personne concerner',
             ])
         ;
     }

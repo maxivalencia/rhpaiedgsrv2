@@ -1,26 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Détails du Motifs de Réintegration{% endblock %}
+{% block title %}Détail motif de réintegration{% endblock %}
 
 {% block body %}
-    <h1>Détails du Motifs de Réintegration</h1>
-
-    <table class="table">
-        <tbody>
-            {# <tr>
-                <th>Id</th>
-                <td>{{ details_motifs_reintegration.id }}</td>
-            </tr> #}
-            <tr>
-                <th>Détails du Motifs de Réintegration</th>
-                <td>{{ details_motifs_reintegration.libelle }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('details_motifs_reintegration_index') }}" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
-
-    <a href="{{ path('details_motifs_reintegration_edit', {'id': details_motifs_reintegration.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
-
-    {{ include('details_motifs_reintegration/_delete_form.html.twig') }}
+<div class="card">
+    <div class="card-header bg-gradient-primary">
+        <h4 class="card-title justify-content-between font-weight-bold">Détail motif de réintegration</h4>
+    </div>
+    <div class="card-comments justify-content-center m-2">
+        <div class="row justify-content-center">
+            <div class="col-auto justify-content-center">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr>
+                            <th class="col-auto">Détail du motif de réintegration</th>
+                            <td class="col-auto">{{ details_motifs_reintegration.libelle }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-gradient-white">
+        <div class="row">
+            <div class="col-1">
+                <a href="{{ path('details_motifs_reintegration_index') }}" class="btn btn-sm bg-gradient-primary m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+            </div>
+            <div class="col-1">
+                <a href="{{ path('details_motifs_reintegration_edit', {'id': details_motifs_reintegration.id}) }}" class="btn btn-sm bg-gradient-success m-2"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+            </div>
+            <div class="col-1 ml-2">
+                {{ include('details_motifs_reintegration/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

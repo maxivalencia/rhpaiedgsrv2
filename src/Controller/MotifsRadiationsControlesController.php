@@ -54,6 +54,8 @@ class MotifsRadiationsControlesController extends AbstractController
             $entityManager->persist($motifsRadiationsControle);
             $entityManager->flush();
 
+            $this->addFlash('success', 'L\'ajout a été effectué avec succès.');
+
             return $this->redirectToRoute('motifs_radiations_controles_index');
         }
 
@@ -83,6 +85,8 @@ class MotifsRadiationsControlesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            
+            $this->addFlash('success', 'La modification a été effectuée avec succès.');
 
             return $this->redirectToRoute('motifs_radiations_controles_index');
         }
@@ -102,6 +106,8 @@ class MotifsRadiationsControlesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($motifsRadiationsControle);
             $entityManager->flush();
+            
+            $this->addFlash('success', 'La suppression a été effectuée avec succès.');
         }
 
         return $this->redirectToRoute('motifs_radiations_controles_index');

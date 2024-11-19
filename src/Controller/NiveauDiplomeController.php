@@ -54,6 +54,8 @@ class NiveauDiplomeController extends AbstractController
             $entityManager->persist($niveauDiplome);
             $entityManager->flush();
 
+            $this->addFlash('success', 'L\'ajout a été effectué avec succès.');
+
             return $this->redirectToRoute('niveau_diplome_index');
         }
 
@@ -84,6 +86,8 @@ class NiveauDiplomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'La modification a été effectuée avec succès.');
+
             return $this->redirectToRoute('niveau_diplome_index');
         }
 
@@ -102,6 +106,8 @@ class NiveauDiplomeController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($niveauDiplome);
             $entityManager->flush();
+
+            $this->addFlash('success', 'La suppression a été effectuée avec succès.');
         }
 
         return $this->redirectToRoute('niveau_diplome_index');

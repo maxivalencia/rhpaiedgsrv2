@@ -13,10 +13,14 @@ class DecisionReintegrationType extends AbstractType
     {
         $builder
             ->add('libelle', null, [
-                'label' => 'reférence décision de la réintegration',
+                'label' => 'Reférence décision de la réintegration',
             ])
             ->add('date_reference', null, [
-                'label' => 'date de reférence de la Réintegration',
+                'label' => 'Date de reférence de la réintegration',
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'datetimepicker',
+                ],                
             ])
         ;
     }

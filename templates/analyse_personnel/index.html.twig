@@ -1,117 +1,117 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Consultation des Personnels{% endblock %}
+{% block title %}Consultation tout personnel{% endblock %}
 
 {% block body %}
-    <h1>Consultation des personnels</h1>
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-
-        {# <input type="submit"/> #}
-    {{ form_end(form) }}
-    <hr>
-    <table id="user_liste" class="table">
-        <thead>
-            <tr>
-                <th style="width:125px; text-align:center;">PHOTOS DU PERSONNEL</th>
-                <th style="width:500px; text-align:center;">INFORMATION SUR LE PERSONNEL</th>
-                <th style="width:500px; text-align:center;">INFORMATION SUR LE(LA) CONJOINT(E)</th>
-                <th style="width:500px; text-align:center;">AUTRE INFORMATION</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for personnel in personnels %}            
-            <tr>
-                <td style="vertical-align:middle;">
-                    {% set sary = 'default.png' %}
-                    {% set nompersonnel = 'personnel dgsr' %}
-                    {% for photo in photos %}
-                        {% if photo.personnel.id == personnel.id %}
-                            {% set sary = photo.photo %}
-                            {% set nompersonnel = photo.personnel %}
-                        {% endif %}                
-                    {% endfor %}
-                    <img src="/photos/{{ sary }}" alt="{{ nompersonnel }}" style="width:100px;height:120px">
-                </td>
-                <td style="vertical-align:middle;">
-                    <strong>{{ personnel.grad }} {{ personnel.nom }} {{ personnel.prenoms }}</strong><br>
-                    <strong>Née le : </strong>{{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }} <strong>à</strong> {{ personnel.lieuNaissance }}<br>
-                    <strong>Numéro CIN : </strong>{{ personnel.numCin }}<br>
-                    <strong>sexe : </strong>{{ personnel.sexe ? 'Féminin' : 'Masculin' }}<br>
-                    <strong>Téléphone : </strong>{{ personnel.telephone }}<br>
-                    <strong>Adresse : </strong>{{ personnel.adresse }}<br>
-                    <strong>Affectation : </strong><br>
-                    {% for affectations_personnel in affectations %}
-                        {% if affectations_personnel.personnel != null and affectations_personnel.personnel.id == personnel.id %}
-                            {{ affectations_personnel.unite }},&nbsp;
-                        {% endif %} 
-                    {% endfor %}
-                    <br>
-                    <p style="text-align:right;"><a href="{{ path('personnels_show', {'id': personnel.id}) }}" class="btn btn-success" style="align:rigth;"><i class="fa fa-book" aria-hidden="true"></i> Consulter la fiche individuelle</a></p>
-                </td>
-                <td style="vertical-align:middle;">
-                    {% for conjoint in conjoints %}
-                        {% if conjoint.personnel is not null and personnel is not null %}  
-                            {% if conjoint.personnel.id == personnel.id %}
-                                <strong>{{ conjoint.nom }} {{ conjoint.prenom }}</strong><br>
-                                <strong>Numéro CIN : </strong>{{ conjoint.numeroCin }}<br>
-                                {% for fonctionConjoint in fonctionConjoints %}
-                                    {% if fonctionConjoint.conjoint is not null and conjoint is not null %}
-                                        {% if fonctionConjoint.conjoint.id == conjoint.id %}
-                                            <span style="color:red;"><strong>Fonction : </strong>{{ fonctionConjoint.libelle }}</span><br>
-                                            <strong>Employeur : </strong>{{ fonctionConjoint.employeur }}<br>
-                                            <strong>Adresse de l'employeur : </strong>{{ fonctionConjoint.adresseEmployeur }}<br>                                            
-                                            {% if fonctionConjoint.estFonctionnaire == true %}
-                                                <p style="color:red;"><strong>{{ fonctionConjoint.estFonctionnaire ? 'Fonctionnaire' : '' }}</strong></p>
-                                            {% else %}
-                                                <p><strong>{{ fonctionConjoint.estFonctionnaire ? 'Fonctionnaire' : '' }}</strong></p>
-                                            {% endif %}                                            
-                                        {# {% else %}
-                                            <strong>Fonction : </strong>Ménagère #}
-                                        {% endif %}   
-                                    {% endif %}                         
-                                {% else %}
-                                    {# Aucune fonction trouvé #}
-                                    <strong>Fonction : </strong>Ménagère
-                                {% endfor %}
-                            {% endif %}
-                        {% endif %}
-                    {% else %}
-                        Célibataire
-                    {% endfor %}
-                    
-                </td>
-                <td style="vertical-align:middle;"> 
-                    {% set count = 0 %}
-                    {% for enfant in enfants %}
-                        {% if enfant.personnel == personnel %}
-                            {% set count = count + 1 %}
-                        {% endif %}
-                    {% endfor %}
-                    <strong>Nombre d'enfant à charge : <strong>{{ count }}<br>
-                    <strong>Situation sanitaire : <strong>
-                    {% for situation in situationsSanitaires %}
-                        {% if situation.personnel == personnel %}
-                            Maladie : {{ situation.maladie }} de type {{ situation.type_maladie }}
-                            Traitement : {{ situation.type_traitement }}
-                            Fréquence de traitement : {{ situation.frequence_traitement }}
-                            Traitant : {{ situation.hopital_medecin_traitant }}
-                            Personne malade : {{ situation.personne_concerner }}
-                        {% endif %}
-                    {% else %}
-                        rien à signaler
-                    {% endfor %}
-
-                    {# {% if count > 0 %}
-                    ---  build the toc here --
-                    {% endif %} #}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="21">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<div class="card">
+    <div class="card-header bg-gradient-primary">
+        <h4 class="card-title justify-content-between font-weight-bold">Consultation tout personnel</h4>
+    </div>
+    <div class="card-comments m-2">
+        <div class="block-grid col-12 mb-2">
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
+        </div>
+        <div class="table-responsive table-condensed table-responsive-sm table-striped">
+            <table id="user_liste" class="table">
+                <thead>
+                    <tr>
+                        <th style="width:125px; text-align:center;">PHOTOS DU PERSONNEL</th>
+                        <th style="width:500px; text-align:center;">INFORMATION SUR LE PERSONNEL</th>
+                        <th style="width:500px; text-align:center;">INFORMATION SUR LE(LA) CONJOINT(E)</th>
+                        <th style="width:500px; text-align:center;">AUTRE INFORMATION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for personnel in personnels %}            
+                    <tr>
+                        <td style="vertical-align:middle;">
+                            {% set sary = 'default.png' %}
+                            {% set nompersonnel = 'personnel dgsr' %}
+                            {% for photo in photos %}
+                                {% if photo.personnel.id == personnel.id %}
+                                    {% set sary = photo.photo %}
+                                    {% set nompersonnel = photo.personnel %}
+                                {% endif %}                
+                            {% endfor %}
+                            <img src="/photos/{{ sary }}" alt="{{ nompersonnel }}" style="width:100px;height:120px">
+                        </td>
+                        <td style="vertical-align:middle;">
+                            <strong>{{ personnel.grad }} {{ personnel.nom }} {{ personnel.prenoms }}</strong><br>
+                            <strong>Née le : </strong>{{ personnel.dateNaissance ? personnel.dateNaissance|date('d/m/Y') : '' }} <strong>à</strong> {{ personnel.lieuNaissance }}<br>
+                            <strong>Numéro CIN : </strong>{{ personnel.numCin }}<br>
+                            <strong>sexe : </strong>{{ personnel.sexe ? 'Féminin' : 'Masculin' }}<br>
+                            <strong>Téléphone : </strong>{{ personnel.telephone }}<br>
+                            <strong>Adresse : </strong>{{ personnel.adresse }}<br>
+                            <strong>Affectation : </strong><br>
+                            {% for affectations_personnel in affectations %}
+                                {% if affectations_personnel.personnel != null and affectations_personnel.personnel.id == personnel.id %}
+                                    {{ affectations_personnel.unite }},&nbsp;
+                                {% endif %} 
+                            {% endfor %}
+                            <br>
+                            <p style="text-align:right;"><a href="{{ path('personnels_show', {'id': personnel.id}) }}" class="btn btn-success" style="align:rigth;"><i class="fa fa-book" aria-hidden="true"></i> Consulter la fiche individuelle</a></p>
+                        </td>
+                        <td style="vertical-align:middle;">
+                            {% for conjoint in conjoints %}
+                                {% if conjoint.personnel is not null and personnel is not null %}  
+                                    {% if conjoint.personnel.id == personnel.id %}
+                                        <strong>{{ conjoint.nom }} {{ conjoint.prenom }}</strong><br>
+                                        <strong>Numéro CIN : </strong>{{ conjoint.numeroCin }}<br>
+                                        {% for fonctionConjoint in fonctionConjoints %}
+                                            {% if fonctionConjoint.conjoint is not null and conjoint is not null %}
+                                                {% if fonctionConjoint.conjoint.id == conjoint.id %}
+                                                    <span style="color:red;"><strong>Fonction : </strong>{{ fonctionConjoint.libelle }}</span><br>
+                                                    <strong>Employeur : </strong>{{ fonctionConjoint.employeur }}<br>
+                                                    <strong>Adresse de l'employeur : </strong>{{ fonctionConjoint.adresseEmployeur }}<br>                                            
+                                                    {% if fonctionConjoint.estFonctionnaire == true %}
+                                                        <p style="color:red;"><strong>{{ fonctionConjoint.estFonctionnaire ? 'Fonctionnaire' : '' }}</strong></p>
+                                                    {% else %}
+                                                        <p><strong>{{ fonctionConjoint.estFonctionnaire ? 'Fonctionnaire' : '' }}</strong></p>
+                                                    {% endif %}   
+                                                {% endif %}   
+                                            {% endif %}                         
+                                        {% else %}
+                                            <strong>Fonction : </strong>Ménagère
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                Célibataire
+                            {% endfor %}
+                            
+                        </td>
+                        <td style="vertical-align:middle;"> 
+                            {% set count = 0 %}
+                            {% for enfant in enfants %}
+                                {% if enfant.personnel == personnel %}
+                                    {% set count = count + 1 %}
+                                {% endif %}
+                            {% endfor %}
+                            <strong>Nombre d'enfant à charge : <strong>{{ count }}<br>
+                            <strong>Situation sanitaire : <strong>
+                            {% for situation in situationsSanitaires %}
+                                {% if situation.personnel == personnel %}
+                                    Maladie : {{ situation.maladie }} de type {{ situation.type_maladie }}
+                                    Traitement : {{ situation.type_traitement }}
+                                    Fréquence de traitement : {{ situation.frequence_traitement }}
+                                    Traitant : {{ situation.hopital_medecin_traitant }}
+                                    Personne malade : {{ situation.personne_concerner }}
+                                {% endif %}
+                            {% else %}
+                                rien à signaler
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td class="text-center text-danger" colspan="4">Aucun enregistrement trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}

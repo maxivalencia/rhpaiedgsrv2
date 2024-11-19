@@ -1,5 +1,71 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Détail avancement{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header bg-gradient-primary">
+        <h4 class="card-title justify-content-between font-weight-bold">Détail avancement</h4>
+    </div>
+    <div class="card-comments justify-content-center m-2">
+        <div class="row justify-content-center">
+            <div class="col-auto justify-content-center">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr>
+                            <th>Grade</th>
+                            <td>{{ nominations_personnel.grade }}</td>
+                        </tr>
+                        <tr>
+                            <th>Personnel</th>
+                            <td>{{ nominations_personnel.personnel }}</td>
+                        </tr>
+                        <tr>
+                            <th>Décision</th>
+                            <td>{{ nominations_personnel.decision }}</td>
+                        </tr>
+                        <tr class="col-auto">
+                            <th class="col-auto">Date de nomination</th>
+                            <td>{{ nominations_personnel.dateNomination ? nominations_personnel.dateNomination|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr class="col-auto">
+                            <th class="col-auto">Rang</th>
+                            <td>{{ nominations_personnel.rang }}</td>
+                        </tr>
+                        <tr>
+                            <th>Echélon</th>
+                            <td>{{ nominations_personnel.echelon }}</td>
+                        </tr>
+                        <tr>
+                            <th>Classe</th>
+                            <td>{{ nominations_personnel.class }}</td>
+                        </tr>
+                        <tr>
+                            <th>Indice</th>
+                            <td>{{ nominations_personnel.indice }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-gradient-white">
+        <div class="row">
+            <div class="col-1">
+                <a href="{{ path('nominations_personnels_index') }}" class="btn btn-sm bg-gradient-primary m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+            </div>
+            <div class="col-1">
+                <a href="{{ path('nominations_personnels_edit', {'id': nominations_personnel.id}) }}" class="btn btn-sm bg-gradient-success m-2"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
+            </div>
+            <div class="col-1 ml-2">
+                {{ include('nominations_personnels/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{# {% extends 'base.html.twig' %}
+
 {% block title %}Nominations Personnels{% endblock %}
 
 {% block body %}
@@ -7,10 +73,6 @@
 
     <table class="table">
         <tbody>
-            {# <tr>
-                <th>Id</th>
-                <td>{{ nominations_personnel.id }}</td>
-            </tr> #}
             <tr>
                 <th>Date de nomination</th>
                 <td>{{ nominations_personnel.dateNomination ? nominations_personnel.dateNomination|date('d/m/Y') : '' }}</td>
@@ -51,4 +113,4 @@
     <a href="{{ path('nominations_personnels_edit', {'id': nominations_personnel.id}) }}" class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> Modifier</a>
 
     {{ include('nominations_personnels/_delete_form.html.twig') }}
-{% endblock %}
+{% endblock %} #}

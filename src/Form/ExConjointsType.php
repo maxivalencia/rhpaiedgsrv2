@@ -12,6 +12,9 @@ class ExConjointsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('conjoint', null, [
+                'label' => 'L\'exconjoint',
+            ])
             ->add('motif_rupture', null, [
                 'label' => 'Motif de la rupture',
             ])
@@ -21,7 +24,6 @@ class ExConjointsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                //'data' => new \DateTime('now'),
             ])
             ->add('reference_rupture', null, [
                 'label' => 'Reférence de la rupture',
@@ -32,13 +34,9 @@ class ExConjointsType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
-                //'data' => new \DateTime('now'),
             ])
             ->add('adresse_veuve', null, [
                 'label' => 'Adresse du/de la veuf(veuve)',
-            ])
-            ->add('conjoint', null, [
-                'label' => 'L\'exconjoint',
             ])
         ;
     }

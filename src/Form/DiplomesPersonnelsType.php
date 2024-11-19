@@ -12,6 +12,12 @@ class DiplomesPersonnelsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('personnel', null, [
+                'label' => 'Personnel',
+            ])
+            ->add('diplome', null, [
+                'label' => 'Diplôme',
+            ])
             ->add('numero', null, [
                 'label' => 'Numero du diplôme',
             ])
@@ -23,12 +29,8 @@ class DiplomesPersonnelsType extends AbstractType
                 ],
                 //'data' => new \DateTime('now'),
             ])
-            ->add('diplome', null, [
-                'label' => 'Diplôme',
-            ])
-            ->add('personnel', null, [
-                'label' => 'Personnel',
-            ])
+
+
         ;
     }
 

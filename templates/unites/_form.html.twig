@@ -1,4 +1,4 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i> {{ button_label|default('Ajouter') }}</button>
+    {{ form_widget(form, {'attr': {'class': 'm-0'}}) }}
+    <button class="btn btn-sm bg-gradient-success m-2"><i class="fa fa-book" aria-hidden="true"></i> {{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

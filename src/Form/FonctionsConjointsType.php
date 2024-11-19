@@ -12,6 +12,9 @@ class FonctionsConjointsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('conjoint', null, [
+                'label' => 'Conjoint(e) actuel(le)',
+            ])
             ->add('libelle', null, [
                 'label' => 'Fonction du conjoint',
             ])
@@ -32,9 +35,6 @@ class FonctionsConjointsType extends AbstractType
             ])
             ->add('type_contrat', null, [
                 'label' => 'Type de contrat',
-            ])
-            ->add('conjoint', null, [
-                'label' => 'Conjoint fonctionnelle',
             ])
         ;
     }

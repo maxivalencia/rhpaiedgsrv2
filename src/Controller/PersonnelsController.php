@@ -89,7 +89,7 @@ class PersonnelsController extends AbstractController
      */
     public function show(Personnels $personnel, RecompenseRepository $recompenseRepository, SituationSanitaireRepository $situationSanitaireRepository, FonctionsConjointsRepository $fonctionsConjointsRepository, PhotosRepository $photosRepository, ConjointsRepository $conjointsRepository, EnfantsRepository $enfantsRepository, DiplomesPersonnelsRepository $diplomesPersonnelsRepository, DecorationsPersonnelsRepository $decorationsPersonnelsRepository, AffectationsPersonnelsRepository $affectationsPersonnelsRepository, NominationsPersonnelsRepository $nominationsPersonnelsRepository): Response
     {
-        $photo = $photosRepository->findOneBy(['personnel' => $personnel]);
+        $photo = $photosRepository->findOneBy(['personnel' => $personnel], ["id" => "DESC"]);
         if($photo == null){
             $photo = new Photos();
             $photo->setPhoto("default.png");

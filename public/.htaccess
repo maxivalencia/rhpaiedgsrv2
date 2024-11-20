@@ -1,0 +1,11 @@
+# Assurez-vous que l'encodage est UTF-8
+AddDefaultCharset UTF-8
+
+# Activation de la réécriture d'URL (mod_rewrite)
+RewriteEngine On
+
+# Redirection vers index.php si l'URL est mal formée
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+

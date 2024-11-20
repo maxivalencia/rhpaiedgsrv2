@@ -1,0 +1,14 @@
+.taille-bouton{
+    width : 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.texte-blanc {
+    color: white;
+}

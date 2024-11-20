@@ -43,7 +43,7 @@ class FicheIndividuelleController extends AbstractController
         $pdfOptions->set('defaultFont', 'Arial');
         $dompdf = new Dompdf($pdfOptions);
         $personnel = $personnelsRepository->findOneBy(['id' => $id]);
-        $photo = $photosRepository->findOneBy(['personnel' => $personnel]);
+        $photo = $photosRepository->findOneBy(['personnel' => $personnel], ["id" => "DESC"]);
         $conjoints = $conjointsRepository->findOneBy(["personnel" => $personnel], ["id" => "DESC"]);
         $conjoint = $conjointsRepository->findOneBy(["personnel" => $personnel], ["id" => "DESC"]);
         $fonctionConjoint = $fonctionsConjointsRepository->findOneBy(["conjoint" => $conjoint], ["id" => "DESC"]);

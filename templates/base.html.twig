@@ -40,6 +40,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+        <link href="/css/personnaliser.css" rel="stylesheet"/>
         
         {% block stylesheets %}{% endblock %}
     </head>
@@ -62,7 +63,7 @@
                                 {% set pht = photo %}
                             {% endfor %}                                
                                 <img src="/photos/{{ pht }}" alt="{{ app.user.utilisateur }}" class="brand-image img-circle elevation-3" style="opacity: .8; width: 10%;">
-                                {{ app.user.utilisateur }} &nbsp;
+                                <strong>{{ app.user.utilisateur }}</strong> &nbsp;
                         </li>
                         <li>
                             <a href="{{ path('app_logout') }}" class="btn btn-light"> <i class="fas fa-sign-out-alt"></i> Déconnexion</a>
@@ -85,17 +86,19 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-1 pb-1 mb-1">
                     <div class="image">
-                        {% if is_granted("ROLE_USER") %}
-                            {% set pht = '' %}
-                            {% for photo in app.user.utilisateur.photos %}  
-                                {% set pht = photo %}
-                            {% endfor %}                              
-                                <img src="/photos/{{ pht }}" alt="{{ app.user.utilisateur }}" class="brand-image img-circle elevation-2" style="opacity: .8; width: 22%">{#  class="" #}
-                        {% else %}
-                            <img src="/dist/img/avatar5.png" alt="User Image">{#  class="img-circle elevation-2" #}
-                        {% endif %} 
+                        <span class="texte-blanc">
+                            {% if is_granted("ROLE_USER") %}
+                                {% set pht = '' %}
+                                {% for photo in app.user.utilisateur.photos %}  
+                                    {% set pht = photo %}
+                                {% endfor %}                              
+                                    <img src="/photos/{{ pht }}" alt="{{ app.user.utilisateur }}" class="brand-image img-circle elevation-2" style="opacity: .8; width: 22%">{#  class="" #}
+                            {% else %}
+                                <img src="/dist/img/avatar5.png" alt="User Image"> {#  class="img-circle elevation-2" #}
+                            {% endif %}
+                        {{ app.user.getUsername() }}</span>
                     </div>
-                    <div class="info text-left" style="vertical-align: middle; align: left;">{#  class="info" width="250px" #}
+                    <!-- <div class="info text-left" style="vertical-align: middle; align: left;">{#  class="info" width="250px" #}
                         <a href="#" class="">{#  class="d-block" #}
                             {% if is_granted("ROLE_USER") %}
                                 {{ app.user.getUsername() }}
@@ -103,7 +106,7 @@
                                 Anonymous user
                             {% endif %} 
                         </a>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="sidebar d-flex">
